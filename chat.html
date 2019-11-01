@@ -11,16 +11,17 @@
             startEngagementOnInit: false,
             preEngagementConfig: {
             	description: "Let's get started",
-            	fields: [
-            		{
+            	fields:
+                    [{
             			label: "What is your helpline?",
             			type: "SelectItem",
-            			attributes: {
+            			attributes: 
+                        {
             				name: "helpline",
             				required: true,
             				readOnly: false
-            			},
-            			options: [
+        		        },
+            	        options: [
                         {
                             value: "Select helpline",
                             label: "Select helpline",
@@ -41,17 +42,17 @@
                             label: "CHILDLINE India (IN)",
                             selected: false
                         },
-                                              {
+                        {
                             value: "Childline South Africa (SA)",
                             label: "Childline South Africa (SA)",
                             selected: false
                         },
-                                              {
+                        {
                             value: "ChildLine Zambia (ZM)",
                             label: "ChildLine Zambia (ZM)",
                             selected: false
                         },
-                                              {
+                        {
                             value: "Child Helpline Cambodia (KH)",
                             label: "Child Helpline Cambodia (KH)",
                             selected: false
@@ -77,8 +78,7 @@
                             selected: false
                         }
             			]
-            		}
-            	],
+            		}],
             	submitLabel: "Let's chat!"
             }
         };
@@ -87,9 +87,9 @@
 	    	Twilio.FlexWebChat.MessagingCanvas.defaultProps.predefinedMessage.body = "How can I help?";
 	    
 			//Posting question from preengagement form as users first chat message
-	 	   Twilio.FlexWebChat.Actions.on("afterStartEngagement", (payload) => {
-	 	       const { question } = payload.formData;
-	 	       if (!question)
+	 	    Twilio.FlexWebChat.Actions.on("afterStartEngagement", (payload) => {
+	 	        const { question } = payload.formData;
+	 	        if (!question)
 	 	           return;
 
 		        const { channelSid } = manager.store.getState().flex.session;
