@@ -1,0 +1,108 @@
+<html>
+<head>
+	<title>My chat</title>
+</head>
+<body>
+	<script src="https://media.twiliocdn.com/sdk/js/flex-webchat/releases/2.1.2/twilio-flex-webchat.min.js"></script>
+	<script>
+        const appConfig = {
+            accountSid:"AC6b99858a6faf7af1b572c83988b50eb1",
+            flexFlowSid:"FO57c22d5dfc7a18dcada507aa70ca0cb3",
+            startEngagementOnInit: false,
+            preEngagementConfig: {
+            	description: "Let's get started",
+            	fields: [
+            		{
+            			label: "What is your helpline?",
+            			type: "SelectItem",
+            			attributes: {
+            				name: "helpline",
+            				required: true,
+            				readOnly: false
+            			},
+            			options: [
+                        {
+                            value: "Select helpline",
+                            label: "Select helpline",
+                            selected: true
+                        },
+            			{
+            				value: "Børns Vilkår (DK)",
+            				label: "Børns Vilkår (DK)",
+            				selected: false
+            			},
+            			{
+            				value: "Childhelp (US)",
+            				label: "Childhelp (US)",
+            				selected: false
+            			},
+                        {
+                            value: "CHILDLINE India (IN)",
+                            label: "CHILDLINE India (IN)",
+                            selected: false
+                        },
+                                              {
+                            value: "Childline South Africa (SA)",
+                            label: "Childline South Africa (SA)",
+                            selected: false
+                        },
+                                              {
+                            value: "ChildLine Zambia (ZM)",
+                            label: "ChildLine Zambia (ZM)",
+                            selected: false
+                        },
+                                              {
+                            value: "Child Helpline Cambodia (KH)",
+                            label: "Child Helpline Cambodia (KH)",
+                            selected: false
+                        },
+                        {
+                            value: "Jordan River 110 (JO)",
+                            label: "Jordan River 110 (JO)",
+                            selected: false
+                        },
+                        {
+                            value: "SMILE OF THE CHILD (GR)",
+                            label: "SMILE OF THE CHILD (GR)",
+                            selected: false
+                        },
+                        {
+                            value: "Telefono Azzurro (IT)",
+                            label: "Telefono Azzurro (IT)",
+                            selected: false
+                        },
+                        {
+                            value: "2NDFLOOR (US)",
+                            label: "2NDFLOOR (US)",
+                            selected: false
+                        }
+            			]
+            		}
+            	],
+            	submitLabel: "Let's chat!"
+            }
+        };
+        Twilio.FlexWebChat.createWebChat(appConfig).then(webchat => {
+	    	const { manager } = webchat;
+	    	Twilio.FlexWebChat.MessagingCanvas.defaultProps.predefinedMessage.body = "How can I help?";
+	    
+			//Posting question from preengagement form as users first chat message
+	 	   Twilio.FlexWebChat.Actions.on("afterStartEngagement", (payload) => {
+	 	       const { question } = payload.formData;
+	 	       if (!question)
+	 	           return;
+
+		        const { channelSid } = manager.store.getState().flex.session;
+		        manager
+		            .chatClient.getChannelBySid(channelSid)
+		            .then(channel => channel.sendMessage(question));
+		    });
+			// Changing the Welcome message
+		    manager.strings.WelcomeMessage = "Welcome to Toronto Line!";
+
+			// Render WebChat
+		    webchat.init();
+		});
+    </script>
+</body>
+</html>
