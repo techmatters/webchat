@@ -109,7 +109,11 @@
             });
             // Changing the Welcome message
             manager.strings.WelcomeMessage = "Welcome to Toronto Line!";
-
+            manager.strings.MessageCanvasTrayContent = `
+              <p>The counselor has left the chat.
+              Thank you for reaching out.
+              Please contact us again if you need more help.</p>
+            `;
             // Render WebChat
             webchat.init();
         });
