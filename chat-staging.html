@@ -32,30 +32,52 @@
                 submitLabel: "Let's chat!"
             }
         };
+        const defaultLanguage = 'en-US';
+        const helplineLanguage = 'es';
+
         Twilio.FlexWebChat.createWebChat(appConfig).then(webchat => {
             const { manager } = webchat;
-            Twilio.FlexWebChat.MessagingCanvas.defaultProps.predefinedMessage.body = "How can I help?";
-        
-            //Posting question from preengagement form as users first chat message
-             Twilio.FlexWebChat.Actions.on("afterStartEngagement", (payload) => {
-                 const { question } = payload.formData;
-                 if (!question)
-                    return;
+            const serverlessBaseUrl = manager.serviceConfiguration.attributes.serverless_base_url;
+            
+            const twilioStrings = { ...manager.strings }; // save the originals
+            const setNewStrings = newStrings => (manager.strings = { ...manager.strings, ...newStrings });
+            const translationErrorMsg = 'Could not translate, using default';
 
-                const { channelSid } = manager.store.getState().flex.session;
-                manager
-                    .chatClient.getChannelBySid(channelSid)
-                    .then(channel => channel.sendMessage(question));
-            });
-            // Changing the Welcome message
-            manager.strings.WelcomeMessage = "Welcome to Toronto Line!";
-            manager.strings.MessageCanvasTrayContent = `
-              <p>The counselor has left the chat.
-              Thank you for reaching out.
-              Please contact us again if you need more help.</p>
-            `;
-            // Render WebChat
-            webchat.init();
+            const changeLanguageWebChat = async language => {
+              try {
+                const response = await fetch(`${serverlessBaseUrl}/translations/${language}/messages.json`);
+                const translation = await response.json();
+                if (language === defaultLanguage) {
+                  setNewStrings({ ...twilioStrings, ...translation });
+                } else {
+                  setNewStrings(translation);
+                }
+                Twilio.FlexWebChat.MessagingCanvas.defaultProps.predefinedMessage.body = translation.BotGreeting;
+                console.log('Translation OK');
+              } catch (err) {
+                window.alert(translationErrorMsg);
+                console.error(translationErrorMsg, err);
+                changeLanguageWebChat(defaultLanguage)
+              }
+            }
+
+            const webchatLanguage = helplineLanguage || defaultLanguage;
+            changeLanguageWebChat(webchatLanguage).then(() =>{
+              //Posting question from preengagement form as users first chat message
+              Twilio.FlexWebChat.Actions.on("afterStartEngagement", (payload) => {
+                  const { question } = payload.formData;
+                  if (!question)
+                      return;
+
+                  const { channelSid } = manager.store.getState().flex.session;
+                  manager
+                      .chatClient.getChannelBySid(channelSid)
+                      .then(channel => channel.sendMessage(question));
+              });
+
+              // Render WebChat
+              webchat.init();
+            })
         });
     </script>
 </body>
