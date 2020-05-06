@@ -7,11 +7,6 @@
     <script>
         const translations = {
           'en-US': {
-            PreEngagementConfigDescription: "Let's get started",
-            PreEngagementConfigWhatHelpline: "What is your helpline?",
-            PreEngagementConfigSelectHelpline: "Select helpline",
-            PreEngagementConfigSubmitLabel: "Let's chat!",
-
             BotGreeting: "How can I help?",
             WelcomeMessage: "Welcome to Toronto Line!",
             MessageCanvasTrayContent: "<p>The counselor has left the chat. Thank you for reaching out. Please contact us again if you need more help.</p>",
@@ -36,10 +31,7 @@
             FieldValidationRequiredField: "Campo requerido",
             FieldValidationInvalidEmail: "Por favor provea una dirección válida de email",
 
-            PreEngagementConfigDescription: "Comencemos",
-            PreEngagementConfigWhatHelpline: "¿Cuál es tu línea de asistencia?",
-            PreEngagementConfigSelectHelpline: "Seleccione línea de asistencia",
-            PreEngagementConfigSubmitLabel: "¡A chatear!",
+            PreEngagementDescription: "Comencemos",
 
             BotGreeting: "¿Cómo puedo ayudar?",
             WelcomeMessage: "¡Bienvenido a Toronto Line!",
@@ -48,19 +40,22 @@
         }
 
         const defaultLanguage = 'en-US';
-        // const helplineLanguage = 'es';
-        const helplineLanguage = defaultLanguage;
-        const webchatLanguage = helplineLanguage || defaultLanguage;
+        // const defaultLanguage = 'es';
+        // const userLanguage = window.navigator.language;
+        // console.log(userLanguage)
+        // const webchatLanguage = 
+        //   translations.userLanguage ? userLanguage : userLanguage.slice(0, 2) ? userLanguage.slice(0, 2) : defaultLanguage;
+        const webchatLanguage = defaultLanguage;
 
         const appConfig = {
             accountSid:"ACd8a2e89748318adf6ddff7df6948deaf",
             flexFlowSid:"FO8c2d9c388e7feba8b08d06a4bc3f69d1",
             startEngagementOnInit: false,
             preEngagementConfig: {
-                description: translations[webchatLanguage].PreEngagementConfigDescription,
+                description: translations[webchatLanguage].PreEngagementDescription,
                 fields:
                     [{
-                        label: translations[webchatLanguage].PreEngagementConfigWhatHelpline,
+                      label: "What is your helpline?",
                         type: "SelectItem",
                         attributes: 
                         {
@@ -71,14 +66,28 @@
                         options: [
                         {
                             value: "Select helpline",
-                            label: translations[webchatLanguage].PreEngagementConfigSelectHelpline,
+                            label: "Select helpline",
                             selected: true
-                        }
+                        },
+                        {
+                            value: "Fake Helpline",
+                            label: "Fake Helpline",
+                            selected: false
+                        },
                         ]
                     }],
-                submitLabel: translations[webchatLanguage].PreEngagementConfigSubmitLabel,
+                submitLabel: "Let's chat!"
             }
         };
+
+        const mapHelplineLanguage = helpline => {
+          switch (helpline) {
+            case 'Fake Helpline':
+              return 'es';
+            default:
+              return defaultLanguage;
+          }
+        }
 
         Twilio.FlexWebChat.createWebChat(appConfig).then(webchat => {
             const { manager } = webchat;
@@ -87,7 +96,7 @@
             const setNewStrings = newStrings => (manager.strings = { ...manager.strings, ...newStrings });
             const translationErrorMsg = 'Could not translate, using default';
 
-            const changeLanguageWebChat = async language => {
+            const changeLanguageWebChat = language => {
               try {
                 let translation;
                 if (language === defaultLanguage) {
@@ -99,16 +108,20 @@
                 Twilio.FlexWebChat.MessagingCanvas.defaultProps.predefinedMessage.body = translation.BotGreeting;
                 console.log('Translation OK');
               } catch (err) {
+                changeLanguageWebChat(defaultLanguage)
                 window.alert(translationErrorMsg);
                 console.error(translationErrorMsg, err);
-                changeLanguageWebChat(defaultLanguage)
               }
             }
 
-            changeLanguageWebChat(webchatLanguage).then(() =>{
               //Posting question from preengagement form as users first chat message
               Twilio.FlexWebChat.Actions.on("afterStartEngagement", (payload) => {
-                  const { question } = payload.formData;
+                  const { question, helpline } = payload.formData;
+
+                  // here we might collect caller language (from a another preEngagement select)
+                  const helplineLanguage = mapHelplineLanguage(helpline);
+                  changeLanguageWebChat(helplineLanguage);
+
                   if (!question)
                       return;
 
@@ -120,7 +133,6 @@
 
               // Render WebChat
               webchat.init();
-            })
         });
     </script>
 </body>
