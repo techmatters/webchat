@@ -97,12 +97,12 @@
         const changeLanguageWebChat = language => {
           try {
             if (language === defaultLanguage) {
-              setNewStrings(translations[defaultLanguage]);
+              setNewStrings({ ...twilioStrings, ...translations[defaultLanguage] });
             } else {
-              setNewStrings(translations[language]);
+              setNewStrings({ ...twilioStrings, ...translations[language] });
             }
             Twilio.FlexWebChat.MessagingCanvas.defaultProps.predefinedMessage.body =
-            (translations[language] && translations[language].BotGreeting) || translations[defaultLanguage].BotGreeting;
+              (translations[language] && translations[language].BotGreeting) || translations[defaultLanguage].BotGreeting;
             console.log('Translation OK');
           } catch (err) {
             window.alert(translationErrorMsg);
