@@ -1,16 +1,69 @@
 <html>
 <head>
+    <meta charset='utf-8'>
     <title>My chat</title>
 </head>
 <body>
-    <script src="https://media.twiliocdn.com/sdk/js/flex-webchat/releases/2.1.2/twilio-flex-webchat.min.js">
-      // Load the flex webchat code from Twilio's CDN
+    <!-- Load the flex webchat code from Twilio's CDN -->
+    <script src="https://media.twiliocdn.com/sdk/js/flex-webchat/releases/2.1.2/twilio-flex-webchat.min.js"></script>
+    <!-- Load the translations from our remote -->
+    <script src="file:///home/buonapasta/Desktop/Tech-Matters/webchat/translations.js"></script>
+    <!-- Configure this webchat -->
+    <script>
+      const initialLanguage = 'es'; // language for the initial mount (e.g. change "Chat with us" message).
+
+      const initialTranslation = translations[initialLanguage];
+
+      const initialMessages = {
+        description: initialTranslation && initialTranslation.PreEngagementDescription || "Let's get started",
+        submitLabel: initialTranslation && initialTranslation.PreEngagementSubmitLabel || "Let's chat!",
+        selectHelplineLabel: 
+          initialTranslation && initialTranslation.PreEngagementselectHelplineLabel || "What is your helpline?",
+      };
+
+      const appConfig = {
+        accountSid:"ACd8a2e89748318adf6ddff7df6948deaf",
+        flexFlowSid:"FO8c2d9c388e7feba8b08d06a4bc3f69d1",
+        startEngagementOnInit: false,
+        preEngagementConfig: {
+          description: initialMessages.description,
+          fields:
+            [{
+              label: initialMessages.selectHelplineLabel,
+              type: "SelectItem",
+              attributes:
+              {
+                name: "helpline",
+                required: true,
+                readOnly: false
+              },
+              options: [
+                {
+                  value: "Select helpline",
+                  label: "Select helpline",
+                  selected: true
+                },
+                {
+                  value: "Fake Helpline",
+                  label: "Fake Helpline",
+                  selected: false
+                },
+              ]
+            }],
+          submitLabel: initialMessages.submitLabel
+        }
+      };      
+
+      const mapHelplineLanguage = helpline => {
+        switch (helpline) {
+          case 'Fake Helpline':
+            return 'dk';
+          default:
+            return defaultLanguage;
+        }
+      }
     </script>
-    <script src="file:///home/buonapasta/Desktop/Tech-Matters/webchat/translations.js">
-      // Load the translations object
-    </script>
-    <script src="file:///home/buonapasta/Desktop/Tech-Matters/webchat/webchat.js">
-      // Load the customization code for our webchat instance, and render webchat
-    </script>
+    <!--  Load the customization code from our remote, and render webchat -->
+    <script src="file:///home/buonapasta/Desktop/Tech-Matters/webchat/webchat.js"></script>
 </body>
 </html>
