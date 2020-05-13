@@ -6,7 +6,7 @@ const appConfig = {
   flexFlowSid:"FO8c2d9c388e7feba8b08d06a4bc3f69d1",
   startEngagementOnInit: false,
   preEngagementConfig: {
-    description: translations[webchatLanguage].PreEngagementDescription,
+    description: translations[webchatLanguage].PreEngagementDescription || "Let's get started",
     fields:
       [{
         label: "What is your helpline?",
