@@ -43,14 +43,14 @@
       }
 
       const defaultLanguage = 'en-US';
-      const webchatLanguage = defaultLanguage;
+      const initialLanguage = defaultLanguage;
 
       const appConfig = {
         accountSid:"ACd8a2e89748318adf6ddff7df6948deaf",
         flexFlowSid:"FO8c2d9c388e7feba8b08d06a4bc3f69d1",
         startEngagementOnInit: false,
         preEngagementConfig: {
-          description: translations[webchatLanguage].PreEngagementDescription || "Let's get started",
+          description: "Let's get started",
           fields:
             [{
               label: "What is your helpline?",
@@ -96,10 +96,10 @@
 
         const changeLanguageWebChat = language => {
           try {
-            if (language === defaultLanguage) {
-              setNewStrings({ ...twilioStrings, ...translations[defaultLanguage] });
+            if (language !== defaultLanguage && translations[language]) {
+              setNewStrings({ ...twilioStrings, ...translations[defaultLanguage], ...translations[language] });
             } else {
-              setNewStrings({ ...twilioStrings, ...translations[language] });
+              setNewStrings({ ...twilioStrings, ...translations[defaultLanguage] });
             }
             Twilio.FlexWebChat.MessagingCanvas.defaultProps.predefinedMessage.body =
               (translations[language] && translations[language].BotGreeting) || translations[defaultLanguage].BotGreeting;
@@ -110,6 +110,8 @@
             changeLanguageWebChat(defaultLanguage)
           }
         }
+
+        changeLanguageWebChat(initialLanguage);
 
         //Posting question from preengagement form as users first chat message
         Twilio.FlexWebChat.Actions.on("afterStartEngagement", (payload) => {
