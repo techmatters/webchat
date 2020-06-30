@@ -6,6 +6,12 @@
     <script src="https://media.twiliocdn.com/sdk/js/flex-webchat/releases/2.1.2/twilio-flex-webchat.min.js"></script>
     <script>
       const translations = {
+        'ar': {
+          MessageCanvasTrayContent: "<p dir='rtl'>المستشار غادر الدردشة. شكرا لك على التواصل. يرجى الاتصال بنا مرة أخرى إذا كنت بحاجة إلى مزيد من المساعدة.</p>"
+        },
+        'el': {
+          MessageCanvasTrayContent: "<p>Ο σύμβουλος εγκατέλειψε τη συνομιλία. Σας ευχαριστούμε που επικοινωνήσατε. Παρακαλώ επικοινωνήστε μαζί μας ξανά εάν χρειάζεστε περισσότερη βοήθεια.</p>"
+        },
         'en-US': {
           BotGreeting: "How can I help?",
           WelcomeMessage: "Welcome to Toronto Line!",
@@ -37,8 +43,17 @@
           WelcomeMessage: "¡Bienvenido a Toronto Line!",
           MessageCanvasTrayContent: "<p>El consejero abandonó el chat. Gracias por contactarnos. Por favor contáctenos nuevamente si necesita más ayuda.</p>",
         },
-        'dk': {
+        'da': {
           MessageCanvasTrayContent: "<p>Rådgiveren har forladt chatten. Tak, fordi du nåede ud. Kontakt os igen, hvis du har brug for mere hjælp.</p>",
+        },
+        'it': {
+          MessageCanvasTrayContent: "<p>Il consulente ha lasciato la chat. Grazie per averci contattato. Vi preghiamo di contattarci nuovamente se avete bisogno di ulteriore aiuto.</p>"
+        },
+        'km': {
+          MessageCanvasTrayContent: "<p>អ្នកផ្តល់យោបល់បានចាកចេញពីការជជែក។ សូមអរគុណចំពោះការឈានទៅដល់។ សូមទាក់ទងមកយើងម្តងទៀតប្រសិនបើអ្នកត្រូវការជំនួយបន្ថែម។</p>"
+        },
+        'sv': {
+          MessageCanvasTrayContent: "<p>Rådgivaren har lämnat chatten. Tack för att du når ut. Kontakta oss igen om du behöver mer hjälp.</p>"
         }
       }
 
@@ -134,10 +149,23 @@
       const defaultLanguage = 'en-US';
       const initialLanguage = defaultLanguage;
 
+      //Maybe put helpline strings in a file of constants to avoid misspellings
       const mapHelplineLanguage = helpline => {
         switch (helpline) {
+          case 'Børns Vilkår (DK)':
+            return 'da';
+          case 'BRIS (SE)':
+            return 'sv';
+          case 'Child Helpline Cambodia (KH)':
+            return 'km';
+          case 'Jordan River 110 (JO)':
+            return 'ar';
           case 'Palo Alto Testing (Text)':
             return 'en-US';
+          case 'SMILE OF THE CHILD (GR)':
+            return 'el';
+          case 'Telefono Azzurro (IT)':
+            return 'it';
           default:
             return defaultLanguage;
         }
