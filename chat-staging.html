@@ -10,6 +10,8 @@
           BotGreeting: "How can I help?",
           WelcomeMessage: "Welcome to Toronto Line!",
           MessageCanvasTrayContent: "<p>The counselor has left the chat. Thank you for reaching out. Please contact us again if you need more help.</p>",
+          MessageInputDisabledReasonHold: "Please hold for a counselor.",
+          ContactingCounselor: "Contacting a counselor.."
         },
         'es': {
           EntryPointTagline: "Chatea con nosotros",
@@ -113,21 +115,35 @@
 
         changeLanguageWebChat(initialLanguage);
 
-        //Posting question from preengagement form as users first chat message
+        // Disable input (default language)
+        Twilio.FlexWebChat.MessageInput.defaultProps.disabledReason = translations[initialLanguage].MessageInputDisabledReasonHold;
+
+        // Posting question from preengagement form as users first chat message
         Twilio.FlexWebChat.Actions.on("afterStartEngagement", (payload) => {
           const { question, helpline } = payload.formData;
-
+          
           // here we might collect caller language (from a another preEngagement select)
           const helplineLanguage = mapHelplineLanguage(helpline);
           changeLanguageWebChat(helplineLanguage);
 
-          if (!question)
-            return;
+          // change disabled message to actual language
+          Twilio.FlexWebChat.MessageInput.defaultProps.disabledReason = translations[helplineLanguage].MessageInputDisabledReasonHold;
+
+          // if (!question)
+          //   return;
 
           const { channelSid } = manager.store.getState().flex.session;
           manager
             .chatClient.getChannelBySid(channelSid)
-            .then(channel => channel.sendMessage(question));
+            .then(channel => {
+              // adds an event listener that will run only once
+              channel.once("memberJoined", (payload) => {
+                // Re-enable input
+                Twilio.FlexWebChat.MessageInput.defaultProps.disabledReason = undefined;
+              });
+
+              channel.sendMessage(translations[helplineLanguage].ContactingCounselor);
+            });
         });
 
         // Render WebChat
