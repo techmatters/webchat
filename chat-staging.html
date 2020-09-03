@@ -7,11 +7,10 @@
     <script>
       const translations = {
         'en-US': {
-          BotGreeting: "How can I help?",
-          WelcomeMessage: "Welcome to Toronto Line!",
+          BotGreeting: "Welcome to the helpline.  A counselor will be with you shortly.",
+          WelcomeMessage: "Welcome to Aselo!",
           MessageCanvasTrayContent: "<p>The counselor has left the chat. Thank you for reaching out. Please contact us again if you need more help.</p>",
           MessageInputDisabledReasonHold: "Please hold for a counselor.",
-          ContactingCounselor: "Contacting a counselor.."
         },
         'es': {
           EntryPointTagline: "Chatea con nosotros",
@@ -36,7 +35,7 @@
           PreEngagementDescription: "Comencemos",
 
           BotGreeting: "¿Cómo puedo ayudar?",
-          WelcomeMessage: "¡Bienvenido a Toronto Line!",
+          WelcomeMessage: "¡Bienvenido a Aselo!",
           MessageCanvasTrayContent: "<p>El consejero abandonó el chat. Gracias por contactarnos. Por favor contáctenos nuevamente si necesita más ayuda.</p>",
         },
         'dk': {
@@ -141,8 +140,6 @@
                 // Re-enable input
                 Twilio.FlexWebChat.MessageInput.defaultProps.disabledReason = undefined;
               });
-
-              channel.sendMessage(translations[helplineLanguage].ContactingCounselor);
             });
         });
 
