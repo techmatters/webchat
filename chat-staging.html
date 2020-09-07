@@ -128,8 +128,10 @@
           // change disabled message to actual language
           Twilio.FlexWebChat.MessageInput.defaultProps.disabledReason = translations[helplineLanguage].MessageInputDisabledReasonHold;
 
-          // if (!question)
-          //   return;
+          // remove message input and send button if disabledReason is not undefined
+          Twilio.FlexWebChat.MessageInput.Content.remove('textarea', {
+            if: props => !!props.disabledReason
+          });
 
           const { channelSid } = manager.store.getState().flex.session;
           manager
@@ -140,6 +142,8 @@
                 // Re-enable input
                 Twilio.FlexWebChat.MessageInput.defaultProps.disabledReason = undefined;
               });
+
+              channel.sendMessage('');
             });
         });
 
