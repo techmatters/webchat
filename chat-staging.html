@@ -142,7 +142,7 @@
         setListenerToUnlockInput(channel);
 
         // Generate task by sending empty message (hidden from the UI above)
-        channel.sendMessage(translations[defaultLanguage].AutoFirstMessage);
+        channel.sendMessage(translations[initialLanguage].AutoFirstMessage);
       })
 
       Twilio.FlexWebChat.createWebChat(appConfig).then(webchat => {
@@ -166,7 +166,7 @@
         // Posting question from preengagement form as users first chat message
         Twilio.FlexWebChat.Actions.on("afterStartEngagement", (payload) => {
           const { question, helpline } = payload.formData;
-          
+
           // Here we might collect caller language (from a another preEngagement select)
           const helplineLanguage = mapHelplineLanguage(helpline);
           changeLanguageWebChat(helplineLanguage);
