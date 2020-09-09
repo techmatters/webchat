@@ -7,9 +7,11 @@
     <script>
       const translations = {
         'en-US': {
-          BotGreeting: "How can I help?",
-          WelcomeMessage: "Welcome to Toronto Line!",
+          BotGreeting: "Welcome to the helpline.  A counselor will be with you shortly.",
+          WelcomeMessage: "Welcome to Aselo!",
           MessageCanvasTrayContent: "<p>The counselor has left the chat. Thank you for reaching out. Please contact us again if you need more help.</p>",
+          MessageInputDisabledReasonHold: "Please hold for a counselor.",
+          AutoFirstMessage: "Incoming webchat contact",
         },
         'es': {
           EntryPointTagline: "Chatea con nosotros",
@@ -34,7 +36,7 @@
           PreEngagementDescription: "Comencemos",
 
           BotGreeting: "¿Cómo puedo ayudar?",
-          WelcomeMessage: "¡Bienvenido a Toronto Line!",
+          WelcomeMessage: "¡Bienvenido a Aselo!",
           MessageCanvasTrayContent: "<p>El consejero abandonó el chat. Gracias por contactarnos. Por favor contáctenos nuevamente si necesita más ayuda.</p>",
         },
         'dk': {
@@ -87,47 +89,93 @@
         }
       }
 
-      Twilio.FlexWebChat.createWebChat(appConfig).then(webchat => {
-        const { manager } = webchat;
-
+      const getChangeLanguageWebChat = manager => language => {
         const twilioStrings = { ...manager.strings }; // save the originals
         const setNewStrings = newStrings => (manager.strings = { ...manager.strings, ...newStrings });
         const translationErrorMsg = 'Could not translate, using default';
-
-        const changeLanguageWebChat = language => {
-          try {
-            if (language !== defaultLanguage && translations[language]) {
-              setNewStrings({ ...twilioStrings, ...translations[defaultLanguage], ...translations[language] });
-            } else {
-              setNewStrings({ ...twilioStrings, ...translations[defaultLanguage] });
-            }
-            Twilio.FlexWebChat.MessagingCanvas.defaultProps.predefinedMessage.body =
-              (translations[language] && translations[language].BotGreeting) || translations[defaultLanguage].BotGreeting;
-            console.log('Translation OK');
-          } catch (err) {
-            window.alert(translationErrorMsg);
-            console.error(translationErrorMsg, err);
-            changeLanguageWebChat(defaultLanguage)
+        
+        try {
+          if (language !== defaultLanguage && translations[language]) {
+            setNewStrings({ ...twilioStrings, ...translations[defaultLanguage], ...translations[language] });
+          } else {
+            setNewStrings({ ...twilioStrings, ...translations[defaultLanguage] });
           }
+          Twilio.FlexWebChat.MessagingCanvas.defaultProps.predefinedMessage.body =
+            (translations[language] && translations[language].BotGreeting) || translations[defaultLanguage].BotGreeting;
+          console.log('Translation OK');
+        } catch (err) {
+          window.alert(translationErrorMsg);
+          console.error(translationErrorMsg, err);
+          changeLanguageWebChat(defaultLanguage)
         }
+      }
+
+      const doWithChannel = callback => manager => {
+        const { channelSid } = manager.store.getState().flex.session;
+          manager
+            .chatClient.getChannelBySid(channelSid)
+            .then(channel => {
+              callback(channel);
+            });
+      }
+
+      const setListenerToUnlockInput = channel => {
+        if (!channel) return;
+
+        if (channel.members.size > 1) {
+          Twilio.FlexWebChat.MessageInput.defaultProps.disabledReason = undefined;
+          return;
+        }
+       
+        // Adds an event listener that will run only once
+        channel.once("memberJoined", () => {
+          // Re-enable input
+          Twilio.FlexWebChat.MessageInput.defaultProps.disabledReason = undefined;
+        });
+      }
+
+      const setChannelOnCreateWebChat = doWithChannel(channel => {
+        setListenerToUnlockInput(channel);
+      });
+
+      const setChannelAfterStartEngagement = doWithChannel(channel => {
+        setListenerToUnlockInput(channel);
+
+        // Generate task by sending empty message (hidden from the UI above)
+        channel.sendMessage(translations[initialLanguage].AutoFirstMessage);
+      })
+
+      Twilio.FlexWebChat.createWebChat(appConfig).then(webchat => {
+        const { manager } = webchat;
+        const changeLanguageWebChat = getChangeLanguageWebChat(manager);
 
         changeLanguageWebChat(initialLanguage);
 
-        //Posting question from preengagement form as users first chat message
+        // If caller is waiting for a counselor to connect, disable input (default language)
+        Twilio.FlexWebChat.MessageInput.defaultProps.disabledReason = translations[initialLanguage].MessageInputDisabledReasonHold;
+        if (manager.chatClient) setChannelOnCreateWebChat(manager);
+        
+        // Hide message input and send button if disabledReason is not undefined
+        Twilio.FlexWebChat.MessageInput.Content.remove('textarea', {
+          if: props => !!props.disabledReason,
+        });
+
+        // Hide first message ("AutoFirstMessage", sent to create a new task)
+        Twilio.FlexWebChat.MessageList.Content.remove('0');
+
+        // Posting question from preengagement form as users first chat message
         Twilio.FlexWebChat.Actions.on("afterStartEngagement", (payload) => {
           const { question, helpline } = payload.formData;
 
-          // here we might collect caller language (from a another preEngagement select)
+          // Here we might collect caller language (from a another preEngagement select)
           const helplineLanguage = mapHelplineLanguage(helpline);
           changeLanguageWebChat(helplineLanguage);
 
-          if (!question)
-            return;
+          // Change disabled message to actual language if it exists, default if not
+          const translatedReasonOrDefault = translations[helplineLanguage].MessageInputDisabledReasonHold || translations[initialLanguage].MessageInputDisabledReasonHold;
+          Twilio.FlexWebChat.MessageInput.defaultProps.disabledReason = translatedReasonOrDefault;
 
-          const { channelSid } = manager.store.getState().flex.session;
-          manager
-            .chatClient.getChannelBySid(channelSid)
-            .then(channel => channel.sendMessage(question));
+          setChannelAfterStartEngagement(manager);
         });
 
         // Render WebChat
