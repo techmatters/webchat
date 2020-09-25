@@ -115,31 +115,37 @@
           manager
             .chatClient.getChannelBySid(channelSid)
             .then(channel => {
-              callback(channel);
+              callback(channel, manager);
             });
       }
 
-      const setListenerToUnlockInput = channel => {
+      const unlockInput = (manager) => {
+        const { user } = manager.chatClient;
+        const { lockInput, ...attributes } = user.attributes;
+        user.updateAttributes(attributes);
+      }
+
+      const setListenerToUnlockInput = (channel, manager) => {
         if (!channel) return;
 
         if (channel.members.size > 1) {
-          Twilio.FlexWebChat.MessageInput.defaultProps.disabledReason = undefined;
+          unlockInput(manager)
+          // Twilio.FlexWebChat.MessageInput.defaultProps.disabledReason = undefined;
           return;
         }
        
         // Adds an event listener that will run only once
         channel.once("memberJoined", () => {
           // Re-enable input
-          Twilio.FlexWebChat.MessageInput.defaultProps.disabledReason = undefined;
+          unlockInput(manager)
+          // Twilio.FlexWebChat.MessageInput.defaultProps.disabledReason = undefined;
         });
       }
 
-      const setChannelOnCreateWebChat = doWithChannel(channel => {
-        setListenerToUnlockInput(channel);
-      });
+      const setChannelOnCreateWebChat = doWithChannel(setListenerToUnlockInput);
 
-      const setChannelAfterStartEngagement = doWithChannel(channel => {
-        setListenerToUnlockInput(channel);
+      const setChannelAfterStartEngagement = doWithChannel((channel, manager) => {
+        setListenerToUnlockInput(channel, manager);
 
         // Generate task by sending empty message (hidden from the UI above)
         channel.sendMessage(translations[initialLanguage].AutoFirstMessage);
@@ -152,12 +158,12 @@
         changeLanguageWebChat(initialLanguage);
 
         // If caller is waiting for a counselor to connect, disable input (default language)
-        Twilio.FlexWebChat.MessageInput.defaultProps.disabledReason = translations[initialLanguage].MessageInputDisabledReasonHold;
+        // Twilio.FlexWebChat.MessageInput.defaultProps.disabledReason = translations[initialLanguage].MessageInputDisabledReasonHold;
         if (manager.chatClient) setChannelOnCreateWebChat(manager);
         
         // Hide message input and send button if disabledReason is not undefined
         Twilio.FlexWebChat.MessageInput.Content.remove('textarea', {
-          if: props => !!props.disabledReason,
+          if: props => manager.chatClient.user.attributes.lockInput,
         });
 
         // Hide first message ("AutoFirstMessage", sent to create a new task)
@@ -173,7 +179,8 @@
 
           // Change disabled message to actual language if it exists, default if not
           const translatedReasonOrDefault = translations[helplineLanguage].MessageInputDisabledReasonHold || translations[initialLanguage].MessageInputDisabledReasonHold;
-          Twilio.FlexWebChat.MessageInput.defaultProps.disabledReason = translatedReasonOrDefault;
+    // // Twilio.FlexWebChat.MessageInput.defaultProps.disabledReason = translatedReasonOrDefault;
+          // Twilio.FlexWebChat.MessageInput.defaultProps.disabledReason = undefined;
 
           setChannelAfterStartEngagement(manager);
         });
