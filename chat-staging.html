@@ -7,7 +7,6 @@
     <script>
       const translations = {
         'en-US': {
-          BotGreeting: "Welcome to the helpline.  A counselor will be with you shortly.",
           WelcomeMessage: "Welcome to Aselo!",
           MessageCanvasTrayContent: "<p>The counselor has left the chat. Thank you for reaching out. Please contact us again if you need more help.</p>",
           MessageInputDisabledReasonHold: "Please hold for a counselor.",
@@ -18,8 +17,6 @@
           MessageCanvasTrayButton: "EMPEZAR NUEVO CHAT",
           InvalidPreEngagementMessage: "Los formularios previos al compromiso no se han establecido y son necesarios para iniciar el chat web. Por favor configúrelos ahora en la configuración.",
           InvalidPreEngagementButton: "Aprende más",
-          PredefinedChatMessageAuthorName: "Bot",
-          PredefinedChatMessageBody: "¡Hola! ¿Cómo podemos ayudarte hoy?",
           InputPlaceHolder: "Escribe un mensaje",
           TypingIndicator: "{0} está escribiendo ... ",
           Read: "Visto",
@@ -35,7 +32,6 @@
 
           PreEngagementDescription: "Comencemos",
 
-          BotGreeting: "¿Cómo puedo ayudar?",
           WelcomeMessage: "¡Bienvenido a Aselo!",
           MessageCanvasTrayContent: "<p>El consejero abandonó el chat. Gracias por contactarnos. Por favor contáctenos nuevamente si necesita más ayuda.</p>",
         },
@@ -100,8 +96,7 @@
           } else {
             setNewStrings({ ...twilioStrings, ...translations[defaultLanguage] });
           }
-          Twilio.FlexWebChat.MessagingCanvas.defaultProps.predefinedMessage.body =
-            (translations[language] && translations[language].BotGreeting) || translations[defaultLanguage].BotGreeting;
+
           console.log('Translation OK');
         } catch (err) {
           window.alert(translationErrorMsg);
@@ -162,7 +157,10 @@
 
         // If caller is waiting for a counselor to connect, disable input (default language)
         if (manager.chatClient) setChannelOnCreateWebChat(manager);
-        
+
+        // Disable greeting message as chatbot already includes one
+        Twilio.FlexWebChat.MessagingCanvas.defaultProps.predefinedMessage = false;
+
         // Set caller name to be 'You'
         Twilio.FlexWebChat.MessagingCanvas.defaultProps.memberDisplayOptions = {
           yourDefaultName: 'You',
@@ -172,7 +170,7 @@
 
         // Hide message input and send button if disabledReason is not undefined
         Twilio.FlexWebChat.MessageInput.Content.remove('textarea', {
-          if: props => {console.log(manager); return manager.chatClient.user.attributes.lockInput},
+          if: props => manager.chatClient.user.attributes.lockInput,
         });
 
         // Hide first message ("AutoFirstMessage", sent to create a new task)
