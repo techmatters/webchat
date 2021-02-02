@@ -176,6 +176,9 @@
         // Hide first message ("AutoFirstMessage", sent to create a new task)
         Twilio.FlexWebChat.MessageList.Content.remove('0');
 
+        // Hide the tray where the goodbye message is displayed
+        Twilio.FlexWebChat.MessagingCanvas.Content.remove('tray');
+
         // Posting question from preengagement form as users first chat message
         Twilio.FlexWebChat.Actions.on("afterStartEngagement", (payload) => {
           const { question, helpline } = payload.formData;
