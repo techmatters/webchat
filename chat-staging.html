@@ -8,7 +8,7 @@
       const translations = {
         'en-US': {
           WelcomeMessage: "Welcome to Aselo!",
-          MessageCanvasTrayContent: "<p>The counselor has left the chat. Thank you for reaching out. Please contact us again if you need more help.</p>",
+          MessageCanvasTrayContent:"",
           MessageInputDisabledReasonHold: "Please hold for a counselor.",
           AutoFirstMessage: "Incoming webchat contact",
         },
@@ -33,10 +33,10 @@
           PreEngagementDescription: "Comencemos",
 
           WelcomeMessage: "¡Bienvenido a Aselo!",
-          MessageCanvasTrayContent: "<p>El consejero abandonó el chat. Gracias por contactarnos. Por favor contáctenos nuevamente si necesita más ayuda.</p>",
+          MessageCanvasTrayContent:"",
         },
         'dk': {
-          MessageCanvasTrayContent: "<p>Rådgiveren har forladt chatten. Tak, fordi du nåede ud. Kontakt os igen, hvis du har brug for mere hjælp.</p>",
+          MessageCanvasTrayContent:"",
         }
       }
 
@@ -175,9 +175,6 @@
 
         // Hide first message ("AutoFirstMessage", sent to create a new task)
         Twilio.FlexWebChat.MessageList.Content.remove('0');
-
-        // Hide the tray where the goodbye message is displayed
-        Twilio.FlexWebChat.MessagingCanvas.Content.remove('tray');
 
         // Posting question from preengagement form as users first chat message
         Twilio.FlexWebChat.Actions.on("afterStartEngagement", (payload) => {
