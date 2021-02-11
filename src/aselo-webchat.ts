@@ -1,19 +1,8 @@
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
 import { Channel } from 'twilio-chat/lib/channel';
-import { API_KEY } from '../private/secret';
+import { getUserIp } from './ip-tracker';
 
-const xmlhttp = new XMLHttpRequest();
-const url = 'https://ipfind.co/me?auth=' + API_KEY; // Free Tier is 100 requests/day
-
-xmlhttp.onreadystatechange = function() {
-if (this.readyState == 4 && this.status == 200) {
-      var result = JSON.parse(this.responseText);
-      console.log(result);
-    }
-};
-
-xmlhttp.open("GET", url, true);
-xmlhttp.send();
+getUserIp();
 
 type Translations = {
   [language: string]: {
