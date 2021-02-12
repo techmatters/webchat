@@ -127,11 +127,6 @@ const unlockInput = (manager: FlexWebChat.Manager) => {
   user.updateAttributes(attributes);
 }
 
-// TODO: we shouldn't need to cast a Channel to EventEmitter
-type EventEmitter = {
-  once: (eventName: string, listener: Function) => void;
-};
-
 const setListenerToUnlockInput = async (channel: Channel, manager: FlexWebChat.Manager) => {
   if (!channel) return;
 
@@ -148,7 +143,7 @@ const setListenerToUnlockInput = async (channel: Channel, manager: FlexWebChat.M
   }
   
   // Adds an event listener that will run only once
-  (channel as Channel & EventEmitter).once("memberJoined", () => {
+  channel.once("memberJoined", () => {
     cb();
   });
 }
@@ -164,7 +159,6 @@ const setChannelAfterStartEngagement = doWithChannel((channel: Channel, manager:
 
 export const initWebchat = () => FlexWebChat.createWebChat(appConfig).then(webchat => {
   const { manager } = webchat;
-  if (manager.chatClient) console.log('>>>> User Attributes: ', { attributes : manager.chatClient.user.attributes });
   const changeLanguageWebChat = getChangeLanguageWebChat(manager);
 
   changeLanguageWebChat(initialLanguage);
@@ -184,8 +178,7 @@ export const initWebchat = () => FlexWebChat.createWebChat(appConfig).then(webch
 
   // Hide message input and send button if disabledReason is not undefined
   FlexWebChat.MessageInput.Content.remove('textarea', {
-    // if: props => manager.chatClient.user.attributes.lockInput,
-    if: props => typeof FlexWebChat.MessagingCanvas.defaultProps.inputDisabledReason !== 'undefined',
+    if: props => (manager.chatClient.user.attributes as any).lockInput,
   });
 
   // Hide first message ("AutoFirstMessage", sent to create a new task)
