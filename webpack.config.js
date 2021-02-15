@@ -1,8 +1,9 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const BomPlugin = require('webpack-utf8-bom');
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   devtool: 'source-map',
   devServer: {
     contentBase: './build',
@@ -30,5 +31,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'src/index.html',
     }),
+    new BomPlugin(true),
   ],
 };
