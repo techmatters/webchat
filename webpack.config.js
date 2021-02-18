@@ -1,10 +1,19 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BomPlugin = require('webpack-utf8-bom');
+const { checkMODE, checkCONFIG } = require('./utils');
+
+const mode = process.env.MODE;
+const config = process.env.CONFIG;
+checkMODE(mode);
+checkCONFIG(config);
+
+const devtool = mode === 'development' ? 'eval-source-map': undefined;
 
 module.exports = {
-  mode: 'production',
-  devtool: 'source-map',
+  mode,
+  devtool,
   devServer: {
     contentBase: './build',
     compress: true,
@@ -32,5 +41,12 @@ module.exports = {
       template: 'src/index.html',
     }),
     new BomPlugin(true),
+    new webpack.ProvidePlugin({
+      process: 'process/browser',
+    }),
+    new webpack.DefinePlugin({
+      // Here it creates webpack.env.CONFIG from the env var CONFIG 
+      "webpack.env.CONFIG": JSON.stringify(process.env.CONFIG)
+  }),
   ],
 };

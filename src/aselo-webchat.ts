@@ -1,94 +1,21 @@
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
 import { Channel } from 'twilio-chat/lib/channel';
 import { getUserIp } from './ip-tracker';
+import { getCurrentConfig } from '../configurations';
 
 getUserIp();
 
-type Translations = {
-  [language: string]: {
-    [key: string]: string;
-  };
-};
-
-const translations: Translations = {
-  'en-US': {
-    WelcomeMessage: "Welcome to Aselo!",
-    MessageCanvasTrayContent: "",
-    MessageInputDisabledReasonHold: "Please hold for a counselor.",
-    AutoFirstMessage: "Incoming webchat contact",
-  },
-  'es': {
-    EntryPointTagline: "Chatea con nosotros",
-    MessageCanvasTrayButton: "EMPEZAR NUEVO CHAT",
-    InvalidPreEngagementMessage: "Los formularios previos al compromiso no se han establecido y son necesarios para iniciar el chat web. Por favor configúrelos ahora en la configuración.",
-    InvalidPreEngagementButton: "Aprende más",
-    InputPlaceHolder: "Escribe un mensaje",
-    TypingIndicator: "{0} está escribiendo ... ",
-    Read: "Visto",
-    MessageSendingDisabled: "El envío de mensajes ha sido desactivado",
-    Today: "HOY",
-    Yesterday: "AYER",
-    Save: "GUARDAR",
-    Reset: "RESETEAR",
-    MessageCharacterCountStatus: "{{currentCharCount}} / {{maxCharCount}}",
-    SendMessageTooltip: "Enviar Mensaje",
-    FieldValidationRequiredField: "Campo requerido",
-    FieldValidationInvalidEmail: "Por favor provea una dirección válida de email",
-
-    PreEngagementDescription: "Comencemos",
-
-    WelcomeMessage: "¡Bienvenido a Aselo!",
-    MessageCanvasTrayContent: "",
-  },
-  'dk': {
-    MessageCanvasTrayContent: "",
-  }
-}
-
-const defaultLanguage = 'en-US';
+const currentConfig = getCurrentConfig();
+const defaultLanguage = currentConfig.defaultLanguage;
 const initialLanguage = defaultLanguage;
+const translations = currentConfig.translations;
 
 const appConfig = {
-  accountSid:"ACd8a2e89748318adf6ddff7df6948deaf",
-  flexFlowSid:"FO8c2d9c388e7feba8b08d06a4bc3f69d1",
+  accountSid: currentConfig.accountSid,
+  flexFlowSid: currentConfig.flexFlowSid,
   startEngagementOnInit: false,
-  preEngagementConfig: {
-    description: "Let's get started",
-    fields:
-      [{
-        label: "What is your helpline?",
-        type: "SelectItem",
-        attributes:
-        {
-          name: "helpline",
-          required: true,
-          readOnly: false
-        },
-        options: [
-          {
-            value: "Select helpline",
-            label: "Select helpline",
-            selected: true
-          },
-          {
-            value: "Fake Helpline",
-            label: "Fake Helpline",
-            selected: false
-          },
-        ]
-      }],
-    submitLabel: "Let's chat!"
-  }
+  preEngagementConfig: currentConfig.preEngagementConfig,
 };
-
-const mapHelplineLanguage = (helpline: string) => {
-  switch (helpline) {
-    case 'Fake Helpline':
-      return 'dk';
-    default:
-      return defaultLanguage;
-  }
-}
 
 const getChangeLanguageWebChat = (manager: FlexWebChat.Manager) => (language: string) => {
   const twilioStrings = { ...manager.strings }; // save the originals
@@ -101,8 +28,6 @@ const getChangeLanguageWebChat = (manager: FlexWebChat.Manager) => (language: st
     } else {
       setNewStrings({ ...twilioStrings, ...translations[defaultLanguage] });
     }
-
-    console.log('Translation OK');
   } catch (err) {
     window.alert(translationErrorMsg);
     console.error(translationErrorMsg, err);
@@ -189,7 +114,7 @@ export const initWebchat = () => FlexWebChat.createWebChat(appConfig).then(webch
     const { question, helpline } = payload.formData;
 
     // Here we might collect caller language (from a another preEngagement select)
-    const helplineLanguage = mapHelplineLanguage(helpline);
+    const helplineLanguage = currentConfig.mapHelplineLanguage(helpline);
     changeLanguageWebChat(helplineLanguage);
 
     setChannelAfterStartEngagement(manager);
