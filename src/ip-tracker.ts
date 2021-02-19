@@ -5,5 +5,4 @@ const url = 'https://ipfind.co/me?auth=' + API_KEY; // Free Tier is 100 requests
 export const getUserIp = async () => {
   const response = await fetch(url);
   const responseBody = await response.json();
-  console.log({ responseBody });
 };
