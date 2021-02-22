@@ -10,5 +10,6 @@ export function updateZIndex() {
 
   if (container && zIndex) {
     container.style.zIndex = zIndex;
+    container.style.position = 'relative';
   }
 }
