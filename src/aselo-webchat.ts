@@ -2,6 +2,7 @@ import * as FlexWebChat from '@twilio/flex-webchat-ui';
 import { Channel } from 'twilio-chat/lib/channel';
 import { getUserIp } from './ip-tracker';
 import { getCurrentConfig } from '../configurations';
+import { updateZIndex } from './dom-utils';
 
 getUserIp();
 
@@ -122,4 +123,5 @@ export const initWebchat = () => FlexWebChat.createWebChat(appConfig).then(webch
 
   // Render WebChat
   webchat.init();
+  updateZIndex();
 });
