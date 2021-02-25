@@ -1,0 +1,3 @@
+# This is a basic workflow to build and upload Webchat to S3 bucket with Github Actions
+
+name: Aselo Development release
