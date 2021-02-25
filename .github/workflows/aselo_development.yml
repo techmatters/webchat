@@ -25,7 +25,7 @@ jobs:
       - name: Create secret.ts
         run: |
           touch ./private/secret.ts
-      - name: Fill secret.js
+      - name: Fill secret.ts
         run: |
           cat <<EOT >> ./private/secret.ts
           export const API_KEY = '${{ secrets.IP_FIND_API_KEY }}';
