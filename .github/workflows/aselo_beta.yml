@@ -1,6 +1,6 @@
 # This is a basic workflow to build and upload Webchat to S3 bucket with Github Actions
 
-name: Aselo Development release
+name: Aselo Beta release
 
 # Controls when the action will run.
 on:
@@ -35,7 +35,7 @@ jobs:
         run: npm install
       # Build and compile Webchat
       - name: Run build command
-        run: npm run build:dev
+        run: npm run build:beta
       # Rename the builded js file
       - name: Rename js
         run: mv bundle.js aselo-chat.min.js
@@ -46,7 +46,7 @@ jobs:
         with:
           args: --acl public-read --follow-symlinks --exclude '*' --include '*.js' --content-type 'application/javascript; charset=utf-8'
         env:
-          AWS_S3_BUCKET: tl-public-chat-staging
+          AWS_S3_BUCKET: tl-public-chat
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: '${{ secrets.AWS_DEFAULT_REGION }}'
