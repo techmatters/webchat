@@ -6,7 +6,7 @@ const defaultLanguage = 'en-US';
 
 const translations: Translations = {
   'en-US': {
-    WelcomeMessage: "Welcome to Aselo!",
+    WelcomeMessage: "Welcome to ChildLine Zambia!",
     MessageCanvasTrayContent: "<p>The counselor has left the chat. Thank you for reaching out. Please contact us again if you need more help.</p>",
     MessageInputDisabledReasonHold: "Please hold for a counselor.",
     AutoFirstMessage: "Incoming webchat contact",
