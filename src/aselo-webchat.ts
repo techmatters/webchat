@@ -4,19 +4,10 @@ import { getUserIp } from './ip-tracker';
 import { getCurrentConfig } from '../configurations';
 import { updateZIndex } from './dom-utils';
 
-getUserIp();
-
 const currentConfig = getCurrentConfig();
 const defaultLanguage = currentConfig.defaultLanguage;
 const initialLanguage = defaultLanguage;
 const translations = currentConfig.translations;
-
-const appConfig = {
-  accountSid: currentConfig.accountSid,
-  flexFlowSid: currentConfig.flexFlowSid,
-  startEngagementOnInit: false,
-  preEngagementConfig: currentConfig.preEngagementConfig,
-};
 
 const getChangeLanguageWebChat = (manager: FlexWebChat.Manager) => (language: string) => {
   const twilioStrings = { ...manager.strings }; // save the originals
@@ -83,7 +74,20 @@ const setChannelAfterStartEngagement = doWithChannel((channel: Channel, manager:
   channel.sendMessage(translations[initialLanguage].AutoFirstMessage);
 })
 
-export const initWebchat = () => FlexWebChat.createWebChat(appConfig).then(webchat => {
+export const initWebchat = async () => {
+  const ip = await getUserIp();
+
+  const appConfig = {
+    accountSid: currentConfig.accountSid,
+    flexFlowSid: currentConfig.flexFlowSid,
+    startEngagementOnInit: false,
+    preEngagementConfig: currentConfig.preEngagementConfig,
+    context: {
+      ip,
+    }
+  };
+
+  const webchat = await FlexWebChat.createWebChat(appConfig);
   const { manager } = webchat;
   const changeLanguageWebChat = getChangeLanguageWebChat(manager);
 
@@ -124,4 +128,4 @@ export const initWebchat = () => FlexWebChat.createWebChat(appConfig).then(webch
   // Render WebChat
   webchat.init();
   updateZIndex();
-});
+};

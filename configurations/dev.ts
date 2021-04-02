@@ -42,28 +42,30 @@ const translations: Translations = {
 const preEngagementConfig: PreEngagementConfig = {
   description: "Let's get started",
   fields:
-    [{
-      label: "What is your helpline?",
-      type: "SelectItem",
-      attributes:
+    [
       {
-        name: "helpline",
-        required: true,
-        readOnly: false
+        label: "What is your helpline?",
+        type: "SelectItem",
+        attributes:
+        {
+          name: "helpline",
+          required: true,
+          readOnly: false
+        },
+        options: [
+          {
+            value: "Select helpline",
+            label: "Select helpline",
+            selected: true
+          },
+          {
+            value: "Fake Helpline",
+            label: "Fake Helpline",
+            selected: false
+          },
+        ]
       },
-      options: [
-        {
-          value: "Select helpline",
-          label: "Select helpline",
-          selected: true
-        },
-        {
-          value: "Fake Helpline",
-          label: "Fake Helpline",
-          selected: false
-        },
-      ]
-    }],
+    ],
   submitLabel: "Let's chat!"
 };
 
