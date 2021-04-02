@@ -75,7 +75,11 @@ const setChannelAfterStartEngagement = doWithChannel((channel: Channel, manager:
 })
 
 export const initWebchat = async () => {
-  const ip = await getUserIp();
+  let ip;
+
+  if (currentConfig.captureIp) {
+    ip = await getUserIp();
+  }
 
   const appConfig = {
     accountSid: currentConfig.accountSid,

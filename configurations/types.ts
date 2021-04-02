@@ -17,4 +17,5 @@ export type Configuration = {
   translations: Translations;
   preEngagementConfig: PreEngagementConfig;
   mapHelplineLanguage: MapHelplineLanguage;
+  captureIp: boolean;
 };
