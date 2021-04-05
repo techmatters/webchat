@@ -11,4 +11,5 @@ export const config: Configuration = {
   translations: zaStaging.translations,
   preEngagementConfig: zaStaging.preEngagementConfig,
   mapHelplineLanguage: zaStaging.mapHelplineLanguage,
+  memberDisplayOptions: zaStaging.memberDisplayOptions,
 };

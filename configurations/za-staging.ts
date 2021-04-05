@@ -46,6 +46,13 @@ const mapHelplineLanguage: MapHelplineLanguage = helpline => {
   }
 }
 
+const memberDisplayOptions = {
+  yourDefaultName: 'You',
+  yourFriendlyNameOverride: false,
+  theirFriendlyNameOverride: false,
+  theirDefaultName: 'Counsellor',
+}
+
 export const config: Configuration = {
   accountSid,
   flexFlowSid,
@@ -53,4 +60,5 @@ export const config: Configuration = {
   translations,
   preEngagementConfig,
   mapHelplineLanguage,
+  memberDisplayOptions,
 };
