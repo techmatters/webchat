@@ -3,6 +3,7 @@ import { PreEngagementConfig, Translations, Configuration, MapHelplineLanguage }
 const accountSid = 'ACd8a2e89748318adf6ddff7df6948deaf';
 const flexFlowSid = 'FO8c2d9c388e7feba8b08d06a4bc3f69d1';
 const defaultLanguage = 'en-US';
+const captureIp = true;
 
 const translations: Translations = {
   'en-US': {
@@ -42,28 +43,30 @@ const translations: Translations = {
 const preEngagementConfig: PreEngagementConfig = {
   description: "Let's get started",
   fields:
-    [{
-      label: "What is your helpline?",
-      type: "SelectItem",
-      attributes:
+    [
       {
-        name: "helpline",
-        required: true,
-        readOnly: false
+        label: "What is your helpline?",
+        type: "SelectItem",
+        attributes:
+        {
+          name: "helpline",
+          required: true,
+          readOnly: false
+        },
+        options: [
+          {
+            value: "Select helpline",
+            label: "Select helpline",
+            selected: true
+          },
+          {
+            value: "Fake Helpline",
+            label: "Fake Helpline",
+            selected: false
+          },
+        ]
       },
-      options: [
-        {
-          value: "Select helpline",
-          label: "Select helpline",
-          selected: true
-        },
-        {
-          value: "Fake Helpline",
-          label: "Fake Helpline",
-          selected: false
-        },
-      ]
-    }],
+    ],
   submitLabel: "Let's chat!"
 };
 
@@ -83,4 +86,5 @@ export const config: Configuration = {
   translations,
   preEngagementConfig,
   mapHelplineLanguage,
+  captureIp,
 };

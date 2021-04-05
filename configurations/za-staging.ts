@@ -3,6 +3,7 @@ import { PreEngagementConfig, Translations, Configuration, MapHelplineLanguage }
 const accountSid = 'AC16dd71c6fd135ee250bd213ad1efa2e8';
 const flexFlowSid = 'FOd655fd61e9e7ac6faf9d0be97a49863b';
 const defaultLanguage = 'en-US';
+const captureIp = true;
 
 const translations: Translations = {
   'en-US': {
@@ -61,4 +62,5 @@ export const config: Configuration = {
   preEngagementConfig,
   mapHelplineLanguage,
   memberDisplayOptions,
+  captureIp,
 };

@@ -19,4 +19,5 @@ export type Configuration = {
   preEngagementConfig: PreEngagementConfig;
   mapHelplineLanguage: MapHelplineLanguage;
   memberDisplayOptions?: MemberDisplayOptions;
+  captureIp: boolean;
 };
