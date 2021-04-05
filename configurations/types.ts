@@ -1,4 +1,5 @@
 import { FormAttributes as PreEngagementConfig } from '@twilio/flex-ui-core';
+import type { MemberDisplayOptions } from '@twilio/flex-ui-core/src/components/channel/MessagingCanvas';
 
 export type { PreEngagementConfig };
 
@@ -17,5 +18,6 @@ export type Configuration = {
   translations: Translations;
   preEngagementConfig: PreEngagementConfig;
   mapHelplineLanguage: MapHelplineLanguage;
+  memberDisplayOptions?: MemberDisplayOptions;
   captureIp: boolean;
 };

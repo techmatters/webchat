@@ -104,7 +104,10 @@ export const initWebchat = async () => {
   FlexWebChat.MessagingCanvas.defaultProps.predefinedMessage = undefined;
 
   // Set caller name to be 'You'  
-  FlexWebChat.MessagingCanvas.defaultProps.memberDisplayOptions = {
+  FlexWebChat.MessagingCanvas.defaultProps.memberDisplayOptions =
+  currentConfig.memberDisplayOptions
+    ? currentConfig.memberDisplayOptions
+    : {
     yourDefaultName: 'You',
     yourFriendlyNameOverride: false,
     theirFriendlyNameOverride: true,
