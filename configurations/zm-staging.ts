@@ -18,6 +18,7 @@ const translations: Translations = {
     MessageCanvasTrayButton: "Start New Chat",
     MessageCanvasTrayContent: "<p>The counselor has left the chat. Thank you for reaching out. Please contact us again if you need more help.</p>",
     AutoFirstMessage: "Incoming webchat contact",
+    StartChat: "Start Chat!",
   },
   'Bemba': {
     MessageInputDisabledReasonHold: "Twalamutuma nomba kuli Chimbusa, pembeleni ichimpusa nomba.",
@@ -29,7 +30,8 @@ const translations: Translations = {
     Yesterday: "Mailo",
     TypingIndicator: "Ichimbusa chile taipa ilyashi",
     MessageCanvasTrayButton: "Yambeni kutaipa ilyashi imbi",
-    MessageCanvasTrayContent: "Ichimbusa chapwisha imilimo yakulanda.Twatotela pakutuma kuno.Mukatutumine nakabili nga mwafwaya ubwafwilisho kuli baifwe.",
+    MessageCanvasTrayContent: "<p>Ichimbusa chapwisha imilimo yakulanda.Twatotela pakutuma kuno.Mukatutumine nakabili nga mwafwaya ubwafwilisho kuli baifwe.</p>",
+    StartChat: "Yambeni ukulanda mukwai!",
   },
   'Tonga': {
     MessageInputDisabledReasonHold: "Tulamuswaanganya lino asikuyumya-yumya/sikulaya. Amujatilile notucimuswaanganya.",
@@ -41,7 +43,8 @@ const translations: Translations = {
     Yesterday: "Jilo",
     TypingIndicator: "Sikuyumyayumya watalika kulemba",
     MessageCanvasTrayButton: "Talika mubandi mupya",
-    MessageCanvasTrayContent: "Sikulaya/sikuyumyayumyawazwa lino amubandi. Twalumba kukwabana andiswe,Inga mwatuma lubo naa muciyanda lumbi lugwasyo.",
+    MessageCanvasTrayContent: "<p>Sikulaya/sikuyumyayumyawazwa lino amubandi. Twalumba kukwabana andiswe,Inga mwatuma lubo naa muciyanda lumbi lugwasyo.</p>",
+    StartChat: "Atubandike!",
   },
   'Lunda': {
     MessageInputDisabledReasonHold: "Chuna kuitemesha ahembeleliku chanti kundi ankhong'u.",
@@ -53,7 +56,8 @@ const translations: Translations = {
     Yesterday: "Haloshi",
     TypingIndicator: "Nkhong'u nakusoneka Muzhimbu",
     MessageCanvasTrayButton: "Tachikenu kuhanjika",
-    MessageCanvasTrayContent: "Ankhong'u adihu wanyi kusakililaku mwani, hakushika kudechu, mwani anachweshi kuchuma mpinji.",
+    MessageCanvasTrayContent: "<p>Ankhong'u adihu wanyi kusakililaku mwani, hakushika kudechu, mwani anachweshi kuchuma mpinji.</p>",
+    StartChat: "Tachikenu kuhanjeka!",
   },
   'Nyanja': {
     MessageInputDisabledReasonHold: "Chonde tipeleka lamya lanu ku wa uphungu telo dikilani.",
@@ -65,7 +69,8 @@ const translations: Translations = {
     Yesterday: "Dzulo!",
     TypingIndicator: "Wauphungu alikulemba!",
     MessageCanvasTrayButton: "Yambani nkhani ina!",
-    MessageCanvasTrayContent: "Wauphungu achoka mkukambitsana nanu. Zikomo kwambili pa kukwanisa.",
+    MessageCanvasTrayContent: "<p>Wauphungu achoka mkukambitsana nanu. Zikomo kwambili pa kukwanisa.</p>",
+    StartChat: "Yambani kulankhula!",
   },
   'Kaonde': {
     MessageInputDisabledReasonHold: "Tusakwimi tuma pembelelai, pacheche ba nkwasho.",
@@ -77,7 +82,8 @@ const translations: Translations = {
     Yesterday: "Kesha",
     TypingIndicator: "Nkwasho wena kunemba",
     MessageCanvasTrayButton: "Tatulayi kwisamba kipya kipya",
-    MessageCanvasTrayContent: "Nkwasho wafumapo twasanta pakufika kwiatweba, mwakonsha kutuma lamya.",
+    MessageCanvasTrayContent: "<p>Nkwasho wafumapo twasanta pakufika kwiatweba, mwakonsha kutuma lamya.</p>",
+    StartChat: "Twayayi twisambe!",
   },
 };
 
