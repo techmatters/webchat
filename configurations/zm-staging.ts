@@ -182,6 +182,13 @@ const preEngagementConfig: PreEngagementConfig = {
   submitLabel: 'Start Chat!',
 };
 
+const memberDisplayOptions = {
+  yourDefaultName: 'You',
+  yourFriendlyNameOverride: false,
+  theirFriendlyNameOverride: false,
+  theirDefaultName: 'ChildLine Zambia Counsellor',
+}
+
 const mapHelplineLanguage: MapHelplineLanguage = (helpline) => {
   switch (helpline) {
     default:
@@ -196,5 +203,6 @@ export const config: Configuration = {
   translations,
   preEngagementConfig,
   mapHelplineLanguage,
+  memberDisplayOptions,
   captureIp,
 };
