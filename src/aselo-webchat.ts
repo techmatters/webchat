@@ -123,11 +123,10 @@ export const initWebchat = async () => {
 
   // Posting question from preengagement form as users first chat message
   FlexWebChat.Actions.on("afterStartEngagement", (payload) => {
-    const { question, helpline } = payload.formData;
+    const { language } = payload.formData;
 
-    // Here we might collect caller language (from a another preEngagement select)
-    const helplineLanguage = currentConfig.mapHelplineLanguage(helpline);
-    changeLanguageWebChat(helplineLanguage);
+    // Here we collect caller language (from preEngagement select) and change UI language
+    changeLanguageWebChat(language);
 
     setChannelAfterStartEngagement(manager);
   });
