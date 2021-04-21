@@ -169,15 +169,6 @@ const preEngagementConfig: PreEngagementConfig = {
         }
       ],
     },
-    {
-      // shows nothing but forces the form to show up
-      type: '',
-      label: '',
-      attributes: {
-        name: 'helpline',
-        value: 'ChildLine Zambia (ZM)',
-      },
-    },
   ],
   submitLabel: 'Start Chat!',
 };
