@@ -22,8 +22,7 @@ const translations: Translations = {
     Yesterday: 'Yesterday',
     TypingIndicator: 'Counselor is typing',
     MessageCanvasTrayButton: 'Start New Chat',
-    MessageCanvasTrayContent:
-      '<p>The counselor has left the chat. Thank you for reaching out. Please contact us again if you need more help.</p>',
+    MessageCanvasTrayContent: '',
     AutoFirstMessage: 'Incoming webchat contact',
     StartChat: 'Start Chat!',
   },
@@ -38,8 +37,7 @@ const translations: Translations = {
     Yesterday: 'Mailo',
     TypingIndicator: 'Ichimbusa chile taipa ilyashi',
     MessageCanvasTrayButton: 'Yambeni kutaipa ilyashi imbi',
-    MessageCanvasTrayContent:
-      '<p>Ichimbusa chapwisha imilimo yakulanda.Twatotela pakutuma kuno.Mukatutumine nakabili nga mwafwaya ubwafwilisho kuli baifwe.</p>',
+    MessageCanvasTrayContent: '',
     StartChat: 'Yambeni ukulanda mukwai!',
   },
   Tonga: {
@@ -53,8 +51,7 @@ const translations: Translations = {
     Yesterday: 'Jilo',
     TypingIndicator: 'Sikuyumyayumya watalika kulemba',
     MessageCanvasTrayButton: 'Talika mubandi mupya',
-    MessageCanvasTrayContent:
-      '<p>Sikulaya/sikuyumyayumyawazwa lino amubandi. Twalumba kukwabana andiswe,Inga mwatuma lubo naa muciyanda lumbi lugwasyo.</p>',
+    MessageCanvasTrayContent: '',
     StartChat: 'Atubandike!',
   },
   Lunda: {
@@ -68,8 +65,7 @@ const translations: Translations = {
     Yesterday: 'Haloshi',
     TypingIndicator: "Nkhong'u nakusoneka Muzhimbu",
     MessageCanvasTrayButton: 'Tachikenu kuhanjika',
-    MessageCanvasTrayContent:
-      "<p>Ankhong'u adihu wanyi kusakililaku mwani, hakushika kudechu, mwani anachweshi kuchuma mpinji.</p>",
+    MessageCanvasTrayContent: '',
     StartChat: 'Tachikenu kuhanjeka!',
   },
   Nyanja: {
@@ -83,8 +79,7 @@ const translations: Translations = {
     Yesterday: 'Dzulo!',
     TypingIndicator: 'Wauphungu alikulemba!',
     MessageCanvasTrayButton: 'Yambani nkhani ina!',
-    MessageCanvasTrayContent:
-      '<p>Wauphungu achoka mkukambitsana nanu. Zikomo kwambili pa kukwanisa.</p>',
+    MessageCanvasTrayContent: '',
     StartChat: 'Yambani kulankhula!',
   },
   Kaonde: {
@@ -98,8 +93,7 @@ const translations: Translations = {
     Yesterday: 'Kesha',
     TypingIndicator: 'Nkwasho wena kunemba',
     MessageCanvasTrayButton: 'Tatulayi kwisamba kipya kipya',
-    MessageCanvasTrayContent:
-      '<p>Nkwasho wafumapo twasanta pakufika kwiatweba, mwakonsha kutuma lamya.</p>',
+    MessageCanvasTrayContent: '',
     StartChat: 'Twayayi twisambe!',
   },
   Lozi: {
@@ -113,8 +107,7 @@ const translations: Translations = {
     Yesterday: 'Mabani',
     TypingIndicator: 'Mwelezi wa nola',
     MessageCanvasTrayButton: 'Alukalise kwa mbola',
-    MessageCanvasTrayContent:
-      '<p>The counselor has left the chat. Thank you for reaching out. Please contact us again if you need more help.</p>',
+    MessageCanvasTrayContent: '',
     AutoFirstMessage: 'Incoming webchat contact',
     StartChat: 'Alukalise kwa mbola!',
   },
