@@ -1,6 +1,7 @@
 import { checkCONFIG } from '../utils';
 import { Configuration } from './types';
 import { config as dev } from './dev';
+import { config as testStaging } from './dev';
 import { config as beta } from './beta';
 import { config as zmStaging } from './zm-staging';
 import { config as zmProd } from './zm-prod';
@@ -10,7 +11,7 @@ import { config as zaProd } from './za-prod';
 const rawConfig = webpack.env.CONFIG;
 checkCONFIG(rawConfig);
 
-type PresetConfig = 'dev' | 'beta' | 'zm-staging' | 'zm-prod' | 'za-staging' | 'za-prod';
+type PresetConfig = 'dev' | 'test-staging' | 'beta' | 'zm-staging' | 'zm-prod' | 'za-staging' | 'za-prod';
 const config = rawConfig as PresetConfig;
 
 type ConfigMap = {
@@ -19,6 +20,7 @@ type ConfigMap = {
 
 const configMap: ConfigMap = {
   'dev': dev,
+  'test-staging': testStaging,
   'beta': beta,
   'zm-staging': zmStaging,
   'zm-prod': zmProd,

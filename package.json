@@ -6,6 +6,7 @@
     "start": "MODE=development CONFIG=dev webpack serve --open",
     "build": "webpack",
     "build:dev": "MODE=development CONFIG=dev npm run build",
+    "build:test-staging": "MODE=production CONFIG=test-staging npm run build",
     "build:beta": "MODE=production CONFIG=beta npm run build",
     "build:zm-staging": "MODE=production CONFIG=zm-staging npm run build",
     "build:zm-prod": "MODE=production CONFIG=zm-prod npm run build",
