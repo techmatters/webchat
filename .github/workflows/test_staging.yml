@@ -46,7 +46,7 @@ jobs:
         with:
           args: --acl public-read --follow-symlinks --exclude '*' --include '*.js' --content-type 'application/javascript; charset=utf-8'
         env:
-          AWS_S3_BUCKET: tl-public-chat-staging
+          AWS_S3_BUCKET: tl-public-chat-test-staging
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: '${{ secrets.AWS_DEFAULT_REGION }}'
