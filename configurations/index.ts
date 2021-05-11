@@ -1,7 +1,7 @@
 import { checkCONFIG } from '../utils';
 import { Configuration } from './types';
 import { config as dev } from './dev';
-import { config as testStaging } from './dev';
+import { config as testStaging } from './test-staging';
 import { config as beta } from './beta';
 import { config as zmStaging } from './zm-staging';
 import { config as zmProd } from './zm-prod';
