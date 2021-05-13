@@ -1,3 +1,4 @@
 import { initWebchat } from './aselo-webchat';
 
-initWebchat();
+const zIndex = document?.currentScript?.getAttribute('data-z-index');
+initWebchat(zIndex);

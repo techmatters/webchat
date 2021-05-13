@@ -2,7 +2,7 @@ import * as FlexWebChat from '@twilio/flex-webchat-ui';
 import { Channel } from 'twilio-chat/lib/channel';
 import { getUserIp } from './ip-tracker';
 import { getCurrentConfig } from '../configurations';
-import { updateZIndex } from './dom-utils';
+import { updateZIndex, ScriptParameter } from './dom-utils';
 
 const currentConfig = getCurrentConfig();
 const defaultLanguage = currentConfig.defaultLanguage;
@@ -74,7 +74,7 @@ const setChannelAfterStartEngagement = doWithChannel((channel: Channel, manager:
   channel.sendMessage(translations[initialLanguage].AutoFirstMessage);
 })
 
-export const initWebchat = async () => {
+export const initWebchat = async (zIndex: ScriptParameter) => {
   let ip;
 
   if (currentConfig.captureIp) {
@@ -133,5 +133,5 @@ export const initWebchat = async () => {
 
   // Render WebChat
   webchat.init();
-  updateZIndex();
+  updateZIndex(zIndex);
 };
