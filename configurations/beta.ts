@@ -7,16 +7,18 @@ const captureIp = true;
 
 const translations: Translations = {
   'ar': {
-    MessageCanvasTrayContent: "<p dir='rtl'>المستشار غادر الدردشة. شكرا لك على التواصل. يرجى الاتصال بنا مرة أخرى إذا كنت بحاجة إلى مزيد من المساعدة.</p>"
+    MessageCanvasTrayContent: "<p dir='rtl'>المستشار غادر الدردشة. شكرا لك على التواصل. يرجى الاتصال بنا مرة أخرى إذا كنت بحاجة إلى مزيد من المساعدة.</p>",
+    AutoFirstMessage: '',
   },
   'el': {
-    MessageCanvasTrayContent: "<p>Ο σύμβουλος εγκατέλειψε τη συνομιλία. Σας ευχαριστούμε που επικοινωνήσατε. Παρακαλώ επικοινωνήστε μαζί μας ξανά εάν χρειάζεστε περισσότερη βοήθεια.</p>"
+    MessageCanvasTrayContent: "<p>Ο σύμβουλος εγκατέλειψε τη συνομιλία. Σας ευχαριστούμε που επικοινωνήσατε. Παρακαλώ επικοινωνήστε μαζί μας ξανά εάν χρειάζεστε περισσότερη βοήθεια.</p>",
+    AutoFirstMessage: '',
   },
   'en-US': {
     WelcomeMessage: "Welcome to Aselo!",
     MessageCanvasTrayContent: "<p>The counsellor has left the chat. Thank you for reaching out. Please contact us again if you need more help.</p>",
     MessageInputDisabledReasonHold: "Please hold for a counsellor.",
-    AutoFirstMessage: "Incoming webchat contact",
+    AutoFirstMessage: "Incoming webchat contact from",
   },
   'es': {
     EntryPointTagline: "Chatea con nosotros",
@@ -43,18 +45,23 @@ const translations: Translations = {
     BotGreeting: "¿Cómo puedo ayudar?",
     WelcomeMessage: "¡Bienvenido a Aselo!",
     MessageCanvasTrayContent: "<p>El consejero abandonó el chat. Gracias por contactarnos. Por favor contáctenos nuevamente si necesita más ayuda.</p>",
+    AutoFirstMessage: '',
   },
   'da': {
     MessageCanvasTrayContent: "<p>Rådgiveren har forladt chatten. Tak, fordi du nåede ud. Kontakt os igen, hvis du har brug for mere hjælp.</p>",
+    AutoFirstMessage: '',
   },
   'it': {
-    MessageCanvasTrayContent: "<p>Il consulente ha lasciato la chat. Grazie per averci contattato. Vi preghiamo di contattarci nuovamente se avete bisogno di ulteriore aiuto.</p>"
+    MessageCanvasTrayContent: "<p>Il consulente ha lasciato la chat. Grazie per averci contattato. Vi preghiamo di contattarci nuovamente se avete bisogno di ulteriore aiuto.</p>",
+    AutoFirstMessage: '',
   },
   'km': {
-    MessageCanvasTrayContent: "<p>អ្នកផ្តល់យោបល់បានចាកចេញពីការជជែក។ សូមអរគុណចំពោះការឈានទៅដល់។ សូមទាក់ទងមកយើងម្តងទៀតប្រសិនបើអ្នកត្រូវការជំនួយបន្ថែម។</p>"
+    MessageCanvasTrayContent: "<p>អ្នកផ្តល់យោបល់បានចាកចេញពីការជជែក។ សូមអរគុណចំពោះការឈានទៅដល់។ សូមទាក់ទងមកយើងម្តងទៀតប្រសិនបើអ្នកត្រូវការជំនួយបន្ថែម។</p>",
+    AutoFirstMessage: '',
   },
   'sv': {
-    MessageCanvasTrayContent: "<p>Rådgivaren har lämnat chatten. Tack för att du når ut. Kontakta oss igen om du behöver mer hjälp.</p>"
+    MessageCanvasTrayContent: "<p>Rådgivaren har lämnat chatten. Tack för att du når ut. Kontakta oss igen om du behöver mer hjälp.</p>",
+    AutoFirstMessage: '',
   }
 };
 
