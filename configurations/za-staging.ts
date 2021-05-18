@@ -10,7 +10,7 @@ const translations: Translations = {
     WelcomeMessage: "Welcome to Aselo!",
     MessageCanvasTrayContent: "<p>The counselor has left the chat. Thank you for reaching out. Please contact us again if you need more help.</p>",
     MessageInputDisabledReasonHold: "Please hold for a counselor.",
-    AutoFirstMessage: "Incoming webchat contact",
+    AutoFirstMessage: "Incoming webchat contact from",
   },
 };
 

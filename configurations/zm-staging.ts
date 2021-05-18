@@ -23,7 +23,7 @@ const translations: Translations = {
     TypingIndicator: 'Counselor is typing',
     MessageCanvasTrayButton: 'Start New Chat',
     MessageCanvasTrayContent: '',
-    AutoFirstMessage: 'Incoming webchat contact',
+    AutoFirstMessage: 'Incoming webchat contact from',
     StartChat: 'Start Chat!',
   },
   Bemba: {
@@ -108,7 +108,7 @@ const translations: Translations = {
     TypingIndicator: 'Mwelezi wa nola',
     MessageCanvasTrayButton: 'Alukalise kwa mbola',
     MessageCanvasTrayContent: '',
-    AutoFirstMessage: 'Incoming webchat contact',
+    AutoFirstMessage: 'Incoming webchat contact from',
     StartChat: 'Alukalise kwa mbola!',
   },
 };

@@ -27,14 +27,14 @@ const getChangeLanguageWebChat = (manager: FlexWebChat.Manager) => (language: st
   }
 }
 
-type ChannelAndManagerFn = (channel: Channel, manager: FlexWebChat.Manager) => void;
+type ChannelAndManagerAndIpFn = (channel: Channel, manager: FlexWebChat.Manager, ip?: string) => void;
 
-const doWithChannel = (callback: ChannelAndManagerFn) => (manager: FlexWebChat.Manager) => {
+const doWithChannel = (callback: ChannelAndManagerAndIpFn) => (manager: FlexWebChat.Manager, ip?: string) => {
   const { channelSid } = manager.store.getState().flex.session;
     manager
       .chatClient.getChannelBySid(channelSid)
       .then(channel => {
-        callback(channel, manager);
+        callback(channel, manager, ip);
       });
 }
 
@@ -67,15 +67,16 @@ const setListenerToUnlockInput = async (channel: Channel, manager: FlexWebChat.M
 
 const setChannelOnCreateWebChat = doWithChannel(setListenerToUnlockInput);
 
-const setChannelAfterStartEngagement = doWithChannel((channel: Channel, manager: FlexWebChat.Manager) => {
+const setChannelAfterStartEngagement = doWithChannel((channel: Channel, manager: FlexWebChat.Manager, ip: string = '') => {
   setListenerToUnlockInput(channel, manager);
 
   // Generate task by sending empty message (hidden from the UI above)
-  channel.sendMessage(translations[initialLanguage].AutoFirstMessage);
+  const message = `${translations[initialLanguage].AutoFirstMessage} ${ip}`;
+  channel.sendMessage(message); 
 })
 
 export const initWebchat = async (zIndex: ScriptParameter) => {
-  let ip;
+  let ip: string | undefined;
 
   if (currentConfig.captureIp) {
     ip = await getUserIp();
@@ -128,7 +129,7 @@ export const initWebchat = async (zIndex: ScriptParameter) => {
     // Here we collect caller language (from preEngagement select) and change UI language
     changeLanguageWebChat(language);
 
-    setChannelAfterStartEngagement(manager);
+    setChannelAfterStartEngagement(manager, ip);
   });
 
   // Render WebChat

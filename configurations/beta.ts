@@ -16,7 +16,7 @@ const translations: Translations = {
     WelcomeMessage: "Welcome to Aselo!",
     MessageCanvasTrayContent: "<p>The counsellor has left the chat. Thank you for reaching out. Please contact us again if you need more help.</p>",
     MessageInputDisabledReasonHold: "Please hold for a counsellor.",
-    AutoFirstMessage: "Incoming webchat contact",
+    AutoFirstMessage: "Incoming webchat contact from",
   },
   'es': {
     EntryPointTagline: "Chatea con nosotros",
