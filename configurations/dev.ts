@@ -34,9 +34,11 @@ const translations: Translations = {
 
     WelcomeMessage: "¡Bienvenido a Aselo!",
     MessageCanvasTrayContent:"",
+    AutoFirstMessage: '',
   },
   'dk': {
     MessageCanvasTrayContent:"",
+    AutoFirstMessage: '',
   },
 };
 

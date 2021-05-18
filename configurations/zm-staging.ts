@@ -38,6 +38,7 @@ const translations: Translations = {
     TypingIndicator: 'Ichimbusa chile taipa ilyashi',
     MessageCanvasTrayButton: 'Yambeni kutaipa ilyashi imbi',
     MessageCanvasTrayContent: '',
+    AutoFirstMessage: '',
     StartChat: 'Yambeni ukulanda mukwai!',
   },
   Tonga: {
@@ -52,6 +53,7 @@ const translations: Translations = {
     TypingIndicator: 'Sikuyumyayumya watalika kulemba',
     MessageCanvasTrayButton: 'Talika mubandi mupya',
     MessageCanvasTrayContent: '',
+    AutoFirstMessage: '',
     StartChat: 'Atubandike!',
   },
   Lunda: {
@@ -66,6 +68,7 @@ const translations: Translations = {
     TypingIndicator: "Nkhong'u nakusoneka Muzhimbu",
     MessageCanvasTrayButton: 'Tachikenu kuhanjika',
     MessageCanvasTrayContent: '',
+    AutoFirstMessage: '',
     StartChat: 'Tachikenu kuhanjeka!',
   },
   Nyanja: {
@@ -80,6 +83,7 @@ const translations: Translations = {
     TypingIndicator: 'Wauphungu alikulemba!',
     MessageCanvasTrayButton: 'Yambani nkhani ina!',
     MessageCanvasTrayContent: '',
+    AutoFirstMessage: '',
     StartChat: 'Yambani kulankhula!',
   },
   Kaonde: {
@@ -94,6 +98,7 @@ const translations: Translations = {
     TypingIndicator: 'Nkwasho wena kunemba',
     MessageCanvasTrayButton: 'Tatulayi kwisamba kipya kipya',
     MessageCanvasTrayContent: '',
+    AutoFirstMessage: '',
     StartChat: 'Twayayi twisambe!',
   },
   Lozi: {
@@ -108,7 +113,7 @@ const translations: Translations = {
     TypingIndicator: 'Mwelezi wa nola',
     MessageCanvasTrayButton: 'Alukalise kwa mbola',
     MessageCanvasTrayContent: '',
-    AutoFirstMessage: 'Incoming webchat contact from',
+    AutoFirstMessage: 'Incoming webchat contact from', // TODO: should this really be English?
     StartChat: 'Alukalise kwa mbola!',
   },
 };
