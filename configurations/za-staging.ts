@@ -8,7 +8,7 @@ const captureIp = true;
 const translations: Translations = {
   'en-US': {
     WelcomeMessage: "Welcome to Aselo!",
-    MessageCanvasTrayContent: "<p>The counselor has left the chat. Thank you for reaching out. Please contact us again if you need more help.</p>",
+    MessageCanvasTrayContent: "",
     MessageInputDisabledReasonHold: "Please hold for a counselor.",
     AutoFirstMessage: "Incoming webchat contact from",
   },
