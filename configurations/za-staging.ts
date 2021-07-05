@@ -7,7 +7,7 @@ const captureIp = true;
 
 const translations: Translations = {
   'en-US': {
-    WelcomeMessage: "Welcome to Aselo!",
+    WelcomeMessage: "Welcome to Childline SA’s Online Counselling Service",
     MessageCanvasTrayContent: "",
     MessageInputDisabledReasonHold: "Please hold for a counselor.",
     AutoFirstMessage: "Incoming webchat contact from",
@@ -15,25 +15,17 @@ const translations: Translations = {
 };
 
 const preEngagementConfig: PreEngagementConfig = {
-  description: "Thank you for contacting Childline. To chat with a counselor, please type your name and select the Start Chat button.",
+  description: "Thank you for contacting Childline South Africa. To chat with a counsellor, please type your name and select the Start Chat button.",
   fields:
     [
       {
         type: "InputItem",
-        label: "What is your name?",
+        label: "What is your name? (This may be just a screen name, or a nick name, if you are not comfortable giving us your real name)",
         attributes: {
           name: "friendlyName",
           type: "text",
           placeholder: "Guest",
           required: true,
-        }
-      },
-      {
-        type: "",
-        label: "",
-        attributes: {
-          name: "helpline",
-          value: "ChildLine South Africa (SA)",
         }
       }
     ],
