@@ -25,6 +25,6 @@
     "webpack-utf8-bom": "^1.3.0"
   },
   "dependencies": {
-    "@twilio/flex-webchat-ui": "^2.7.1"
+    "@twilio/flex-webchat-ui": "^2.9.1"
   }
 }
