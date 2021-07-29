@@ -15,18 +15,16 @@ const translations: Translations = {
 };
 
 const preEngagementConfig: PreEngagementConfig = {
-  description: 'Thank you for contacting Childline Ethiopia. To chat with a counsellor, please select the Start Chat button.',
+  description: "Let's get started",
   fields: [
     {
-      type: "InputItem",
-      label: "What is your name? (This may be just a screen name, or a nick name, if you are not comfortable giving us your real name)",
+      label: 'Hidden Field',
+      type: 'InputField',
       attributes: {
-        name: "friendlyName",
-        type: "text",
-        placeholder: "Guest",
-        required: true,
-      }
-    }
+        name: '',
+        readOnly: true,
+      },
+    },
   ],
   submitLabel: 'Start Chat!',
 };
