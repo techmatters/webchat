@@ -23,7 +23,7 @@ function checkMODE(mode) {
  * @param {string} config 
  */
 function checkCONFIG(config) {
-  const presets = ['dev', 'test-staging', 'beta', 'zm-staging', 'zm-prod', 'za-staging', 'za-prod', 'et-staging'];
+  const presets = ['dev', 'test-staging', 'beta', 'zm-staging', 'zm-prod', 'za-staging', 'za-prod', 'et-staging', 'mw-staging'];
   const isConfigSet = typeof config !== 'undefined' && presets.includes(config);
 
   if (!isConfigSet) {
