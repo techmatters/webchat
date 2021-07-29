@@ -11,7 +11,8 @@
     "build:zm-staging": "MODE=production CONFIG=zm-staging npm run build",
     "build:zm-prod": "MODE=production CONFIG=zm-prod npm run build",
     "build:za-staging": "MODE=production CONFIG=za-staging npm run build",
-    "build:za-prod": "MODE=production CONFIG=za-prod npm run build"
+    "build:za-prod": "MODE=production CONFIG=za-prod npm run build",
+    "build:et-staging": "MODE=production CONFIG=et-staging npm run build"
   },
   "devDependencies": {
     "babel-runtime": "^6.26.0",
