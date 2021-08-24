@@ -3,6 +3,7 @@ import { Channel } from 'twilio-chat/lib/channel';
 import { getUserIp } from './ip-tracker';
 import { getCurrentConfig } from '../configurations';
 import { updateZIndex } from './dom-utils';
+import { PreEngagementConfig } from '../configurations/types';
 
 updateZIndex();
 
@@ -10,6 +11,23 @@ const currentConfig = getCurrentConfig();
 const defaultLanguage = currentConfig.defaultLanguage;
 const initialLanguage = defaultLanguage;
 const translations = currentConfig.translations;
+
+const outOfHours: PreEngagementConfig = {
+  description: "We're closed at the moment. Operating hours: 8am-6pm",
+  fields:
+    [
+      {
+        label: 'Hidden Field',
+        type: 'InputField',
+        attributes: {
+          name: '',
+          required: true,
+          readOnly: true,
+        },
+      },
+    ],
+  submitLabel: "Let's chat!"
+};
 
 const getChangeLanguageWebChat = (manager: FlexWebChat.Manager) => (language: string) => {
   const twilioStrings = { ...manager.strings }; // save the originals
@@ -96,6 +114,12 @@ export const initWebchat = async () => {
 
   const webchat = await FlexWebChat.createWebChat(appConfig);
   const { manager } = webchat;
+  let tick = 0;
+  setInterval(() => {
+    const preEngagementConfig = tick%2==0 ? outOfHours : appConfig.preEngagementConfig; 
+    tick++;
+    manager.updateConfig({ ...appConfig, preEngagementConfig });
+  }, 5000);
   const changeLanguageWebChat = getChangeLanguageWebChat(manager);
 
   changeLanguageWebChat(initialLanguage);
