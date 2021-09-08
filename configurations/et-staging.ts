@@ -7,7 +7,7 @@ const captureIp = true;
 
 const translations: Translations = {
   'en-US': {
-    WelcomeMessage: 'Welcome to Childline Ethiopia',
+    WelcomeMessage: 'Welcome to Adama Child Helpline,Ethiopia',
     MessageCanvasTrayContent: '',
     MessageInputDisabledReasonHold: 'Please hold for a counselor.',
     AutoFirstMessage: 'Incoming webchat contact from',
@@ -40,7 +40,7 @@ const memberDisplayOptions = {
   yourDefaultName: 'You',
   yourFriendlyNameOverride: false,
   theirFriendlyNameOverride: false,
-  theirDefaultName: 'Counsellor',
+  theirDefaultName: 'Adama Helpline Counsellor',
 }
 
 export const config: Configuration = {
