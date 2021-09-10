@@ -7,7 +7,7 @@ const captureIp = true;
 
 const translations: Translations = {
   'en-US': {
-    WelcomeMessage: 'Welcome to Childline Malawi',
+    WelcomeMessage: 'Welcome to Tithandizane Helpline',
     MessageCanvasTrayContent: '',
     MessageInputDisabledReasonHold: 'Please hold for a counselor.',
     AutoFirstMessage: 'Incoming webchat contact from',
@@ -40,7 +40,7 @@ const memberDisplayOptions = {
   yourDefaultName: 'You',
   yourFriendlyNameOverride: false,
   theirFriendlyNameOverride: false,
-  theirDefaultName: 'Counsellor',
+  theirDefaultName: 'Tithandizane Counsellor',
 }
 
 export const config: Configuration = {
