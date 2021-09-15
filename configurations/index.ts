@@ -9,11 +9,13 @@ import { config as zaStaging } from './za-staging';
 import { config as zaProd } from './za-prod';
 import { config as etStaging } from './et-staging';
 import { config as mwStaging } from './mw-staging';
+import { config as etProd } from './et-prod';
+import { config as mwProd } from './mw-prod';
 
 const rawConfig = webpack.env.CONFIG;
 checkCONFIG(rawConfig);
 
-type PresetConfig = 'dev' | 'test-staging' | 'beta' | 'zm-staging' | 'zm-prod' | 'za-staging' | 'za-prod' | 'et-staging' | 'mw-staging';
+type PresetConfig = 'dev' | 'test-staging' | 'beta' | 'zm-staging' | 'zm-prod' | 'za-staging' | 'za-prod' | 'et-staging' | 'mw-staging' | 'et-prod' | 'mw-prod';
 const config = rawConfig as PresetConfig;
 
 type ConfigMap = {
@@ -30,6 +32,8 @@ const configMap: ConfigMap = {
   'za-prod': zaProd,
   'et-staging': etStaging,
   'mw-staging': mwStaging,
+  'et-prod': etProd,
+  'mw-prod': mwProd,
 };
 
 export const getCurrentConfig = (): Configuration => configMap[config];
