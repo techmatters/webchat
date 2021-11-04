@@ -1,3 +1,4 @@
+# Should we delete this file?
 # This is a basic workflow to build and upload Webchat to S3 bucket with Github Actions
 
 name: Test Staging release
