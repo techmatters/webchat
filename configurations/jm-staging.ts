@@ -7,10 +7,12 @@ const captureIp = true;
 
 const translations: Translations = {
   'en-US': {
-    WelcomeMessage: 'Welcome to Tithandizane Helpline',
+    WelcomeMessage: 'Welcome to SafeSpot',
     MessageCanvasTrayContent: '',
     MessageInputDisabledReasonHold: 'Please hold for a counselor.',
     AutoFirstMessage: 'Incoming webchat contact from',
+    MessageInputDisabledReasonHold:
+      "Thank you very much for this information. We'll transfer you now. Please hold for a counsellor.",
   },
 };
 
