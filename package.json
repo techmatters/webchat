@@ -16,7 +16,8 @@
     "build:et-prod": "MODE=production CONFIG=et-prod npm run build",
     "build:mw-staging": "MODE=production CONFIG=mw-staging npm run build",
     "build:mw-prod": "MODE=production CONFIG=mw-prod npm run build",
-    "build:jm-staging": "MODE=production CONFIG=jm-staging npm run build"
+    "build:jm-staging": "MODE=production CONFIG=jm-staging npm run build",
+    "build:ca-staging": "MODE=production CONFIG=ca-staging npm run build"
   },
   "devDependencies": {
     "babel-runtime": "^6.26.0",
