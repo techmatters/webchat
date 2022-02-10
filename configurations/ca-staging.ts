@@ -104,16 +104,16 @@ description: "To help us serve you better, please answer the following questions
             value: 'Unknown',
             label: 'Prefer not to answer',
             selected: false,
-          }
-        ]
+          },
+        ],
       },
       {
         label: 'Are you calling about yourself?',
         type: 'Twilio.YES_NO',
         attributes: {
           name: 'about_self',
-          required: true
-        }
+          required: true,
+        },
       },
       {
         label: 'Do you consider yourself to be:',
@@ -163,8 +163,8 @@ description: "To help us serve you better, please answer the following questions
             value: 'Unknown',
             label: 'Prefer not to answer',
             selected: false,
-          }
-        ]
+          },
+        ],
       },
       {
         label: 'Are you a newcomer (i.e., Arrived in Canada within 5 years or less), recent immigrant, and/or refugee?',
@@ -188,8 +188,8 @@ description: "To help us serve you better, please answer the following questions
             value: 'Unknown',
             label: 'Prefer not to answer',
             selected: false,
-          }
-        ]
+          },
+        ],
       },
       {
         label: 'What province or territory do you live in? ',
@@ -288,8 +288,8 @@ description: "To help us serve you better, please answer the following questions
             value: 'Did not disclose/Did not ask',
             label: 'Prefer not to answer',
             selected: false,
-          }
-        ]
+          },
+        ],
       },
       {
         label: 'Tell us more about where you live…',
@@ -333,8 +333,8 @@ description: "To help us serve you better, please answer the following questions
             value: 'Unknown',
             label: 'Prefer not to answer',
             selected: false,
-          }
-        ]
+          },
+        ],
       },
       {
         label: 'On a scale of 1 to 7, how upset are you right now?',
@@ -378,8 +378,8 @@ description: "To help us serve you better, please answer the following questions
             value: '7',
             label: '7 - Very',
             selected: false,
-          }
-        ]
+          },
+        ],
       },
       {
         label: 'Do you consider yourself to be: (Select all that apply)',
@@ -468,8 +468,8 @@ description: "To help us serve you better, please answer the following questions
             value: 'Unknown',
             label: 'Prefer not to answer',
             selected: false,
-          }
-        ]
+          },
+        ],
       },
       {
         label: 'We would like to learn more about you and if you are currently a student. Do you attend...?',
@@ -533,8 +533,8 @@ description: "To help us serve you better, please answer the following questions
             value: 'Unknown',
             label: 'Prefer not to answer',
             selected: false,
-          }
-        ]
+          },
+        ],
       },
       {
         label: 'Which of these best describes your current living situation? (Select all that apply):',
@@ -623,11 +623,11 @@ description: "To help us serve you better, please answer the following questions
             value: 'Unknown',
             label: 'Prefer not to answer',
             selected: false,
-          }
-        ]
-      }
+          },
+        ],
+      },
     ],
-  submitLabel: "Start Chat!"
+  submitLabel: "Start Chat!",
 };
 
 const memberDisplayOptions = {
