@@ -29,7 +29,7 @@ const translations: Translations = {
 };
 
 const preEngagementConfig: PreEngagementConfig = {
-description: "Welcome to Kids Help Phone. To help us serve you better, please answer the following questions.",
+  description: "Welcome to Kids Help Phone. To help us serve you better, please answer the following questions.",
   fields:
     [
       {
@@ -40,7 +40,7 @@ description: "Welcome to Kids Help Phone. To help us serve you better, please an
           type: "text",
           placeholder: "Guest",
           required: true,
-        }
+        },
       },
       {
         type: "InputItem",
@@ -49,7 +49,7 @@ description: "Welcome to Kids Help Phone. To help us serve you better, please an
           name: "age",
           type: "text",
           required: true,
-        }
+        },
       },
       {
         label: 'Do you consider yourself to be:',
