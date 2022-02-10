@@ -29,7 +29,7 @@ const translations: Translations = {
 };
 
 const preEngagementConfig: PreEngagementConfig = {
-description: "To help us serve you better, please answer the following questions.",
+description: "Welcome to Kids Help Phone. To help us serve you better, please answer the following questions.",
   fields:
     [
       {
