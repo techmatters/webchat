@@ -108,14 +108,6 @@ const preEngagementConfig: PreEngagementConfig = {
         ],
       },
       {
-        label: 'Are you calling about yourself?',
-        type: 'Twilio.YES_NO',
-        attributes: {
-          name: 'about_self',
-          required: true,
-        },
-      },
-      {
         label: 'Do you consider yourself to be:',
         type: 'SelectItem',
         attributes: {
