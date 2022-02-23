@@ -1,6 +1,6 @@
 # This is a basic workflow to build and upload Webchat to S3 bucket with Github Actions
 
-name: Canada Staging release
+name: Kids Help Phone Staging release
 
 # Controls when the action will run.
 on:
@@ -20,7 +20,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: '12.x'
+          node-version: '14.x'
       # Create and fill secret.ts
       - name: Create secret.ts
         run: |
@@ -46,7 +46,7 @@ jobs:
         with:
           args: --acl public-read --follow-symlinks --exclude '*' --include '*.js' --content-type 'application/javascript; charset=utf-8'
         env:
-          AWS_S3_BUCKET: tl-public-chat-ca-staging
+          AWS_S3_BUCKET: tl-public-chat-ca-stg
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: '${{ secrets.AWS_DEFAULT_REGION }}'
