@@ -8,7 +8,7 @@ import {
 const accountSid = 'ACeb335f4685aa874fddf00cdd7c2946bd';
 const flexFlowSid = 'FO45c6ac308207b8b17bd990eadf5246fe';
 const defaultLanguage = 'en-US';
-const captureIp = true;
+const captureIp = false;
 
 const translations: Translations = {
   'en-US': {
@@ -48,7 +48,7 @@ const memberDisplayOptions = {
   yourDefaultName: 'You',
   yourFriendlyNameOverride: false,
   theirFriendlyNameOverride: false,
-  theirDefaultName: 'Kids Help Phone Counsellor',
+  theirDefaultName: 'Counsellor',
 }
 
 const mapHelplineLanguage: MapHelplineLanguage = (helpline) => {
