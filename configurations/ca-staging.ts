@@ -8,7 +8,7 @@ import {
 const accountSid = 'ACeb335f4685aa874fddf00cdd7c2946bd';
 const flexFlowSid = 'FO45c6ac308207b8b17bd990eadf5246fe';
 const defaultLanguage = 'en-US';
-const captureIp = true;
+const captureIp = false;
 
 const translations: Translations = {
   'en-US': {
@@ -41,71 +41,6 @@ const preEngagementConfig: PreEngagementConfig = {
           placeholder: "Guest",
           required: true,
         },
-      },
-      {
-        type: "InputItem",
-        label: "How old are you?",
-        attributes: {
-          name: "age",
-          type: "text",
-          required: true,
-        },
-      },
-      {
-        label: 'Do you consider yourself to be:',
-        type: 'SelectItem',
-        attributes: {
-          name: 'gender',
-          required: true,
-          readOnly: false,
-        },
-        options: [
-          {
-            value: 'agender',
-            label: 'Agender',
-            selected: true,
-          },
-          {
-            value: 'Cis Female/Woman',
-            label: 'Cis Female/Woman',
-            selected: false,
-          },
-          {
-            value: 'Cis Male/Man',
-            label: 'Cis Male/Man',
-            selected: false,
-          },
-          {
-            value: 'Non-Binary/Genderqueer/Gender fluid',
-            label: 'Non-Binary/Genderqueer/Gender fluid',
-            selected: false,
-          },
-          {
-            value: 'Two-Spirit',
-            label: 'Two-Spirit',
-            selected: false,
-          },
-          {
-            value: 'Trans Female/Woman',
-            label: 'Trans Female/Woman',
-            selected: false,
-          },
-          {
-            value: 'Trans Male/Man',
-            label: 'Trans Male/Man',
-            selected: false,
-          },
-          {
-            value: 'Other',
-            label: 'Other',
-            selected: false,
-          },
-          {
-            value: 'Unknown',
-            label: 'Prefer not to answer',
-            selected: false,
-          },
-        ],
       },
       {
         label: 'Do you consider yourself to be:',
@@ -626,7 +561,7 @@ const memberDisplayOptions = {
   yourDefaultName: 'You',
   yourFriendlyNameOverride: false,
   theirFriendlyNameOverride: false,
-  theirDefaultName: 'Kids Help Phone Counselor',
+  theirDefaultName: 'Counsellor',
 }
 
 const mapHelplineLanguage: MapHelplineLanguage = (helpline) => {
