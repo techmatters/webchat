@@ -7,8 +7,20 @@ const captureIp = true;
 
 const preEngagementConfig: PreEngagementConfig = {
   description: "Thank you for contacting us. To chat with a practitioner, please select the Start Chat button.",
+  fields:
+    [
+      {
+        type: "InputItem",
+        label: "What is your name? (This may be just a screen name, or a nick name, if you are not comfortable giving us your real name) \n We are here Monday – Friday, 11am-1pm & 2pm-6pm. If you need to speak to a Counsellor urgently, call our 24 hour Tollfree Number on 116.",
+        attributes: {
+          name: "friendlyName",
+          type: "text",
+          placeholder: "Guest",
+          required: true,
+        }
+      }
+    ],
   submitLabel: "Start Chat!",
-  fields: [],
 };
 
 const translations: Translations = {
