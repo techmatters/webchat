@@ -7,7 +7,8 @@ const captureIp = true;
 
 const preEngagementConfig: PreEngagementConfig = {
   description: "Thank you for contacting us. To chat with a practitioner, please select the Start Chat button.",
-  submitLabel: "Start Chat!"
+  submitLabel: "Start Chat!",
+  fields: [],
 };
 
 const translations: Translations = {
