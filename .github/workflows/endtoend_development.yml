@@ -35,7 +35,7 @@ jobs:
         run: npm install
       # Build and compile Webchat
       - name: Run build command
-        run: npm run build e2e-development
+        run: npm run build:e2e-dev
       # Rename the builded js file
       - name: Rename js
         run: mv bundle.js aselo-chat.min.js
