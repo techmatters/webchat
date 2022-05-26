@@ -15,7 +15,7 @@ import { config as jmStaging } from './jm-staging';
 import { config as jmProd } from './jm-prod';
 import { config as caStaging } from './ca-staging';
 import { config as ukStaging } from './uk-staging';
-import { config as e2eDevelopment } from './e2e-development';
+import { config as e2eDevelopment } from './e2e-dev';
 
 
 const rawConfig = webpack.env.CONFIG;
