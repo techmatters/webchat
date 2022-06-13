@@ -3,7 +3,7 @@ import {
   Translations,
   Configuration,
   MapHelplineLanguage,
-} from './types';
+} from './types'; 
 
 const accountSid = 'ACc59300c7ca018e8652e4d6d86c2d50e6';
 const flexFlowSid = 'FObb9dfe97f1c59f455ab01811bec74cd5';
