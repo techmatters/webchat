@@ -2,45 +2,73 @@ import {PreEngagementConfig,Translations,Configuration,MapHelplineLanguage} from
 
 const accountSid = 'AC4c5438ae75a35aba2f591d8b223b65e6';
 const flexFlowSid = 'FO7a8f7b663f56a9f30f6abb0719b8f536';
-const defaultLanguage = 'en-US';
+const defaultLanguage = 'es';
 const captureIp = true;
 
 const preEngagementConfig: PreEngagementConfig = {
-  description: "Thank you for contacting us. To chat with a practitioner, please select the Start Chat button.",
-  fields:
-    [
-      {
-        type: "InputItem",
-        label: "What is your name? (This may be just a screen name, or a nick name, if you are not comfortable giving us your real name) \n We are here Monday – Friday, 11am-1pm & 2pm-6pm. If you need to speak to a Counsellor urgently, call our 24 hour Tollfree Number on 116.",
-        attributes: {
-          name: "friendlyName",
-          type: "text",
-          placeholder: "Guest",
-          required: true,
-        }
-      }
-    ],
-  submitLabel: "Start Chat!",
+  description: "Comencemos",
+  fields: [
+    {
+      label: 'Hidden Field',
+      type: 'InputField',
+      attributes: {
+        name: '',
+        readOnly: true,
+      },
+    },
+  ],
+  submitLabel: 'Comenzar Nuevo Chat!',
 };
 
 const translations: Translations = {
   'en-US': {
     WelcomeMessage: 'Welcome to the Te Guio Helplines',
     MessageCanvasTrayContent: '',
-    MessageInputDisabledReasonHold: 
+    MessageInputDisabledReasonHold:
       "Thank you very much for this information. We'll transfer you now. Please hold for a practitioner.",
     AutoFirstMessage: 'Incoming webchat contact from',
     TypingIndicator: 'Counselor is typing',
     StartChat: 'Start Chat!',
     MessageCanvasTrayButton: 'Start New Chat',
   },
+  'es': {
+    WelcomeMessage: "¡Bienvenido a Te Guío!",
+    MessageCanvasTrayContent: '',
+    MessageInputDisabledReasonHold:
+      "Muchas gracias por la información. Lo transferiremos ahora. Por favor espere for un guía.",
+    AutoFirstMessage: 'Nuevo contacto del webchat de',
+    TypingIndicator: "{0} está escribiendo ... ",
+    StartChat: 'Comienza a Chatear!',
+    MessageCanvasTrayButton: "Comenzar Nuevo Chat",
+
+    EntryPointTagline: "Chatea con nosotros",
+    InvalidPreEngagementMessage: "Los formularios previos al compromiso no se han establecido y son necesarios para iniciar el chat web. Por favor configúrelos ahora en la configuración.",
+    InvalidPreEngagementButton: "Aprende más",
+    PredefinedChatMessageAuthorName: "Bot",
+    PredefinedChatMessageBody: "¡Hola! ¿Cómo podemos ayudarte hoy?",
+    InputPlaceHolder: "Escribe un mensaje",
+    Read: "Visto",
+    MessageSendingDisabled: "El envío de mensajes ha sido desactivado",
+    Today: "HOY",
+    Yesterday: "AYER",
+    Save: "GUARDAR",
+    Reset: "RESETEAR",
+    MessageCharacterCountStatus: "{{currentCharCount}} / {{maxCharCount}}",
+    SendMessageTooltip: "Enviar Mensaje",
+    FieldValidationRequiredField: "Campo requerido",
+    FieldValidationInvalidEmail: "Por favor provea una dirección válida de email",
+    PreEngagementDescription: "Comencemos",
+    BotGreeting: "¿Cómo puedo ayudar?",
+
+
+  }
 };
 
 const memberDisplayOptions = {
-  yourDefaultName: 'You',
+  yourDefaultName: 'Usted',
   yourFriendlyNameOverride: false,
   theirFriendlyNameOverride: false,
-  theirDefaultName: 'Counsellor',
+  theirDefaultName: 'Guía',
 }
 
 const mapHelplineLanguage: MapHelplineLanguage = (helpline) => {
