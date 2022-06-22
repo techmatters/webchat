@@ -2,7 +2,7 @@ import {PreEngagementConfig,Translations,Configuration,MapHelplineLanguage} from
 
 const accountSid = 'AC4c5438ae75a35aba2f591d8b223b65e6';
 const flexFlowSid = 'FO7a8f7b663f56a9f30f6abb0719b8f536';
-const defaultLanguage = 'es';
+const defaultLanguage = 'es-ES';
 const captureIp = true;
 
 const preEngagementConfig: PreEngagementConfig = {
