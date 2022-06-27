@@ -1,6 +1,6 @@
 # This is a basic workflow to build and upload Webchat to S3 bucket with Github Actions
 
-name: Te Guio(CO) Staging release
+name: Te Guio Colombia II Staging release
 
 # Controls when the action will run.
 on:
