@@ -71,6 +71,36 @@ const preEngagementConfig: PreEngagementConfig = {
     ],
   submitLabel: "Let's chat!"
 };
+const closedHours: PreEngagementConfig = {
+  description: "We're closed at the moment. Operating hours are 8am-6pm",
+  fields:
+    [
+      {
+        label: 'Hidden Field',
+        type: 'InputField',
+        attributes: {
+          name: '',
+          required: true,
+          readOnly: true,
+        },
+      },
+    ],
+};
+const holidayHours: PreEngagementConfig = {
+  description: "Today is a holiday. Come back tomorrow",
+  fields:
+    [
+      {
+        label: 'Hidden Field',
+        type: 'InputField',
+        attributes: {
+          name: '',
+          required: true,
+          readOnly: true,
+        },
+      },
+    ],
+};
 
 const mapHelplineLanguage: MapHelplineLanguage = helpline => {
   switch (helpline) {
@@ -87,6 +117,8 @@ export const config: Configuration = {
   defaultLanguage,
   translations,
   preEngagementConfig,
+  closedHours,
+  holidayHours,
   mapHelplineLanguage,
   captureIp,
 };

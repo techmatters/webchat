@@ -17,7 +17,11 @@ export type Configuration = {
   defaultLanguage: string;
   translations: Translations;
   preEngagementConfig: PreEngagementConfig;
+  closedHours?: PreEngagementConfig;
+  holidayHours?: PreEngagementConfig;
   mapHelplineLanguage: MapHelplineLanguage;
   memberDisplayOptions?: MemberDisplayOptions;
   captureIp: boolean;
 };
+
+export type operatingHoursState = 'open' | 'closed' | 'holiday';

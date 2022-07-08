@@ -3,6 +3,22 @@ import { Channel } from 'twilio-chat/lib/channel';
 import { getUserIp } from './ip-tracker';
 import { getCurrentConfig } from '../configurations';
 import { updateZIndex } from './dom-utils';
+import { operatingHoursState } from '../configurations/types';
+// const outOfHours: PreEngagementConfig = {
+//   description: "We're closed at the moment. Operating hours: 8am-6pm",
+//   fields:
+//     [
+//       {
+//         label: 'Hidden Field',
+//         type: 'InputField',
+//         attributes: {
+//           name: '',
+//           required: true,
+//           readOnly: true,
+//         },
+//       },
+//     ],
+// };
 
 updateZIndex();
 
@@ -10,7 +26,7 @@ const currentConfig = getCurrentConfig();
 const defaultLanguage = currentConfig.defaultLanguage;
 const initialLanguage = defaultLanguage;
 const translations = currentConfig.translations;
-
+console.log('>>currentConfig,', currentConfig)
 const getChangeLanguageWebChat = (manager: FlexWebChat.Manager) => (language: string) => {
   const twilioStrings = { ...manager.strings }; // save the originals
   const setNewStrings = (newStrings: FlexWebChat.Strings) => (manager.strings = { ...manager.strings, ...newStrings });
@@ -96,6 +112,20 @@ export const initWebchat = async () => {
 
   const webchat = await FlexWebChat.createWebChat(appConfig);
   const { manager } = webchat;
+
+  // If a helpline has operating hours configuration set, the pre engagement config will show alternative canvas during closed or holiday times/days
+  const changePreConfig = (operatingState: operatingHoursState) =>{
+    if (operatingState === 'closed'){
+      const preEngagementConfig = currentConfig.closedHours
+      manager.updateConfig({...appConfig, preEngagementConfig})
+    } else if(operatingState === 'holiday'){
+      const preEngagementConfig = currentConfig.holidayHours
+      manager.updateConfig({...appConfig, preEngagementConfig})
+    }
+  }
+
+  changePreConfig('open')
+  
   const changeLanguageWebChat = getChangeLanguageWebChat(manager);
 
   changeLanguageWebChat(initialLanguage);
