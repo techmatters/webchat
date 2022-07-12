@@ -24,4 +24,4 @@ export type Configuration = {
   captureIp: boolean;
 };
 
-export type operatingHoursState = 'open' | 'closed' | 'holiday';
+export type OperatingHoursState = 'open' | 'closed' | 'holiday';

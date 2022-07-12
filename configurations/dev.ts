@@ -71,6 +71,7 @@ const preEngagementConfig: PreEngagementConfig = {
     ],
   submitLabel: "Let's chat!"
 };
+
 const closedHours: PreEngagementConfig = {
   description: "We're closed at the moment. Operating hours are 8am-6pm",
   fields:
@@ -86,8 +87,9 @@ const closedHours: PreEngagementConfig = {
       },
     ],
 };
+
 const holidayHours: PreEngagementConfig = {
-  description: "Today is a holiday. Come back tomorrow",
+  description: "We are closed because it is a holiday. Please come back tomorrow",
   fields:
     [
       {
