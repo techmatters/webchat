@@ -4,6 +4,7 @@ const accountSid = 'ACd8a2e89748318adf6ddff7df6948deaf';
 const flexFlowSid = 'FO8c2d9c388e7feba8b08d06a4bc3f69d1';
 const defaultLanguage = 'en-US';
 const captureIp = true;
+const checkOpenHours = true;
 
 const translations: Translations = {
   'en-US': {
@@ -72,6 +73,38 @@ const preEngagementConfig: PreEngagementConfig = {
   submitLabel: "Let's chat!"
 };
 
+const closedHours: PreEngagementConfig = {
+  description: "We're closed at the moment. Operating hours are 8am-6pm",
+  fields:
+    [
+      {
+        label: 'Hidden Field',
+        type: 'InputField',
+        attributes: {
+          name: '',
+          required: true,
+          readOnly: true,
+        },
+      },
+    ],
+};
+
+const holidayHours: PreEngagementConfig = {
+  description: "We are closed because it is a holiday. Please come back tomorrow",
+  fields:
+    [
+      {
+        label: 'Hidden Field',
+        type: 'InputField',
+        attributes: {
+          name: '',
+          required: true,
+          readOnly: true,
+        },
+      },
+    ],
+};
+
 const mapHelplineLanguage: MapHelplineLanguage = helpline => {
   switch (helpline) {
     case 'Fake Helpline':
@@ -87,6 +120,9 @@ export const config: Configuration = {
   defaultLanguage,
   translations,
   preEngagementConfig,
+  closedHours,
+  holidayHours,
+  checkOpenHours,
   mapHelplineLanguage,
   captureIp,
 };

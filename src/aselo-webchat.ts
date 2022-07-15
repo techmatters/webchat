@@ -1,6 +1,7 @@
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
 import { Channel } from 'twilio-chat/lib/channel';
 import { getUserIp } from './ip-tracker';
+import { getOperatingHours } from './operating-hours';
 import { getCurrentConfig } from '../configurations';
 import { updateZIndex } from './dom-utils';
 
@@ -94,8 +95,30 @@ export const initWebchat = async () => {
     }
   };
 
+
   const webchat = await FlexWebChat.createWebChat(appConfig);
   const { manager } = webchat;
+  
+  // If a helpline has operating hours configuration set, the pre engagement config will show alternative canvas during closed or holiday times/days
+  const displayOperatingHours = async (): Promise<any> => {
+    const operatingState = await getOperatingHours();
+    if (operatingState === 'closed' && currentConfig.closedHours) {
+      const preEngagementConfig = currentConfig.closedHours;
+      manager.updateConfig({ ...appConfig, preEngagementConfig });
+    } else if (operatingState === 'holiday' && currentConfig.holidayHours) {
+      const preEngagementConfig = currentConfig.holidayHours;
+      manager.updateConfig({ ...appConfig, preEngagementConfig });
+    }
+  };
+
+  if (currentConfig.checkOpenHours){
+    try {
+      displayOperatingHours();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const changeLanguageWebChat = getChangeLanguageWebChat(manager);
 
   changeLanguageWebChat(initialLanguage);
