@@ -22,6 +22,7 @@ export type Configuration = {
   mapHelplineLanguage: MapHelplineLanguage;
   memberDisplayOptions?: MemberDisplayOptions;
   captureIp: boolean;
+  checkOpenHours?: boolean;
 };
 
 export type OperatingHoursState = 'open' | 'closed' | 'holiday';
