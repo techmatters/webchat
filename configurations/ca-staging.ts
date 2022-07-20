@@ -9,6 +9,7 @@ const accountSid = 'ACeb335f4685aa874fddf00cdd7c2946bd';
 const flexFlowSid = 'FO45c6ac308207b8b17bd990eadf5246fe';
 const defaultLanguage = 'en-US';
 const captureIp = false;
+const checkOpenHours = true;
 
 const translations: Translations = {
   'en-US': {
@@ -557,6 +558,38 @@ const preEngagementConfig: PreEngagementConfig = {
   submitLabel: "Start Chat!",
 };
 
+const closedHours: PreEngagementConfig = {
+  description: "We're sorry, but Live Chat is currently closed. :( To reach a Kids Help Phone counsellor, call us anytime at 1-800-668-6868. Be well, The Kids Help Phone Team",
+  fields:
+    [
+      {
+        label: 'Hidden Field',
+        type: 'InputField',
+        attributes: {
+          name: '',
+          required: true,
+          readOnly: true,
+        },
+      },
+    ],
+};
+
+const holidayHours: PreEngagementConfig = {
+  description: "We're sorry, but Live Chat is currently closed. :( To reach a Kids Help Phone counsellor, call us anytime at 1-800-668-6868. Be well, The Kids Help Phone Team",
+  fields:
+    [
+      {
+        label: 'Hidden Field',
+        type: 'InputField',
+        attributes: {
+          name: '',
+          required: true,
+          readOnly: true,
+        },
+      },
+    ],
+};
+
 const memberDisplayOptions = {
   yourDefaultName: 'You',
   yourFriendlyNameOverride: false,
@@ -577,6 +610,9 @@ export const config: Configuration = {
   defaultLanguage,
   translations,
   preEngagementConfig,
+  closedHours,
+  holidayHours,
+  checkOpenHours,
   mapHelplineLanguage,
   memberDisplayOptions,
   captureIp,
