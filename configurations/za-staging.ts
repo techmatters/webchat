@@ -4,6 +4,7 @@ const accountSid = 'AC16dd71c6fd135ee250bd213ad1efa2e8';
 const flexFlowSid = 'FOd655fd61e9e7ac6faf9d0be97a49863b';
 const defaultLanguage = 'en-US';
 const captureIp = true;
+const checkOpenHours = true;
 
 const translations: Translations = {
   'en-US': {
@@ -32,6 +33,38 @@ const preEngagementConfig: PreEngagementConfig = {
   submitLabel: "Start Chat!"
 };
 
+const closedHours: PreEngagementConfig = {
+  description: "Our counsellors are currently offline. We are here Monday – Friday, 11am-1pm & 2pm-6pm. If you need to speak to a Counsellor, call our 24 hour Tollfree Number on 116. If you feel you are in immediate danger, please call the Police on 10111.",
+  fields:
+    [
+      {
+        label: 'Hidden Field',
+        type: 'InputField',
+        attributes: {
+          name: '',
+          required: true,
+          readOnly: true,
+        },
+      },
+    ],
+};
+
+const holidayHours: PreEngagementConfig = {
+  description: "Our counsellors are currently offline for the Public Holiday today. We are here on normal working days: Monday – Friday, 11am-1pm & 2pm-6pm. Please note that messages sent on this platform out of these hours are not received by our team and if you need to speak to a Counsellor, call our 24 hour Tollfree Number on 116. If you feel you are in immediate danger, please call the Police on 10111.",
+  fields:
+    [
+      {
+        label: 'Hidden Field',
+        type: 'InputField',
+        attributes: {
+          name: '',
+          required: true,
+          readOnly: true,
+        },
+      },
+    ],
+};
+
 const mapHelplineLanguage: MapHelplineLanguage = helpline => {
   switch (helpline) {
     default:
@@ -52,6 +85,9 @@ export const config: Configuration = {
   defaultLanguage,
   translations,
   preEngagementConfig,
+  closedHours,
+  holidayHours,
+  checkOpenHours,
   mapHelplineLanguage,
   memberDisplayOptions,
   captureIp,
