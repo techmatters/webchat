@@ -92,7 +92,21 @@ export const initWebchat = async () => {
     preEngagementConfig: currentConfig.preEngagementConfig,
     context: {
       ip,
-    }
+    },
+    colorTheme: {
+      overrides: {
+        PreEngagementCanvas: {
+          Container: {
+            ':first-child': {
+              'white-space': 'break-spaces',
+            },
+          },
+          Form: {
+            Label: { display: 'block' },
+          },
+        },
+      },
+    },
   };
 
 
