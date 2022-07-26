@@ -36,7 +36,8 @@ function checkCONFIG(config) {
     'e2e-dev',
     'co-staging',
     'ukr-staging',
-    'cl-staging'
+    'cl-staging',
+    'zw-staging'
   ];
   const isConfigSet = typeof config !== 'undefined' && presets.includes(config);
 
