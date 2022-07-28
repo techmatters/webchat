@@ -44,7 +44,7 @@ const memberDisplayOptions = {
   yourDefaultName: 'You',
   yourFriendlyNameOverride: false,
   theirFriendlyNameOverride: false,
-  theirDefaultName: 'SafeSpot Counsellor',
+  theirDefaultName: 'Childline Zimbabwe Counsellor',
 }
 
 export const config: Configuration = {
