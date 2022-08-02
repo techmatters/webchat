@@ -575,7 +575,7 @@ const closedHours: PreEngagementConfig = {
 };
 
 const holidayHours: PreEngagementConfig = {
-  description: "We're sorry, but Live Chat is currently closed. :( To reach a Kids Help Phone counsellor, call us anytime at 1-800-668-6868. Be well, The Kids Help Phone Team",
+  description: "We're sorry, but Live Chat is currently closed. :( \n To reach a Kids Help Phone counsellor, call us anytime at 1-800-668-6868. \n Be well, \n The Kids Help Phone Team",
   fields:
     [
       {
