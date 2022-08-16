@@ -20,6 +20,7 @@
     "build:jm-prod": "MODE=production CONFIG=jm-prod npm run build",
     "build:ca-staging": "MODE=production CONFIG=ca-staging npm run build",
     "build:uk-staging": "MODE=production CONFIG=uk-staging npm run build",
+    "build:ro-staging": "MODE=production CONFIG=ro-staging npm run build",
     "build:ukr-staging": "MODE=production CONFIG=ukr-staging npm run build",
     "build:e2e-dev": "MODE=development CONFIG=e2e-dev npm run build",
     "build:co-staging": "MODE=production CONFIG=co-staging npm run build",
