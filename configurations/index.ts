@@ -17,15 +17,16 @@ import { config as caStaging } from './ca-staging';
 import { config as ukStaging } from './uk-staging';
 import { config as e2eDevelopment } from './e2e-dev';
 import { config as coStaging } from './co-staging';
+import { config as roStaging } from './ro-staging';
 import { config as ukrStaging } from './ukr-staging';
 import { config as clStaging } from './cl-staging';
-import {config as zwStaging} from './zw-staging'
+import { config as zwStaging } from './zw-staging'
 
 
 const rawConfig = webpack.env.CONFIG;
 checkCONFIG(rawConfig);
 
-type PresetConfig = 'dev' | 'test-staging' | 'beta' | 'zm-staging' | 'zm-prod' | 'za-staging' | 'za-prod' | 'et-staging' | 'mw-staging' | 'et-prod' | 'mw-prod' | 'jm-staging' | 'jm-prod' | 'ca-staging' | 'uk-staging' | 'e2e-dev' | 'co-staging' | 'ukr-staging' | 'cl-staging' | 'zw-staging';
+type PresetConfig = 'dev' | 'test-staging' | 'beta' | 'zm-staging' | 'zm-prod' | 'za-staging' | 'za-prod' | 'et-staging' | 'mw-staging' | 'et-prod' | 'mw-prod' | 'jm-staging' | 'jm-prod' | 'ca-staging' | 'uk-staging' | 'e2e-dev' | 'co-staging' | 'ro-staging' | 'ukr-staging' | 'cl-staging' | 'zw-staging';
 const config = rawConfig as PresetConfig;
 
 type ConfigMap = {
@@ -50,6 +51,7 @@ const configMap: ConfigMap = {
   'uk-staging': ukStaging,
   'e2e-dev': e2eDevelopment,
   'co-staging': coStaging,
+  'ro-staging': roStaging,
   'ukr-staging': ukrStaging,
   'cl-staging': clStaging,
   'zw-staging': zwStaging,

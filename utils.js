@@ -35,6 +35,7 @@ function checkCONFIG(config) {
     'uk-staging',
     'e2e-dev',
     'co-staging',
+    'ro-staging',
     'ukr-staging',
     'cl-staging',
     'zw-staging'
