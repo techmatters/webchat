@@ -2,27 +2,73 @@ import {PreEngagementConfig,Translations,Configuration,MapHelplineLanguage} from
 
 const accountSid = 'AC6ca34b61e7bf2d7cf8b8ca24e7efe65f';
 const flexFlowSid = 'FO11691bbc019d7c4c4b9229fedc77961d';
-const defaultLanguage = 'es-ES';
+const defaultLanguage = 'es-CL';
 const captureIp = true;
 
 const preEngagementConfig: PreEngagementConfig = {
-  description: "Comencemos",
-  fields: [
-    {
-      label: 'Hidden Field',
-      type: 'InputField',
-      attributes: {
-        name: '',
-        readOnly: true,
+  description: "Bievenido a Línea Libre",
+  fields:
+    [
+      {
+        type: "InputItem",
+        label: "Email",
+        attributes: {
+          name: "email",
+          type: "text",
+          placeholder: "Email",
+          required: true,
+        },
+
       },
-    },
+      {
+        type: "InputItem",
+        label: "Edad",
+        attributes: {
+          name: "edad",
+          type: "text",
+          placeholder: "Edad",
+          required: true,
+        },
+
+      },
+      {
+        label: '¿Cuál es tu género?',
+        type: 'SelectItem',
+        attributes: {
+          name: 'gender',
+          required: true,
+          readOnly: false,
+        },
+        options: [
+          {
+            value: 'masculino',
+            label: 'Masculino',
+            selected: true,
+          },
+          {
+            value: 'femenino',
+            label: 'Femenino',
+            selected: false,
+          },
+          {
+            value: 'otro',
+            label: 'Otro',
+            selected: false,
+          },
+          {
+            value: 'prefieroNoDecir',
+            label: 'Prefiero no decir',
+            selected: false,
+          },
+        ],
+      },
   ],
   submitLabel: 'Comenzar Nuevo Chat!',
 };
 
 const translations: Translations = {
   'en-US': {
-    WelcomeMessage: 'Welcome to the Te Guio Helplines',
+    WelcomeMessage: 'Welcome to  Línea Libre',
     MessageCanvasTrayContent: '',
     MessageInputDisabledReasonHold:
       "Thank you very much for this information. We'll transfer you now. Please hold for a practitioner.",
@@ -31,11 +77,11 @@ const translations: Translations = {
     StartChat: 'Start Chat!',
     MessageCanvasTrayButton: 'Start New Chat',
   },
-  'es-ES': {
-    WelcomeMessage: "¡Bienvenido a Te Guío!",
+  'es-CL': {
+    WelcomeMessage: "¡Bienvenido a Línea Libre!",
     MessageCanvasTrayContent: '',
     MessageInputDisabledReasonHold:
-      "Muchas gracias por la información. Lo transferiremos ahora. Por favor espere for un guía.",
+      "Muchas gracias por la información. Lo transferiremos ahora. Por favor espere for un agente.",
     AutoFirstMessage: 'Nuevo contacto del webchat de',
     TypingIndicator: "{0} está escribiendo ... ",
     StartChat: 'Comienza a Chatear!',
