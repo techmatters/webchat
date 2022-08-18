@@ -86,7 +86,6 @@ export const initWebchat = async () => {
   }
 
   if (Array.isArray(currentConfig.blockedIps) && ip && currentConfig.blockedIps.includes(ip)) {
-    window.alert('You are blocked :)');
     return;
   }
 
