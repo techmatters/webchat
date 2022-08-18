@@ -47,6 +47,10 @@ const memberDisplayOptions = {
   theirDefaultName: 'SafeSpot Counsellor',
 }
 
+const blockedIps = [
+  '74.115.77.64',
+];
+
 export const config: Configuration = {
   accountSid,
   flexFlowSid,
@@ -56,4 +60,5 @@ export const config: Configuration = {
   mapHelplineLanguage,
   memberDisplayOptions,
   captureIp,
+  blockedIps,
 };
