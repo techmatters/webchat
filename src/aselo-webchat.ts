@@ -85,6 +85,11 @@ export const initWebchat = async () => {
     ip = await getUserIp();
   }
 
+  if (Array.isArray(currentConfig.blockedIps) && ip && currentConfig.blockedIps.includes(ip)) {
+    window.alert('You are blocked :)');
+    return;
+  }
+
   const appConfig = {
     accountSid: currentConfig.accountSid,
     flexFlowSid: currentConfig.flexFlowSid,
@@ -108,7 +113,6 @@ export const initWebchat = async () => {
       },
     },
   };
-
 
   const webchat = await FlexWebChat.createWebChat(appConfig);
   const { manager } = webchat;

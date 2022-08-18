@@ -22,6 +22,7 @@ export type Configuration = {
   mapHelplineLanguage: MapHelplineLanguage;
   memberDisplayOptions?: MemberDisplayOptions;
   captureIp: boolean;
+  blockedIps?: string[];
   checkOpenHours?: boolean;
 };
 
