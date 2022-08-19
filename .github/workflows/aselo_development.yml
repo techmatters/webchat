@@ -35,8 +35,9 @@ jobs:
       - name: Install dependencies
         run: npm install
       # Get the blockedIps for this account
-      - name Get blockedIps
+      - name: Get blockedIps
         run: curl -o ./src/blockedIps.json https://tl-public-chat-as-dev.s3.amazonaws.com/blockedIps.json
+        shell: bash
       # Build and compile Webchat
       - name: Run build command
         run: npm run build:dev
