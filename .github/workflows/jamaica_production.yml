@@ -33,6 +33,10 @@ jobs:
       # Run a single command using the runners shell to install dependencies 
       - name: Install dependencies
         run: npm install
+      # Get the blockedIps for this account
+      - name: Get blockedIps
+        run: curl -o ./src/blockedIps.json https://tl-public-chat-jm-prod.s3.amazonaws.com/blockedIps.json
+        shell: bash
       # Build and compile Webchat
       - name: Run build command
         run: npm run build:jm-prod

@@ -4,6 +4,7 @@ import { getUserIp } from './ip-tracker';
 import { getOperatingHours } from './operating-hours';
 import { getCurrentConfig } from '../configurations';
 import { updateZIndex } from './dom-utils';
+import * as blockedIps from './blockedIps.json';
 
 updateZIndex();
 
@@ -83,6 +84,11 @@ export const initWebchat = async () => {
 
   if (currentConfig.captureIp) {
     ip = await getUserIp();
+  }
+
+  if (Array.isArray(blockedIps) && ip && (<string[]>blockedIps).includes(ip)) {
+    // Do not initialize plugin for this ip
+    return;
   }
 
   const appConfig = {
