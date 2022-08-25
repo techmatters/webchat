@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as FlexWebChat from "@twilio/flex-webchat-ui";
 import { ButtonBase } from '@material-ui/core';
 
-export type Props = {
+type Props = {
   channelSid: string;
 }
 
