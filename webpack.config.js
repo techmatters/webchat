@@ -62,9 +62,9 @@ module.exports = {
     new webpack.DefinePlugin({
       // Here it creates webpack.env.CONFIG from the env var CONFIG 
       "webpack.env.CONFIG": JSON.stringify(process.env.CONFIG)
-  }),
+    }), 
   ],
   externals: {
     fs: require('fs')
-   }
+  }
 };

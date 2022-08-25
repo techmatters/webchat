@@ -170,8 +170,6 @@ export const initWebchat = async () => {
   // Hide first message ("AutoFirstMessage", sent to create a new task)
   FlexWebChat.MessageList.Content.remove('0');
 
-  FlexWebChat.MessageList.Content.add(<ButtonsRow key="buttons"/>);
-
   // Posting question from preengagement form as users first chat message
   FlexWebChat.Actions.on("afterStartEngagement", (payload) => {
     const { language } = payload.formData;
@@ -181,7 +179,11 @@ export const initWebchat = async () => {
 
     setChannelAfterStartEngagement(manager, ip);
   });
-
+  
   // Render WebChat
   webchat.init();
+  
+  // Adds react buttons for ending and exiting a chat in the MesssageList component
+  const { channelSid } = manager.store.getState().flex.session;
+  FlexWebChat.MessageList.Content.add(<ButtonsRow key="buttons" channelSid={channelSid}/>);
 };
