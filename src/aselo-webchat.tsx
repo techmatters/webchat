@@ -1,10 +1,13 @@
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
+import * as React from 'react'
 import { Channel } from 'twilio-chat/lib/channel';
 import { getUserIp } from './ip-tracker';
 import { getOperatingHours } from './operating-hours';
 import { getCurrentConfig } from '../configurations';
 import { updateZIndex } from './dom-utils';
 import * as blockedIps from './blockedIps.json';
+
+import Close from './components/Close'
 
 updateZIndex();
 
@@ -85,8 +88,8 @@ export const initWebchat = async () => {
   if (currentConfig.captureIp) {
     ip = await getUserIp();
   }
-
-  if (Array.isArray(blockedIps) && ip && (<string[]>blockedIps).includes(ip)) {
+// @ts-ignore
+  if (Array.isArray(blockedIps) && ip && blockedIps.includes(ip)) {
     // Do not initialize plugin for this ip
     return;
   }
@@ -166,6 +169,9 @@ export const initWebchat = async () => {
 
   // Hide first message ("AutoFirstMessage", sent to create a new task)
   FlexWebChat.MessageList.Content.remove('0');
+
+  FlexWebChat.MessageList.Content.add(<Close key="closebutton"/> );
+
 
   // Posting question from preengagement form as users first chat message
   FlexWebChat.Actions.on("afterStartEngagement", (payload) => {

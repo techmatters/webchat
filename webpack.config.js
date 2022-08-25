@@ -23,14 +23,28 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.ts$/,
-        loader: 'ts-loader',
+        test: /\.tsx?$/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              ['@babel/preset-react', { targets: "defaults" }]
+            ]
+          }
+        },
+        // loader: 'babel-loader',
         exclude: /node_modules/,
       },
+      {
+        test: /\.tsx?$/,
+        use:{loader: 'ts-loader',},
+        exclude: /node_modules/,
+      },
+      
     ],
   },
   resolve: {
-    extensions: ['.ts', '.js'],
+    extensions: ['.ts', '.js', '.tsx'],
   },
   output: {
     filename: 'bundle.js',
