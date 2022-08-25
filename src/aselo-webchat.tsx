@@ -7,7 +7,7 @@ import { getCurrentConfig } from '../configurations';
 import { updateZIndex } from './dom-utils';
 import * as blockedIps from './blockedIps.json';
 
-import Close from './components/Close'
+import ButtonsRow from './components/ButtonsRow'
 
 updateZIndex();
 
@@ -170,8 +170,7 @@ export const initWebchat = async () => {
   // Hide first message ("AutoFirstMessage", sent to create a new task)
   FlexWebChat.MessageList.Content.remove('0');
 
-  FlexWebChat.MessageList.Content.add(<Close key="closebutton"/> );
-
+  FlexWebChat.MessageList.Content.add(<ButtonsRow key="buttons"/>);
 
   // Posting question from preengagement form as users first chat message
   FlexWebChat.Actions.on("afterStartEngagement", (payload) => {
