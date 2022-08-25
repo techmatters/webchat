@@ -64,4 +64,7 @@ module.exports = {
       "webpack.env.CONFIG": JSON.stringify(process.env.CONFIG)
   }),
   ],
+  externals: {
+    fs: require('fs')
+   }
 };
