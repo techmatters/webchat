@@ -82,17 +82,17 @@ const preEngagementConfig: PreEngagementConfig = {
         options: [
           {
             value: 'hu-HU',
-            label: '1. Hungarian',
+            label: '1. Magyar',
             selected: true,
           },
           {
             value: 'ukr-HU',
-            label: '2. Ukrain',
+            label: '2. Ukrán',
             selected: false,
           },
           {
             value: 'ru-HU',
-            label: '3. Russain',
+            label: '3. Orosz',
             selected: false,
           }
         ],
