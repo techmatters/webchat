@@ -13,7 +13,7 @@ const translations: Translations = {
       PreEngagementDescription: "Let's get started",
       Today: 'Today',
       InputPlaceHolder: 'Type Message',
-      WelcomeMessage: 'Welcome to ChildLine Zambia!',
+      WelcomeMessage: 'Welcome to Kék Vonal!',
       Yesterday: 'Yesterday',
       TypingIndicator: 'Counselor is typing',
       MessageCanvasTrayButton: 'Start New Chat',
