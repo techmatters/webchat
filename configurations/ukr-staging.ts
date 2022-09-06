@@ -25,7 +25,7 @@ const translations: Translations = {
       MessageInputDisabledReasonHold:
         'Továbbítunk egy ügyelőhöz, akivel beszélgetni tudsz.',
       EntryPointTagLine: 'Csetelj velünk',
-      PreEngagementDescription: 'Kezdjük el',
+      PreEngagementDescription: 'Kezdjük el-ok',
       Today: 'Ma',
       InputPlaceHolder: 'Taipeni ilyashi',
       WelcomeMessage: 'Szia, ez itt a Kék Vonal!',
@@ -69,10 +69,10 @@ const translations: Translations = {
   };
 
 const preEngagementConfig: PreEngagementConfig = {
-    description: "Kezdjük el",
+    description: "Kezdjük el-ok",
     fields: [
       {
-        label: 'Válaszd ki a nyelved',
+        label: 'Válaszd ki a nyelved-ok',
         type: 'SelectItem',
         attributes: {
           name: 'language',
