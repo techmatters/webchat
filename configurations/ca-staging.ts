@@ -375,7 +375,7 @@ import {
           ],
         },
         {
-          label: 'Do you consider yourself to be: (Select all that apply)',
+          label: 'Do you consider yourself to be:',
           type: 'SelectItem',
           attributes: {
             name: 'ethnicity',
@@ -530,7 +530,7 @@ import {
           ],
         },
         {
-          label: 'Which of these best describes your current living situation? (Select all that apply):',
+          label: 'Which of these best describes your current living situation?:',
           type: 'SelectItem',
           attributes: {
             name: 'livingSituation',
