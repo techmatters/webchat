@@ -2,8 +2,9 @@ import {PreEngagementConfig,Translations,Configuration,MapHelplineLanguage} from
 
 const accountSid = 'AC76b8bd2798b01b067a1be7f17d36c894';
 const flexFlowSid = 'FOd992a9ef451a263c83c8e556b5393887';
-const defaultLanguage = 'es-ES';
+const defaultLanguage = 'es-CO';
 const captureIp = true;
+const checkOpenHours = true;
 
 const preEngagementConfig: PreEngagementConfig = {
   description: "Comencemos",
@@ -20,6 +21,68 @@ const preEngagementConfig: PreEngagementConfig = {
   submitLabel: 'Comenzar Nuevo Chat!',
 };
 
+const closedHours: PreEngagementConfig = {
+
+  description: "Por el momento no estamos atendiendo. Nuestros horarios de atención son de Lunes a Viernes de 8am a 5pm.",
+
+  fields:
+
+    [
+
+      {
+
+        label: 'Hidden Field',
+
+        type: 'InputField',
+
+        attributes: {
+
+          name: '',
+
+          required: true,
+
+          readOnly: true,
+
+        },
+
+      },
+
+    ],
+
+};
+
+const holidayHours: PreEngagementConfig = {
+
+  description: "Lo siento, no atendemos durante días festivos. ¡Vuelve a escribirnos en el siguiente día hábil!",
+
+  fields:
+
+    [
+
+      {
+
+        label: 'Hidden Field',
+
+        type: 'InputField',
+
+        attributes: {
+
+          name: '',
+
+          required: true,
+
+          readOnly: true,
+
+        },
+
+      },
+
+    ],
+
+};
+
+
+
 const translations: Translations = {
   'en-US': {
     WelcomeMessage: 'Welcome to the Te Guio Helplines',
@@ -31,7 +94,7 @@ const translations: Translations = {
     StartChat: 'Start Chat!',
     MessageCanvasTrayButton: 'Start New Chat',
   },
-  'es-ES': {
+  'es-CO': {
     WelcomeMessage: "¡Bienvenido a Te Guío!",
     MessageCanvasTrayContent: '',
     MessageInputDisabledReasonHold:
@@ -83,6 +146,9 @@ export const config: Configuration = {
   defaultLanguage,
   translations,
   preEngagementConfig,
+  closedHours,
+  holidayHours,
+  checkOpenHours,
   mapHelplineLanguage,
   memberDisplayOptions,
   captureIp,
