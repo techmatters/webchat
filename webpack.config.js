@@ -23,14 +23,32 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.ts$/,
-        loader: 'ts-loader',
+        test: /\.tsx?$/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              ['@babel/preset-react',
+                {
+                  targets: "defaults"
+                }
+              ]
+            ]
+          }
+        },
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.tsx?$/,
+        use:{
+          loader: 'ts-loader',
+        },
         exclude: /node_modules/,
       },
     ],
   },
   resolve: {
-    extensions: ['.ts', '.js'],
+    extensions: ['.ts', '.js', '.tsx'],
   },
   output: {
     filename: 'bundle.js',
@@ -47,6 +65,9 @@ module.exports = {
     new webpack.DefinePlugin({
       // Here it creates webpack.env.CONFIG from the env var CONFIG 
       "webpack.env.CONFIG": JSON.stringify(process.env.CONFIG)
-  }),
+    }),
   ],
+  externals: {
+    fs: require('fs')
+  }
 };
