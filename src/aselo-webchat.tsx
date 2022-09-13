@@ -1,5 +1,4 @@
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
-import * as React from 'react'
 import { Channel } from 'twilio-chat/lib/channel';
 import { getUserIp } from './ip-tracker';
 import { getOperatingHours } from './operating-hours';
