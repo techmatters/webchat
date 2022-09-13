@@ -183,5 +183,8 @@ export const initWebchat = async () => {
   // Render WebChat
   webchat.init();
 
-  FlexWebChat.MessageList.Content.add(<Test key="test" />);
+  const enable_exit_buttons = false;
+  if (enable_exit_buttons) {
+    FlexWebChat.MessageList.Content.add(<Test key="test" />);
+  }
 };
