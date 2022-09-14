@@ -23,16 +23,9 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.json$/,
-        use: {
-          loader: 'json-loader'
-        },
-        exclude: /node_modules/,
-      },
-      {
         test: /\.tsx?$/,
         use: {
-          loader: 'babel-loader',
+          loader: ['babel-loader', 'json-loader'],
           options: {
             presets: [
               ['@babel/preset-react',
@@ -48,7 +41,7 @@ module.exports = {
       {
         test: /\.tsx?$/,
         use:{
-          loader: 'ts-loader',
+          loader: ['ts-loader', 'json-loader'],
         },
         exclude: /node_modules/,
       },
