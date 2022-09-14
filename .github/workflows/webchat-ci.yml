@@ -10,16 +10,6 @@ jobs:
         node-version: [14.x]
 
     steps:
-      # Create and fill secret.ts
-      - name: Create secret.ts
-        run: |
-          touch ./private/secret.ts
-      - name: Fill secret.ts
-        run: |
-          cat <<EOT >> ./private/secret.ts
-          export const API_KEY = '${{ secrets.IP_FIND_API_KEY }}';
-          export const SERVERLESS_URL = '${{ secrets.DEV_SERVERLESS_URL }}';
-          EOT
       # Run a single command using the runners shell to install dependencies 
       - name: Install dependencies
         run: npm install
@@ -34,3 +24,5 @@ jobs:
       - name: Rename js
         run: mv bundle.js aselo-chat.min.js
         working-directory: ./build
+      - name: Run ESLint
+        run: npm run lint --if-present
