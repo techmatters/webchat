@@ -11,7 +11,7 @@ export const getOperatingHours = async (): Promise<OperatingHoursState> => {
     },
   };
 
-  const {SERVERLESS_URL} = require('../private/secret')
+  const { SERVERLESS_URL } = require('../private/secret');
   const response = await fetch(`${SERVERLESS_URL}/operatingHours`, options);
 
   if (response.status === 403) {
@@ -28,4 +28,3 @@ export const getOperatingHours = async (): Promise<OperatingHoursState> => {
 
   return responseJson;
 };
-
