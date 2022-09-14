@@ -89,8 +89,7 @@ export const initWebchat = async () => {
     ip = await getUserIp();
   }
 
-  // @ts-ignore
-  if (Array.isArray(blockedIps) && ip && blockedIps.includes(ip)) {
+  if (Array.isArray(blockedIps) && ip && (blockedIps as string[]).includes(ip)) {
     // Do not initialize plugin for this ip
     return;
   }
