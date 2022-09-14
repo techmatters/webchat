@@ -23,6 +23,13 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.json$/,
+        use: {
+          loader: 'json-loader'
+        },
+        exclude: /node_modules/,
+      },
+      {
         test: /\.tsx?$/,
         use: {
           loader: 'babel-loader',
@@ -35,13 +42,6 @@ module.exports = {
               ]
             ]
           }
-        },
-        exclude: /node_modules/,
-      },
-      {
-        test: /\.json$/,
-        use: {
-          loader: 'json-loader'
         },
         exclude: /node_modules/,
       },
