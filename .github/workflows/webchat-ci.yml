@@ -27,9 +27,6 @@ jobs:
           export const API_KEY = '${{ secrets.IP_FIND_API_KEY }}';
           export const SERVERLESS_URL = '${{ secrets.DEV_SERVERLESS_URL }}';
           EOT
-      # Run linting
-      - name: Run ESLint
-        run: npm run lint --if-present
       # Run a single command using the runners shell to install dependencies 
       - name: Install dependencies
         run: npm install
@@ -40,7 +37,11 @@ jobs:
       # Build and compile Webchat
       - name: Run build command
         run: npm run build:dev
+      # Run linting
+      - name: Run ESLint
+        run: npm run lint --if-present
       # Rename the builded js file
       - name: Rename js
         run: mv bundle.js aselo-chat.min.js
         working-directory: ./build
+      
