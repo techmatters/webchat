@@ -25,7 +25,7 @@ module.exports = {
       {
         test: /\.tsx?$/,
         use: {
-          loader: ['babel-loader', 'json-loader'],
+          loader: 'babel-loader',
           options: {
             presets: [
               ['@babel/preset-react',
@@ -41,7 +41,15 @@ module.exports = {
       {
         test: /\.tsx?$/,
         use:{
-          loader: ['ts-loader', 'json-loader'],
+          loader: 'ts-loader',
+        },
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.json?$/,
+        type: 'javascript/auto',
+        use:{
+          loader: 'json-loader',
         },
         exclude: /node_modules/,
       },
