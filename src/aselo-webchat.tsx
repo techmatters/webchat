@@ -1,3 +1,4 @@
+import React from 'react';
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
 import { Channel } from 'twilio-chat/lib/channel';
 
