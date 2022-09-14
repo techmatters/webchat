@@ -11,7 +11,8 @@ export const getOperatingHours = async (): Promise<OperatingHoursState> => {
     },
   };
 
-  const { SERVERLESS_URL } = require('../private/secret');
+  // https://eslint.org/docs/latest/rules/global-require
+  const { SERVERLESS_URL } = require('../private/secret'); // eslint-disable-line global-require
   const response = await fetch(`${SERVERLESS_URL}/operatingHours`, options);
 
   if (response.status === 403) {
