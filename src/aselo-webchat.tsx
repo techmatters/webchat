@@ -6,7 +6,7 @@ import { getUserIp } from './ip-tracker';
 import { getOperatingHours } from './operating-hours';
 import { getCurrentConfig } from '../configurations';
 import { updateZIndex } from './dom-utils';
-import * as blockedIps from './blockedIps.json';
+import blockedIps from './blockedIps.json';
 import Test from './components/Test';
 
 updateZIndex();
