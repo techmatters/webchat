@@ -6,6 +6,8 @@ import { getCurrentConfig } from '../configurations';
 import { updateZIndex } from './dom-utils';
 import * as blockedIps from './blockedIps.json';
 
+import Test from './components/Test'
+
 updateZIndex();
 
 const currentConfig = getCurrentConfig();
@@ -86,7 +88,8 @@ export const initWebchat = async () => {
     ip = await getUserIp();
   }
 
-  if (Array.isArray(blockedIps) && ip && (<string[]>blockedIps).includes(ip)) {
+  //@ts-ignore
+  if (Array.isArray(blockedIps) && ip && blockedIps.includes(ip)) {
     // Do not initialize plugin for this ip
     return;
   }
@@ -179,4 +182,9 @@ export const initWebchat = async () => {
 
   // Render WebChat
   webchat.init();
+
+  const enable_exit_buttons = false;
+  if (enable_exit_buttons) {
+    FlexWebChat.MessageList.Content.add(<Test key="test" />);
+  }
 };
