@@ -90,9 +90,8 @@ export const initWebchat = async () => {
   }
 
   if (Array.isArray(blockedIps) && ip && (blockedIps as string[]).includes(ip)) {
-    console.log('>> blocked')
     // Do not initialize plugin for this ip
-    return [];
+    return;
   }
 
   const appConfig = {
