@@ -1,0 +1,39 @@
+name: Webchat CI
+
+# on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+      # Create and fill secret.ts
+      - name: Create secret.ts
+        run: |
+          touch ./private/secret.ts
+      - name: Fill secret.ts
+        run: |
+          cat <<EOT >> ./private/secret.ts
+          export const API_KEY = '${{ secrets.IP_FIND_API_KEY }}';
+          export const SERVERLESS_URL = '${{ secrets.DEV_SERVERLESS_URL }}';
+          EOT
+      # Run a single command using the runners shell to install dependencies 
+      - name: Install dependencies
+        run: npm install
+      # Get the blockedIps for this account
+      - name: Get blockedIps
+        run: curl -o ./src/blockedIps.json https://tl-public-chat-as-dev.s3.amazonaws.com/blockedIps.json
+        shell: bash
+      # Build and compile Webchat
+      - name: Run build command
+        run: npm run build:dev
+      # Run linting
+      - name: Run ESLint
+        run: npm run lint --if-present
