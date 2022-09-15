@@ -1,0 +1,22 @@
+{
+  "extends": [
+    "twilio-react"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2019,
+    "sourceType": "module", 
+    "ecmaFeatures": { 
+    "jsx": true
+   }
+  },
+  "rules": {
+    "no-console": "off",
+    "no-warning-comments": "off",
+    "no-confusing-arrow": "off",
+    "no-alert": "off",
+    "no-shadow": "off",
+    "import/no-extraneous-dependencies": "off",
+    "no-use-before-define": "off"
+  }
+}
