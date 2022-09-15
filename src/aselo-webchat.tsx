@@ -1,10 +1,11 @@
+import React from 'react'
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
 import { Channel } from 'twilio-chat/lib/channel';
 import { getUserIp } from './ip-tracker';
 import { getOperatingHours } from './operating-hours';
 import { getCurrentConfig } from '../configurations';
 import { updateZIndex } from './dom-utils';
-import * as blockedIps from './blockedIps.json';
+import blockedIps from './blockedIps.json';
 
 import Test from './components/Test'
 
@@ -88,8 +89,7 @@ export const initWebchat = async () => {
     ip = await getUserIp();
   }
 
-  //@ts-ignore
-  if (Array.isArray(blockedIps) && ip && blockedIps.includes(ip)) {
+  if (Array.isArray(blockedIps) && ip && (blockedIps as string[]).includes(ip)) {
     // Do not initialize plugin for this ip
     return;
   }

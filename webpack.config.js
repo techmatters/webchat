@@ -39,16 +39,17 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
-        test: /\.json$/,
-        use: {
-          loader: 'json-loader'
+        test: /\.tsx?$/,
+        use:{
+          loader: 'ts-loader',
         },
         exclude: /node_modules/,
       },
       {
-        test: /\.tsx?$/,
-        use:{
-          loader: 'ts-loader',
+        test: /\.json?$/,
+        type: 'javascript/auto',
+        use: {
+          loader: 'raw-loader'
         },
         exclude: /node_modules/,
       },
