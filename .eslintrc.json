@@ -12,10 +12,7 @@
   },
   "rules": {
     "no-console": "off",
-    "no-warning-comments": "off",
-    "no-confusing-arrow": "off",
     "no-alert": "off",
-    "no-shadow": "off",
     "import/no-extraneous-dependencies": "off",
     "no-use-before-define": "off",
     "react/display-name": "off"
