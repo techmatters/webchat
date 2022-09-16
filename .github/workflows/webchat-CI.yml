@@ -1,6 +1,6 @@
-name: Webchat CI
+name: Webchat Dev Build
 
-# on: [push]
+on: [push]
 
 jobs:
   build:
