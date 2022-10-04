@@ -7,7 +7,7 @@ import { getOperatingHours } from './operating-hours';
 import { getCurrentConfig } from '../configurations';
 import { updateZIndex } from './dom-utils';
 import blockedIps from './blockedIps.json';
-import Test from './components/Test';
+import EndChat from './components/EndChatButton';
 
 updateZIndex();
 
@@ -180,8 +180,8 @@ export const initWebchat = async () => {
   // Render WebChat
   webchat.init();
 
-  const enableExitButtons = false;
-  if (enableExitButtons) {
-    FlexWebChat.MessageList.Content.add(<Test key="test" />);
-  }
+  const { channelSid, tokenPayload } = manager.store.getState().flex.session;
+  const { token } = tokenPayload;
+
+  FlexWebChat.MessageList.Content.add(<EndChat key="endchat" token={token} />);
 };
