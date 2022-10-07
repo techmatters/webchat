@@ -5,15 +5,16 @@ import { endChat } from '../serverless-calls/endChat';
 
 type Props = {
   token: string;
+  channelSid: string;
 };
 
-export default function EndChat({ token }: Props) {
+export default function EndChat({ channelSid, token }: Props) {
   const handleEndChat = async () => {
-  console.log('>handleEndChat start call to endChat')
-
-    await endChat(token);
-  console.log('>handleEndChat end call to endChat')
-
+    try {
+      await endChat(channelSid, token);
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <button type="button" onClick={handleEndChat}>

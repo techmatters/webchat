@@ -8,6 +8,7 @@ import { getCurrentConfig } from '../configurations';
 import { updateZIndex } from './dom-utils';
 import blockedIps from './blockedIps.json';
 import EndChat from './components/EndChatButton';
+import { EngagementStage } from '@twilio/flex-webchat-ui/src/constants/session';
 
 updateZIndex();
 
@@ -176,12 +177,15 @@ export const initWebchat = async () => {
 
     setChannelAfterStartEngagement(manager, ip);
   });
-
+  
   // Render WebChat
   webchat.init();
-
-  const { channelSid, tokenPayload } = manager.store.getState().flex.session;
+  
+  const { channelSid, tokenPayload, engagementStage } = manager.store.getState().flex.session;
   const { token } = tokenPayload;
+  
+  if (engagementStage === 'CF_IN_ENGAGEMENT'){
+    FlexWebChat.MessageList.Content.add(<EndChat key="endchat" channelSid={channelSid} token={token} />);
+  }
 
-  FlexWebChat.MessageList.Content.add(<EndChat key="endchat" token={token} />);
 };
