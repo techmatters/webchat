@@ -1,6 +1,4 @@
 import React from 'react';
-import * as FlexWebChat from '@twilio/flex-webchat-ui';
-
 import { endChat } from '../serverless-calls/endChat';
 
 type Props = {
