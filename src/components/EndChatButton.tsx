@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { endChat } from '../serverless-calls/endChat';
 
 type Props = {
