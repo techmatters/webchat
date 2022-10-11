@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
 import { Channel } from 'twilio-chat/lib/channel';
 
@@ -7,7 +7,7 @@ import { getOperatingHours } from './operating-hours';
 import { getCurrentConfig } from '../configurations';
 import { updateZIndex } from './dom-utils';
 import blockedIps from './blockedIps.json';
-import Test from './components/Test';
+import EndChat from './components/EndChatButton';
 
 updateZIndex();
 
@@ -80,6 +80,15 @@ const setChannelAfterStartEngagement = doWithChannel(
     channel.sendMessage(message);
   },
 );
+
+const setEndChatButton = (manager: FlexWebChat.Manager) => {
+  const {
+    channelSid,
+    tokenPayload: { token },
+  } = manager.store.getState().flex.session;
+
+  FlexWebChat.MessageList.Content.add(<EndChat key="endChat" channelSid={channelSid} token={token} />);
+};
 
 export const initWebchat = async () => {
   let ip: string | undefined;
@@ -180,8 +189,5 @@ export const initWebchat = async () => {
   // Render WebChat
   webchat.init();
 
-  const enableExitButtons = false;
-  if (enableExitButtons) {
-    FlexWebChat.MessageList.Content.add(<Test key="test" />);
-  }
+  setEndChatButton(manager);
 };
