@@ -81,6 +81,15 @@ const setChannelAfterStartEngagement = doWithChannel(
   },
 );
 
+const setEndChatButton = (manager: FlexWebChat.Manager) => {
+  const {
+    channelSid,
+    tokenPayload: { token },
+  } = manager.store.getState().flex.session;
+
+  FlexWebChat.MessageList.Content.add(<EndChat key="endChat" channelSid={channelSid} token={token} />);
+};
+
 export const initWebchat = async () => {
   let ip: string | undefined;
 
@@ -180,10 +189,5 @@ export const initWebchat = async () => {
   // Render WebChat
   webchat.init();
 
-  const {
-    channelSid,
-    tokenPayload: { token },
-  } = manager.store.getState().flex.session;
-
-  FlexWebChat.MessageList.Content.add(<EndChat key="endchat" channelSid={channelSid} token={token} />);
+  setEndChatButton(manager);
 };
