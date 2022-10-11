@@ -1,23 +1,25 @@
+import React, { useState } from 'react';
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
 import { Channel } from 'twilio-chat/lib/channel';
+
 import { getUserIp } from './ip-tracker';
 import { getOperatingHours } from './operating-hours';
 import { getCurrentConfig } from '../configurations';
 import { updateZIndex } from './dom-utils';
-import * as blockedIps from './blockedIps.json';
+import blockedIps from './blockedIps.json';
+import EndChat from './components/EndChatButton';
 
 updateZIndex();
 
 const currentConfig = getCurrentConfig();
-const defaultLanguage = currentConfig.defaultLanguage;
+const { defaultLanguage, translations } = currentConfig;
 const initialLanguage = defaultLanguage;
-const translations = currentConfig.translations;
 
 const getChangeLanguageWebChat = (manager: FlexWebChat.Manager) => (language: string) => {
   const twilioStrings = { ...manager.strings }; // save the originals
   const setNewStrings = (newStrings: FlexWebChat.Strings) => (manager.strings = { ...manager.strings, ...newStrings });
   const translationErrorMsg = 'Could not translate, using default';
-  
+
   try {
     if (language !== defaultLanguage && translations[language]) {
       setNewStrings({ ...twilioStrings, ...translations[defaultLanguage], ...translations[language] });
@@ -29,32 +31,30 @@ const getChangeLanguageWebChat = (manager: FlexWebChat.Manager) => (language: st
     console.error(translationErrorMsg, err);
     getChangeLanguageWebChat(manager)(defaultLanguage);
   }
-}
+};
 
 type ChannelAndManagerAndIpFn = (channel: Channel, manager: FlexWebChat.Manager, ip?: string) => void;
 
 const doWithChannel = (callback: ChannelAndManagerAndIpFn) => (manager: FlexWebChat.Manager, ip?: string) => {
   const { channelSid } = manager.store.getState().flex.session;
-    manager
-      .chatClient.getChannelBySid(channelSid)
-      .then(channel => {
-        callback(channel, manager, ip);
-      });
-}
+  manager.chatClient.getChannelBySid(channelSid).then((channel) => {
+    callback(channel, manager, ip);
+  });
+};
 
 const unlockInput = (manager: FlexWebChat.Manager) => {
   const { user } = manager.chatClient;
   const { lockInput, ...attributes } = user.attributes as any;
   user.updateAttributes(attributes);
-}
+};
 
 const setListenerToUnlockInput = async (channel: Channel, manager: FlexWebChat.Manager) => {
   if (!channel) return;
 
   const cb = () => {
     // Re-enable input
-    unlockInput(manager)
-  }
+    unlockInput(manager);
+  };
 
   // User is not alone in the channel (possible cause to enter this case is page reload)
   const membersCount = await channel.getMembersCount();
@@ -62,22 +62,33 @@ const setListenerToUnlockInput = async (channel: Channel, manager: FlexWebChat.M
     cb();
     return;
   }
-  
+
   // Adds an event listener that will run only once
-  channel.once("memberJoined", () => {
+  channel.once('memberJoined', () => {
     cb();
   });
-}
+};
 
 const setChannelOnCreateWebChat = doWithChannel(setListenerToUnlockInput);
 
-const setChannelAfterStartEngagement = doWithChannel((channel: Channel, manager: FlexWebChat.Manager, ip: string = '') => {
-  setListenerToUnlockInput(channel, manager);
+const setChannelAfterStartEngagement = doWithChannel(
+  (channel: Channel, manager: FlexWebChat.Manager, ip: string = '') => {
+    setListenerToUnlockInput(channel, manager);
 
-  // Generate task by sending empty message (hidden from the UI above)
-  const message = `${translations[initialLanguage].AutoFirstMessage} ${ip}`;
-  channel.sendMessage(message); 
-})
+    // Generate task by sending empty message (hidden from the UI above)
+    const message = `${translations[initialLanguage].AutoFirstMessage} ${ip}`;
+    channel.sendMessage(message);
+  },
+);
+
+const setEndChatButton = (manager: FlexWebChat.Manager) => {
+  const {
+    channelSid,
+    tokenPayload: { token },
+  } = manager.store.getState().flex.session;
+
+  FlexWebChat.MessageList.Content.add(<EndChat key="endChat" channelSid={channelSid} token={token} />);
+};
 
 export const initWebchat = async () => {
   let ip: string | undefined;
@@ -86,7 +97,7 @@ export const initWebchat = async () => {
     ip = await getUserIp();
   }
 
-  if (Array.isArray(blockedIps) && ip && (<string[]>blockedIps).includes(ip)) {
+  if (Array.isArray(blockedIps) && ip && (blockedIps as string[]).includes(ip)) {
     // Do not initialize plugin for this ip
     return;
   }
@@ -115,10 +126,9 @@ export const initWebchat = async () => {
     },
   };
 
-
   const webchat = await FlexWebChat.createWebChat(appConfig);
   const { manager } = webchat;
-  
+
   // If a helpline has operating hours configuration set, the pre engagement config will show alternative canvas during closed or holiday times/days
   const displayOperatingHours = async (): Promise<any> => {
     const operatingState = await getOperatingHours();
@@ -131,13 +141,13 @@ export const initWebchat = async () => {
     }
   };
 
-  if (currentConfig.checkOpenHours){
+  if (currentConfig.checkOpenHours) {
     try {
       displayOperatingHours();
     } catch (error) {
       console.log(error);
     }
-  };
+  }
 
   const changeLanguageWebChat = getChangeLanguageWebChat(manager);
 
@@ -149,26 +159,25 @@ export const initWebchat = async () => {
   // Disable greeting message as chatbot already includes one
   FlexWebChat.MessagingCanvas.defaultProps.predefinedMessage = undefined;
 
-  // Set caller name to be 'You'  
-  FlexWebChat.MessagingCanvas.defaultProps.memberDisplayOptions =
-  currentConfig.memberDisplayOptions
+  // Set caller name to be 'You'
+  FlexWebChat.MessagingCanvas.defaultProps.memberDisplayOptions = currentConfig.memberDisplayOptions
     ? currentConfig.memberDisplayOptions
     : {
-    yourDefaultName: 'You',
-    yourFriendlyNameOverride: false,
-    theirFriendlyNameOverride: true,
-  };
+        yourDefaultName: 'You',
+        yourFriendlyNameOverride: false,
+        theirFriendlyNameOverride: true,
+      };
 
   // Hide message input and send button if disabledReason is not undefined
   FlexWebChat.MessageInput.Content.remove('textarea', {
-    if: props => (manager.chatClient.user.attributes as any).lockInput,
+    if: (props) => (manager.chatClient.user.attributes as any).lockInput,
   });
 
   // Hide first message ("AutoFirstMessage", sent to create a new task)
   FlexWebChat.MessageList.Content.remove('0');
 
   // Posting question from preengagement form as users first chat message
-  FlexWebChat.Actions.on("afterStartEngagement", (payload) => {
+  FlexWebChat.Actions.on('afterStartEngagement', (payload) => {
     const { language } = payload.formData;
 
     // Here we collect caller language (from preEngagement select) and change UI language
@@ -179,4 +188,6 @@ export const initWebchat = async () => {
 
   // Render WebChat
   webchat.init();
+
+  setEndChatButton(manager);
 };

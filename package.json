@@ -25,12 +25,22 @@
     "build:e2e-dev": "MODE=development CONFIG=e2e-dev npm run build",
     "build:co-staging": "MODE=production CONFIG=co-staging npm run build",
     "build:cl-staging": "MODE=production CONFIG=cl-staging npm run build",
-    "build:zw-staging": "MODE=production CONFIG=zw-staging npm run build"
+    "build:zw-staging": "MODE=production CONFIG=zw-staging npm run build",
+    "lint": "eslint --ext js --ext jsx --ext ts --ext tsx src/",
+    "lint:fix": "npm run lint -- --fix"
   },
   "devDependencies": {
+    "@babel/core": "^7.19.0",
+    "@babel/preset-env": "^7.19.0",
+    "@babel/preset-react": "^7.18.6",
+    "@typescript-eslint/parser": "^5.37.0",
+    "babel-loader": "^8.2.5",
     "babel-runtime": "^6.26.0",
+    "eslint": "^8.23.1",
+    "eslint-config-twilio-react": "^2.0.0",
     "html-webpack-plugin": "^5.0.0",
     "process": "^0.11.10",
+    "raw-loader": "^4.0.2",
     "ts-loader": "^8.0.16",
     "typescript": "^4.1.3",
     "webpack": "^5.21.2",
