@@ -24,6 +24,7 @@
     "build:ukr-staging": "MODE=production CONFIG=ukr-staging npm run build",
     "build:e2e-dev": "MODE=development CONFIG=e2e-dev npm run build",
     "build:co-staging": "MODE=production CONFIG=co-staging npm run build",
+    "build:co-production": "MODE=production CONFIG=co-production npm run build",
     "build:cl-staging": "MODE=production CONFIG=cl-staging npm run build",
     "build:zw-staging": "MODE=production CONFIG=zw-staging npm run build",
     "lint": "eslint --ext js --ext jsx --ext ts --ext tsx src/",
