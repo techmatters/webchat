@@ -21,6 +21,7 @@ import { config as roStaging } from './ro-staging';
 import { config as ukrStaging } from './ukr-staging';
 import { config as clStaging } from './cl-staging';
 import { config as zwStaging } from './zw-staging'
+import { config as plStaging } from './pl-staging'
 
 
 const rawConfig = webpack.env.CONFIG;
@@ -55,6 +56,7 @@ const configMap: ConfigMap = {
   'ukr-staging': ukrStaging,
   'cl-staging': clStaging,
   'zw-staging': zwStaging,
+  'pl-staging': plStaging,
 };
 
 export const getCurrentConfig = (): Configuration => configMap[config];
