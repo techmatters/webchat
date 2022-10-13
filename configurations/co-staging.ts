@@ -22,63 +22,34 @@ const preEngagementConfig: PreEngagementConfig = {
 };
 
 const closedHours: PreEngagementConfig = {
-
-  description: "Por el momento no estamos atendiendo. Nuestros horarios de atención son de Lunes a Viernes de 8am a 5pm.",
-
-  fields:
-
-    [
-
-      {
-
-        label: 'Hidden Field',
-
-        type: 'InputField',
-
-        attributes: {
-
-          name: '',
-
-          required: true,
-
-          readOnly: true,
-
-        },
-
-      },
-
-    ],
+  description: "Por el momento no estamos atendiendo. Nuestros horarios de atención son de Lunes a Viernes de 8am a 5pm.",
+  fields: [
+    {
+      label: 'Hidden Field',
+      type: 'InputField',
+      attributes: {
+        name: '',
+        required: true,
+        readOnly: true,
+      },
+    },
+  ],
 
 };
 
 const holidayHours: PreEngagementConfig = {
-
-  description: "Lo siento, no atendemos durante días festivos. ¡Vuelve a escribirnos en el siguiente día hábil!",
-
-  fields:
-
-    [
-
-      {
-
-        label: 'Hidden Field',
-
-        type: 'InputField',
-
-        attributes: {
-
-          name: '',
-
-          required: true,
-
-          readOnly: true,
-
-        },
-
-      },
-
-    ],
-
+  description: "Lo siento, no atendemos durante días festivos. ¡Vuelve a escribirnos en el siguiente día hábil!",
+  fields: [
+    {
+      label: 'Hidden Field',
+      type: 'InputField',
+      attributes: {
+        name: '',
+        required: true,
+        readOnly: true,
+      },
+    },
+  ],
 };
 
 
@@ -121,8 +92,6 @@ const translations: Translations = {
     FieldValidationInvalidEmail: "Por favor provea una dirección válida de email",
     PreEngagementDescription: "Comencemos",
     BotGreeting: "¿Cómo puedo ayudar?",
-
-
   }
 };
 

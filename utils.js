@@ -1,7 +1,7 @@
 /**
  * Checks that MODE var is 'development' or 'production'.
  * Otherwise, throws an error.
- * @param {string} mode 
+ * @param {string} mode
  */
 function checkMODE(mode) {
   const isModeSet = mode === 'development' || mode === 'production';
@@ -14,7 +14,7 @@ function checkMODE(mode) {
 /**
  * Checks that CONFIG var is 'dev', 'beta' or 'zm-staging'.
  * Otherwise, throws an error.
- * @param {string} config 
+ * @param {string} config
  */
 function checkCONFIG(config) {
   const presets = [
@@ -35,10 +35,12 @@ function checkCONFIG(config) {
     'uk-staging',
     'e2e-dev',
     'co-staging',
+    'co-production',
     'ro-staging',
     'ukr-staging',
     'cl-staging',
-    'zw-staging'
+    'zw-staging',
+    'pl-staging'
   ];
   const isConfigSet = typeof config !== 'undefined' && presets.includes(config);
 
