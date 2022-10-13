@@ -27,6 +27,7 @@
     "build:co-production": "MODE=production CONFIG=co-production npm run build",
     "build:cl-staging": "MODE=production CONFIG=cl-staging npm run build",
     "build:zw-staging": "MODE=production CONFIG=zw-staging npm run build",
+    "build:pl-staging": "MODE=production CONFIG=pl-staging npm run build",
     "lint": "eslint --ext js --ext jsx --ext ts --ext tsx src/",
     "lint:fix": "npm run lint -- --fix"
   },
