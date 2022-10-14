@@ -37,7 +37,8 @@ function checkCONFIG(config) {
     'co-staging',
     'co-production',
     'ro-staging',
-    'ukr-staging',
+    'hu-staging',
+    'hu-production',
     'cl-staging',
     'zw-staging',
     'pl-staging'
