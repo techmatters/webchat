@@ -1,6 +1,6 @@
 # This is a basic workflow to build and upload Webchat to S3 bucket with Github Actions
 
-name: Ukraine Staging release
+name: Kek Vonal Staging release
 
 # Controls when the action will run.
 on:
