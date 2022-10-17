@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { EngagementStage } from '@twilio/flex-webchat-ui/src/constants/session';
 
 import Exit from './QuickExitButton';
 import End from './EndChatButton';

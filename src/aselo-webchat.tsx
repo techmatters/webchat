@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
 import { Channel } from 'twilio-chat/lib/channel';
 
@@ -85,7 +85,6 @@ const closeChat = (manager: FlexWebChat.Manager) => {
   const {
     channelSid,
     tokenPayload: { token },
-    engagementStage,
   } = manager.store.getState().flex.session;
   FlexWebChat.MessageList.Content.add(<CloseChatButtons key="closeChat" channelSid={channelSid} token={token} />);
 };
