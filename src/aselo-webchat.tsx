@@ -7,7 +7,7 @@ import { getOperatingHours } from './operating-hours';
 import { getCurrentConfig } from '../configurations';
 import { updateZIndex } from './dom-utils';
 import blockedIps from './blockedIps.json';
-import EndChat from './components/EndChatButton';
+import CloseChatButtons from './components/CloseChatButtons';
 
 updateZIndex();
 
@@ -81,13 +81,13 @@ const setChannelAfterStartEngagement = doWithChannel(
   },
 );
 
-const setEndChatButton = (manager: FlexWebChat.Manager) => {
+const closeChat = (manager: FlexWebChat.Manager) => {
   const {
     channelSid,
     tokenPayload: { token },
+    engagementStage,
   } = manager.store.getState().flex.session;
-
-  FlexWebChat.MessageList.Content.add(<EndChat key="endChat" channelSid={channelSid} token={token} />);
+  FlexWebChat.MessageList.Content.add(<CloseChatButtons key="closeChat" channelSid={channelSid} token={token} />);
 };
 
 export const initWebchat = async () => {
@@ -189,5 +189,5 @@ export const initWebchat = async () => {
   // Render WebChat
   webchat.init();
 
-  setEndChatButton(manager);
+  closeChat(manager);
 };
