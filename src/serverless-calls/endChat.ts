@@ -2,8 +2,11 @@ type Token = string;
 type ChannelSid = string;
 type TaskSid = string;
 
-export const endChat = async (channelSid: ChannelSid, token: Token): Promise<Token> => {
-  const body = { channelSid, Token: token };
+  // eslint-disable-next-line global-require
+  const { SERVERLESS_URL } = require('../../private/secret');
+
+const postSurvey = async (channelSid: ChannelSid, taskSid: TaskSid, token: Token): Promise<Token> => {
+  const body = { channelSid, taskSid, Token: token };
 
   const options = {
     method: 'POST',
@@ -12,12 +15,8 @@ export const endChat = async (channelSid: ChannelSid, token: Token): Promise<Tok
       'Content-Type': 'application/json',
     },
   };
-  // eslint-disable-next-line global-require
-  const { SERVERLESS_URL } = require('../../private/secret');
-  const response = await fetch(`${SERVERLESS_URL}/endChat`, options);
+  const response = await fetch(`${SERVERLESS_URL}/postSurveyInit`, options);
   const responseJson = await response.json();
-
-  // postSurvey(channelSid, taskSid, token)
 
   if (response.status === 403) {
     throw new Error('Server responded with 403 status (Forbidden)');
@@ -32,8 +31,8 @@ export const endChat = async (channelSid: ChannelSid, token: Token): Promise<Tok
   return responseJson;
 };
 
-export const postSurvey = async (channelSid: ChannelSid, taskSid: TaskSid, token: Token): Promise<Token> => {
-  const body = { channelSid, taskSid, Token: token };
+export const endChat = async (channelSid: ChannelSid, token: Token): Promise<Token> => {
+  const body = { channelSid, Token: token };
 
   const options = {
     method: 'POST',
@@ -42,10 +41,11 @@ export const postSurvey = async (channelSid: ChannelSid, taskSid: TaskSid, token
       'Content-Type': 'application/json',
     },
   };
-  // eslint-disable-next-line global-require
-  const { SERVERLESS_URL } = require('../../private/secret');
-  const response = await fetch(`${SERVERLESS_URL}/postSurveyInit`, options);
+  const response = await fetch(`${SERVERLESS_URL}/endChat`, options);
   const responseJson = await response.json();
+
+  //call post survey 
+  await postSurvey(channelSid, responseJson.taskSid, token)
 
   if (response.status === 403) {
     throw new Error('Server responded with 403 status (Forbidden)');
