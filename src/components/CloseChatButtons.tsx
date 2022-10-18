@@ -3,7 +3,6 @@ import * as React from 'react';
 import Exit from './QuickExitButton';
 import End from './EndChatButton';
 
-// Buttons should be able to end the conversation and notify the counselor that the child has left the conversation
 type Props = {
   channelSid: string;
   token: string;

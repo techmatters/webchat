@@ -3,7 +3,7 @@ import * as FlexWebChat from '@twilio/flex-webchat-ui';
 import { Channel } from 'twilio-chat/lib/channel';
 
 import { getUserIp } from './ip-tracker';
-import { getOperatingHours } from './operating-hours';
+import { getOperatingHours } from './serverless-calls/operating-hours';
 import { getCurrentConfig } from '../configurations';
 import { updateZIndex } from './dom-utils';
 import blockedIps from './blockedIps.json';
@@ -81,12 +81,15 @@ const setChannelAfterStartEngagement = doWithChannel(
   },
 );
 
-const closeChat = (manager: FlexWebChat.Manager) => {
+const displayCloseButtons = (manager: FlexWebChat.Manager) => {
   const {
     channelSid,
     tokenPayload: { token },
   } = manager.store.getState().flex.session;
-  FlexWebChat.MessageList.Content.add(<CloseChatButtons key="closeChat" channelSid={channelSid} token={token} />);
+
+  if (channelSid !== null && token !== null) {
+    FlexWebChat.MessageList.Content.add(<CloseChatButtons key="closechat" channelSid={channelSid} token={token} />);
+  }
 };
 
 export const initWebchat = async () => {
@@ -188,5 +191,5 @@ export const initWebchat = async () => {
   // Render WebChat
   webchat.init();
 
-  closeChat(manager);
+  displayCloseButtons(manager);
 };

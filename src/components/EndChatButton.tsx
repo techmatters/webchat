@@ -3,8 +3,8 @@ import React from 'react';
 import { endChat } from '../serverless-calls/endChat';
 
 type Props = {
-  token: string;
   channelSid: string;
+  token: string;
 };
 
 export default function EndChat({ channelSid, token }: Props) {
