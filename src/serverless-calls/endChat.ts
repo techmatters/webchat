@@ -17,7 +17,7 @@ export const endChat = async (channelSid: ChannelSid, token: Token): Promise<Tok
   const response = await fetch(`${SERVERLESS_URL}/endChat`, options);
   const responseJson = await response.json();
 
-  postSurvey(channelSid, taskSid, token)
+  // postSurvey(channelSid, taskSid, token)
 
   if (response.status === 403) {
     throw new Error('Server responded with 403 status (Forbidden)');
