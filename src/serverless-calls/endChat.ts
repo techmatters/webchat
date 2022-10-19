@@ -2,8 +2,8 @@ type Token = string;
 type ChannelSid = string;
 type TaskSid = string;
 
-  // eslint-disable-next-line global-require
-  const { SERVERLESS_URL } = require('../../private/secret');
+// eslint-disable-next-line global-require
+const { SERVERLESS_URL } = require('../../private/secret');
 
 const postSurvey = async (channelSid: ChannelSid, taskSid: TaskSid, token: Token): Promise<Token> => {
   const body = { channelSid, taskSid, Token: token };
@@ -44,8 +44,8 @@ export const endChat = async (channelSid: ChannelSid, token: Token): Promise<Tok
   const response = await fetch(`${SERVERLESS_URL}/endChat`, options);
   const responseJson = await response.json();
 
-  //call post survey 
-  await postSurvey(channelSid, responseJson.taskSid, token)
+  // call post survey
+  await postSurvey(channelSid, responseJson.taskSid, token);
 
   if (response.status === 403) {
     throw new Error('Server responded with 403 status (Forbidden)');
