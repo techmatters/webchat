@@ -1,6 +1,7 @@
 import React from 'react';
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
 import { Channel } from 'twilio-chat/lib/channel';
+import { Provider } from 'react-redux';
 
 import { getUserIp } from './ip-tracker';
 import { getOperatingHours } from './serverless-calls/operating-hours';
@@ -80,17 +81,6 @@ const setChannelAfterStartEngagement = doWithChannel(
     channel.sendMessage(message);
   },
 );
-
-const displayCloseButtons = (manager: FlexWebChat.Manager) => {
-  const {
-    channelSid,
-    tokenPayload: { token },
-  } = manager.store.getState().flex.session;
-
-  if (channelSid !== null && token !== null) {
-    FlexWebChat.MessageList.Content.add(<CloseChatButtons key="closechat" channelSid={channelSid} token={token} />);
-  }
-};
 
 export const initWebchat = async () => {
   let ip: string | undefined;
@@ -188,8 +178,19 @@ export const initWebchat = async () => {
     setChannelAfterStartEngagement(manager, ip);
   });
 
+  FlexWebChat.Actions.on('afterRestartEngagement', (payload) => {
+    if (payload.exit) {
+      window.open('https://google.com', '_self');
+    }
+  });
+
+  // Add CloseButtons
+  FlexWebChat.MessageList.Content.add(
+    <Provider store={manager.store as any} key="closechatprovider">
+      <CloseChatButtons />
+    </Provider>,
+  );
+
   // Render WebChat
   webchat.init();
-
-  displayCloseButtons(manager);
 };

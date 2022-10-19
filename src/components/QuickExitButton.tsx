@@ -21,8 +21,7 @@ export default function EndChat({ channelSid, token }: Props) {
   const handleExit = async () => {
     await handleEndChat();
     // Clear chat history and open a new location
-    await FlexWebChat.Actions.invokeAction('RestartEngagement');
-    setTimeout(() => window.open('https://google.com', '_self'), 1000);
+    await FlexWebChat.Actions.invokeAction('RestartEngagement', { exit: true });
   };
 
   return (
