@@ -101,6 +101,22 @@ const preEngagementConfig: PreEngagementConfig = {
     submitLabel: 'Chat indítása',
   };
 
+  const closedHours: PreEngagementConfig = {
+  description: "Привіт, це Kék Vonal. Наразі усі наші оператори зайняті. Спілкуватися українською чи російською мовами ти можеш у вівторок і четвер з 16:00 до 20:00. Чекаємо твого дзвінка! \n\nПривет, это Kék Vonal. На данный момент все наши операторы заняты. Общаться на украинском или русском языке ты можешь во вторник и четверг с 16:00 до 20:00. Ждем твоего звонка!",
+  fields: [
+    {
+      label: 'Hidden Field',
+      type: 'InputField',
+      attributes: {
+        name: '',
+        required: true,
+        readOnly: true,
+      },
+    },
+  ],
+
+};
+
 const mapHelplineLanguage: MapHelplineLanguage = helpline => {
   switch (helpline) {
     default:
