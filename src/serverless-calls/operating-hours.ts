@@ -1,4 +1,4 @@
-import { OperatingHoursState } from '../configurations/types';
+import { OperatingHoursState } from '../../configurations/types';
 
 export const getOperatingHours = async (): Promise<OperatingHoursState> => {
   const body = { channel: 'webchat' };
@@ -11,7 +11,7 @@ export const getOperatingHours = async (): Promise<OperatingHoursState> => {
     },
   };
 
-  const { SERVERLESS_URL } = require('../private/secret'); // eslint-disable-line global-require
+  const { SERVERLESS_URL } = require('../../private/secret'); // eslint-disable-line global-require
   const response = await fetch(`${SERVERLESS_URL}/operatingHours`, options);
 
   if (response.status === 403) {
