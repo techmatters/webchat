@@ -10,7 +10,7 @@ type Props = {
 
 export default function EndChat({ channelSid, token }: Props) {
   // Serverless call to end chat
-  const handleEndChat = async () => {
+  const fetchEndChat = async () => {
     try {
       await endChat(channelSid, token);
     } catch (error) {
@@ -19,7 +19,7 @@ export default function EndChat({ channelSid, token }: Props) {
   };
 
   const handleExit = async () => {
-    await handleEndChat();
+    await fetchEndChat();
     // Clear chat history and open a new location
     await FlexWebChat.Actions.invokeAction('RestartEngagement', { exit: true });
   };

@@ -18,9 +18,8 @@ export default function EndChat({ channelSid, token }: Props) {
 
       // Only 'assigned' tasks should have post survey triggered
       if (isTaskStageAssigned === true) {
-        handlePostSurvey(taskSid);
+        fetchPostSurvey(taskSid);
       } else {
-        // 'Start New Chat' does not get triggered when user ends task in stage other than 'assigned'
         FlexWebChat.Actions.invokeAction('RestartEngagement');
       }
     } catch (error) {
@@ -28,7 +27,7 @@ export default function EndChat({ channelSid, token }: Props) {
     }
   };
 
-  const handlePostSurvey = async (taskSid: string) => {
+  const fetchPostSurvey = async (taskSid: string) => {
     try {
       await postSurvey(channelSid, taskSid, token);
     } catch (error) {

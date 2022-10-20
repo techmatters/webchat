@@ -1,4 +1,3 @@
-
 // eslint-disable-next-line global-require
 const { SERVERLESS_URL } = require('../../private/secret');
 
