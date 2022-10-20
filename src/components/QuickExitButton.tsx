@@ -1,7 +1,7 @@
 import React from 'react';
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
 
-import { endChat } from '../serverless-calls/endChat';
+import { endChat } from '../services/endChat';
 
 type Props = {
   channelSid: string;
