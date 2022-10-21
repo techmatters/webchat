@@ -1,6 +1,7 @@
 import React from 'react';
+import * as FlexWebChat from '@twilio/flex-webchat-ui';
 
-import { endChat } from '../serverless-calls/endChat';
+import { endChat } from '../services/end-chat';
 
 type Props = {
   channelSid: string;
@@ -10,7 +11,13 @@ type Props = {
 export default function EndChat({ channelSid, token }: Props) {
   const handleEndChat = async () => {
     try {
-      await endChat(channelSid, token);
+      const response: any = await endChat(channelSid, token);
+
+      const { isTaskStageAssigned } = response;
+
+      if (!isTaskStageAssigned) {
+        FlexWebChat.Actions.invokeAction('RestartEngagement');
+      }
     } catch (error) {
       console.log(error);
     }
