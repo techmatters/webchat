@@ -185,7 +185,7 @@ export const initWebchat = async () => {
   });
 
   // Add CloseButtons
-  FlexWebChat.MessageList.Content.add(
+  FlexWebChat.MessageInput.Content.add(
     <Provider store={manager.store as any} key="closechatprovider">
       <CloseChatButtons />
     </Provider>,

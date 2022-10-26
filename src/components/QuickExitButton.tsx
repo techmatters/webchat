@@ -1,7 +1,9 @@
 import React from 'react';
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 import { endChat } from '../services/end-chat';
+import { ExitButtonBase } from '../styles';
 
 type Props = {
   channelSid: string;
@@ -25,8 +27,9 @@ export default function EndChat({ channelSid, token }: Props) {
   };
 
   return (
-    <button type="button" onClick={handleExit}>
+    <ExitButtonBase type="button" onClick={handleExit}>
+      <LogoutIcon style={{ marginRight: '5px' }} fontSize="inherit" />
       Quick Exit
-    </button>
+    </ExitButtonBase>
   );
 }

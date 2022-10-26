@@ -1,6 +1,7 @@
 import React from 'react';
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
 
+import { EndButtonBase } from '../styles';
 import { endChat } from '../services/end-chat';
 
 type Props = {
@@ -23,8 +24,8 @@ export default function EndChat({ channelSid, token }: Props) {
     }
   };
   return (
-    <button type="button" onClick={handleEndChat}>
+    <EndButtonBase type="button" onClick={handleEndChat}>
       End Chat
-    </button>
+    </EndButtonBase>
   );
 }

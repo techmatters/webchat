@@ -1,9 +1,4 @@
-import {
-  PreEngagementConfig,
-  Translations,
-  Configuration,
-  MapHelplineLanguage,
-} from './types'; 
+import { PreEngagementConfig, Translations, Configuration, MapHelplineLanguage } from './types';
 
 const accountSid = 'ACc59300c7ca018e8652e4d6d86c2d50e6';
 const flexFlowSid = 'FObb9dfe97f1c59f455ab01811bec74cd5';
@@ -12,8 +7,7 @@ const captureIp = true;
 
 const translations: Translations = {
   'en-US': {
-    MessageInputDisabledReasonHold:
-      "We'll transfer you now. Please hold for a counsellor.",
+    MessageInputDisabledReasonHold: "We'll transfer you now. Please hold for a counsellor.",
     EntryPointTagLine: 'Chat with us',
     PreEngagementDescription: "Let's get started",
     Today: 'Today',
@@ -27,8 +21,7 @@ const translations: Translations = {
     StartChat: 'Start Chat!',
   },
   Bemba: {
-    MessageInputDisabledReasonHold:
-      'Twalamutuma nomba kuli Chimbusa, pembeleni ichimpusa nomba.',
+    MessageInputDisabledReasonHold: 'Twalamutuma nomba kuli Chimbusa, pembeleni ichimpusa nomba.',
     EntryPointTagLine: 'Landeni naifwe',
     PreEngagementDescription: 'tiyeni twambeko ilyashi',
     Today: 'Lelo',
@@ -42,12 +35,11 @@ const translations: Translations = {
     StartChat: 'Yambeni ukulanda mukwai!',
   },
   Tonga: {
-    MessageInputDisabledReasonHold:
-      'Tulamuswaanganya lino asikuyumya-yumya/sikulaya. Amujatilile notucimuswaanganya.',
+    MessageInputDisabledReasonHold: 'Tulamuswaanganya lino asikuyumya-yumya/sikulaya. Amujatilile notucimuswaanganya.',
     EntryPointTagLine: 'Amubandike andiswe',
     PreEngagementDescription: 'Atukanke/atutalike',
     Today: 'Sunu',
-    InputPlaceHolder: "Lemba",
+    InputPlaceHolder: 'Lemba',
     WelcomeMessage: 'Mwatambulwa ku ChildLine Zambia!',
     Yesterday: 'Jilo',
     TypingIndicator: 'Sikuyumyayumya watalika kulemba',
@@ -57,8 +49,7 @@ const translations: Translations = {
     StartChat: 'Atubandike!',
   },
   Lunda: {
-    MessageInputDisabledReasonHold:
-      "Chuna kuitemesha ahembeleliku chanti kundi ankhong'u.",
+    MessageInputDisabledReasonHold: "Chuna kuitemesha ahembeleliku chanti kundi ankhong'u.",
     EntryPointTagLine: 'Tuhanjiki mwani',
     PreEngagementDescription: 'Tutachikiku',
     Today: 'Lelu',
@@ -72,8 +63,7 @@ const translations: Translations = {
     StartChat: 'Tachikenu kuhanjeka!',
   },
   Nyanja: {
-    MessageInputDisabledReasonHold:
-      'Chonde tipeleka lamya lanu ku wa uphungu telo dikilani.',
+    MessageInputDisabledReasonHold: 'Chonde tipeleka lamya lanu ku wa uphungu telo dikilani.',
     EntryPointTagLine: 'Lankhulisanani nafe!',
     PreEngagementDescription: 'Tiyeni tiyembe kulankhulisana',
     Today: 'Lelo',
@@ -87,8 +77,7 @@ const translations: Translations = {
     StartChat: 'Yambani kulankhula!',
   },
   Kaonde: {
-    MessageInputDisabledReasonHold:
-      'Tusakwimi tuma pembelelai, pacheche ba nkwasho.',
+    MessageInputDisabledReasonHold: 'Tusakwimi tuma pembelelai, pacheche ba nkwasho.',
     EntryPointTagLine: 'Isambai natweba',
     PreEngagementDescription: 'Twayayi tutatule',
     Today: 'Lelo',
@@ -102,10 +91,9 @@ const translations: Translations = {
     StartChat: 'Twayayi twisambe!',
   },
   Lozi: {
-    MessageInputDisabledReasonHold:
-      "Luka kuisa ku mwelezi, u libelele hanyani.",
+    MessageInputDisabledReasonHold: 'Luka kuisa ku mwelezi, u libelele hanyani.',
     EntryPointTagLine: 'Alukalise kwa mbola',
-    PreEngagementDescription: "A lukaliseni kwa mbola",
+    PreEngagementDescription: 'A lukaliseni kwa mbola',
     Today: 'Lelo',
     InputPlaceHolder: 'Nola linusa',
     WelcomeMessage: 'Wamuhezwi ku ba ChildLine Zambia!',
@@ -164,7 +152,7 @@ const preEngagementConfig: PreEngagementConfig = {
           value: 'Lozi',
           label: '7. Lozi',
           selected: false,
-        }
+        },
       ],
     },
   ],
@@ -176,7 +164,7 @@ const memberDisplayOptions = {
   yourFriendlyNameOverride: false,
   theirFriendlyNameOverride: false,
   theirDefaultName: 'ChildLine Zambia Counsellor',
-}
+};
 
 const mapHelplineLanguage: MapHelplineLanguage = (helpline) => {
   switch (helpline) {
