@@ -14,6 +14,7 @@ updateZIndex();
 
 const currentConfig = getCurrentConfig();
 const { defaultLanguage, translations } = currentConfig;
+console.log('>> currentConfig',{currentConfig})
 const initialLanguage = defaultLanguage;
 
 const getChangeLanguageWebChat = (manager: FlexWebChat.Manager) => (language: string) => {
