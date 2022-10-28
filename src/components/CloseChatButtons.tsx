@@ -10,7 +10,7 @@ const CloseChatButtons = ({ channelSid, token, language }: MapStateToProps) => {
   if (!channelSid || !token || !language) {
     return null;
   }
-
+console.log('laguage', language)
   return (
     <div>
       <Exit channelSid={channelSid} token={token} language={language}/>
