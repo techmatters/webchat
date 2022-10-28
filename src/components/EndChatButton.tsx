@@ -23,9 +23,5 @@ export default function EndChat({ channelSid, token }: Props) {
       console.log(error);
     }
   };
-  return (
-    <EndButtonBase type="button" onClick={handleEndChat}>
-      End Chat
-    </EndButtonBase>
-  );
+  return <EndButtonBase onClick={handleEndChat}>End Chat</EndButtonBase>;
 }

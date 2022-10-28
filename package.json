@@ -55,8 +55,6 @@
   "dependencies": {
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
-    "@mui/icons-material": "^5.10.9",
-    "@mui/material": "^5.10.11",
     "@twilio/flex-webchat-ui": "^2.9.1"
   }
 }
