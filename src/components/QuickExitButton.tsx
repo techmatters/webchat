@@ -6,7 +6,7 @@ import { endChat } from '../serverless-calls/endChat';
 type Props = {
   channelSid: string;
   token: string;
-  language:string;
+  language: string;
 };
 
 export default function EndChat({ channelSid, token, language }: Props) {

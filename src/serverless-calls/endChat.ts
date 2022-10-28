@@ -2,7 +2,7 @@ type Token = string;
 type ChannelSid = string;
 type Language = string;
 
-export const endChat = async (channelSid: ChannelSid, token: Token, language:Language): Promise<Token> => {
+export const endChat = async (channelSid: ChannelSid, token: Token, language: Language): Promise<Token> => {
   const body = { channelSid, Token: token, language };
 
   const options = {
