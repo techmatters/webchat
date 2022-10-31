@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 import React from 'react';
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
 
@@ -6,13 +7,14 @@ import { endChat } from '../serverless-calls/endChat';
 type Props = {
   channelSid: string;
   token: string;
+  language?: string;
 };
 
-export default function EndChat({ channelSid, token }: Props) {
+export default function EndChat({ channelSid, token, language }: Props) {
   // Serverless call to end chat
   const handleEndChat = async () => {
     try {
-      await endChat(channelSid, token);
+      await endChat(channelSid, token, language);
     } catch (error) {
       console.log(error);
     }

@@ -6,15 +6,14 @@ import * as FlexWebChat from '@twilio/flex-webchat-ui';
 import Exit from './QuickExitButton';
 import End from './EndChatButton';
 
-const CloseChatButtons = ({ channelSid, token }: MapStateToProps) => {
+const CloseChatButtons = ({ channelSid, token, language }: MapStateToProps) => {
   if (!channelSid || !token) {
     return null;
   }
-
   return (
     <div style={{ margin: '3px auto' }}>
-      <Exit channelSid={channelSid} token={token} />
-      <End channelSid={channelSid} token={token} />
+      <Exit channelSid={channelSid} token={token} language={language} />
+      <End channelSid={channelSid} token={token} language={language} />
     </div>
   );
 };
@@ -22,6 +21,7 @@ const CloseChatButtons = ({ channelSid, token }: MapStateToProps) => {
 type MapStateToProps = {
   channelSid?: string;
   token?: string;
+  language?: string;
 };
 
 type FlexState = {
@@ -31,6 +31,7 @@ type FlexState = {
 const mapStateToProps = (state: FlexState) => ({
   channelSid: state?.flex?.session?.channelSid,
   token: state?.flex?.session?.tokenPayload?.token,
+  language: state?.flex?.config?.language,
 });
 
 export default connect(mapStateToProps)(CloseChatButtons);
