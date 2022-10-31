@@ -7,7 +7,7 @@ import Exit from './QuickExitButton';
 import End from './EndChatButton';
 
 const CloseChatButtons = ({ channelSid, token, language }: MapStateToProps) => {
-  if (!channelSid || !token || !language) {
+  if (!channelSid || !token) {
     return null;
   }
   return (
