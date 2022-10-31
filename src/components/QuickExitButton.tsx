@@ -26,11 +26,9 @@ export default function EndChat({ channelSid, token }: Props) {
   };
 
   return (
-    <>
-      <ExitButtonBase onClick={handleExit}>
-        <FlexWebChat.Icon sizeMultiplier={1} icon="Logout" />
-        <span style={{ marginTop: '4px' }}>Quick Exit</span>
-      </ExitButtonBase>
-    </>
+    <ExitButtonBase onClick={handleExit}>
+      <FlexWebChat.Icon sizeMultiplier={1} icon="Logout" />
+      <span style={{ marginTop: '4px' }}>Quick Exit</span>
+    </ExitButtonBase>
   );
 }
