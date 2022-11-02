@@ -4,7 +4,7 @@ import { Channel } from 'twilio-chat/lib/channel';
 import { Provider } from 'react-redux';
 
 import { getUserIp } from './ip-tracker';
-import { getOperatingHours } from './serverless-calls/operating-hours';
+import { getOperatingHours } from './services/operating-hours';
 import { getCurrentConfig } from '../configurations';
 import { updateZIndex } from './dom-utils';
 import blockedIps from './blockedIps.json';
@@ -185,7 +185,7 @@ export const initWebchat = async () => {
   });
 
   // Add CloseButtons
-  FlexWebChat.MessageList.Content.add(
+  FlexWebChat.MessageInput.Content.add(
     <Provider store={manager.store as any} key="closechatprovider">
       <CloseChatButtons />
     </Provider>,

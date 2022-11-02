@@ -2,7 +2,8 @@
 import React from 'react';
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
 
-import { endChat } from '../serverless-calls/endChat';
+import { endChat } from '../services/end-chat';
+import { ExitButtonBase } from '../styles';
 
 type Props = {
   channelSid: string;
@@ -27,8 +28,9 @@ export default function EndChat({ channelSid, token, language }: Props) {
   };
 
   return (
-    <button type="button" onClick={handleExit}>
-      Quick Exit
-    </button>
+    <ExitButtonBase onClick={handleExit}>
+      <FlexWebChat.Icon sizeMultiplier={1} icon="Logout" />
+      <span style={{ marginTop: '4px' }}>Quick Exit</span>
+    </ExitButtonBase>
   );
 }

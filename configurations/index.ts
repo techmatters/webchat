@@ -22,24 +22,48 @@ import { config as roStaging } from './ro-staging';
 import { config as huStaging } from './hu-staging';
 import { config as huProd } from './hu-prod';
 import { config as clStaging } from './cl-staging';
-import { config as zwStaging } from './zw-staging'
-import { config as plStaging } from './pl-staging'
-
+import { config as zwStaging } from './zw-staging';
+import { config as plStaging } from './pl-staging';
 
 const rawConfig = webpack.env.CONFIG;
 checkCONFIG(rawConfig);
 
-type PresetConfig = 'dev' | 'test-staging' | 'beta' | 'zm-staging' | 'zm-prod' | 'za-staging' | 'za-prod' | 'et-staging' | 'mw-staging' | 'et-prod' | 'mw-prod' | 'jm-staging' | 'jm-prod' | 'ca-staging' | 'uk-staging' | 'e2e-dev' | 'co-staging' | 'co-production' | 'ro-staging' | 'hu-staging' | 'hu-prod' | 'cl-staging' | 'zw-staging'| 'pl-staging';
+type PresetConfig =
+  | 'dev'
+  | 'test-staging'
+  | 'beta'
+  | 'zm-staging'
+  | 'zm-prod'
+  | 'za-staging'
+  | 'za-prod'
+  | 'et-staging'
+  | 'mw-staging'
+  | 'et-prod'
+  | 'mw-prod'
+  | 'jm-staging'
+  | 'jm-prod'
+  | 'ca-staging'
+  | 'uk-staging'
+  | 'e2e-dev'
+  | 'co-staging'
+  | 'co-production'
+  | 'ro-staging'
+  | 'hu-staging'
+  | 'hu-prod'
+  | 'cl-staging'
+  | 'zw-staging'
+  | 'pl-staging';
 const config = rawConfig as PresetConfig;
 
 type ConfigMap = {
+  // eslint-disable-next-line no-shadow
   [config in PresetConfig]: Configuration;
 };
 
 const configMap: ConfigMap = {
-  'dev': dev,
+  dev,
   'test-staging': testStaging,
-  'beta': beta,
+  beta,
   'zm-staging': zmStaging,
   'zm-prod': zmProd,
   'za-staging': zaStaging,

@@ -1,9 +1,4 @@
-import {
-  PreEngagementConfig,
-  Translations,
-  Configuration,
-  MapHelplineLanguage,
-} from './types';
+import { PreEngagementConfig, Translations, Configuration, MapHelplineLanguage } from './types';
 
 const accountSid = 'AC6a65d4fbbc731e64e1c94e9806675c3b';
 const flexFlowSid = 'FOfce25fd1dff726dcdae2899de86de6c5';
@@ -12,8 +7,7 @@ const captureIp = true;
 
 const translations: Translations = {
   'en-US': {
-    MessageInputDisabledReasonHold:
-      "We'll transfer you now. Please hold for a counsellor.",
+    MessageInputDisabledReasonHold: "We'll transfer you now. Please hold for a counsellor.",
     EntryPointTagLine: 'Chat with us',
     PreEngagementDescription: "Let's get started",
     Today: 'Today',
@@ -48,14 +42,14 @@ const memberDisplayOptions = {
   yourFriendlyNameOverride: false,
   theirFriendlyNameOverride: false,
   theirDefaultName: 'End To End Test Counsellor',
-}
+};
 
-const mapHelplineLanguage: MapHelplineLanguage = helpline => {
+const mapHelplineLanguage: MapHelplineLanguage = (helpline) => {
   switch (helpline) {
     default:
       return defaultLanguage;
   }
-}
+};
 
 export const config: Configuration = {
   accountSid,

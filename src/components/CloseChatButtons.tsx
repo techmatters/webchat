@@ -5,16 +5,24 @@ import * as FlexWebChat from '@twilio/flex-webchat-ui';
 
 import Exit from './QuickExitButton';
 import End from './EndChatButton';
+import { StyleWrapper, StyleText } from '../styles';
 
 const CloseChatButtons = ({ channelSid, token, language }: MapStateToProps) => {
   if (!channelSid || !token) {
     return null;
   }
   return (
-    <div style={{ margin: '3px auto' }}>
-      <Exit channelSid={channelSid} token={token} language={language} />
-      <End channelSid={channelSid} token={token} language={language} />
-    </div>
+    <>
+      <StyleWrapper margin="2px auto">
+        <End channelSid={channelSid} token={token} language={language} />
+      </StyleWrapper>
+      <StyleWrapper margin="3px 2px 10px 10px">
+        <StyleText margin="12px 5px 0 3px" color="#949cac">
+          Need to leave quickly?
+        </StyleText>
+        <Exit channelSid={channelSid} token={token} language={language} />
+      </StyleWrapper>
+    </>
   );
 };
 
