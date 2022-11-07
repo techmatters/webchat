@@ -1,7 +1,9 @@
 const path = require('path');
+
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BomPlugin = require('webpack-utf8-bom');
+
 const { checkMODE, checkCONFIG } = require('./utils');
 
 const mode = process.env.MODE;
@@ -9,7 +11,7 @@ const config = process.env.CONFIG;
 checkMODE(mode);
 checkCONFIG(config);
 
-const devtool = mode === 'development' ? 'eval-source-map': undefined;
+const devtool = mode === 'development' ? 'eval-source-map' : undefined;
 
 module.exports = {
   mode,
@@ -28,19 +30,20 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: [
-              ['@babel/preset-react',
+              [
+                '@babel/preset-react',
                 {
-                  targets: "defaults"
-                }
-              ]
-            ]
-          }
+                  targets: 'defaults',
+                },
+              ],
+            ],
+          },
         },
         exclude: /node_modules/,
       },
       {
         test: /\.tsx?$/,
-        use:{
+        use: {
           loader: 'ts-loader',
         },
         exclude: /node_modules/,
@@ -49,7 +52,7 @@ module.exports = {
         test: /\.json?$/,
         type: 'javascript/auto',
         use: {
-          loader: 'raw-loader'
+          loader: 'raw-loader',
         },
         exclude: /node_modules/,
       },
@@ -71,11 +74,12 @@ module.exports = {
       process: 'process/browser',
     }),
     new webpack.DefinePlugin({
-      // Here it creates webpack.env.CONFIG from the env var CONFIG 
-      "webpack.env.CONFIG": JSON.stringify(process.env.CONFIG)
+      // Here it creates webpack.env.CONFIG from the env var CONFIG
+      'webpack.env.CONFIG': JSON.stringify(process.env.CONFIG),
     }),
   ],
   externals: {
-    fs: require('fs')
-  }
+    // eslint-disable-next-line global-require
+    fs: require('fs'),
+  },
 };
