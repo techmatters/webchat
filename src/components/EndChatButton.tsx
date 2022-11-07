@@ -14,14 +14,6 @@ type Props = {
 export default function EndChat({ channelSid, token, language }: Props) {
   const handleEndChat = async () => {
     try {
-      const response: any = await endChat(channelSid, token);
-
-      const { isTaskStageAssigned } = response;
-
-      if (!isTaskStageAssigned) {
-        FlexWebChat.Actions.invokeAction('RestartEngagement');
-      }
-
       await endChat(channelSid, token, language);
     } catch (error) {
       console.log(error);
