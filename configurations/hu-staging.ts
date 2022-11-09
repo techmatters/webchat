@@ -2,8 +2,9 @@ import { PreEngagementConfig, Translations, Configuration, MapHelplineLanguage }
 
 const accountSid = 'ACbdbee34ef7d099e71cf095d540ff3270';
 const flexFlowSid = 'FO9d20dbe99abbc3b9ad7709f961b0fe95';
-const defaultLanguage = 'hu-HU';
+const defaultLanguage = 'ukr-HU';
 const captureIp = false;
+const checkOpenHours = true;
 
 const translations: Translations = {
     'en-US': {
@@ -81,18 +82,13 @@ const preEngagementConfig: PreEngagementConfig = {
         },
         options: [
           {
-            value: 'hu-HU',
-            label: '1. Magyar',
-            selected: true,
-          },
-          {
             value: 'ukr-HU',
-            label: '2. Ukrán',
+            label: '1. Ukrán',
             selected: false,
           },
           {
             value: 'ru-HU',
-            label: '3. Orosz',
+            label: '2. Orosz',
             selected: false,
           }
         ],
