@@ -17,7 +17,7 @@ const CloseChatButtons = ({ channelSid, token, language }: MapStateToProps) => {
         <End channelSid={channelSid} token={token} language={language} />
       </StyleWrapper>
       <StyleWrapper margin="3px 2px 10px 10px">
-        <StyleText margin="12px 5px 0 3px" color="#949cac">
+        <StyleText margin="2px 5px 0 3px" color="#606b85">
           Need to leave quickly?
         </StyleText>
         <Exit channelSid={channelSid} token={token} language={language} />

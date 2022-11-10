@@ -1,6 +1,5 @@
 /* eslint-disable react/require-default-props */
 import React from 'react';
-import * as FlexWebChat from '@twilio/flex-webchat-ui';
 
 import { EndButtonBase } from '../styles';
 import { endChat } from '../services/end-chat';
