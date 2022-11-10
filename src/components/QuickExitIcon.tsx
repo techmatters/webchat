@@ -30,7 +30,7 @@ const QuickExitIcon = () => {
                 </mask>
                 <g id="Icon" fillRule="nonzero" />
                 <rect
-                  id="↳-🎨-Color"
+                  id="inner-rect"
                   fill="#D22F2F"
                   mask="url(#mask-2)"
                   x="4.16669838e-08"
