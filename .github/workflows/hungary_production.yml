@@ -29,6 +29,7 @@ jobs:
         run: |
           cat <<EOT >> ./private/secret.ts
           export const API_KEY = '${{ secrets.IP_FIND_API_KEY }}';
+          export const SERVERLESS_URL = '${{ secrets.PROD_HU_SERVERLESS_URL }}';
           EOT
       # Run a single command using the runners shell to install dependencies 
       - name: Install dependencies

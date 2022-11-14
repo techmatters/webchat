@@ -136,4 +136,6 @@ export const config: Configuration = {
   mapHelplineLanguage,
   memberDisplayOptions,
   captureIp,
+  checkOpenHours,
+  closedHours,
 };
