@@ -18,13 +18,15 @@ const initialLanguage = defaultLanguage;
 
 const getChangeLanguageWebChat = (manager: FlexWebChat.Manager) => (language: string) => {
   const twilioStrings = { ...manager.strings }; // save the originals
+  const setLanguage = (language: string) => (manager.store.getState().flex.config.language = language);
   const setNewStrings = (newStrings: FlexWebChat.Strings) => (manager.strings = { ...manager.strings, ...newStrings });
   const translationErrorMsg = 'Could not translate, using default';
-
   try {
     if (language !== defaultLanguage && translations[language]) {
+      setLanguage(language);
       setNewStrings({ ...twilioStrings, ...translations[defaultLanguage], ...translations[language] });
     } else {
+      setLanguage(defaultLanguage);
       setNewStrings({ ...twilioStrings, ...translations[defaultLanguage] });
     }
   } catch (err) {

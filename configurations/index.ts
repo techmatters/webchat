@@ -56,7 +56,6 @@ type PresetConfig =
 const config = rawConfig as PresetConfig;
 
 type ConfigMap = {
-  // eslint-disable-next-line no-shadow
   [config in PresetConfig]: Configuration;
 };
 
