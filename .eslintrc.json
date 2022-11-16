@@ -15,7 +15,6 @@
     "no-alert": "off",
     "import/no-extraneous-dependencies": "off",
     "no-use-before-define": "off",
-    "react/display-name": "off",
-    "no-shadow": "off"
+    "react/display-name": "off"
   }
 }

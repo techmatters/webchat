@@ -18,6 +18,7 @@ const initialLanguage = defaultLanguage;
 
 const getChangeLanguageWebChat = (manager: FlexWebChat.Manager) => (language: string) => {
   const twilioStrings = { ...manager.strings }; // save the originals
+  // eslint-disable-next-line no-shadow
   const setLanguage = (language: string) => (manager.store.getState().flex.config.language = language);
   const setNewStrings = (newStrings: FlexWebChat.Strings) => (manager.strings = { ...manager.strings, ...newStrings });
   const translationErrorMsg = 'Could not translate, using default';
