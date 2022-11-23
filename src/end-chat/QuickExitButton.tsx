@@ -2,9 +2,9 @@
 import React from 'react';
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
 
-import { endChat } from '../services/end-chat';
-import { ExitButtonBase } from '../styles';
+import { endChat } from './end-chat-service';
 import QuickExitIcon from './QuickExitIcon';
+import {ExitButtonBase} from "./end-chat-styles";
 
 type Props = {
   channelSid: string;

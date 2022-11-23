@@ -1,8 +1,8 @@
 /* eslint-disable react/require-default-props */
 import React from 'react';
 
-import { EndButtonBase } from '../styles';
-import { endChat } from '../services/end-chat';
+import { endChat } from './end-chat-service';
+import {EndButtonBase} from "./end-chat-styles";
 
 type Props = {
   channelSid: string;

@@ -1,4 +1,5 @@
-import * as FlexWebChat from '@twilio/flex-webchat-ui';
+import * as FlexWebChat from "@twilio/flex-webchat-ui";
+
 
 const { styled } = FlexWebChat;
 
@@ -22,7 +23,6 @@ export const EndButtonBase = styled('button')`
     outline: auto;
   }
 `;
-
 export const ExitButtonBase = styled('button')`
   margin: 3px 15px;
   display: flex;
@@ -42,26 +42,4 @@ export const ExitButtonBase = styled('button')`
   &:focus: {
     outline: auto;
   }
-`;
-
-type StyleWrapperProps = {
-  margin?: string;
-  color?: string;
-};
-
-export const StyleWrapper = styled('div')<StyleWrapperProps>`
-  margin: ${(props) => props.margin};
-  color: ${(props) => props.color};
-  width: 100%;
-  display: flex;
-`;
-
-export const StyleText = styled('span')<StyleWrapperProps>`
-  margin: ${(props) => props.margin};
-  color: ${(props) => props.color};
-  padding: 0 15px;
-  font-family: Open Sans;
-  font-size: 12px;
-  line-height: 15px;
-  text-align: center;
 `;
