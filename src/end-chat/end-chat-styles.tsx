@@ -1,5 +1,4 @@
-import * as FlexWebChat from "@twilio/flex-webchat-ui";
-
+import * as FlexWebChat from '@twilio/flex-webchat-ui';
 
 const { styled } = FlexWebChat;
 

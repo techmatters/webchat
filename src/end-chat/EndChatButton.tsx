@@ -2,7 +2,7 @@
 import React from 'react';
 
 import { endChat } from './end-chat-service';
-import {EndButtonBase} from "./end-chat-styles";
+import { EndButtonBase } from './end-chat-styles';
 
 type Props = {
   channelSid: string;
