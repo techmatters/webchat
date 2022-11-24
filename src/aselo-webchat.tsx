@@ -4,11 +4,11 @@ import { Channel } from 'twilio-chat/lib/channel';
 import { Provider } from 'react-redux';
 
 import { getUserIp } from './ip-tracker';
-import { getOperatingHours } from './services/operating-hours';
+import { getOperatingHours } from './operating-hours';
 import { getCurrentConfig } from '../configurations';
 import { updateZIndex } from './dom-utils';
 import blockedIps from './blockedIps.json';
-import CloseChatButtons from './components/CloseChatButtons';
+import CloseChatButtons from './end-chat/CloseChatButtons';
 
 updateZIndex();
 
