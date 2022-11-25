@@ -16,8 +16,8 @@ const standardTranslationsForLanguage = (language: string): Record<string, strin
   const [languageOnlyCode] = language.split('-');
   const languageTranslations = standardTranslations[languageOnlyCode] ?? {};
   const cultureSpecificTranslations = (languageOnlyCode !== language ? standardTranslations[language] : {}) ?? {};
-  return { ...languageTranslations, ...cultureSpecificTranslations }
-}
+  return { ...languageTranslations, ...cultureSpecificTranslations };
+};
 
 export const getChangeLanguageWebChat = (manager: FlexWebChat.Manager, config: Configuration) => {
   const { defaultLanguage, translations: configTranslations } = config;
