@@ -1,6 +1,8 @@
-import { OperatingHoursState } from '../configurations/types';
+import { Manager } from '@twilio/flex-webchat-ui';
 
-export const getOperatingHours = async (): Promise<OperatingHoursState> => {
+import { Configuration, OperatingHoursState } from '../configurations/types';
+
+const getOperatingHours = async (): Promise<OperatingHoursState> => {
   const body = { channel: 'webchat' };
 
   const options = {
@@ -27,4 +29,20 @@ export const getOperatingHours = async (): Promise<OperatingHoursState> => {
   }
 
   return responseJson;
+};
+
+export const displayOperatingHours = async (config: Configuration, manager: Manager) => {
+  // If a helpline has operating hours configuration set, the pre engagement config will show alternative canvas during closed or holiday times/days
+  if (config.checkOpenHours) {
+    try {
+      const operatingState = await getOperatingHours();
+      if (operatingState === 'closed' && config.closedHours) {
+        manager.updateConfig({ preEngagementConfig: config.closedHours });
+      } else if (operatingState === 'holiday' && config.holidayHours) {
+        manager.updateConfig({ preEngagementConfig: config.holidayHours });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 };
