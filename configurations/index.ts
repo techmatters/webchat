@@ -24,6 +24,7 @@ import { config as huProd } from './hu-prod';
 import { config as clStaging } from './cl-staging';
 import { config as zwStaging } from './zw-staging';
 import { config as plStaging } from './pl-staging';
+import { config as mtStaging } from './mt-staging';
 
 const rawConfig = webpack.env.CONFIG;
 checkCONFIG(rawConfig);
@@ -52,7 +53,8 @@ type PresetConfig =
   | 'hu-prod'
   | 'cl-staging'
   | 'zw-staging'
-  | 'pl-staging';
+  | 'pl-staging'
+  |  'mt-staging';
 const config = rawConfig as PresetConfig;
 
 type ConfigMap = {
@@ -84,6 +86,7 @@ const configMap: ConfigMap = {
   'cl-staging': clStaging,
   'zw-staging': zwStaging,
   'pl-staging': plStaging,
+  'mt-staging': mtStaging,
 };
 
 export const getCurrentConfig = (): Configuration => configMap[config];

@@ -42,6 +42,7 @@ function checkCONFIG(config) {
     'cl-staging',
     'zw-staging',
     'pl-staging',
+    'mt-staging',
   ];
   const isConfigSet = typeof config !== 'undefined' && presets.includes(config);
 
