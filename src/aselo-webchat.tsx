@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { getUserIp } from './ip-tracker';
 import { displayOperatingHours } from './operating-hours';
 import { getCurrentConfig } from '../configurations';
-import { updateZIndex } from './dom-utils';
+import { updateZIndex, getInputsMutator } from './dom-utils';
 import blockedIps from './blockedIps.json';
 import CloseChatButtons from './end-chat/CloseChatButtons';
 import { getChangeLanguageWebChat } from './language';
@@ -64,6 +64,29 @@ const setChannelAfterStartEngagement = doWithChannel(
     channel.sendMessage(message);
   },
 );
+
+/**
+ * Mutates pre engagement form inputs handled by Twilio, using DOM APIs.
+ */
+const setPreEngagementFormMutations = () => {
+  if (currentConfig.preEngagementFormMutations) {
+    // Listen for additions to the dom, to mutate Twilio controled inputs
+    let mutator: MutationObserver;
+    const container = document.querySelector('div.Twilio-FlexWebChat');
+    if (container) {
+      mutator = getInputsMutator(currentConfig.preEngagementFormMutations);
+      mutator.observe(container, { subtree: true, childList: true });
+    }
+
+    // Once that the pre engagement form is not needed anymore, disconnect the observer
+    FlexWebChat.Actions.addListener('afterStartEngagement', () => {
+      if (mutator) {
+        mutator.disconnect();
+        console.log('mutator disconnected :)');
+      }
+    });
+  }
+};
 
 export const initWebchat = async () => {
   let ip: string | undefined;
@@ -158,4 +181,6 @@ export const initWebchat = async () => {
 
   // Render WebChat
   webchat.init();
+
+  setPreEngagementFormMutations();
 };
