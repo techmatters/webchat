@@ -2,6 +2,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
+import { Template } from '@twilio/flex-webchat-ui';
 
 import Exit from './QuickExitButton';
 import End from './EndChatButton';
@@ -18,7 +19,7 @@ const CloseChatButtons = ({ channelSid, token, language }: MapStateToProps) => {
       </StyleWrapper>
       <StyleWrapper margin="3px 2px 10px 10px">
         <StyleText margin="2px 5px 0 3px" color="#606b85">
-          Need to leave quickly?
+          <Template code="QuickExitDescription" />
         </StyleText>
         <Exit channelSid={channelSid} token={token} language={language} />
       </StyleWrapper>

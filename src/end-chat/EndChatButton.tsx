@@ -1,5 +1,6 @@
 /* eslint-disable react/require-default-props */
 import React from 'react';
+import { Template } from '@twilio/flex-webchat-ui';
 
 import { endChat } from './end-chat-service';
 import { EndButtonBase } from './end-chat-styles';
@@ -18,5 +19,9 @@ export default function EndChat({ channelSid, token, language }: Props) {
       console.log(error);
     }
   };
-  return <EndButtonBase onClick={handleEndChat}>End Chat</EndButtonBase>;
+  return (
+    <EndButtonBase onClick={handleEndChat}>
+      <Template code="EndChatButtonLabel" />
+    </EndButtonBase>
+  );
 }
