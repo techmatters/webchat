@@ -28,7 +28,7 @@ export const getChangeLanguageWebChat = (manager: FlexWebChat.Manager, config: C
     const setConfigLanguage = (language: string) => (manager.store.getState().flex.config.language = language);
     const setNewStrings = (newStrings: FlexWebChat.Strings) =>
       (manager.strings = { ...manager.strings, ...newStrings });
-    if (language && language !== defaultLanguage && configTranslations[language]) {
+    if (language && language !== defaultLanguage) {
       const languageTranslations = standardTranslationsForLanguage(language);
       setConfigLanguage(language);
       setNewStrings({
