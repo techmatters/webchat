@@ -1,6 +1,6 @@
 # This is a basic workflow to build and upload Webchat to S3 bucket with Github Actions
 
-name: Zambia Staging release
+name: Kek Vonal Staging release
 
 # Controls when the action will run.
 on:
@@ -29,14 +29,14 @@ jobs:
         run: |
           cat <<EOT >> ./private/secret.ts
           export const API_KEY = '${{ secrets.IP_FIND_API_KEY }}';
-          export const SERVERLESS_URL = '${{ secrets.STG_ZM_SERVERLESS_URL }}';
+          export const SERVERLESS_URL = '${{ secrets.STG_HU_SERVERLESS_URL }}';
           EOT
       # Run a single command using the runners shell to install dependencies 
       - name: Install dependencies
         run: npm install
       # Build and compile Webchat
       - name: Run build command
-        run: npm run build:zm-staging
+        run: npm run build:hu-staging
       # Rename the builded js file
       - name: Rename js
         run: mv bundle.js aselo-chat.min.js
@@ -47,7 +47,7 @@ jobs:
         with:
           args: --acl public-read --follow-symlinks --exclude '*' --include '*.js' --content-type 'application/javascript; charset=utf-8'
         env:
-          AWS_S3_BUCKET: tl-public-chat-zm-stg
+          AWS_S3_BUCKET: tl-public-chat-hu-stg
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: '${{ secrets.AWS_DEFAULT_REGION }}'

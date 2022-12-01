@@ -1,8 +1,9 @@
 type Token = string;
 type ChannelSid = string;
+type Language = string;
 
-export const endChat = async (channelSid: ChannelSid, token: Token): Promise<Token> => {
-  const body = { channelSid, Token: token };
+export const endChat = async (channelSid: ChannelSid, token: Token, language?: Language): Promise<Token> => {
+  const body = { channelSid, Token: token, language };
 
   const options = {
     method: 'POST',

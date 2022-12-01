@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
 import { Channel } from 'twilio-chat/lib/channel';
+import { Provider } from 'react-redux';
 
 import { getUserIp } from './ip-tracker';
 import { getOperatingHours } from './operating-hours';
 import { getCurrentConfig } from '../configurations';
 import { updateZIndex } from './dom-utils';
 import blockedIps from './blockedIps.json';
-import EndChat from './components/EndChatButton';
+import CloseChatButtons from './end-chat/CloseChatButtons';
 
 updateZIndex();
 
@@ -17,13 +18,16 @@ const initialLanguage = defaultLanguage;
 
 const getChangeLanguageWebChat = (manager: FlexWebChat.Manager) => (language: string) => {
   const twilioStrings = { ...manager.strings }; // save the originals
+  // eslint-disable-next-line no-shadow
+  const setLanguage = (language: string) => (manager.store.getState().flex.config.language = language);
   const setNewStrings = (newStrings: FlexWebChat.Strings) => (manager.strings = { ...manager.strings, ...newStrings });
   const translationErrorMsg = 'Could not translate, using default';
-
   try {
     if (language !== defaultLanguage && translations[language]) {
+      setLanguage(language);
       setNewStrings({ ...twilioStrings, ...translations[defaultLanguage], ...translations[language] });
     } else {
+      setLanguage(defaultLanguage);
       setNewStrings({ ...twilioStrings, ...translations[defaultLanguage] });
     }
   } catch (err) {
@@ -80,15 +84,6 @@ const setChannelAfterStartEngagement = doWithChannel(
     channel.sendMessage(message);
   },
 );
-
-const setEndChatButton = (manager: FlexWebChat.Manager) => {
-  const {
-    channelSid,
-    tokenPayload: { token },
-  } = manager.store.getState().flex.session;
-
-  FlexWebChat.MessageList.Content.add(<EndChat key="endChat" channelSid={channelSid} token={token} />);
-};
 
 export const initWebchat = async () => {
   let ip: string | undefined;
@@ -186,8 +181,19 @@ export const initWebchat = async () => {
     setChannelAfterStartEngagement(manager, ip);
   });
 
+  FlexWebChat.Actions.on('afterRestartEngagement', (payload) => {
+    if (payload.exit) {
+      setTimeout(() => window.open('https://google.com', '_self'), 1000);
+    }
+  });
+
+  // Add CloseButtons
+  FlexWebChat.MessageInput.Content.add(
+    <Provider store={manager.store as any} key="closechatprovider">
+      <CloseChatButtons />
+    </Provider>,
+  );
+
   // Render WebChat
   webchat.init();
-
-  setEndChatButton(manager);
 };

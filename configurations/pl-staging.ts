@@ -16,7 +16,7 @@ const translations: Translations = {
 };
 
 const preEngagementConfig: PreEngagementConfig = {
-  description: "Thank you for contacting SafeSpot. To chat with a counsellor, please type your name and select the Start Chat button.",
+  description: "Thank you for contacting Telefon Zaufania. To chat with a counsellor, please type your name and select the Start Chat button.",
   fields:
     [
       {

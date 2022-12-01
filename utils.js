@@ -37,10 +37,12 @@ function checkCONFIG(config) {
     'co-staging',
     'co-production',
     'ro-staging',
-    'ukr-staging',
+    'hu-staging',
+    'hu-production',
     'cl-staging',
     'zw-staging',
-    'pl-staging'
+    'pl-staging',
+    'mt-staging',
   ];
   const isConfigSet = typeof config !== 'undefined' && presets.includes(config);
 
@@ -51,5 +53,5 @@ function checkCONFIG(config) {
 
 module.exports = {
   checkMODE,
-  checkCONFIG
+  checkCONFIG,
 };

@@ -2,8 +2,9 @@ import { PreEngagementConfig, Translations, Configuration, MapHelplineLanguage }
 
 const accountSid = 'ACbdbee34ef7d099e71cf095d540ff3270';
 const flexFlowSid = 'FO9d20dbe99abbc3b9ad7709f961b0fe95';
-const defaultLanguage = 'hu-HU';
+const defaultLanguage = 'ukr-HU';
 const captureIp = false;
+const checkOpenHours = true;
 
 const translations: Translations = {
     'en-US': {
@@ -81,18 +82,13 @@ const preEngagementConfig: PreEngagementConfig = {
         },
         options: [
           {
-            value: 'hu-HU',
-            label: '1. Magyar',
-            selected: true,
-          },
-          {
             value: 'ukr-HU',
-            label: '2. Ukrán',
+            label: '1. Ukrán',
             selected: false,
           },
           {
             value: 'ru-HU',
-            label: '3. Orosz',
+            label: '2. Orosz',
             selected: false,
           }
         ],
@@ -100,6 +96,22 @@ const preEngagementConfig: PreEngagementConfig = {
     ],
     submitLabel: 'Chat indítása',
   };
+
+  const closedHours: PreEngagementConfig = {
+  description: "Привіт, це Kék Vonal. Наразі усі наші оператори зайняті. Спілкуватися українською чи російською мовами ти можеш у вівторок і четвер з 16:00 до 20:00. Чекаємо твого дзвінка! \n\nПривет, это Kék Vonal. На данный момент все наши операторы заняты. Общаться на украинском или русском языке ты можешь во вторник и четверг с 16:00 до 20:00. Ждем твоего звонка!",
+  fields: [
+    {
+      label: 'Hidden Field',
+      type: 'InputField',
+      attributes: {
+        name: '',
+        required: true,
+        readOnly: true,
+      },
+    },
+  ],
+
+};
 
 const mapHelplineLanguage: MapHelplineLanguage = helpline => {
   switch (helpline) {
@@ -124,4 +136,6 @@ export const config: Configuration = {
   mapHelplineLanguage,
   memberDisplayOptions,
   captureIp,
+  checkOpenHours,
+  closedHours,
 };

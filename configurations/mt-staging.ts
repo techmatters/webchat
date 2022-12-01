@@ -1,18 +1,24 @@
-import { PreEngagementConfig, Translations, Configuration, MapHelplineLanguage } from './types';
+import {
+  PreEngagementConfig,
+  Translations,
+  Configuration,
+  MapHelplineLanguage,
+} from './types';
 
-const accountSid = 'AC6a65d4fbbc731e64e1c94e9806675c3b';
-const flexFlowSid = 'FOfce25fd1dff726dcdae2899de86de6c5';
+const accountSid = 'ACfb0ccf10880289d67f5c4e85ae26402b';
+const flexFlowSid = 'FOd69e1f3020fd621d4bd9d4be833d8a19';
 const defaultLanguage = 'en-US';
 const captureIp = true;
 
 const translations: Translations = {
   'en-US': {
-    MessageInputDisabledReasonHold: "We'll transfer you now. Please hold for a counsellor.",
+    MessageInputDisabledReasonHold:
+      "We'll transfer you now. Please hold for a counsellor.",
     EntryPointTagLine: 'Chat with us',
     PreEngagementDescription: "Let's get started",
     Today: 'Today',
     InputPlaceHolder: 'Type Message',
-    WelcomeMessage: 'Welcome to ChildLine Zambia!',
+    WelcomeMessage: 'Welcome to Kellimni!',
     Yesterday: 'Yesterday',
     TypingIndicator: 'Counselor is typing',
     MessageCanvasTrayButton: 'Start New Chat',
@@ -41,15 +47,15 @@ const memberDisplayOptions = {
   yourDefaultName: 'You',
   yourFriendlyNameOverride: false,
   theirFriendlyNameOverride: false,
-  theirDefaultName: 'End To End Test Counsellor',
-};
+  theirDefaultName: 'Kellimni Counsellor',
+}
 
-const mapHelplineLanguage: MapHelplineLanguage = (helpline) => {
+const mapHelplineLanguage: MapHelplineLanguage = helpline => {
   switch (helpline) {
     default:
       return defaultLanguage;
   }
-};
+}
 
 export const config: Configuration = {
   accountSid,
