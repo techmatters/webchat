@@ -44,7 +44,7 @@ const applyIntpusMutations = (muts: PreEngagementFormMutations) => {
   const elemsAndMuts = muts
     .map((mutation) => ({
       mutation,
-      element: document.querySelector(`form.Twilio-DynamicForm input[name="${mutation.name}"]`),
+      element: document.querySelector(`form.Twilio-DynamicForm input[name="${mutation.targetInputName}"]`),
     }))
     .filter(
       (em): em is { mutation: PreEngagementFormMutations[number]; element: Element } => em && em.element !== null,
@@ -53,13 +53,13 @@ const applyIntpusMutations = (muts: PreEngagementFormMutations) => {
   elemsAndMuts.forEach((em) => {
     em.mutation.attributes.forEach((att) => {
       em.element.setAttribute(att.qualifiedName, att.value);
-      console.log('Applied mutation:', em.mutation.name, att);
+      console.log('Applied mutation:', em.mutation.targetInputName, att);
     });
   });
 };
 
 export const getInputsMutator = (muts: PreEngagementFormMutations) =>
-  new MutationObserver((mutationsList) => {
+  new MutationObserver((_mutationsList) => {
     if (document.querySelector(`form.Twilio-DynamicForm`)) {
       applyIntpusMutations(muts);
     }

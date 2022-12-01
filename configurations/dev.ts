@@ -83,7 +83,7 @@ const preEngagementConfig: PreEngagementConfig = {
 
 const preEngagementFormMutations: PreEngagementFormMutations = [
   {
-    name: 'firstName',
+    targetInputName: 'firstName',
     attributes: [{ qualifiedName: 'maxlength', value: '30' }],
   },
 ];

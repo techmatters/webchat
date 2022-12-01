@@ -4,7 +4,7 @@ import type { MemberDisplayOptions } from '@twilio/flex-ui-core/src/components/c
 export type { PreEngagementConfig };
 
 export type PreEngagementFormMutations = {
-  name: string;
+  targetInputName: string;
   attributes: { qualifiedName: string; value: string }[];
 }[];
 
