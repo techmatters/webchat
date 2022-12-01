@@ -24,12 +24,12 @@ export const getChangeLanguageWebChat = (manager: FlexWebChat.Manager, config: C
   const setNewLanguage = (language: string) => {
     const twilioStrings = { ...manager.strings }; // save the originals
     const defaultLanguageTranslations = standardTranslationsForLanguage(defaultLanguage);
-    const languageTranslations = standardTranslationsForLanguage(language);
     // eslint-disable-next-line no-shadow
     const setConfigLanguage = (language: string) => (manager.store.getState().flex.config.language = language);
     const setNewStrings = (newStrings: FlexWebChat.Strings) =>
       (manager.strings = { ...manager.strings, ...newStrings });
-    if (language !== defaultLanguage && configTranslations[language]) {
+    if (language && language !== defaultLanguage && configTranslations[language]) {
+      const languageTranslations = standardTranslationsForLanguage(language);
       setConfigLanguage(language);
       setNewStrings({
         ...twilioStrings,
