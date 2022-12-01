@@ -1,3 +1,5 @@
+import { PreEngagementFormMutations } from '../configurations/types';
+
 const CONTAINER_ID = 'twilio-customer-frame';
 const HELPLINE_SELECT_ID = 'menu-helpline';
 const LANGUAGE_SELECT_ID = 'menu-language';
@@ -37,3 +39,35 @@ export function updateZIndex() {
 function isHTMLElement(node: Node): node is HTMLElement {
   return node.nodeType === Node.ELEMENT_NODE;
 }
+
+const applyIntpusMutations = (muts: PreEngagementFormMutations) => {
+  const elemsAndMuts = muts
+    .map((mutation) => ({
+      mutation,
+      element: document.querySelector(`form.Twilio-DynamicForm input[name="${mutation.name}"]`),
+    }))
+    .filter(
+      (em): em is { mutation: PreEngagementFormMutations[number]; element: Element } => em && em.element !== null,
+    );
+
+  elemsAndMuts.forEach((em) => {
+    em.mutation.attributes.forEach((att) => {
+      em.element.setAttribute(att.qualifiedName, att.value);
+      console.log('Applied mutation:', em.mutation.name, att);
+    });
+  });
+};
+
+export const getInputsMutator = (muts: PreEngagementFormMutations) =>
+  new MutationObserver((mutationsList) => {
+    if (document.querySelector(`form.Twilio-DynamicForm`)) {
+      applyIntpusMutations(muts);
+    }
+    /*
+     * mutationsList.forEach((mutation) => {
+     *   if (mutation.type === 'childList') {
+     *     ;
+     *   }
+     * });
+     */
+  });

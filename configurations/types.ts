@@ -3,6 +3,11 @@ import type { MemberDisplayOptions } from '@twilio/flex-ui-core/src/components/c
 
 export type { PreEngagementConfig };
 
+export type PreEngagementFormMutations = {
+  name: string;
+  attributes: { qualifiedName: string; value: string }[];
+}[];
+
 export type Translations = {
   [language: string]: {
     [key: string]: string;
@@ -17,6 +22,7 @@ export type Configuration = {
   defaultLanguage: string;
   translations: Translations;
   preEngagementConfig: PreEngagementConfig;
+  preEngagementFormMutations?: PreEngagementFormMutations;
   closedHours?: PreEngagementConfig;
   holidayHours?: PreEngagementConfig;
   mapHelplineLanguage: MapHelplineLanguage;
