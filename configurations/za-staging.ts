@@ -25,7 +25,7 @@ const preEngagementConfig: PreEngagementConfig = {
         attributes: {
           name: "friendlyName",
           type: "text",
-          placeholder: "Guest's name. Please enter only your name",
+          placeholder: "Guest's name. Please enter only your name.",
           required: true,
         }
       }
