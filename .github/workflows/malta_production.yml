@@ -1,6 +1,6 @@
 # This is a basic workflow to build and upload Webchat to S3 bucket with Github Actions
 
-name: Kellimni (MT) Staging release
+name: Kellimni (MT) Production release
 
 # Controls when the action will run.
 on:
@@ -29,7 +29,7 @@ jobs:
         run: |
           cat <<EOT >> ./private/secret.ts
           export const API_KEY = '${{ secrets.IP_FIND_API_KEY }}';
-          export const SERVERLESS_URL = '${{ secrets.STG_MT_SERVERLESS_URL }}';
+          export const SERVERLESS_URL = '${{ secrets.PROD_MT_SERVERLESS_URL }}';
           EOT
       # Run a single command using the runners shell to install dependencies
       - name: Install dependencies
