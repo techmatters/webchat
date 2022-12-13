@@ -9,6 +9,7 @@ const QuickExitIcon = () => {
       height="18px"
       viewBox="0 0 20 20"
       version="1.1"
+      fontSize="10px"
       xmlns="http://www.w3.org/2000/svg"
       // eslint-disable-next-line react/no-unknown-property
       xmlnsXlink="http://www.w3.org/1999/xlink"

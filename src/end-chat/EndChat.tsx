@@ -3,7 +3,7 @@ import React from 'react';
 import { Template } from '@twilio/flex-webchat-ui';
 
 import { endChat } from './end-chat-service';
-import { EndButtonBase } from './end-chat-styles';
+import { EndChatWrapper, StyledEndButton } from './end-chat-styles';
 
 type Props = {
   channelSid: string;
@@ -12,6 +12,7 @@ type Props = {
 };
 
 export default function EndChat({ channelSid, token, language }: Props) {
+  // Serverless call to end chat
   const handleEndChat = async () => {
     try {
       await endChat(channelSid, token, language);
@@ -20,8 +21,10 @@ export default function EndChat({ channelSid, token, language }: Props) {
     }
   };
   return (
-    <EndButtonBase onClick={handleEndChat}>
-      <Template code="EndChatButtonLabel" />
-    </EndButtonBase>
+    <EndChatWrapper>
+      <StyledEndButton onClick={handleEndChat}>
+        <Template code="EndChatButtonLabel" />
+      </StyledEndButton>
+    </EndChatWrapper>
   );
 }
