@@ -23,7 +23,7 @@ export const EndButtonBase = styled('button')`
   }
 `;
 export const ExitButtonBase = styled('button')`
-  margin: 3px 15px;
+  margin: 3px 0px;
   display: flex;
   color: #d22f2f;
   background-color: #fbf2f2;

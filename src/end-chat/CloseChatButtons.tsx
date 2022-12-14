@@ -17,11 +17,16 @@ const CloseChatButtons = ({ channelSid, token, language }: MapStateToProps) => {
       <StyleWrapper margin="2px auto">
         <End channelSid={channelSid} token={token} language={language} />
       </StyleWrapper>
-      <StyleWrapper margin="3px 2px 10px 10px">
-        <StyleText margin="2px 5px 0 3px" color="#606b85">
-          <Template code="QuickExitDescription" />
-        </StyleText>
-        <Exit channelSid={channelSid} token={token} language={language} />
+      <StyleWrapper margin="3px 2px 10px 2px" style={{ flexFlow: 'wrap', flexDirection: 'row' }}>
+        <div style={{ flexBasis: '100px', flexGrow: 1, display: 'inline-grid', alignContent: 'center' }}>
+
+          <StyleText style={{ padding: '0px' }} margin="2px 5px 0 3px" color="#606b85">
+            <Template code="QuickExitDescription" />
+          </StyleText>
+        </div>
+        <div>
+          <Exit channelSid={channelSid} token={token} language={language} />
+        </div>
       </StyleWrapper>
     </>
   );
