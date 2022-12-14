@@ -30,11 +30,14 @@ export default function EndChat({ channelSid, token, language }: Props) {
   };
 
   return (
-    <ExitButtonBase onClick={handleExit} style={{
-      whiteSpace: 'nowrap',
-      width: '100%',
-      justifyContent: 'center'
-    }}>
+    <ExitButtonBase
+      onClick={handleExit}
+      style={{
+        whiteSpace: 'nowrap',
+        width: '100%',
+        justifyContent: 'center',
+      }}
+    >
       <QuickExitIcon />
       <span style={{ margin: '-3px 0 0 3px' }}>
         <Template code="QuickExitButtonLabel" />
