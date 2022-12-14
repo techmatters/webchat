@@ -4,7 +4,7 @@ import { StyledButton } from '@twilio/flex-webchat-ui';
 const { styled } = FlexWebChat;
 
 export const EndChatWrapper = styled('div')`
-  margin: '2px auto';
+  margin: 2px auto;
   width: 100%;
   display: flex;
 `;
@@ -35,6 +35,15 @@ export const ExitWrapper = styled('div')`
   width: 100%;
   display: flex;
   justify-content: space-around;
+  flex-flow: row wrap;
+`;
+
+export const ExitDescWrapper = styled('div')`
+  flex-basis: 100px;
+  flex-grow: 1;
+  display: inline-grid;
+  align-content: center;
+  justify-items: center;
 `;
 
 export const ExitDescText = styled('span')`
@@ -45,7 +54,6 @@ export const ExitDescText = styled('span')`
   font-size: 11px;
   line-height: 15px;
   text-align: center;
-  min-width: 33%;
   max-width: fit-content;
 `;
 
@@ -58,7 +66,7 @@ export const StyledQuickExitButton = styled('button')`
   min-width: fit-content;
   justify-content: center;
   font-size: 11px;
-  width: 100%;
+  min-width: 50%;
   height: 29px;
   font-weight: bold;
   border: none;
