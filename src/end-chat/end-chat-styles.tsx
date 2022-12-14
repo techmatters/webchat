@@ -14,14 +14,13 @@ export const StyledEndButton = styled('button')`
   background-color: #1876d0;
   color: #fff;
   width: 100%;
-
   height: 29px;
   font-weight: bold;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-family: Open Sans;
-  font-size: 12px;
+  font-size: 11px;
   line-height: 24px;
   text-align: center;
   white-space: nowrap;
@@ -36,17 +35,14 @@ export const ExitWrapper = styled('div')`
   width: 100%;
   display: flex;
   justify-content: space-around;
-  flex-basis: calc(20% - 30px);
-  /* flex-grow: 1;
-  flex-wrap: wrap; */
 `;
 
 export const ExitDescText = styled('span')`
-  margin: 2px 0 0 4px;
+  margin: 2px 0 0 2px;
   color: #606b85;
   padding: 0 10px;
   font-family: Open Sans;
-  font-size: 12px;
+  font-size: 11px;
   line-height: 15px;
   text-align: center;
   min-width: 33%;
@@ -55,13 +51,13 @@ export const ExitDescText = styled('span')`
 
 export const StyledQuickExitButton = styled('button')`
   display: flex;
-  margin: 3px 10px;
+  margin: 3px 8px;
   background-color: #fbf2f2;
   color: #d22f2f;
   place-items: center;
   min-width: fit-content;
   justify-content: center;
-
+  font-size: 11px;
   width: 100%;
   height: 29px;
   font-weight: bold;
@@ -69,7 +65,6 @@ export const StyledQuickExitButton = styled('button')`
   border-radius: 4px;
   cursor: pointer;
   font-family: Open Sans;
-  font-size: 12px;
   line-height: 24px;
   text-align: center;
   white-space: nowrap;

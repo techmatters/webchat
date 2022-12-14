@@ -38,7 +38,7 @@ export default function QuickExit({ channelSid, token, language }: Props) {
         <StyledQuickExitButton onClick={handleExit}>
           <QuickExitIcon />
           <QuickExitText>
-            <Template code="QuickExitButtonLabel2" />
+            <Template code="QuickExitButtonLabel" />
           </QuickExitText>
         </StyledQuickExitButton>
       </ExitWrapper>
