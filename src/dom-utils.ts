@@ -37,3 +37,35 @@ export function updateZIndex() {
 function isHTMLElement(node: Node): node is HTMLElement {
   return node.nodeType === Node.ELEMENT_NODE;
 }
+
+function shouldDisableMobileOptimization() {
+  const disableMobileOptimizationAttribute = document.currentScript?.getAttribute('disable-mobile-optimization');
+  return ['', true, 'true'].some((value) => value === disableMobileOptimizationAttribute);
+}
+
+/**
+ * In order for the widget to look/behave well on mobile devices (screen size smaller than 980px),
+ * the page's viewport needs to be configured appropriately.
+ *
+ * Notice that this optimization may override the default webpage configuration. If that
+ * is not desired, you can disable it by setting 'disable-mobile-optimization' attribute:
+ * <script disable-mobile-optimization src=''></script>
+ */
+const requiredViewportContent = 'width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=yes';
+export function updateViewport() {
+  if (shouldDisableMobileOptimization()) {
+    return;
+  }
+
+  let viewportMeta = document?.querySelector('meta[name="viewport"]');
+
+  if (!viewportMeta) {
+    viewportMeta = document.createElement('meta');
+    viewportMeta.setAttribute('name', 'viewport');
+    document.head.appendChild(viewportMeta);
+  }
+
+  const previousViewportContent = viewportMeta.getAttribute('content');
+  const updatedViewportContent = [previousViewportContent, requiredViewportContent].join(', ');
+  viewportMeta.setAttribute('content', updatedViewportContent);
+}

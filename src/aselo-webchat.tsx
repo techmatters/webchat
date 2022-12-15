@@ -6,12 +6,14 @@ import { Provider } from 'react-redux';
 import { getUserIp } from './ip-tracker';
 import { displayOperatingHours } from './operating-hours';
 import { getCurrentConfig } from '../configurations';
-import { updateZIndex } from './dom-utils';
+import { updateViewport, updateZIndex } from './dom-utils';
 import blockedIps from './blockedIps.json';
 import CloseChatButtons from './end-chat/CloseChatButtons';
 import { getChangeLanguageWebChat } from './language';
+import './stylesOverride';
 
 updateZIndex();
+updateViewport();
 
 const currentConfig = getCurrentConfig();
 const { defaultLanguage, translations } = currentConfig;
