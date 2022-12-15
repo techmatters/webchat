@@ -1,10 +1,11 @@
 /* eslint-disable react/require-default-props */
 import React from 'react';
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
+import { Template } from '@twilio/flex-webchat-ui';
 
 import { endChat } from './end-chat-service';
 import QuickExitIcon from './QuickExitIcon';
-import { ExitButtonBase } from './end-chat-styles';
+import { ExitWrapper, ExitDescWrapper, ExitDescText, QuickExitText, StyledQuickExitButton } from './end-chat-styles';
 
 type Props = {
   channelSid: string;
@@ -12,7 +13,7 @@ type Props = {
   language?: string;
 };
 
-export default function EndChat({ channelSid, token, language }: Props) {
+export default function QuickExit({ channelSid, token, language }: Props) {
   // Serverless call to end chat
   const handleEndChat = async () => {
     try {
@@ -29,9 +30,18 @@ export default function EndChat({ channelSid, token, language }: Props) {
   };
 
   return (
-    <ExitButtonBase onClick={handleExit}>
-      <QuickExitIcon />
-      <span style={{ margin: '-3px 0 0 3px' }}>Quick Exit</span>
-    </ExitButtonBase>
+    <ExitWrapper>
+      <ExitDescWrapper>
+        <ExitDescText>
+          <Template code="QuickExitDescription" />
+        </ExitDescText>
+      </ExitDescWrapper>
+      <StyledQuickExitButton onClick={handleExit}>
+        <QuickExitIcon />
+        <QuickExitText>
+          <Template code="QuickExitButtonLabel" />
+        </QuickExitText>
+      </StyledQuickExitButton>
+    </ExitWrapper>
   );
 }

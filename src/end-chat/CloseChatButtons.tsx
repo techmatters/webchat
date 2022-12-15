@@ -3,9 +3,8 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
 
-import Exit from './QuickExitButton';
-import End from './EndChatButton';
-import { StyleWrapper, StyleText } from '../styles';
+import Exit from './QuickExit';
+import End from './EndChat';
 
 const CloseChatButtons = ({ channelSid, token, language }: MapStateToProps) => {
   if (!channelSid || !token) {
@@ -13,15 +12,8 @@ const CloseChatButtons = ({ channelSid, token, language }: MapStateToProps) => {
   }
   return (
     <>
-      <StyleWrapper margin="2px auto">
-        <End channelSid={channelSid} token={token} language={language} />
-      </StyleWrapper>
-      <StyleWrapper margin="3px 2px 10px 10px">
-        <StyleText margin="2px 5px 0 3px" color="#606b85">
-          Need to leave quickly?
-        </StyleText>
-        <Exit channelSid={channelSid} token={token} language={language} />
-      </StyleWrapper>
+      <End channelSid={channelSid} token={token} language={language} />
+      <Exit channelSid={channelSid} token={token} language={language} />
     </>
   );
 };

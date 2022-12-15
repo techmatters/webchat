@@ -4,38 +4,18 @@ import { Channel } from 'twilio-chat/lib/channel';
 import { Provider } from 'react-redux';
 
 import { getUserIp } from './ip-tracker';
-import { getOperatingHours } from './operating-hours';
+import { displayOperatingHours } from './operating-hours';
 import { getCurrentConfig } from '../configurations';
 import { updateZIndex } from './dom-utils';
 import blockedIps from './blockedIps.json';
 import CloseChatButtons from './end-chat/CloseChatButtons';
+import { getChangeLanguageWebChat } from './language';
 
 updateZIndex();
 
 const currentConfig = getCurrentConfig();
 const { defaultLanguage, translations } = currentConfig;
 const initialLanguage = defaultLanguage;
-
-const getChangeLanguageWebChat = (manager: FlexWebChat.Manager) => (language: string) => {
-  const twilioStrings = { ...manager.strings }; // save the originals
-  // eslint-disable-next-line no-shadow
-  const setLanguage = (language: string) => (manager.store.getState().flex.config.language = language);
-  const setNewStrings = (newStrings: FlexWebChat.Strings) => (manager.strings = { ...manager.strings, ...newStrings });
-  const translationErrorMsg = 'Could not translate, using default';
-  try {
-    if (language !== defaultLanguage && translations[language]) {
-      setLanguage(language);
-      setNewStrings({ ...twilioStrings, ...translations[defaultLanguage], ...translations[language] });
-    } else {
-      setLanguage(defaultLanguage);
-      setNewStrings({ ...twilioStrings, ...translations[defaultLanguage] });
-    }
-  } catch (err) {
-    window.alert(translationErrorMsg);
-    console.error(translationErrorMsg, err);
-    getChangeLanguageWebChat(manager)(defaultLanguage);
-  }
-};
 
 type ChannelAndManagerAndIpFn = (channel: Channel, manager: FlexWebChat.Manager, ip?: string) => void;
 
@@ -124,27 +104,9 @@ export const initWebchat = async () => {
   const webchat = await FlexWebChat.createWebChat(appConfig);
   const { manager } = webchat;
 
-  // If a helpline has operating hours configuration set, the pre engagement config will show alternative canvas during closed or holiday times/days
-  const displayOperatingHours = async (): Promise<any> => {
-    const operatingState = await getOperatingHours();
-    if (operatingState === 'closed' && currentConfig.closedHours) {
-      const preEngagementConfig = currentConfig.closedHours;
-      manager.updateConfig({ ...appConfig, preEngagementConfig });
-    } else if (operatingState === 'holiday' && currentConfig.holidayHours) {
-      const preEngagementConfig = currentConfig.holidayHours;
-      manager.updateConfig({ ...appConfig, preEngagementConfig });
-    }
-  };
+  displayOperatingHours(currentConfig, manager);
 
-  if (currentConfig.checkOpenHours) {
-    try {
-      displayOperatingHours();
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  const changeLanguageWebChat = getChangeLanguageWebChat(manager);
+  const changeLanguageWebChat = getChangeLanguageWebChat(manager, currentConfig);
 
   changeLanguageWebChat(initialLanguage);
 
@@ -172,7 +134,7 @@ export const initWebchat = async () => {
   FlexWebChat.MessageList.Content.remove('0');
 
   // Posting question from preengagement form as users first chat message
-  FlexWebChat.Actions.on('afterStartEngagement', (payload) => {
+  FlexWebChat.Actions.addListener('afterStartEngagement', async (payload) => {
     const { language } = payload.formData;
 
     // Here we collect caller language (from preEngagement select) and change UI language
@@ -181,7 +143,7 @@ export const initWebchat = async () => {
     setChannelAfterStartEngagement(manager, ip);
   });
 
-  FlexWebChat.Actions.on('afterRestartEngagement', (payload) => {
+  FlexWebChat.Actions.addListener('afterRestartEngagement', (payload) => {
     if (payload.exit) {
       setTimeout(() => window.open('https://google.com', '_self'), 1000);
     }
