@@ -10,10 +10,10 @@ import { updateViewport, updateZIndex } from './dom-utils';
 import blockedIps from './blockedIps.json';
 import CloseChatButtons from './end-chat/CloseChatButtons';
 import { getChangeLanguageWebChat } from './language';
-import './stylesOverride';
+import { applyMobileOptimization } from './mobile-optimization';
 
 updateZIndex();
-updateViewport();
+applyMobileOptimization();
 
 const currentConfig = getCurrentConfig();
 const { defaultLanguage, translations } = currentConfig;
