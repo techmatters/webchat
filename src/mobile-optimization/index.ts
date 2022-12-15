@@ -3,7 +3,7 @@
  *
  * Notice that some of the optimization may override the default webpage HTML/CSS. If that
  * is not desired, you can disable it by setting 'disable-mobile-optimization' attribute:
- * <script disable-mobile-optimization src=''></script>
+ * <script disable-mobile-optimization src='path/to/aselo.js'></script>
  */
 import { fullScreenChat } from './full-screen';
 import { updateViewport } from './viewport';
