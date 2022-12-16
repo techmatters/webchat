@@ -1,4 +1,4 @@
-import { PreEngagementFormMutations } from '../configurations/types';
+import { PreEngagementConfig, AselFormFieldMutations, FormFieldOverride } from '../configurations/types';
 
 const CONTAINER_ID = 'twilio-customer-frame';
 const HELPLINE_SELECT_ID = 'menu-helpline';
@@ -40,34 +40,23 @@ function isHTMLElement(node: Node): node is HTMLElement {
   return node.nodeType === Node.ELEMENT_NODE;
 }
 
-const applyIntpusMutations = (muts: PreEngagementFormMutations) => {
-  const elemsAndMuts = muts
-    .map((mutation) => ({
-      mutation,
-      element: document.querySelector(`form.Twilio-DynamicForm input[name="${mutation.targetInputName}"]`),
-    }))
-    .filter(
-      (em): em is { mutation: PreEngagementFormMutations[number]; element: Element } => em && em.element !== null,
-    );
+const hasMutations = (formField: FormFieldOverride) => formField.attributes.maxLength;
 
-  elemsAndMuts.forEach((em) => {
-    em.mutation.attributes.forEach((att) => {
-      em.element.setAttribute(att.qualifiedName, att.value);
-      console.log('Applied mutation:', em.mutation.targetInputName, att);
-    });
-  });
+const applyMutations = (formField: FormFieldOverride) => {
+  if (hasMutations(formField)) {
+    const element = document.querySelector(`form.Twilio-DynamicForm input[name="${formField.attributes.name}"]`);
+
+    if (!element) return;
+
+    if (formField.attributes.maxLength) {
+      element.setAttribute('maxlength', formField.attributes.maxLength.toString());
+    }
+  }
 };
 
-export const getInputsMutator = (muts: PreEngagementFormMutations) =>
+export const getInputsMutator = (config: PreEngagementConfig) =>
   new MutationObserver((_mutationsList) => {
     if (document.querySelector(`form.Twilio-DynamicForm`)) {
-      applyIntpusMutations(muts);
+      config.fields.forEach(applyMutations);
     }
-    /*
-     * mutationsList.forEach((mutation) => {
-     *   if (mutation.type === 'childList') {
-     *     ;
-     *   }
-     * });
-     */
   });

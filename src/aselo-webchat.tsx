@@ -69,23 +69,21 @@ const setChannelAfterStartEngagement = doWithChannel(
  * Mutates pre engagement form inputs handled by Twilio, using DOM APIs.
  */
 const setPreEngagementFormMutations = () => {
-  if (currentConfig.preEngagementFormMutations) {
-    // Listen for additions to the dom, to mutate Twilio controled inputs
-    let mutator: MutationObserver;
-    const container = document.querySelector('div.Twilio-FlexWebChat');
-    if (container) {
-      mutator = getInputsMutator(currentConfig.preEngagementFormMutations);
-      mutator.observe(container, { subtree: true, childList: true });
-    }
-
-    // Once that the pre engagement form is not needed anymore, disconnect the observer
-    FlexWebChat.Actions.addListener('afterStartEngagement', () => {
-      if (mutator) {
-        mutator.disconnect();
-        console.log('mutator disconnected :)');
-      }
-    });
+  // Listen for additions to the dom, to mutate Twilio controled inputs
+  let mutator: MutationObserver;
+  const container = document.querySelector('div.Twilio-FlexWebChat');
+  if (container) {
+    mutator = getInputsMutator(currentConfig.preEngagementConfig);
+    mutator.observe(container, { subtree: true, childList: true });
   }
+
+  // Once that the pre engagement form is not needed anymore, disconnect the observer
+  FlexWebChat.Actions.addListener('afterStartEngagement', () => {
+    if (mutator) {
+      mutator.disconnect();
+      console.log('mutator disconnected :)');
+    }
+  });
 };
 
 export const initWebchat = async () => {
