@@ -38,11 +38,12 @@ function checkCONFIG(config) {
     'co-production',
     'ro-staging',
     'hu-staging',
-    'hu-production',
+    'hu-prod',
     'cl-staging',
     'zw-staging',
     'pl-staging',
     'mt-staging',
+    'mt-prod',
   ];
   const isConfigSet = typeof config !== 'undefined' && presets.includes(config);
 
