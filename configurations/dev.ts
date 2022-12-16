@@ -1,4 +1,4 @@
-import { PreEngagementConfig, Translations, Configuration, MapHelplineLanguage, PreEngagementFormMutations } from './types';
+import { PreEngagementConfig, Translations, Configuration, MapHelplineLanguage } from './types';
 
 const accountSid = 'ACd8a2e89748318adf6ddff7df6948deaf';
 const flexFlowSid = 'FO8c2d9c388e7feba8b08d06a4bc3f69d1';
@@ -75,18 +75,12 @@ const preEngagementConfig: PreEngagementConfig = {
         name: 'firstName',
         required: true,
         readOnly: false,
+        maxLength: 30,
       },
     },
   ],
   submitLabel: "Let's chat!",
 };
-
-const preEngagementFormMutations: PreEngagementFormMutations = [
-  {
-    targetInputName: 'firstName',
-    attributes: [{ qualifiedName: 'maxlength', value: '30' }],
-  },
-];
 
 const closedHours: PreEngagementConfig = {
   description: "We're closed at the moment. Operating hours are 8am-6pm",
@@ -133,7 +127,6 @@ export const config: Configuration = {
   defaultLanguage,
   translations,
   preEngagementConfig,
-  preEngagementFormMutations,
   closedHours,
   holidayHours,
   checkOpenHours,

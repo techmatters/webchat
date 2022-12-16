@@ -1,14 +1,19 @@
-import { FormAttributes as PreEngagementConfig } from '@twilio/flex-ui-core';
+import { FormAttributes } from '@twilio/flex-ui-core';
 import type { MemberDisplayOptions } from '@twilio/flex-ui-core/src/components/channel/MessagingCanvas';
 
-export type { PreEngagementConfig };
+type FormFieldAttributes = FormAttributes['fields'][number]['attributes'];
 
-type PreEngagementFormMutation = {
-  targetInputName: string;
-  attributes: { qualifiedName: string; value: string }[];
+export type AselFormFieldMutations = {
+  maxLength?: number;
 };
 
-export type PreEngagementFormMutations = PreEngagementFormMutation[];
+type FormFieldAttributesOveride = FormFieldAttributes & AselFormFieldMutations;
+
+export type FormFieldOverride = FormAttributes['fields'][number] & { attributes: FormFieldAttributesOveride };
+
+export type PreEngagementConfig = {
+  [K in keyof FormAttributes]: K extends 'fields' ? Array<FormFieldOverride> : FormAttributes[K];
+};
 
 export type Translations = {
   [language: string]: {
@@ -24,7 +29,6 @@ export type Configuration = {
   defaultLanguage: string;
   translations: Translations;
   preEngagementConfig: PreEngagementConfig;
-  preEngagementFormMutations?: PreEngagementFormMutations;
   closedHours?: PreEngagementConfig;
   holidayHours?: PreEngagementConfig;
   mapHelplineLanguage: MapHelplineLanguage;

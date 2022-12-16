@@ -54,11 +54,12 @@ type PresetConfig =
   | 'cl-staging'
   | 'zw-staging'
   | 'pl-staging'
-  |  'mt-staging';
+  | 'mt-staging';
+
 const config = rawConfig as PresetConfig;
 
 type ConfigMap = {
-  [config in PresetConfig]: Configuration;
+  [K in PresetConfig]: Configuration;
 };
 
 const configMap: ConfigMap = {
