@@ -59,7 +59,7 @@ export const ExitDescText = styled('span')`
 
 export const StyledQuickExitButton = styled('button')`
   display: flex;
-  margin: 3px 8px;
+  margin: 3px 10px 0 0;
   background-color: #fbf2f2;
   color: #d22f2f;
   place-items: center;
