@@ -13,14 +13,14 @@ const captureIp = true;
 const translations: Translations = {
   'en-US': {
     MessageInputDisabledReasonHold:
-      "We'll transfer you now. Please hold for a counsellor.",
+      "We'll transfer you now. Please hold for a support mentor.",
     EntryPointTagLine: 'Chat with us',
     PreEngagementDescription: "Let's get started",
     Today: 'Today',
     InputPlaceHolder: 'Type Message',
     WelcomeMessage: 'Welcome to Kellimni!',
     Yesterday: 'Yesterday',
-    TypingIndicator: 'Counselor is typing',
+    TypingIndicator: 'Suport Mentor is typing',
     MessageCanvasTrayButton: 'Start New Chat',
     MessageCanvasTrayContent: '',
     AutoFirstMessage: 'Incoming webchat contact from',
@@ -47,7 +47,7 @@ const memberDisplayOptions = {
   yourDefaultName: 'You',
   yourFriendlyNameOverride: false,
   theirFriendlyNameOverride: false,
-  theirDefaultName: 'Kellimni Counsellor',
+  theirDefaultName: 'Kellimni Support Mentor',
 }
 
 const mapHelplineLanguage: MapHelplineLanguage = helpline => {
