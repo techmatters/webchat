@@ -2,6 +2,8 @@ import React from 'react';
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
 import { Channel } from 'twilio-chat/lib/channel';
 import { Provider } from 'react-redux';
+import { FlexState } from '@twilio/flex-webchat-ui/src/Store';
+import { Reducer } from 'redux';
 
 import { getUserIp } from './ip-tracker';
 import { displayOperatingHours } from './operating-hours';
@@ -12,8 +14,6 @@ import CloseChatButtons from './end-chat/CloseChatButtons';
 import { getChangeLanguageWebChat } from './language';
 import { applyMobileOptimization } from './mobile-optimization';
 import { aseloReducer } from './aselo-webchat-state';
-import { FlexState } from '@twilio/flex-webchat-ui/src/Store';
-import { Reducer } from 'redux';
 import { subscribeToChannel } from './task';
 
 updateZIndex();
@@ -27,7 +27,6 @@ const chatChannel = async (manager: FlexWebChat.Manager): Promise<Channel> => {
   const { channelSid } = manager.store.getState().flex.session;
   return manager.chatClient.getChannelBySid(channelSid);
 };
-
 
 const unlockInput = (manager: FlexWebChat.Manager) => {
   const { user } = manager.chatClient;
@@ -57,9 +56,8 @@ const setListenerToUnlockInput = async (channel: Channel, manager: FlexWebChat.M
 };
 
 const setChannelOnCreateWebChat = async (channel: Channel, manager: FlexWebChat.Manager) => {
-
   setListenerToUnlockInput(channel, manager);
-}
+};
 
 const setChannelAfterStartEngagement = async (channel: Channel, manager: FlexWebChat.Manager, ip: string = '') => {
   setListenerToUnlockInput(channel, manager);
@@ -106,7 +104,7 @@ export const initWebchat = async () => {
 
   const webchat = await FlexWebChat.createWebChat(appConfig);
   const { manager } = webchat;
-  manager.store.replaceReducer(aseloReducer as Reducer<FlexState>)
+  manager.store.replaceReducer(aseloReducer as Reducer<FlexState>);
 
   await displayOperatingHours(currentConfig, manager);
 
@@ -151,7 +149,6 @@ export const initWebchat = async () => {
     const channel = await chatChannel(manager);
     await setChannelAfterStartEngagement(channel, manager, ip);
     await subscribeToChannel(manager, channel);
-
   });
 
   FlexWebChat.Actions.addListener('afterRestartEngagement', (payload) => {

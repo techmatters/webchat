@@ -15,9 +15,8 @@ type Props = {
 };
 
 export default function QuickExit({ channelSid, token, language, finishTask }: Props) {
-
   const handleExit = async () => {
-    const actions: Promise<unknown>[] = []
+    const actions: Promise<unknown>[] = [];
     if (finishTask) {
       // Only if we started a task
       try {

@@ -1,16 +1,16 @@
 /* eslint-disable react/require-default-props */
 import React from 'react';
 import { Template } from '@twilio/flex-webchat-ui';
+import * as FlexWebChat from '@twilio/flex-webchat-ui';
 
 import { finishChatTask } from './end-chat-service';
 import { EndChatWrapper, StyledEndButton } from './end-chat-styles';
-import * as FlexWebChat from '@twilio/flex-webchat-ui';
 
 type Props = {
   channelSid: string;
   token: string;
   language?: string;
-  action: 'finishTask' | 'restartEngagement'
+  action: 'finishTask' | 'restartEngagement';
 };
 
 export default function EndChat({ channelSid, token, language, action }: Props) {
@@ -25,8 +25,8 @@ export default function EndChat({ channelSid, token, language, action }: Props) 
         }
         return;
       case 'restartEngagement':
-        await FlexWebChat.Actions.invokeAction('RestartEngagement', { exit: false })
-        return;
+      default:
+        await FlexWebChat.Actions.invokeAction('RestartEngagement', { exit: false });
     }
   };
   return (
