@@ -3,7 +3,7 @@ import React from 'react';
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
 import { Template } from '@twilio/flex-webchat-ui';
 
-import { endChat } from './end-chat-service';
+import { finishChatTask } from './end-chat-service';
 import QuickExitIcon from './QuickExitIcon';
 import { ExitWrapper, ExitDescWrapper, ExitDescText, QuickExitText, StyledQuickExitButton } from './end-chat-styles';
 
@@ -11,22 +11,24 @@ type Props = {
   channelSid: string;
   token: string;
   language?: string;
+  finishTask: boolean;
 };
 
-export default function QuickExit({ channelSid, token, language }: Props) {
-  // Serverless call to end chat
-  const handleEndChat = async () => {
-    try {
-      await endChat(channelSid, token, language);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+export default function QuickExit({ channelSid, token, language, finishTask }: Props) {
 
   const handleExit = async () => {
-    await handleEndChat();
+    const actions: Promise<unknown>[] = []
+    if (finishTask) {
+      // Only if we started a task
+      try {
+        actions.push(finishChatTask(channelSid, token, language));
+      } catch (error) {
+        console.log(error);
+      }
+    }
     // Clear chat history and open a new location
-    await FlexWebChat.Actions.invokeAction('RestartEngagement', { exit: true });
+    actions.push(FlexWebChat.Actions.invokeAction('RestartEngagement', { exit: true }));
+    await Promise.all(actions);
   };
 
   return (
