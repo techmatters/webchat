@@ -20,6 +20,16 @@ export function makeMobileFullScreen() {
       button.${WIDGET_EXPANDED_CLASS} {
         display: none;
       }
+
+      /*
+        On mobile, after clicking on the send button, it keeps the button
+        in :hover state, which turns the button grey. Since we could not get
+        rid of :hover state programatically, we're overriding :hover color
+        to #1976D2, to get rid of the grey misleading color
+      */
+      button.Twilio-MessageInput-SendButton:hover {
+        background: #1976D2;
+      }
     }
   `;
 }
