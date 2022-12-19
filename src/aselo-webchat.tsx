@@ -13,7 +13,6 @@ import { getChangeLanguageWebChat } from './language';
 import { applyMobileOptimization } from './mobile-optimization';
 
 updateZIndex();
-applyMobileOptimization();
 
 const currentConfig = getCurrentConfig();
 const { defaultLanguage, translations } = currentConfig;
@@ -157,6 +156,8 @@ export const initWebchat = async () => {
       <CloseChatButtons />
     </Provider>,
   );
+
+  applyMobileOptimization(manager);
 
   // Render WebChat
   webchat.init();

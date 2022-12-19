@@ -1,6 +1,8 @@
 import { injectGlobal } from 'react-emotion';
 
-export function fullScreenChat() {
+import { WIDGET_EXPANDED_CLASS } from './widget-expanded-listener';
+
+export function makeMobileFullScreen() {
   return injectGlobal`
     /* 
       This media query matches phones/tablets,
@@ -12,6 +14,11 @@ export function fullScreenChat() {
         left: 0;
         min-height: 100%;
         min-width: 100%;
+      }
+
+      /* Hides the floating button when expanded */
+      button.${WIDGET_EXPANDED_CLASS} {
+        display: none;
       }
     }
   `;
