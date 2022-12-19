@@ -157,8 +157,8 @@ export const initWebchat = async () => {
     </Provider>,
   );
 
-  applyMobileOptimization(manager);
-
   // Render WebChat
   webchat.init();
+
+  applyMobileOptimization(manager);
 };
