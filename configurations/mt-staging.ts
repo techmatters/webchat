@@ -87,16 +87,6 @@ const preEngagementConfig: PreEngagementConfig = {
         },
       ],
     },
-    {
-        type: "InputItem",
-        label: "Nickname/Laqam/нікнейм",
-        attributes: {
-          name: "friendlyName",
-          type: "text",
-          placeholder: "Guest's name. Please enter only your name.",
-          required: true,
-        }
-    },
   ],
   submitLabel: 'Start Chat!',
 };
