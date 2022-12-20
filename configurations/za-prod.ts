@@ -6,6 +6,7 @@ const flexFlowSid = 'FOacabd43f752e8e0ca3d2466e90637095';
 
 export const config: Configuration = {
   ...zaStaging,
+  checkOpenHours: true,
   accountSid,
   flexFlowSid,
 };
