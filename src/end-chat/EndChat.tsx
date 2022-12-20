@@ -1,23 +1,32 @@
 /* eslint-disable react/require-default-props */
 import React from 'react';
 import { Template } from '@twilio/flex-webchat-ui';
+import * as FlexWebChat from '@twilio/flex-webchat-ui';
 
-import { endChat } from './end-chat-service';
+import { finishChatTask } from './end-chat-service';
 import { EndChatWrapper, StyledEndButton } from './end-chat-styles';
 
 type Props = {
   channelSid: string;
   token: string;
   language?: string;
+  action: 'finishTask' | 'restartEngagement';
 };
 
-export default function EndChat({ channelSid, token, language }: Props) {
+export default function EndChat({ channelSid, token, language, action }: Props) {
   // Serverless call to end chat
   const handleEndChat = async () => {
-    try {
-      await endChat(channelSid, token, language);
-    } catch (error) {
-      console.log(error);
+    switch (action) {
+      case 'finishTask':
+        try {
+          await finishChatTask(channelSid, token, language);
+        } catch (error) {
+          console.log(error);
+        }
+        return;
+      case 'restartEngagement':
+      default:
+        await FlexWebChat.Actions.invokeAction('RestartEngagement', { exit: false });
     }
   };
   return (
