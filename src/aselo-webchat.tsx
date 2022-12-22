@@ -2,6 +2,8 @@ import React from 'react';
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
 import { Channel } from 'twilio-chat/lib/channel';
 import { Provider } from 'react-redux';
+import { FlexState } from '@twilio/flex-webchat-ui/src/Store';
+import { Reducer } from 'redux';
 
 import { getUserIp } from './ip-tracker';
 import { displayOperatingHours } from './operating-hours';
@@ -11,6 +13,8 @@ import blockedIps from './blockedIps.json';
 import CloseChatButtons from './end-chat/CloseChatButtons';
 import { getChangeLanguageWebChat } from './language';
 import { applyMobileOptimization } from './mobile-optimization';
+import { aseloReducer } from './aselo-webchat-state';
+import { subscribeToChannel } from './task';
 
 updateZIndex();
 applyMobileOptimization();
@@ -19,13 +23,9 @@ const currentConfig = getCurrentConfig();
 const { defaultLanguage, translations } = currentConfig;
 const initialLanguage = defaultLanguage;
 
-type ChannelAndManagerAndContactFn = (channel: Channel, manager: FlexWebChat.Manager, contact?: string) => void;
-
-const doWithChannel = (callback: ChannelAndManagerAndContactFn) => (manager: FlexWebChat.Manager, contact?: string) => {
+const chatChannel = async (manager: FlexWebChat.Manager): Promise<Channel> => {
   const { channelSid } = manager.store.getState().flex.session;
-  manager.chatClient.getChannelBySid(channelSid).then((channel) => {
-    callback(channel, manager, contact);
-  });
+  return manager.chatClient.getChannelBySid(channelSid);
 };
 
 const unlockInput = (manager: FlexWebChat.Manager) => {
@@ -55,18 +55,18 @@ const setListenerToUnlockInput = async (channel: Channel, manager: FlexWebChat.M
   });
 };
 
-const setChannelOnCreateWebChat = doWithChannel(setListenerToUnlockInput);
 
-const setChannelAfterStartEngagement = doWithChannel(
-  (channel: Channel, manager: FlexWebChat.Manager, contact: string = '') => {
-    setListenerToUnlockInput(channel, manager);
+const setChannelOnCreateWebChat = async (channel: Channel, manager: FlexWebChat.Manager) => {
+  setListenerToUnlockInput(channel, manager);
+};
 
-    // Generate task by sending empty message (hidden from the UI above)
-    const message = `${translations[initialLanguage].AutoFirstMessage} ${contact}`;
-    channel.sendMessage(message);
-  },
-);
+const setChannelAfterStartEngagement = async (channel: Channel, manager: FlexWebChat.Manager, contact: string = '') => {
+  setListenerToUnlockInput(channel, manager);
 
+  // Generate task by sending empty message (hidden from the UI above)
+  const message = `${translations[initialLanguage].AutoFirstMessage} ${contact}`;
+  channel.sendMessage(message);
+};
 export const initWebchat = async () => {
   let ip: string | undefined;
 
@@ -106,15 +106,20 @@ export const initWebchat = async () => {
 
   const webchat = await FlexWebChat.createWebChat(appConfig);
   const { manager } = webchat;
+  manager.store.replaceReducer(aseloReducer as Reducer<FlexState>);
 
-  displayOperatingHours(currentConfig, manager);
+  await displayOperatingHours(currentConfig, manager);
 
   const changeLanguageWebChat = getChangeLanguageWebChat(manager, currentConfig);
 
   changeLanguageWebChat(initialLanguage);
 
   // If caller is waiting for a counselor to connect, disable input (default language)
-  if (manager.chatClient) setChannelOnCreateWebChat(manager);
+  if (manager.chatClient) {
+    const channel = await chatChannel(manager);
+    await setChannelOnCreateWebChat(channel, manager);
+    await subscribeToChannel(manager, channel);
+  }
 
   // Disable greeting message as chatbot already includes one
   FlexWebChat.MessagingCanvas.defaultProps.predefinedMessage = undefined;
@@ -143,15 +148,17 @@ export const initWebchat = async () => {
     // Here we collect caller language (from preEngagement select) and change UI language
     changeLanguageWebChat(language);
 
+    const channel = await chatChannel(manager);
     let contact = ip;
     if (email) contact = email;
-
-    setChannelAfterStartEngagement(manager, contact);
+    await setChannelAfterStartEngagement(channel, manager, contact);
+    await subscribeToChannel(manager, channel);
   });
 
   FlexWebChat.Actions.addListener('afterRestartEngagement', (payload) => {
     if (payload.exit) {
       setTimeout(() => window.open('https://google.com', '_self'), 1000);
+    } else {
     }
   });
 
