@@ -55,7 +55,6 @@ const setListenerToUnlockInput = async (channel: Channel, manager: FlexWebChat.M
   });
 };
 
-
 const setChannelOnCreateWebChat = async (channel: Channel, manager: FlexWebChat.Manager) => {
   setListenerToUnlockInput(channel, manager);
 };

@@ -55,7 +55,7 @@ const preEngagementConfig: PreEngagementConfig = {
         attributes:
         {
           name: "email",
-          type: "text",
+          type: "email",
           required: true,
           readOnly: false
         },
