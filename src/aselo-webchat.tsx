@@ -19,12 +19,12 @@ const currentConfig = getCurrentConfig();
 const { defaultLanguage, translations } = currentConfig;
 const initialLanguage = defaultLanguage;
 
-type ChannelAndManagerAndIpFn = (channel: Channel, manager: FlexWebChat.Manager, ip?: string) => void;
+type ChannelAndManagerAndContactFn = (channel: Channel, manager: FlexWebChat.Manager, contact?: string) => void;
 
-const doWithChannel = (callback: ChannelAndManagerAndIpFn) => (manager: FlexWebChat.Manager, ip?: string) => {
+const doWithChannel = (callback: ChannelAndManagerAndContactFn) => (manager: FlexWebChat.Manager, contact?: string) => {
   const { channelSid } = manager.store.getState().flex.session;
   manager.chatClient.getChannelBySid(channelSid).then((channel) => {
-    callback(channel, manager, ip);
+    callback(channel, manager, contact);
   });
 };
 
@@ -58,11 +58,11 @@ const setListenerToUnlockInput = async (channel: Channel, manager: FlexWebChat.M
 const setChannelOnCreateWebChat = doWithChannel(setListenerToUnlockInput);
 
 const setChannelAfterStartEngagement = doWithChannel(
-  (channel: Channel, manager: FlexWebChat.Manager, ip: string = '') => {
+  (channel: Channel, manager: FlexWebChat.Manager, contact: string = '') => {
     setListenerToUnlockInput(channel, manager);
 
     // Generate task by sending empty message (hidden from the UI above)
-    const message = `${translations[initialLanguage].AutoFirstMessage} ${ip}`;
+    const message = `${translations[initialLanguage].AutoFirstMessage} ${contact}`;
     channel.sendMessage(message);
   },
 );
@@ -138,12 +138,15 @@ export const initWebchat = async () => {
 
   // Posting question from preengagement form as users first chat message
   FlexWebChat.Actions.addListener('afterStartEngagement', async (payload) => {
-    const { language } = payload.formData;
+    const { language, email } = payload.formData;
 
     // Here we collect caller language (from preEngagement select) and change UI language
     changeLanguageWebChat(language);
 
-    setChannelAfterStartEngagement(manager, ip);
+    let contact = ip;
+    if (email) contact = email;
+
+    setChannelAfterStartEngagement(manager, contact);
   });
 
   FlexWebChat.Actions.addListener('afterRestartEngagement', (payload) => {
