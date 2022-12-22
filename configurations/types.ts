@@ -23,6 +23,9 @@ export type Configuration = {
   memberDisplayOptions?: MemberDisplayOptions;
   captureIp: boolean;
   checkOpenHours?: boolean;
+  contactType: ContactType;
 };
 
 export type OperatingHoursState = 'open' | 'closed' | 'holiday';
+
+export type ContactType = 'ip' | 'email';

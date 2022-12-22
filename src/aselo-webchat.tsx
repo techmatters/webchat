@@ -86,6 +86,7 @@ export const initWebchat = async () => {
     preEngagementConfig: currentConfig.preEngagementConfig,
     context: {
       ip,
+      contactType: currentConfig.contactType,
     },
     colorTheme: {
       overrides: {

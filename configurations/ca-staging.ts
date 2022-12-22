@@ -3,6 +3,7 @@ import {
     Translations,
     Configuration,
     MapHelplineLanguage,
+    ContactType
   } from './types';
   
   const accountSid = 'ACeb335f4685aa874fddf00cdd7c2946bd';
@@ -10,6 +11,8 @@ import {
   const defaultLanguage = 'en-US';
   const captureIp = false;
   const checkOpenHours = true;
+const contactType: ContactType = 'ip';
+
   
   const translations: Translations = {
     'en-US': {
@@ -681,5 +684,6 @@ import {
     mapHelplineLanguage,
     memberDisplayOptions,
     captureIp,
+    contactType
   };
   
