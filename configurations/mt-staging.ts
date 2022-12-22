@@ -7,11 +7,11 @@ import {
 
 const accountSid = 'ACfb0ccf10880289d67f5c4e85ae26402b';
 const flexFlowSid = 'FOd69e1f3020fd621d4bd9d4be833d8a19';
-const defaultLanguage = 'en-US';
+const defaultLanguage = 'en-MT';
 const captureIp = true;
 
 const translations: Translations = {
-  'en-US': {
+  'en-MT': {
     MessageInputDisabledReasonHold:
       "We'll transfer you now. Please hold for a support mentor.",
     EntryPointTagLine: 'Chat with us',
@@ -71,7 +71,7 @@ const preEngagementConfig: PreEngagementConfig = {
       },
       options: [
         {
-          value: 'English',
+          value: 'en-MT',
           label: '1. English',
           selected: true,
         },
