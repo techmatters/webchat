@@ -148,7 +148,7 @@ export const initWebchat = async () => {
 
     const channel = await chatChannel(manager);
 
-    //Currently only ip and email are sent as contact to be used for identifying a contact by in flex. When more possible contact types are added, this logic will need to be updated
+    // Currently only ip and email are sent as contact to be used for identifying a contact by in flex. When more possible contact types are added, this logic will need to be updated
     const contactConfig = currentConfig.contactType === 'email' ? email : ip;
 
     await setChannelAfterStartEngagement(channel, manager, contactConfig);
