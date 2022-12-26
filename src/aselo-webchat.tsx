@@ -68,8 +68,7 @@ const setChannelAfterStartEngagement = async (channel: Channel, manager: FlexWeb
 };
 export const initWebchat = async () => {
   let ip: string | undefined;
-
-  if (currentConfig.captureIp) {
+  if (currentConfig.captureIp && currentConfig.contactType === 'ip') {
     ip = await getUserIp();
   }
 
@@ -148,9 +147,11 @@ export const initWebchat = async () => {
     changeLanguageWebChat(language);
 
     const channel = await chatChannel(manager);
-    let contact = ip;
-    if (email) contact = email;
-    await setChannelAfterStartEngagement(channel, manager, contact);
+
+    //Currently only ip and email are sent as contact to be used for identifying a contact by in flex. When more possible contact types are added, this logic will need to be updated
+    const contactConfig = currentConfig.contactType === 'email' ? email : ip;
+
+    await setChannelAfterStartEngagement(channel, manager, contactConfig);
     await subscribeToChannel(manager, channel);
   });
 
