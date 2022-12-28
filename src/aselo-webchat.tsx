@@ -15,6 +15,7 @@ import { getChangeLanguageWebChat } from './language';
 import { applyMobileOptimization } from './mobile-optimization';
 import { aseloReducer } from './aselo-webchat-state';
 import { subscribeToChannel } from './task';
+import { addContactIdentifierToContext } from './contact-identifier';
 
 updateZIndex();
 applyMobileOptimization();
@@ -59,16 +60,18 @@ const setChannelOnCreateWebChat = async (channel: Channel, manager: FlexWebChat.
   setListenerToUnlockInput(channel, manager);
 };
 
-const setChannelAfterStartEngagement = async (channel: Channel, manager: FlexWebChat.Manager, contact: string = '') => {
+const setChannelAfterStartEngagement = async (channel: Channel, manager: FlexWebChat.Manager) => {
   setListenerToUnlockInput(channel, manager);
 
+  const { contactIdentifier } = manager.configuration.context;
+
   // Generate task by sending empty message (hidden from the UI above)
-  const message = `${translations[initialLanguage].AutoFirstMessage} ${contact}`;
+  const message = `${translations[initialLanguage].AutoFirstMessage} ${contactIdentifier}`;
   channel.sendMessage(message);
 };
 export const initWebchat = async () => {
   let ip: string | undefined;
-  if (currentConfig.captureIp && currentConfig.contactType === 'ip') {
+  if (currentConfig.captureIp) {
     ip = await getUserIp();
   }
 
@@ -84,7 +87,6 @@ export const initWebchat = async () => {
     preEngagementConfig: currentConfig.preEngagementConfig,
     context: {
       ip,
-      contactType: currentConfig.contactType,
     },
     colorTheme: {
       overrides: {
@@ -139,26 +141,24 @@ export const initWebchat = async () => {
   // Hide first message ("AutoFirstMessage", sent to create a new task)
   FlexWebChat.MessageList.Content.remove('0');
 
+  addContactIdentifierToContext(manager);
+
   // Posting question from preengagement form as users first chat message
   FlexWebChat.Actions.addListener('afterStartEngagement', async (payload) => {
-    const { language, email } = payload.formData;
+    const { language } = payload.formData;
 
     // Here we collect caller language (from preEngagement select) and change UI language
     changeLanguageWebChat(language);
 
     const channel = await chatChannel(manager);
 
-    // Currently only ip and email are sent as contact to be used for identifying a contact by in flex. When more possible contact types are added, this logic will need to be updated
-    const contactConfig = currentConfig.contactType === 'email' ? email : ip;
-
-    await setChannelAfterStartEngagement(channel, manager, contactConfig);
+    await setChannelAfterStartEngagement(channel, manager);
     await subscribeToChannel(manager, channel);
   });
 
   FlexWebChat.Actions.addListener('afterRestartEngagement', (payload) => {
     if (payload.exit) {
       setTimeout(() => window.open('https://google.com', '_self'), 1000);
-    } else {
     }
   });
 

@@ -54,7 +54,7 @@ const preEngagementConfig: PreEngagementConfig = {
         type: "InputItem",
         attributes:
         {
-          name: "email",
+          name: "contactIdentifier",
           type: "email",
           required: true,
           readOnly: false
