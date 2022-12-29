@@ -18,7 +18,6 @@ import { subscribeToChannel } from './task';
 import { addContactIdentifierToContext } from './contact-identifier';
 
 updateZIndex();
-applyMobileOptimization();
 
 const currentConfig = getCurrentConfig();
 const { defaultLanguage, translations } = currentConfig;
@@ -171,4 +170,6 @@ export const initWebchat = async () => {
 
   // Render WebChat
   webchat.init();
+
+  applyMobileOptimization(manager);
 };
