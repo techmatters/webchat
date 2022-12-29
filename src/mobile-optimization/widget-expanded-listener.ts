@@ -8,7 +8,6 @@ export const WIDGET_EXPANDED_CLASS = 'AseloWidget-Expanded';
  */
 function addOrRemoveWidgetExpandedClass(manager: FlexWebChat.Manager) {
   const entryPointButton = document.querySelector<HTMLButtonElement>('button.Twilio-EntryPoint');
-  console.log({ manager, entryPointButton });
   if (!entryPointButton) {
     return;
   }
