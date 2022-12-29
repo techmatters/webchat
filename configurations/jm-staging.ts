@@ -1,9 +1,10 @@
-import { PreEngagementConfig, Translations, Configuration, MapHelplineLanguage } from './types';
+import { PreEngagementConfig, Translations, Configuration, MapHelplineLanguage, ContactType } from './types';
 
 const accountSid = 'ACbc27263c18e621f3deb57cf1998a4e04';
 const flexFlowSid = 'FOfe4a6c70afb6460dff8a7c2b1503b7aa';
 const defaultLanguage = 'en-US';
 const captureIp = true;
+const contactType: ContactType = 'ip';
 
 const translations: Translations = {
   'en-US': {
@@ -56,4 +57,5 @@ export const config: Configuration = {
   mapHelplineLanguage,
   memberDisplayOptions,
   captureIp,
+  contactType
 };

@@ -15,6 +15,7 @@ import { getChangeLanguageWebChat } from './language';
 import { applyMobileOptimization } from './mobile-optimization';
 import { aseloReducer } from './aselo-webchat-state';
 import { subscribeToChannel } from './task';
+import { addContactIdentifierToContext } from './contact-identifier';
 
 updateZIndex();
 applyMobileOptimization();
@@ -59,16 +60,17 @@ const setChannelOnCreateWebChat = async (channel: Channel, manager: FlexWebChat.
   setListenerToUnlockInput(channel, manager);
 };
 
-const setChannelAfterStartEngagement = async (channel: Channel, manager: FlexWebChat.Manager, ip: string = '') => {
+const setChannelAfterStartEngagement = async (channel: Channel, manager: FlexWebChat.Manager) => {
   setListenerToUnlockInput(channel, manager);
 
+  const { contactIdentifier } = manager.configuration.context;
+
   // Generate task by sending empty message (hidden from the UI above)
-  const message = `${translations[initialLanguage].AutoFirstMessage} ${ip}`;
+  const message = `${translations[initialLanguage].AutoFirstMessage} ${contactIdentifier}`;
   channel.sendMessage(message);
 };
 export const initWebchat = async () => {
   let ip: string | undefined;
-
   if (currentConfig.captureIp) {
     ip = await getUserIp();
   }
@@ -139,6 +141,8 @@ export const initWebchat = async () => {
   // Hide first message ("AutoFirstMessage", sent to create a new task)
   FlexWebChat.MessageList.Content.remove('0');
 
+  addContactIdentifierToContext(manager);
+
   // Posting question from preengagement form as users first chat message
   FlexWebChat.Actions.addListener('afterStartEngagement', async (payload) => {
     const { language } = payload.formData;
@@ -147,14 +151,14 @@ export const initWebchat = async () => {
     changeLanguageWebChat(language);
 
     const channel = await chatChannel(manager);
-    await setChannelAfterStartEngagement(channel, manager, ip);
+
+    await setChannelAfterStartEngagement(channel, manager);
     await subscribeToChannel(manager, channel);
   });
 
   FlexWebChat.Actions.addListener('afterRestartEngagement', (payload) => {
     if (payload.exit) {
       setTimeout(() => window.open('https://google.com', '_self'), 1000);
-    } else {
     }
   });
 
