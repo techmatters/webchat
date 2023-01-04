@@ -1,5 +1,5 @@
 /* eslint-disable react/require-default-props */
-import React from 'react';
+import React, { useState } from 'react';
 import { Template } from '@twilio/flex-webchat-ui';
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
 
@@ -14,14 +14,19 @@ type Props = {
 };
 
 export default function EndChat({ channelSid, token, language, action }: Props) {
+  const [disabled, setDisabled] = useState(false);
+
   // Serverless call to end chat
   const handleEndChat = async () => {
     switch (action) {
       case 'finishTask':
         try {
+          setDisabled(true);
           await finishChatTask(channelSid, token, language);
         } catch (error) {
           console.log(error);
+        } finally {
+          setDisabled(false);
         }
         return;
       case 'restartEngagement':
@@ -31,7 +36,7 @@ export default function EndChat({ channelSid, token, language, action }: Props) 
   };
   return (
     <EndChatWrapper>
-      <StyledEndButton onClick={handleEndChat}>
+      <StyledEndButton onClick={handleEndChat} disabled={disabled}>
         <Template code="EndChatButtonLabel" />
       </StyledEndButton>
     </EndChatWrapper>
