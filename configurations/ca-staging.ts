@@ -121,7 +121,7 @@ const contactType: ContactType = 'ip';
           },
           options: [
             {
-              value: 'asexual',
+              value: 'Asexual',
               label: 'Asexual',
               selected: true,
             },
