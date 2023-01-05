@@ -25,7 +25,7 @@ const preEngagementConfig: PreEngagementConfig = {
         type: "InputItem",
         label: "Edad",
         attributes: {
-          name: "edad",
+          name: "age",
           type: "text",
           placeholder: "Edad",
           required: true,
