@@ -25,7 +25,7 @@ const preEngagementConfig: PreEngagementConfig = {
         type: "InputItem",
         label: "Edad",
         attributes: {
-          name: "edad",
+          name: "age",
           type: "text",
           placeholder: "Edad",
           required: true,
@@ -42,22 +42,22 @@ const preEngagementConfig: PreEngagementConfig = {
         },
         options: [
           {
-            value: 'masculino',
+            value: 'Masculino',
             label: 'Masculino',
             selected: true,
           },
           {
-            value: 'femenino',
+            value: 'Femenino',
             label: 'Femenino',
             selected: false,
           },
           {
-            value: 'otro',
+            value: 'Otro',
             label: 'Otro',
             selected: false,
           },
           {
-            value: 'prefieroNoDecir',
+            value: 'PrefieroNoDecir',
             label: 'Prefiero no decir',
             selected: false,
           },
