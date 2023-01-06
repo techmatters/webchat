@@ -11,9 +11,8 @@ import {
   const defaultLanguage = 'en-US';
   const captureIp = false;
   const checkOpenHours = true;
-const contactType: ContactType = 'ip';
+  const contactType: ContactType = 'ip';
 
-  
   const translations: Translations = {
     'en-US': {
       MessageInputDisabledReasonHold:
@@ -121,7 +120,7 @@ const contactType: ContactType = 'ip';
           },
           options: [
             {
-              value: 'asexual',
+              value: 'Asexual',
               label: 'Asexual',
               selected: true,
             },
