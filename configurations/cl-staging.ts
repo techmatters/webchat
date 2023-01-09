@@ -57,7 +57,7 @@ const preEngagementConfig: PreEngagementConfig = {
             selected: false,
           },
           {
-            value: 'PrefieroNoDecir',
+            value: 'Prefiero no decir',
             label: 'Prefiero no decir',
             selected: false,
           },
