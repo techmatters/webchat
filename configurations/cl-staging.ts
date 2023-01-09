@@ -42,22 +42,22 @@ const preEngagementConfig: PreEngagementConfig = {
         },
         options: [
           {
-            value: 'masculino',
+            value: 'Masculino',
             label: 'Masculino',
             selected: true,
           },
           {
-            value: 'femenino',
+            value: 'Femenino',
             label: 'Femenino',
             selected: false,
           },
           {
-            value: 'otro',
+            value: 'Otro',
             label: 'Otro',
             selected: false,
           },
           {
-            value: 'prefieroNoDecir',
+            value: 'Prefiero no decir',
             label: 'Prefiero no decir',
             selected: false,
           },
