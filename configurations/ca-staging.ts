@@ -39,7 +39,7 @@ import {
           type: "InputItem",
           label: "Nickname (please do not share your real name)",
           attributes: {
-            name: "friendlyName",
+            name: "nickname",
             type: "text",
             placeholder: "Guest",
             required: true,
