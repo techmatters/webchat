@@ -1,10 +1,12 @@
-import { PreEngagementConfig, Translations, Configuration, MapHelplineLanguage } from './types';
+import { PreEngagementConfig, Translations, Configuration, MapHelplineLanguage, ContactType } from './types';
 
 const accountSid = 'ACd8a2e89748318adf6ddff7df6948deaf';
 const flexFlowSid = 'FO8c2d9c388e7feba8b08d06a4bc3f69d1';
 const defaultLanguage = 'en-US';
 const captureIp = true;
 const checkOpenHours = true;
+
+const contactType: ContactType = 'email';
 
 const translations: Translations = {
   'en-US': {
@@ -47,6 +49,17 @@ const preEngagementConfig: PreEngagementConfig = {
   description: "Let's get started",
   fields:
     [
+      {
+        label: "What is your email?",
+        type: "InputItem",
+        attributes:
+        {
+          name: "contactIdentifier",
+          type: "email",
+          required: true,
+          readOnly: false
+        },
+      },
       {
         label: "What is your helpline?",
         type: "SelectItem",
@@ -125,4 +138,5 @@ export const config: Configuration = {
   checkOpenHours,
   mapHelplineLanguage,
   captureIp,
+  contactType
 };

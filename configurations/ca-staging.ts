@@ -3,6 +3,7 @@ import {
     Translations,
     Configuration,
     MapHelplineLanguage,
+    ContactType
   } from './types';
   
   const accountSid = 'ACeb335f4685aa874fddf00cdd7c2946bd';
@@ -10,7 +11,7 @@ import {
   const defaultLanguage = 'en-US';
   const captureIp = false;
   const checkOpenHours = false;
-  
+  const contactType: ContactType = 'ip';
   const translations: Translations = {
     'en-US': {
       MessageInputDisabledReasonHold:
@@ -37,7 +38,7 @@ import {
           type: "InputItem",
           label: "Nickname (please do not share your real name)",
           attributes: {
-            name: "friendlyName",
+            name: "nickname",
             type: "text",
             placeholder: "Guest",
             required: true,
@@ -118,7 +119,7 @@ import {
           },
           options: [
             {
-              value: 'asexual',
+              value: 'Asexual',
               label: 'Asexual',
               selected: true,
             },
@@ -681,5 +682,6 @@ import {
     mapHelplineLanguage,
     memberDisplayOptions,
     captureIp,
+    contactType
   };
   

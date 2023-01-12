@@ -1,9 +1,10 @@
-import {PreEngagementConfig,Translations,Configuration,MapHelplineLanguage} from './types'
+import {PreEngagementConfig,Translations,Configuration,MapHelplineLanguage,ContactType} from './types'
 
 const accountSid = 'AC6ca34b61e7bf2d7cf8b8ca24e7efe65f';
 const flexFlowSid = 'FO11691bbc019d7c4c4b9229fedc77961d';
 const defaultLanguage = 'es-CL';
 const captureIp = true;
+const contactType: ContactType = 'email';
 
 const preEngagementConfig: PreEngagementConfig = {
   description: "Bievenido a Línea Libre",
@@ -13,8 +14,8 @@ const preEngagementConfig: PreEngagementConfig = {
         type: "InputItem",
         label: "Email",
         attributes: {
-          name: "email",
-          type: "text",
+          name: "contactIdentifier",
+          type: "email",
           placeholder: "Email",
           required: true,
         },
@@ -24,7 +25,7 @@ const preEngagementConfig: PreEngagementConfig = {
         type: "InputItem",
         label: "Edad",
         attributes: {
-          name: "edad",
+          name: "age",
           type: "text",
           placeholder: "Edad",
           required: true,
@@ -41,22 +42,22 @@ const preEngagementConfig: PreEngagementConfig = {
         },
         options: [
           {
-            value: 'masculino',
+            value: 'Masculino',
             label: 'Masculino',
             selected: true,
           },
           {
-            value: 'femenino',
+            value: 'Femenino',
             label: 'Femenino',
             selected: false,
           },
           {
-            value: 'otro',
+            value: 'Otro',
             label: 'Otro',
             selected: false,
           },
           {
-            value: 'prefieroNoDecir',
+            value: 'Prefiero no decir',
             label: 'Prefiero no decir',
             selected: false,
           },
@@ -132,4 +133,5 @@ export const config: Configuration = {
   mapHelplineLanguage,
   memberDisplayOptions,
   captureIp,
+  contactType,
 };
