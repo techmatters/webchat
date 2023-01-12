@@ -4,7 +4,7 @@ const accountSid = 'ACbdbee34ef7d099e71cf095d540ff3270';
 const flexFlowSid = 'FO9d20dbe99abbc3b9ad7709f961b0fe95';
 const defaultLanguage = 'ukr-HU';
 const captureIp = false;
-const checkOpenHours = true;
+const checkOpenHours = false;
 const contactType: ContactType = 'ip';
 
 const translations: Translations = {

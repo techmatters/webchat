@@ -4,9 +4,8 @@ const accountSid = 'AC16dd71c6fd135ee250bd213ad1efa2e8';
 const flexFlowSid = 'FOd655fd61e9e7ac6faf9d0be97a49863b';
 const defaultLanguage = 'en-US';
 const captureIp = true;
-const checkOpenHours = true;
+const checkOpenHours = false;
 const contactType: ContactType = 'ip';
-
 const translations: Translations = {
   'en-US': {
     WelcomeMessage: "Welcome to Childline SA’s Online Counselling Service",

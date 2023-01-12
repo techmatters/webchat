@@ -10,9 +10,8 @@ import {
   const flexFlowSid = 'FO45c6ac308207b8b17bd990eadf5246fe';
   const defaultLanguage = 'en-US';
   const captureIp = false;
-  const checkOpenHours = true;
+  const checkOpenHours = false;
   const contactType: ContactType = 'ip';
-
   const translations: Translations = {
     'en-US': {
       MessageInputDisabledReasonHold:
