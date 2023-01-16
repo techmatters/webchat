@@ -4,7 +4,20 @@ name: Kek Vonal Production release
 
 # Controls when the action will run.
 on:
-  workflow_dispatch
+  workflow_dispatch:
+    inputs:
+      account-sid:
+        description: 'Twilio Account SID'
+        required: true
+      aws-access-key-id:
+        description: 'AWS credentials for Aselo user'
+        required: true
+      aws-secret-access-key:
+        description: 'AWS credentials for Aselo user'
+        required: true
+      aws-region:
+        description: 'AWS region where Aselo documents bucket is hosted'
+        required: true
   
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -15,6 +28,34 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      # Setup credentials to access AWS for parameters
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ inputs.aws-access-key-id }}
+          aws-secret-access-key: ${{ inputs.aws-secret-access-key }}
+          aws-region: ${{ inputs.aws-region }}
+      # Get AWS parameters
+      - name: Set GITHUB_ACTIONS_SLACK_BOT_TOKEN
+        uses: "marvinpinto/action-inject-ssm-secrets@latest"
+        with:
+          ssm_parameter: "GITHUB_ACTIONS_SLACK_BOT_TOKEN"
+          env_variable_name: "GITHUB_ACTIONS_SLACK_BOT_TOKEN"
+      - name: Set ASELO_DEPLOYS_CHANNEL_ID
+        uses: "marvinpinto/action-inject-ssm-secrets@latest"
+        with:
+          ssm_parameter: "ASELO_DEPLOYS_CHANNEL_ID"
+          env_variable_name: "ASELO_DEPLOYS_CHANNEL_ID"
+      - name: Set API_KEY
+        uses: "marvinpinto/action-inject-ssm-secrets@latest"
+        with:
+          ssm_parameter: "/production/webchat/${{ inputs.account-sid }}/api-key"
+          env_variable_name: "API_KEY"
+      - name: Set SERVERLESS_URL
+        uses: "marvinpinto/action-inject-ssm-secrets@latest"
+        with:
+          ssm_parameter: "/production/webchat/${{ inputs.account-sid }}/serverless-url"
+          env_variable_name: "SERVERLESS_URL"
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       - name: Use Node.js
@@ -28,8 +69,8 @@ jobs:
       - name: Fill secret.ts
         run: |
           cat <<EOT >> ./private/secret.ts
-          export const API_KEY = '${{ secrets.IP_FIND_API_KEY }}';
-          export const SERVERLESS_URL = '${{ secrets.PROD_HU_SERVERLESS_URL }}';
+          export const API_KEY = '$/production/webchat/${{ inputs.account-sid }}/api-key';
+          export const SERVERLESS_URL = '$/production/webchat/${{ inputs.account-sid }}/serverless-url';
           EOT
       # Run a single command using the runners shell to install dependencies 
       - name: Install dependencies
@@ -53,25 +94,6 @@ jobs:
           AWS_REGION: '${{ secrets.AWS_DEFAULT_REGION }}'
           SOURCE_DIR: 'build'
 
-      # Get AWS parameters
-      - name: Set GITHUB_ACTIONS_SLACK_BOT_TOKEN
-        uses: "marvinpinto/action-inject-ssm-secrets@latest"
-        with:
-          ssm_parameter: "GITHUB_ACTIONS_SLACK_BOT_TOKEN"
-          env_variable_name: "GITHUB_ACTIONS_SLACK_BOT_TOKEN"
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: '${{ secrets.AWS_DEFAULT_REGION }}'
-      - name: Set ASELO_DEPLOYS_CHANNEL_ID
-        uses: "marvinpinto/action-inject-ssm-secrets@latest"
-        with:
-          ssm_parameter: "ASELO_DEPLOYS_CHANNEL_ID"
-          env_variable_name: "ASELO_DEPLOYS_CHANNEL_ID"
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: '${{ secrets.AWS_DEFAULT_REGION }}'
       # Send Slack notifying success
       - name: Slack Aselo channel
         id: slack
