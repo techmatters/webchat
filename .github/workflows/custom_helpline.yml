@@ -31,6 +31,8 @@ jobs:
         uses: "ASzc/change-string-case-action@v5"
         with:
           string: '${{ inputs.helpline_code }}'
+      - id: step2
+        run: echo ${{ steps.string.outputs.lowercase }}
       # Set SHORT_ENVIRONMENT_CODE
       - name: Production Environment
         if: inputs.environment == 'production'
