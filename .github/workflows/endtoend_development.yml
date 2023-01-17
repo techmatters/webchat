@@ -11,7 +11,5 @@ jobs:
   deploy:
     uses: ./.github/workflows/custom_helpline.yml
     with:
-      account-sid: /development/twilio/E2E/account_sid
       environment: development
-      build-env: e2e-dev
-      aws-s3-bucket: tl-public-chat-e2e-dev
+      helpline_code: E2E

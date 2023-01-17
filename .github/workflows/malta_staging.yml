@@ -11,7 +11,5 @@ jobs:
   deploy:
     uses: ./.github/workflows/custom_helpline.yml
     with:
-      account-sid: /staging/twilio/MT/account_sid
       environment: staging
-      build-env: mt-staging
-      aws-s3-bucket: tl-public-chat-mt-stg
+      helpline_code: MT

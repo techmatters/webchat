@@ -11,7 +11,5 @@ jobs:
   deploy:
     uses: ./.github/workflows/custom_helpline.yml
     with:
-      account-sid: /staging/twilio/JM/account_sid
       environment: staging
-      build-env: jm-staging
-      aws-s3-bucket: tl-public-chat-jm-stg
+      helpline_code: JM

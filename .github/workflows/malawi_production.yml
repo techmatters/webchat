@@ -11,7 +11,5 @@ jobs:
   deploy:
     uses: ./.github/workflows/custom_helpline.yml
     with:
-      account-sid: /production/twilio/MW/account_sid
       environment: production
-      build-env: mw-prod
-      aws-s3-bucket: tl-public-chat-mw-prod
+      helpline_code: MW
