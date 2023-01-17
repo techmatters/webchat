@@ -30,7 +30,7 @@ jobs:
       - name: Change String Case for Helpline Code
         uses: "ASzc/change-string-case-action@v5"
         with:
-          helpline_code: ${{ inputs.helpline_code }}
+          helpline_code: '${{ inputs.helpline_code }}'
       # Set SHORT_ENVIRONMENT_CODE
       - name: Production Environment
         if: inputs.environment == 'production'
@@ -43,6 +43,24 @@ jobs:
         run: echo "SHORT_ENVIRONMENT_CODE=dev" >> $GITHUB_ENV
 
       # Get AWS parameters
+      - name: Set GITHUB_ACTIONS_SLACK_BOT_TOKEN
+        uses: "marvinpinto/action-inject-ssm-secrets@latest"
+        with:
+          ssm_parameter: "GITHUB_ACTIONS_SLACK_BOT_TOKEN"
+          env_variable_name: "GITHUB_ACTIONS_SLACK_BOT_TOKEN"
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: '${{ secrets.AWS_DEFAULT_REGION }}'
+      - name: Set ASELO_DEPLOYS_CHANNEL_ID
+        uses: "marvinpinto/action-inject-ssm-secrets@latest"
+        with:
+          ssm_parameter: "ASELO_DEPLOYS_CHANNEL_ID"
+          env_variable_name: "ASELO_DEPLOYS_CHANNEL_ID"
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: '${{ secrets.AWS_DEFAULT_REGION }}'
       - name: Set IP_FIND_API_KEY
         uses: "marvinpinto/action-inject-ssm-secrets@latest"
         with:
@@ -51,7 +69,7 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: '${{ secrets.AWS_DEFAULT_REGION }}'
+          AWS_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
       - name: Set ACCOUNT_SID
         uses: "marvinpinto/action-inject-ssm-secrets@latest"
         with:
@@ -118,24 +136,6 @@ jobs:
           AWS_REGION: '${{ secrets.AWS_DEFAULT_REGION }}'
           SOURCE_DIR: 'build'
 
-      - name: Set GITHUB_ACTIONS_SLACK_BOT_TOKEN
-        uses: "marvinpinto/action-inject-ssm-secrets@latest"
-        with:
-          ssm_parameter: "GITHUB_ACTIONS_SLACK_BOT_TOKEN"
-          env_variable_name: "GITHUB_ACTIONS_SLACK_BOT_TOKEN"
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: '${{ secrets.AWS_DEFAULT_REGION }}'
-      - name: Set ASELO_DEPLOYS_CHANNEL_ID
-        uses: "marvinpinto/action-inject-ssm-secrets@latest"
-        with:
-          ssm_parameter: "ASELO_DEPLOYS_CHANNEL_ID"
-          env_variable_name: "ASELO_DEPLOYS_CHANNEL_ID"
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: '${{ secrets.AWS_DEFAULT_REGION }}'
       # Send Slack notifying success
       - name: Slack Aselo channel
         id: slack
