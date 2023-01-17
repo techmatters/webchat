@@ -32,8 +32,6 @@ jobs:
         uses: "ASzc/change-string-case-action@v5"
         with:
           string: '${{ inputs.helpline_code }}'
-      - id: step2
-        run: echo ${{ steps.helpline_code.outputs.lowercase }}
       # Set SHORT_ENVIRONMENT_CODE
       - name: Production Environment
         if: inputs.environment == 'production'
@@ -98,13 +96,13 @@ jobs:
       - name: Install dependencies
         run: npm install
       # Get the blockedIps for as-dev account
-      - name: Get blockedIps
-        if: ${{ steps.helpline_code.outputs.lowercase }}-$SHORT_ENVIRONMENT_CODE == 'as-dev'
+      - name: Get blockedIps for as-dev
+        if: ${{ steps.helpline_code.outputs.lowercase }}-$SHORT_ENVIRONMENT_CODE == as-dev
         run: curl -o ./src/blockedIps.json https://tl-public-chat-as-dev.s3.amazonaws.com/blockedIps.json
         shell: bash
       # Get the blockedIps for jm-prod account
-      - name: Get blockedIps
-        if: ${{ steps.helpline_code.outputs.lowercase }}-$SHORT_ENVIRONMENT_CODE == 'jm-prod'
+      - name: Get blockedIps for jm-prod
+        if: ${{ steps.helpline_code.outputs.lowercase }}-$SHORT_ENVIRONMENT_CODE == jm-prod
         run: curl -o ./src/blockedIps.json https://tl-public-chat-jm-prod.s3.amazonaws.com/blockedIps.json
         shell: bash
       # Build and compile Webchat
@@ -132,6 +130,6 @@ jobs:
         uses: slackapi/slack-github-action@v1.14.0
         with:
           channel-id: ${{ env.ASELO_DEPLOYS_CHANNEL_ID }}
-          slack-message: "`[WEBCHAT]` Deployment to `${{inputs.helpline_code}}_${{inputs.environment}}` of ${{ github.ref_type }} `${{ github.ref_name }}` requested by `${{ github.triggering_actor }}` completed using workflow '${{ github.workflow }}' with SHA ${{ github.sha }} :rocket:."
+          slack-message: "`[WEBCHAT]` Deployment to `${{inputs.helpline_code}}-${{inputs.environment}}` of ${{ github.ref_type }} `${{ github.ref_name }}` requested by `${{ github.triggering_actor }}` completed using workflow '${{ github.workflow }}' with SHA ${{ github.sha }} :rocket:."
         env:
           SLACK_BOT_TOKEN: ${{ env.GITHUB_ACTIONS_SLACK_BOT_TOKEN }}
