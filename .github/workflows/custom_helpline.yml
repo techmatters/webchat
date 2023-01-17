@@ -107,6 +107,16 @@ jobs:
       # Run a single command using the runners shell to install dependencies 
       - name: Install dependencies
         run: npm install
+      # Get the blockedIps for as-dev account
+      - name: Get blockedIps
+        if: ${{ steps.helpline_code.outputs.lowercase }}-$SHORT_ENVIRONMENT_CODE === 'as-dev'
+        run: curl -o ./src/blockedIps.json https://tl-public-chat-as-dev.s3.amazonaws.com/blockedIps.json
+        shell: bash
+      # Get the blockedIps for jm-prod account
+      - name: Get blockedIps
+        if: ${{ steps.helpline_code.outputs.lowercase }}-$SHORT_ENVIRONMENT_CODE === 'jm-prod'
+        run: curl -o ./src/blockedIps.json https://tl-public-chat-jm-prod.s3.amazonaws.com/blockedIps.json
+        shell: bash
       # Build and compile Webchat
       - name: Run build command
         run: npm run build:${{ steps.helpline_code.outputs.lowercase }}-${{ inputs.environment }}
@@ -120,7 +130,7 @@ jobs:
         with:
           args: --acl public-read --follow-symlinks --exclude '*' --include '*.js' --content-type 'application/javascript; charset=utf-8'
         env:
-          AWS_S3_BUCKET: tl-public-chat-${{ steps.helpline_code.outputs.lowercase }}-'$SHORT_ENVIRONMENT_CODE'
+          AWS_S3_BUCKET: tl-public-chat-${{ steps.helpline_code.outputs.lowercase }}-$SHORT_ENVIRONMENT_CODE
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: '${{ secrets.AWS_DEFAULT_REGION }}'
