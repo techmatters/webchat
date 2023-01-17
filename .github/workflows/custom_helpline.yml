@@ -33,13 +33,13 @@ jobs:
           helpline_code: ${{ inputs.helpline_code }}
       # Set SHORT_ENVIRONMENT_CODE
       - name: Production Environment
-        if: inputs.environment === 'production'
+        if: inputs.environment == 'production'
         run: echo "SHORT_ENVIRONMENT_CODE=prod" >> $GITHUB_ENV
       - name: Staging Environment
-        if: inputs.environment === 'staging'
+        if: inputs.environment == 'staging'
         run: echo "SHORT_ENVIRONMENT_CODE=stg" >> $GITHUB_ENV
       - name: Development Environment
-        if: inputs.environment === 'development'
+        if: inputs.environment == 'development'
         run: echo "SHORT_ENVIRONMENT_CODE=dev" >> $GITHUB_ENV
 
       # Get AWS parameters
