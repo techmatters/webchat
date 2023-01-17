@@ -73,7 +73,7 @@ jobs:
       - name: Set SERVERLESS_URL
         uses: "marvinpinto/action-inject-ssm-secrets@latest"
         with:
-          ssm_parameter: "/${{ inputs.environment }}/serverless/${{ env.ACCOUNT_SID }}/base-url"
+          ssm_parameter: "/${{ inputs.environment }}/serverless/${{ env.ACCOUNT_SID }}/base_url"
           env_variable_name: "SERVERLESS_URL"
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2

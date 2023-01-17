@@ -10,6 +10,7 @@ on:
 jobs:
   deploy:
     uses: ./.github/workflows/custom_helpline.yml
+    secrets: inherit
     with:
       environment: development
       helpline_code: AS
