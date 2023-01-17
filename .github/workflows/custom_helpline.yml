@@ -28,11 +28,12 @@ jobs:
     steps:
       # Change String Case for Helpline Code
       - name: Change String Case for Helpline Code
+        id: helpline_code
         uses: "ASzc/change-string-case-action@v5"
         with:
           string: '${{ inputs.helpline_code }}'
       - id: step2
-        run: echo ${{ steps.string.outputs.lowercase }}
+        run: echo ${{ steps.helpline_code.outputs.lowercase }}
       # Set SHORT_ENVIRONMENT_CODE
       - name: Production Environment
         if: inputs.environment == 'production'
@@ -98,17 +99,17 @@ jobs:
         run: npm install
       # Get the blockedIps for as-dev account
       - name: Get blockedIps
-        if: ${{ steps.string.outputs.lowercase }}-$SHORT_ENVIRONMENT_CODE == 'as-dev'
+        if: ${{ steps.helpline_code.outputs.lowercase }}-$SHORT_ENVIRONMENT_CODE == 'as-dev'
         run: curl -o ./src/blockedIps.json https://tl-public-chat-as-dev.s3.amazonaws.com/blockedIps.json
         shell: bash
       # Get the blockedIps for jm-prod account
       - name: Get blockedIps
-        if: ${{ steps.string.outputs.lowercase }}-$SHORT_ENVIRONMENT_CODE == 'jm-prod'
+        if: ${{ steps.helpline_code.outputs.lowercase }}-$SHORT_ENVIRONMENT_CODE == 'jm-prod'
         run: curl -o ./src/blockedIps.json https://tl-public-chat-jm-prod.s3.amazonaws.com/blockedIps.json
         shell: bash
       # Build and compile Webchat
       - name: Run build command
-        run: npm run build:${{ steps.string.outputs.lowercase }}-${{ inputs.environment }}
+        run: npm run build:${{ steps.helpline_code.outputs.lowercase }}-${{ inputs.environment }}
       # Rename the builded js file
       - name: Rename js
         run: mv bundle.js aselo-chat.min.js
@@ -119,7 +120,7 @@ jobs:
         with:
           args: --acl public-read --follow-symlinks --exclude '*' --include '*.js' --content-type 'application/javascript; charset=utf-8'
         env:
-          AWS_S3_BUCKET: tl-public-chat-${{ steps.string.outputs.lowercase }}-$SHORT_ENVIRONMENT_CODE
+          AWS_S3_BUCKET: tl-public-chat-${{ steps.helpline_code.outputs.lowercase }}-$SHORT_ENVIRONMENT_CODE
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: '${{ secrets.AWS_DEFAULT_REGION }}'
