@@ -1,4 +1,4 @@
-import { PreEngagementConfig, Translations, Configuration, MapHelplineLanguage, ContactType } from './types';
+import { PreEngagementConfig, Translations, Configuration, MapHelplineLanguage, ContactType } from '../types';
 
 const accountSid = 'AC874af45ec4a696d5d4dca07b0036e2bf';
 const flexFlowSid = 'FO7fb4e9816507d650ddc221f27d2d8927';

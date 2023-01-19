@@ -1,6 +1,6 @@
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
 
-import { getCurrentConfig } from '../../configurations';
+import { getCurrentConfig } from '../aselo-webchat';
 
 /**
  * If contentType is 'ip', we get contactIdentifier from the context.

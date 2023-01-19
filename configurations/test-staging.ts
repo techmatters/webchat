@@ -1,4 +1,4 @@
-import { Configuration } from './types';
+import { Configuration } from '../types';
 import { config as dev } from './za-staging';
 
 const accountSid = 'AC4446284f2248744526e50cb3f135dd7e';

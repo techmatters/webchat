@@ -1,4 +1,4 @@
-import { Configuration } from './types';
+import { Configuration } from '../types';
 import { config as coStaging } from './co-staging';
 
 const accountSid = 'AC520ec62dcfa4ab4105c2f5850caf52b0';

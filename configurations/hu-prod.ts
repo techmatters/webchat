@@ -1,4 +1,4 @@
-import { Configuration } from './types';
+import { Configuration } from '../types';
 import { config as huStaging } from './hu-staging';
 
 const accountSid = 'AC378f491732fc29691b4126a2287cea9a';

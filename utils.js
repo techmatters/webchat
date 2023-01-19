@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 /**
  * Checks that MODE var is 'development' or 'production'.
  * Otherwise, throws an error.
@@ -12,43 +14,22 @@ function checkMODE(mode) {
 }
 
 /**
- * Checks that CONFIG var is 'dev', 'beta' or 'zm-staging'.
+ * Checks that CONFIG var corresponds to an existing file, and copies it to /src'.
  * Otherwise, throws an error.
  * @param {string} config
  */
 function checkCONFIG(config) {
-  const presets = [
-    'as-development',
-    'test-staging',
-    'as-staging',
-    'zm-staging',
-    'zm-production',
-    'za-staging',
-    'za-production',
-    'et-staging',
-    'mw-staging',
-    'et-production',
-    'mw-production',
-    'jm-staging',
-    'jm-production',
-    'ca-staging',
-    'uk-staging',
-    'e2e-development',
-    'co-staging',
-    'co-production',
-    'ro-staging',
-    'hu-staging',
-    'hu-production',
-    'cl-staging',
-    'zw-staging',
-    'pl-staging',
-    'mt-staging',
-    'mt-production',
-  ];
-  const isConfigSet = typeof config !== 'undefined' && presets.includes(config);
-
-  if (!isConfigSet) {
-    throw new Error(`Please set env var CONFIG to ${presets.join(', ')}`);
+  const src = `configurations/${config}.ts`;
+  if (fs.existsSync(src)) {
+    fs.copyFile(src, `src/config.ts`, (error) => {
+      if (error) {
+        throw error;
+      } else {
+        console.log(`src/config.ts filled with config file ${config}`);
+      }
+    });
+  } else {
+    throw new Error(`file config for ${config} not found!`);
   }
 }
 

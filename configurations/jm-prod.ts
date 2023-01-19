@@ -1,4 +1,4 @@
-import { Configuration } from './types';
+import { Configuration } from '../types';
 import { config as jmStaging } from './jm-staging';
 
 const accountSid = 'AC9fd261078d40fcfa06f0e374921af7a5';
