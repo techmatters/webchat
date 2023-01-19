@@ -121,3 +121,5 @@ dist
 
 # secret
 /private/secret.ts
+
+/src/config.ts

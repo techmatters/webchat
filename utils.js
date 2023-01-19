@@ -18,7 +18,7 @@ function checkMODE(mode) {
  * Otherwise, throws an error.
  * @param {string} config
  */
-function checkCONFIG(config) {
+function setConfigFile(config) {
   const src = `configurations/${config}.ts`;
   if (fs.existsSync(src)) {
     fs.copyFile(src, `src/config.ts`, (error) => {
@@ -35,5 +35,5 @@ function checkCONFIG(config) {
 
 module.exports = {
   checkMODE,
-  checkCONFIG,
+  setConfigFile,
 };

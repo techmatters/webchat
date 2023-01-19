@@ -105,9 +105,9 @@ jobs:
         if: ${{ steps.helpline_code.outputs.lowercase }}-$SHORT_ENVIRONMENT_CODE == jm-prod
         run: curl -o ./src/blockedIps.json https://tl-public-chat-jm-prod.s3.amazonaws.com/blockedIps.json
         shell: bash
-      # Build and compile Webchat
+      # Build and compile Webchat using the corresponding config file
       - name: Run build command
-        run: npm run build:${{ steps.helpline_code.outputs.lowercase }}-${{ inputs.environment }}
+        run: CONFIG=${{ steps.helpline_code.outputs.lowercase }}-${{ inputs.environment }} npm run build
       # Rename the builded js file
       - name: Rename js
         run: mv bundle.js aselo-chat.min.js
