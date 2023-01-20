@@ -7,9 +7,9 @@ export type TaskState = {
 
 const initialState: TaskState = {};
 
-const SET_CURRENT_TASK = 'setCurrentTask';
+export const SET_CURRENT_TASK = 'setCurrentTask';
 
-type SetCurrentTaskAction = {
+export type SetCurrentTaskAction = {
   type: typeof SET_CURRENT_TASK;
   newSid: string | undefined;
 };
