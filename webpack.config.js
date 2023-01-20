@@ -68,6 +68,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: 'src/index.html',
+      inject: false, // This prevents webpack from injecting <script defer src="./bundle.js"></script> in the header
     }),
     new BomPlugin(true),
     new webpack.ProvidePlugin({

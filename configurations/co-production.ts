@@ -6,6 +6,7 @@ const flexFlowSid = 'FOf1ace264485595c61b9d926657c105c0';
 
 export const config: Configuration = {
   ...coStaging,
+  checkOpenHours: true,
   accountSid,
   flexFlowSid,
 };

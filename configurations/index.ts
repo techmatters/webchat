@@ -1,8 +1,8 @@
 import { checkCONFIG } from '../utils';
 import { Configuration } from './types';
-import { config as dev } from './dev';
+import { config as asDevelopment } from './dev';
 import { config as testStaging } from './test-staging';
-import { config as beta } from './beta';
+import { config as asStaging } from './beta';
 import { config as zmStaging } from './zm-staging';
 import { config as zmProd } from './zm-prod';
 import { config as zaStaging } from './za-staging';
@@ -31,32 +31,32 @@ const rawConfig = webpack.env.CONFIG;
 checkCONFIG(rawConfig);
 
 type PresetConfig =
-  | 'dev'
+  | 'as-development'
   | 'test-staging'
-  | 'beta'
+  | 'as-staging'
   | 'zm-staging'
-  | 'zm-prod'
+  | 'zm-production'
   | 'za-staging'
-  | 'za-prod'
+  | 'za-production'
   | 'et-staging'
   | 'mw-staging'
-  | 'et-prod'
-  | 'mw-prod'
+  | 'et-production'
+  | 'mw-production'
   | 'jm-staging'
-  | 'jm-prod'
+  | 'jm-production'
   | 'ca-staging'
   | 'uk-staging'
-  | 'e2e-dev'
+  | 'e2e-development'
   | 'co-staging'
   | 'co-production'
   | 'ro-staging'
   | 'hu-staging'
-  | 'hu-prod'
+  | 'hu-production'
   | 'cl-staging'
   | 'zw-staging'
   | 'pl-staging'
   | 'mt-staging'
-  | 'mt-prod';
+  | 'mt-production';
 const config = rawConfig as PresetConfig;
 
 type ConfigMap = {
@@ -64,32 +64,32 @@ type ConfigMap = {
 };
 
 const configMap: ConfigMap = {
-  dev,
+  'as-development': asDevelopment,
   'test-staging': testStaging,
-  beta,
+  'as-staging': asStaging,
   'zm-staging': zmStaging,
-  'zm-prod': zmProd,
+  'zm-production': zmProd,
   'za-staging': zaStaging,
-  'za-prod': zaProd,
+  'za-production': zaProd,
   'et-staging': etStaging,
   'mw-staging': mwStaging,
-  'et-prod': etProd,
-  'mw-prod': mwProd,
+  'et-production': etProd,
+  'mw-production': mwProd,
   'jm-staging': jmStaging,
-  'jm-prod': jmProd,
+  'jm-production': jmProd,
   'ca-staging': caStaging,
   'uk-staging': ukStaging,
-  'e2e-dev': e2eDevelopment,
+  'e2e-development': e2eDevelopment,
   'co-staging': coStaging,
   'co-production': coProd,
   'ro-staging': roStaging,
   'hu-staging': huStaging,
-  'hu-prod': huProd,
+  'hu-production': huProd,
   'cl-staging': clStaging,
   'zw-staging': zwStaging,
   'pl-staging': plStaging,
   'mt-staging': mtStaging,
-  'mt-prod': mtProd,
+  'mt-production': mtProd,
 };
 
 export const getCurrentConfig = (): Configuration => configMap[config];

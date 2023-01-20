@@ -1,5 +1,4 @@
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
-import { StyledButton } from '@twilio/flex-webchat-ui';
 
 const { styled } = FlexWebChat;
 
@@ -14,6 +13,7 @@ export const StyledEndButton = styled('button')`
   background-color: #1876d0;
   color: #fff;
   width: 100%;
+  flex-grow: 1;
   height: 29px;
   font-weight: bold;
   border: none;
@@ -59,7 +59,7 @@ export const ExitDescText = styled('span')`
 
 export const StyledQuickExitButton = styled('button')`
   display: flex;
-  margin: 3px 8px;
+  margin: 3px 10px 0 0;
   background-color: #fbf2f2;
   color: #d22f2f;
   place-items: center;
@@ -67,6 +67,7 @@ export const StyledQuickExitButton = styled('button')`
   justify-content: center;
   font-size: 11px;
   min-width: 50%;
+  flex-grow: 1;
   height: 29px;
   font-weight: bold;
   border: none;
