@@ -35,16 +35,16 @@ jobs:
         run: npm run build:as-development
   lint:
     runs-on: ubuntu-latest
-      steps:
-        uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
       - name: Install dependencies
         run: npm install
       - name: Run ESLint
         run: npm run lint --if-present
   test:
     runs-on: ubuntu-latest
-      steps:
-        uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
       - name: Install dependencies
         run: npm install
       - name: Run Tests
