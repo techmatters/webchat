@@ -6,7 +6,7 @@ const defaultLanguage = 'en-US';
 const captureIp = true;
 const checkOpenHours = true;
 
-const contactType: ContactType = 'email';
+const contactType: ContactType = 'ip';
 
 const translations: Translations = {
   'en-US': {
@@ -49,17 +49,6 @@ const preEngagementConfig: PreEngagementConfig = {
   description: "Let's get started",
   fields:
     [
-      {
-        label: "What is your email?",
-        type: "InputItem",
-        attributes:
-        {
-          name: "contactIdentifier",
-          type: "email",
-          required: true,
-          readOnly: false
-        },
-      },
       {
         label: "What is your helpline?",
         type: "SelectItem",
