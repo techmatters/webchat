@@ -31,7 +31,7 @@
     "build:pl-staging": "cross-env MODE=production CONFIG=pl-staging npm run build",
     "build:mt-staging": "cross-env MODE=production CONFIG=mt-staging npm run build",
     "build:mt-production": "cross-env MODE=production CONFIG=mt-production npm run build",
-    "lint": "eslint --ext js --ext jsx --ext ts --ext tsx src/ tests/ ./",
+    "lint": "eslint --ext js --ext jsx --ext ts --ext tsx src/ tests/",
     "lint:fix": "npm run lint -- --fix",
     "test": "jest"
   },
