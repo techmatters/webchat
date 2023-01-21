@@ -31,8 +31,8 @@ module.exports = {
           options: {
             presets: [
               [
+                // '@babel/preset-typescript',
                 '@babel/preset-react',
-                '@babel/preset-typescript',
                 {
                   targets: 'defaults',
                 },
