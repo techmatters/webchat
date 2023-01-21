@@ -18,5 +18,8 @@
     "react/display-name": "off",
     "no-negated-condition": "off",
     "no-warning-comments": "off"
-  }
+  },
+  "ignorePatterns": [
+    "private/"
+  ]
 }
