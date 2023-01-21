@@ -30,13 +30,8 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: [
-              [
-                // '@babel/preset-typescript',
-                '@babel/preset-react',
-                {
-                  targets: 'defaults',
-                },
-              ],
+              '@babel/preset-typescript',
+              ['@babel/preset-react', { targets: 'defaults' }],
             ],
           },
         },
