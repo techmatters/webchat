@@ -6,7 +6,6 @@ const defaultLanguage = 'en-US';
 const captureIp = true;
 const contactType: ContactType = 'ip';
 
-
 const translations: Translations = {
   'en-US': {
     MessageInputDisabledReasonHold: "We'll transfer you now. Please hold for a counsellor.",
@@ -62,5 +61,5 @@ export const config: Configuration = {
   mapHelplineLanguage,
   memberDisplayOptions,
   captureIp,
-  contactType
+  contactType,
 };

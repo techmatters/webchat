@@ -10,111 +10,108 @@ const contactType: ContactType = 'ip';
 
 const translations: Translations = {
   'en-US': {
-    WelcomeMessage: "Welcome to Aselo!",
-    MessageCanvasTrayContent:"",
-    MessageInputDisabledReasonHold: "Please hold for a counselor.",
-    AutoFirstMessage: "Incoming webchat contact from",
+    WelcomeMessage: 'Welcome to Aselo!',
+    MessageCanvasTrayContent: '',
+    MessageInputDisabledReasonHold: 'Please hold for a counselor.',
+    AutoFirstMessage: 'Incoming webchat contact from',
   },
-  'es': {
-    EntryPointTagline: "Chatea con nosotros",
-    MessageCanvasTrayButton: "EMPEZAR NUEVO CHAT",
-    InvalidPreEngagementMessage: "Los formularios previos al compromiso no se han establecido y son necesarios para iniciar el chat web. Por favor configúrelos ahora en la configuración.",
-    InvalidPreEngagementButton: "Aprende más",
-    InputPlaceHolder: "Escribe un mensaje",
-    TypingIndicator: "{0} está escribiendo ... ",
-    Read: "Visto",
-    MessageSendingDisabled: "El envío de mensajes ha sido desactivado",
-    Today: "HOY",
-    Yesterday: "AYER",
-    Save: "GUARDAR",
-    Reset: "RESETEAR",
-    MessageCharacterCountStatus: "{{currentCharCount}} / {{maxCharCount}}",
-    SendMessageTooltip: "Enviar Mensaje",
-    FieldValidationRequiredField: "Campo requerido",
-    FieldValidationInvalidEmail: "Por favor provea una dirección válida de email",
+  es: {
+    EntryPointTagline: 'Chatea con nosotros',
+    MessageCanvasTrayButton: 'EMPEZAR NUEVO CHAT',
+    InvalidPreEngagementMessage:
+      'Los formularios previos al compromiso no se han establecido y son necesarios para iniciar el chat web. Por favor configúrelos ahora en la configuración.',
+    InvalidPreEngagementButton: 'Aprende más',
+    InputPlaceHolder: 'Escribe un mensaje',
+    TypingIndicator: '{0} está escribiendo ... ',
+    Read: 'Visto',
+    MessageSendingDisabled: 'El envío de mensajes ha sido desactivado',
+    Today: 'HOY',
+    Yesterday: 'AYER',
+    Save: 'GUARDAR',
+    Reset: 'RESETEAR',
+    MessageCharacterCountStatus: '{{currentCharCount}} / {{maxCharCount}}',
+    SendMessageTooltip: 'Enviar Mensaje',
+    FieldValidationRequiredField: 'Campo requerido',
+    FieldValidationInvalidEmail: 'Por favor provea una dirección válida de email',
 
-    PreEngagementDescription: "Comencemos",
+    PreEngagementDescription: 'Comencemos',
 
-    WelcomeMessage: "¡Bienvenido a Aselo!",
-    MessageCanvasTrayContent:"",
+    WelcomeMessage: '¡Bienvenido a Aselo!',
+    MessageCanvasTrayContent: '',
     AutoFirstMessage: '',
   },
-  'dk': {
-    MessageCanvasTrayContent:"",
+  dk: {
+    MessageCanvasTrayContent: '',
     AutoFirstMessage: '',
   },
 };
 
 const preEngagementConfig: PreEngagementConfig = {
   description: "Let's get started",
-  fields:
-    [
-      {
-        label: "What is your helpline?",
-        type: "SelectItem",
-        attributes:
-        {
-          name: "helpline",
-          required: true,
-          readOnly: false
-        },
-        options: [
-          {
-            value: "Select helpline",
-            label: "Select helpline",
-            selected: true
-          },
-          {
-            value: "Fake Helpline",
-            label: "Fake Helpline",
-            selected: false
-          },
-        ]
+  fields: [
+    {
+      label: 'What is your helpline?',
+      type: 'SelectItem',
+      attributes: {
+        name: 'helpline',
+        required: true,
+        readOnly: false,
       },
-    ],
-  submitLabel: "Let's chat!"
+      options: [
+        {
+          value: 'Select helpline',
+          label: 'Select helpline',
+          selected: true,
+        },
+        {
+          value: 'Fake Helpline',
+          label: 'Fake Helpline',
+          selected: false,
+        },
+      ],
+    },
+  ],
+  submitLabel: "Let's chat!",
 };
 
 const closedHours: PreEngagementConfig = {
   description: "We're closed at the moment. Operating hours are 8am-6pm",
-  fields:
-    [
-      {
-        label: 'Hidden Field',
-        type: 'InputField',
-        attributes: {
-          name: '',
-          required: true,
-          readOnly: true,
-        },
+  fields: [
+    {
+      label: 'Hidden Field',
+      type: 'InputField',
+      attributes: {
+        name: '',
+        required: true,
+        readOnly: true,
       },
-    ],
+    },
+  ],
 };
 
 const holidayHours: PreEngagementConfig = {
-  description: "We are closed because it is a holiday. Please come back tomorrow",
-  fields:
-    [
-      {
-        label: 'Hidden Field',
-        type: 'InputField',
-        attributes: {
-          name: '',
-          required: true,
-          readOnly: true,
-        },
+  description: 'We are closed because it is a holiday. Please come back tomorrow',
+  fields: [
+    {
+      label: 'Hidden Field',
+      type: 'InputField',
+      attributes: {
+        name: '',
+        required: true,
+        readOnly: true,
       },
-    ],
+    },
+  ],
 };
 
-const mapHelplineLanguage: MapHelplineLanguage = helpline => {
+const mapHelplineLanguage: MapHelplineLanguage = (helpline) => {
   switch (helpline) {
     case 'Fake Helpline':
       return 'dk';
     default:
       return defaultLanguage;
   }
-}
+};
 
 export const config: Configuration = {
   accountSid,
@@ -127,5 +124,5 @@ export const config: Configuration = {
   checkOpenHours,
   mapHelplineLanguage,
   captureIp,
-  contactType
+  contactType,
 };

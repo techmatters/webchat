@@ -30,19 +30,19 @@ const preEngagementConfig: PreEngagementConfig = {
   submitLabel: 'Start Chat!',
 };
 
-const mapHelplineLanguage: MapHelplineLanguage = helpline => {
+const mapHelplineLanguage: MapHelplineLanguage = (helpline) => {
   switch (helpline) {
     default:
       return defaultLanguage;
   }
-}
+};
 
 const memberDisplayOptions = {
   yourDefaultName: 'You',
   yourFriendlyNameOverride: false,
   theirFriendlyNameOverride: false,
   theirDefaultName: 'Adama Helpline Counsellor',
-}
+};
 
 export const config: Configuration = {
   accountSid,
@@ -53,5 +53,5 @@ export const config: Configuration = {
   mapHelplineLanguage,
   memberDisplayOptions,
   captureIp,
-  contactType
+  contactType,
 };

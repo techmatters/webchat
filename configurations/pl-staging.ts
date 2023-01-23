@@ -17,36 +17,36 @@ const translations: Translations = {
 };
 
 const preEngagementConfig: PreEngagementConfig = {
-  description: "Thank you for contacting Telefon Zaufania. To chat with a counsellor, please type your name and select the Start Chat button.",
-  fields:
-    [
-      {
-        type: "InputItem",
-        label: "What is your name?",
-        attributes: {
-          name: "friendlyName",
-          type: "text",
-          placeholder: "Guest",
-          required: true,
-        }
-      }
-    ],
-  submitLabel: "Start Chat!"
+  description:
+    'Thank you for contacting Telefon Zaufania. To chat with a counsellor, please type your name and select the Start Chat button.',
+  fields: [
+    {
+      type: 'InputItem',
+      label: 'What is your name?',
+      attributes: {
+        name: 'friendlyName',
+        type: 'text',
+        placeholder: 'Guest',
+        required: true,
+      },
+    },
+  ],
+  submitLabel: 'Start Chat!',
 };
 
-const mapHelplineLanguage: MapHelplineLanguage = helpline => {
+const mapHelplineLanguage: MapHelplineLanguage = (helpline) => {
   switch (helpline) {
     default:
       return defaultLanguage;
   }
-}
+};
 
 const memberDisplayOptions = {
   yourDefaultName: 'You',
   yourFriendlyNameOverride: false,
   theirFriendlyNameOverride: false,
   theirDefaultName: 'Telefon Zaufania Counsellor',
-}
+};
 
 export const config: Configuration = {
   accountSid,
@@ -56,5 +56,6 @@ export const config: Configuration = {
   preEngagementConfig,
   mapHelplineLanguage,
   memberDisplayOptions,
-  captureIp,contactType
+  captureIp,
+  contactType,
 };
