@@ -8,6 +8,5 @@
     "resolveJsonModule": true,
     "jsx": "react-jsx",
     "allowSyntheticDefaultImports": true,
-    "sourceMap": true,
   }
 }
