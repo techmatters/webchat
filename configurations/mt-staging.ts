@@ -73,7 +73,7 @@ const preEngagementConfig: PreEngagementConfig = {
       },
       options: [
         {
-          value: 'English',
+          value: 'en-MT',
           label: '1. English',
           selected: true,
         },
