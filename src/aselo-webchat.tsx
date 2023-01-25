@@ -16,22 +16,21 @@ import { aseloReducer } from './aselo-webchat-state';
 import { subscribeToChannel } from './task';
 import { addContactIdentifierToContext } from './contact-identifier';
 import type { Configuration } from '../types';
+// eslint-disable-next-line import/no-unresolved
+import { config } from './config';
 
 updateZIndex();
 
 export const getCurrentConfig = (): Configuration => {
-  try {
-    // eslint-disable-next-line no-unsanitized/method, global-require
-    const { config } = require(`./config`);
-    return config;
-  } catch (err) {
-    console.error(`Failed trying to load config file ${webpack.env.CONFIG}`, err);
-    throw err;
+  if (!config) {
+    throw new Error(`Failed trying to load config file ${webpack.env.CONFIG}`);
   }
+
+  return config;
 };
 
 const currentConfig = getCurrentConfig();
-console.log(currentConfig);
+
 const { defaultLanguage, translations } = currentConfig;
 const initialLanguage = defaultLanguage;
 
