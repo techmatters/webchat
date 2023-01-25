@@ -4,7 +4,7 @@ import {
   Configuration,
   MapHelplineLanguage,
   ContactType
-} from './types';
+} from '../types';
 
 const accountSid = 'ACfb0ccf10880289d67f5c4e85ae26402b';
 const flexFlowSid = 'FOd69e1f3020fd621d4bd9d4be833d8a19';

@@ -36,4 +36,4 @@ jobs:
         shell: bash
       # Build and compile Webchat
       - name: Run build command
-        run: npm run build:as-development
+        run: CONFIG=as-development npm run build
