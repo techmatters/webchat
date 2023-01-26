@@ -1,4 +1,4 @@
-import { Configuration } from './types';
+import { Configuration } from '../types';
 import { config as mwStaging } from './mw-staging';
 
 const accountSid = 'AC926d9077405d7f5b4c7129d3087d7814';

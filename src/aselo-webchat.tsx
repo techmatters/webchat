@@ -7,7 +7,6 @@ import { Reducer } from 'redux';
 
 import { getUserIp } from './ip-tracker';
 import { displayOperatingHours } from './operating-hours';
-import { getCurrentConfig } from '../configurations';
 import { updateZIndex } from './dom-utils';
 import blockedIps from './blockedIps.json';
 import CloseChatButtons from './end-chat/CloseChatButtons';
@@ -16,10 +15,22 @@ import { applyMobileOptimization } from './mobile-optimization';
 import { aseloReducer } from './aselo-webchat-state';
 import { subscribeToChannel } from './task';
 import { addContactIdentifierToContext } from './contact-identifier';
+import type { Configuration } from '../types';
+// eslint-disable-next-line import/no-unresolved
+import { config } from './config';
 
 updateZIndex();
 
+export const getCurrentConfig = (): Configuration => {
+  if (!config) {
+    throw new Error(`Failed trying to load config file ${webpack.env.CONFIG}`);
+  }
+
+  return config;
+};
+
 const currentConfig = getCurrentConfig();
+
 const { defaultLanguage, translations } = currentConfig;
 const initialLanguage = defaultLanguage;
 

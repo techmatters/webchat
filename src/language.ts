@@ -1,6 +1,6 @@
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
 
-import { Configuration } from '../configurations/types';
+import { Configuration } from '../types';
 import standardTranslations from './translations';
 
 /**

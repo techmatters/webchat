@@ -1,6 +1,6 @@
 import { Manager } from '@twilio/flex-webchat-ui';
 
-import { Configuration, OperatingHoursState } from '../configurations/types';
+import { Configuration, OperatingHoursState } from '../types';
 
 const getOperatingHours = async (): Promise<OperatingHoursState> => {
   const body = { channel: 'webchat' };

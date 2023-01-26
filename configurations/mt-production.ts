@@ -1,4 +1,4 @@
-import { Configuration } from './types';
+import { Configuration } from '../types';
 import { config as mtStaging } from './mt-staging';
 
 const accountSid = 'AC7854f6126459347434a8e659295ebb79';

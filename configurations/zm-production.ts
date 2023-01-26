@@ -1,4 +1,4 @@
-import { Configuration } from './types';
+import { Configuration } from '../types';
 import { config as zmStaging } from './zm-staging';
 
 const accountSid = 'ACf0b04d307d8f20074dc09cdb3b4f0a83';

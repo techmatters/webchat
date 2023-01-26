@@ -4,12 +4,12 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BomPlugin = require('webpack-utf8-bom');
 
-const { checkMODE, checkCONFIG } = require('./utils');
+const { checkMODE, setConfigFile } = require('./utils');
 
-const mode = process.env.MODE;
+const mode = process.env.MODE || 'production'; // If not provided, assume is building production version
 const config = process.env.CONFIG;
 checkMODE(mode);
-checkCONFIG(config);
+setConfigFile(config);
 
 const devtool = mode === 'development' ? 'eval-source-map' : undefined;
 

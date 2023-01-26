@@ -1,4 +1,4 @@
-import { Configuration } from './types';
+import { Configuration } from '../types';
 import { config as etStaging } from './et-staging';
 
 const accountSid = 'AC16aa1fb9123860efd3bdde74de556e21';
