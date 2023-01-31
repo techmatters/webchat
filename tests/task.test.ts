@@ -1,10 +1,17 @@
-import { taskReducer, TaskState, SetCurrentTaskAction, SET_CURRENT_TASK } from '../src/task';
+import { taskReducer, TaskState, setCurrentTaskFromChannel} from '../src/task';
+import { Channel } from 'twilio-chat/lib/channel';
+
+jest.mock('../src/task', () => ({
+  setCurrentTaskFromChannel: jest.fn()
+}))
 
 describe('task reducer', () => {
   test('should return initial state when no action is passed', () => {
     const expected = {};
     const initialState = undefined;
-    const updatedState = taskReducer(initialState, {} as SetCurrentTaskAction);
+    // const channel: Partial<Channel> = {attributes: { taskSid: null } }
+    const action = setCurrentTaskFromChannel(null)
+    const updatedState = taskReducer(initialState, action);
 
     expect(updatedState).toStrictEqual(expected);
   });
@@ -13,7 +20,9 @@ describe('task reducer', () => {
     const initialState: TaskState = { currentSid: 'Task1' };
     const newSid = 'Task2';
     const expected = { ...initialState, currentSid: newSid };
-    const updatedState = taskReducer(initialState, { type: SET_CURRENT_TASK, newSid } as SetCurrentTaskAction);
+    const channel: Partial<Channel> = {attributes: { taskSid: newSid } }
+    const action = setCurrentTaskFromChannel(channel);
+    const updatedState = taskReducer(initialState, action);
 
     expect(updatedState).toStrictEqual(expected);
   });

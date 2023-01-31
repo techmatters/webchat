@@ -1,6 +1,7 @@
 import { Manager } from '@twilio/flex-webchat-ui';
 import { Channel } from 'twilio-chat/lib/channel';
 
+
 export type TaskState = {
   currentSid?: string;
 };
@@ -9,12 +10,12 @@ const initialState: TaskState = {};
 
 export const SET_CURRENT_TASK = 'setCurrentTask';
 
-export type SetCurrentTaskAction = {
+type SetCurrentTaskAction = {
   type: typeof SET_CURRENT_TASK;
   newSid: string | undefined;
 };
 
-const setCurrentTaskFromChannel = (channel: Channel): SetCurrentTaskAction => {
+export const setCurrentTaskFromChannel = (channel: Channel): SetCurrentTaskAction => {
   const attributes: { taskSid: string } = channel.attributes as any;
   return { type: SET_CURRENT_TASK, newSid: attributes?.taskSid };
 };
