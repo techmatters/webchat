@@ -1,14 +1,13 @@
 import { Manager } from '@twilio/flex-webchat-ui';
 import { Channel } from 'twilio-chat/lib/channel';
 
-
 export type TaskState = {
   currentSid?: string;
 };
 
 const initialState: TaskState = {};
 
-export const SET_CURRENT_TASK = 'setCurrentTask';
+const SET_CURRENT_TASK = 'setCurrentTask';
 
 type SetCurrentTaskAction = {
   type: typeof SET_CURRENT_TASK;
