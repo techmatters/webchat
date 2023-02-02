@@ -30,7 +30,7 @@ type SetCurrentTaskAction = {
   newSid: string | undefined;
 };
 
-const setCurrentTaskFromChannel = (channel: Channel): SetCurrentTaskAction => {
+export const setCurrentTaskFromChannel = (channel: Channel): SetCurrentTaskAction => {
   const attributes: { taskSid: string } = channel.attributes as any;
   return { type: SET_CURRENT_TASK, newSid: attributes?.taskSid };
 };
