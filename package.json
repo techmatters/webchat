@@ -6,7 +6,9 @@
     "start": "cross-env MODE=development CONFIG=as-development webpack serve --open",
     "build": "cross-env webpack",
     "lint": "eslint --ext js --ext jsx --ext ts --ext tsx src/",
-    "lint:fix": "npm run lint -- --fix"
+    "lint:fix": "npm run lint -- --fix",
+    "license:add": "docker run --rm -v ${PWD}:/src ghcr.io/google/addlicense -c \"Technology Matters\" -y \"2021-2023\" -f license-header.tpl .",
+    "license:check": "docker run --rm -v ${PWD}:/src ghcr.io/google/addlicense -check -c \"Technology Matters\" -y \"2021-2023\" -f license-header.tpl ."
   },
   "devDependencies": {
     "@babel/core": "^7.19.0",
