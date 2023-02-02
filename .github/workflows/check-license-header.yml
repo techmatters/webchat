@@ -12,19 +12,16 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see https://www.gnu.org/licenses/.
 
-# This is a basic workflow to build and upload Webchat to S3 bucket with Github Actions
+name: Check License Header
 
-name: South Africa Staging release
+on: [push]
 
-# Controls when the action will run.
-on:
-  workflow_dispatch
-  
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  deploy:
-    uses: ./.github/workflows/custom_helpline.yml
-    secrets: inherit
-    with:
-      environment: staging
-      helpline_code: ZA
+  license-header:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Branch
+        uses: actions/checkout@v2
+
+      - name: Validate License Headers
+        run: npm run license:check
