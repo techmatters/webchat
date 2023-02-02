@@ -47,6 +47,7 @@ const getOperatingHours = async (language: string): Promise<OperatingHoursRespon
   return responseJson;
 };
 
+// eslint-disable-next-line sonarjs/cognitive-complexity
 export const displayOperatingHours = async (config: Configuration, manager: Manager) => {
   // If a helpline has operating hours configuration set, the pre engagement config will show alternative canvas during closed or holiday times/days
   if (config.checkOpenHours) {
