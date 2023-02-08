@@ -19,7 +19,7 @@ import { Manager } from '@twilio/flex-webchat-ui';
 import { Configuration, OperatingHoursResponse } from '../types';
 
 const getOperatingHours = async (language: string): Promise<OperatingHoursResponse> => {
-  const body = { channel: 'webchat', useV2: 'true', language };
+  const body = { channel: 'webchat', includeMessageTextInResponse: 'true', language };
 
   const options = {
     method: 'POST',
