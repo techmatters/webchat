@@ -16,14 +16,14 @@
 
 import { Manager } from '@twilio/flex-webchat-ui';
 
-import { Configuration, OperatingHoursResponse } from '../types';
+import { Configuration, OperatingHoursState } from '../types';
 
-const getOperatingHours = async (language: string): Promise<OperatingHoursResponse> => {
-  const body = { channel: 'webchat', useV2: 'true', language };
+const getOperatingHours = async (): Promise<OperatingHoursState> => {
+  const body = { channel: 'webchat' };
 
   const options = {
     method: 'POST',
-    body: new URLSearchParams(body),
+    body: new URLSearchParams({ ...body }),
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
     },
@@ -47,32 +47,15 @@ const getOperatingHours = async (language: string): Promise<OperatingHoursRespon
   return responseJson;
 };
 
-// eslint-disable-next-line sonarjs/cognitive-complexity
 export const displayOperatingHours = async (config: Configuration, manager: Manager) => {
   // If a helpline has operating hours configuration set, the pre engagement config will show alternative canvas during closed or holiday times/days
   if (config.checkOpenHours) {
     try {
-      const operatingState = await getOperatingHours(config.defaultLanguage);
-
-      /*
-       * Support legacy function to avoid braking changes
-       * TODO: remove once every account has been migrated
-       */
-      if (typeof operatingState === 'string') {
-        if (operatingState === 'closed' && config.closedHours) {
-          manager.updateConfig({ preEngagementConfig: config.closedHours });
-        } else if (operatingState === 'holiday' && config.holidayHours) {
-          manager.updateConfig({ preEngagementConfig: config.holidayHours });
-        }
-      } else {
-        // eslint-disable-next-line no-lonely-if
-        if (operatingState.status === 'closed' && config.closedHours) {
-          manager.updateConfig({ preEngagementConfig: { ...config.closedHours, description: operatingState.message } });
-        } else if (operatingState.status === 'holiday' && config.holidayHours) {
-          manager.updateConfig({
-            preEngagementConfig: { ...config.holidayHours, description: operatingState.message },
-          });
-        }
+      const operatingState = await getOperatingHours();
+      if (operatingState === 'closed' && config.closedHours) {
+        manager.updateConfig({ preEngagementConfig: config.closedHours });
+      } else if (operatingState === 'holiday' && config.holidayHours) {
+        manager.updateConfig({ preEngagementConfig: config.holidayHours });
       }
     } catch (error) {
       console.log(error);
