@@ -42,6 +42,7 @@ export type Configuration = {
   contactType: ContactType;
 };
 
-export type OperatingHoursState = 'open' | 'closed' | 'holiday';
+type OperatingHoursStatus = 'open' | 'closed' | 'holiday';
+export type OperatingHoursResponse = OperatingHoursStatus | { status: OperatingHoursStatus; message: string };
 
 export type ContactType = 'ip' | 'email';
