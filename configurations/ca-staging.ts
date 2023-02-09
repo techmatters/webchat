@@ -62,12 +62,149 @@ import {
         },
         {
             label: 'How old are you?',
-            type: 'InputItem',
+            type: 'SelectItem',
             attributes: {
-              name: 'age',
-              type: "text",
+              name: 'gender',
               required: true,
+              readOnly: false,
             },
+            options: [
+              {
+                value: '5 or younger',
+                label: '5 or younger',
+                selected: true,
+              },
+              {
+                value: '06',
+                label: '6n',
+                selected: false,
+              },
+              {
+                value: '07',
+                label: '7',
+                selected: false,
+              },
+              {
+                value: '08',
+                label: '8',
+                selected: false,
+              },
+              {
+                value: '09',
+                label: '9',
+                selected: false,
+              },
+              {
+                value: '10',
+                label: '10',
+                selected: false,
+              },
+              {
+                value: '11',
+                label: '11',
+                selected: false,
+              },              
+              {
+                value: '12',
+                label: '12',
+                selected: false,
+              },     
+              {
+                value: '13',
+                label: '13',
+                selected: false,
+              },     
+              {
+                value: '14',
+                label: '14',
+                selected: false,
+              },     
+              {
+                value: '15',
+                label: '15',
+                selected: false,
+              },     
+              {
+                value: '16',
+                label: '16',
+                selected: false,
+              },     
+              {
+                value: '17',
+                label: '17',
+                selected: false,
+              },     
+              {
+                value: '18',
+                label: '18',
+                selected: false,
+              },     
+              {
+                value: '19',
+                label: '19',
+                selected: false,
+              },   
+              {
+                value: '20',
+                label: '20',
+                selected: false,
+              },
+              {
+                value: '21',
+                label: '21',
+                selected: false,
+              },              
+              {
+                value: '22',
+                label: '22',
+                selected: false,
+              },     
+              {
+                value: '23',
+                label: '23',
+                selected: false,
+              },     
+              {
+                value: '24',
+                label: '24',
+                selected: false,
+              },     
+              {
+                value: '25',
+                label: '25',
+                selected: false,
+              },     
+              {
+                value: '26',
+                label: '26',
+                selected: false,
+              },     
+              {
+                value: '27',
+                label: '27',
+                selected: false,
+              },     
+              {
+                value: '28',
+                label: '28',
+                selected: false,
+              },     
+              {
+                value: '29',
+                label: '29',
+                selected: false,
+              },   
+              {
+                value: '>30',
+                label: '>30',
+                selected: false,
+              },   
+              {
+                value: 'Unknown',
+                label: 'Prefer not to answer',
+                selected: false,
+              },      
+            ],
           },
           {
             label: 'Do you consider yourself to be:',
@@ -316,17 +453,17 @@ import {
             },
             {
               value: 'Small city/town',
-              label: 'Small city/town (1,000 to 29,999 people)',
+              label: 'Small city/town (approximately 1,000 to 29,999 people)',
               selected: false,
             },
             {
               value: 'Medium city',
-              label: 'Medium city (30,000 to 99,999 people)',
+              label: 'Medium city (approximately 30,000 to 99,999 people)',
               selected: false,
             },
             {
               value: 'Large city/urban centre',
-              label: 'Large city/urban centre (100,000 people or more)',
+              label: 'Large city/urban centre (approximately 100,000 people or more)',
               selected: false,
             },
             {
@@ -605,23 +742,8 @@ import {
               selected: false,
             },
             {
-              value: 'Youth in care',
-              label: 'Youth in care',
-              selected: false,
-            },
-            {
-              value: 'Foster home',
-              label: 'Foster home',
-              selected: false,
-            },
-            {
-              value: 'Group home',
-              label: 'Group home',
-              selected: false,
-            },
-            {
-              value: 'In custody or on conditional release',
-              label: 'In custody or on conditional release',
+              value: 'In care',
+              label: 'In care',
               selected: false,
             },
             {
