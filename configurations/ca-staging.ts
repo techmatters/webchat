@@ -76,7 +76,7 @@ import {
               },
               {
                 value: '06',
-                label: '6n',
+                label: '6',
                 selected: false,
               },
               {
