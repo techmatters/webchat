@@ -64,7 +64,7 @@ import {
             label: 'How old are you?',
             type: 'SelectItem',
             attributes: {
-              name: 'gender',
+              name: 'age',
               required: true,
               readOnly: false,
             },
