@@ -24,12 +24,12 @@ import {
   
   const accountSid = 'ACeb335f4685aa874fddf00cdd7c2946bd';
   const flexFlowSid = 'FO45c6ac308207b8b17bd990eadf5246fe';
-  const defaultLanguage = 'en-US';
+  const defaultLanguage = 'en-CA';
   const captureIp = false;
   const checkOpenHours = false;
   const contactType: ContactType = 'ip';
   const translations: Translations = {
-    'en-US': {
+    'en-CA': {
       MessageInputDisabledReasonHold:
         "Thank you! Please hold for a counsellor.",
       EntryPointTagLine: 'Chat with us',
