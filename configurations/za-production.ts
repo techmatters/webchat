@@ -15,7 +15,7 @@
  */
 
 import { Configuration } from '../types';
-import { config as zaStaging } from './za-staging';
+import { config as zaStaging } from '../configurations/za-staging';
 
 const accountSid = 'AC988e78b713be4a04246b39835de37ad4';
 const flexFlowSid = 'FOacabd43f752e8e0ca3d2466e90637095';
