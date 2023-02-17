@@ -5,6 +5,7 @@
   "scripts": {
     "start": "cross-env MODE=development CONFIG=as-development webpack serve --open",
     "build": "cross-env webpack",
+    "build:dev": "cross-env MODE=development CONFIG=as-development webpack",
     "lint": "eslint --ext js --ext jsx --ext ts --ext tsx src/",
     "lint:fix": "npm run lint -- --fix",
     "test": "jest",
