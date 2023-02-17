@@ -43,7 +43,7 @@ const translations: Translations = {
       MessageInputDisabledReasonHold:
         'Továbbítunk egy ügyelőhöz, akivel beszélgetni tudsz.',
       EntryPointTagLine: 'Csetelj velünk',
-      PreEngagementDescription: 'Kezdjük el-ok',
+      PreEngagementDescription: '',
       Today: 'Ma',
       InputPlaceHolder: 'Taipeni ilyashi',
       WelcomeMessage: 'Szia, ez itt a Kék Vonal!',
@@ -58,7 +58,7 @@ const translations: Translations = {
       MessageInputDisabledReasonHold:
         'Зв\'яжемо тебе із нашим консультантом, з яким ти зможеш поговорити.',
       EntryPointTagLine: 'Поспілкуйся з нами в чаті',
-      PreEngagementDescription: 'Давайте розпочнемо',
+      PreEngagementDescription: '',
       Today: 'Сьогодні',
       InputPlaceHolder: "Введіть повідомлення",
       WelcomeMessage: 'Привіт, це Блакитна Лінія!',
@@ -87,10 +87,10 @@ const translations: Translations = {
   };
 
 const preEngagementConfig: PreEngagementConfig = {
-    description: "Kezdjük el-ok",
+    description: "",
     fields: [
       {
-        label: 'Válaszd ki a nyelved-ok',
+        label: '',
         type: 'SelectItem',
         attributes: {
           name: 'language',
@@ -100,18 +100,18 @@ const preEngagementConfig: PreEngagementConfig = {
         options: [
           {
             value: 'ukr-HU',
-            label: '1. Ukrán',
+            label: 'Українська',
             selected: false,
           },
           {
             value: 'ru-HU',
-            label: '2. Orosz',
+            label: 'Русский',
             selected: false,
           }
         ],
       },
     ],
-    submitLabel: 'Chat indítása',
+    submitLabel: 'Start',
   };
 
   const closedHours: PreEngagementConfig = {
