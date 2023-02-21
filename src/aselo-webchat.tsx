@@ -23,7 +23,7 @@ import { Reducer } from 'redux';
 
 import { getUserIp } from './ip-tracker';
 import { displayOperatingHours } from './operating-hours';
-import { updateZIndex, setExternalWebChatLanguage } from './dom-utils';
+import { updateZIndex, getWebChatLanguageAttributeValue } from './dom-utils';
 import blockedIps from './blockedIps.json';
 import CloseChatButtons from './end-chat/CloseChatButtons';
 import { getChangeLanguageWebChat } from './language';
@@ -47,7 +47,7 @@ export const getCurrentConfig = (): Configuration => {
 };
 
 const currentConfig = getCurrentConfig();
-const externalWebChatLanguage = setExternalWebChatLanguage();
+const externalWebChatLanguage = getWebChatLanguageAttributeValue();
 
 const { defaultLanguage, translations } = currentConfig;
 const initialLanguage = defaultLanguage;
@@ -140,15 +140,7 @@ export const initWebchat = async () => {
 
   const changeLanguageWebChat = getChangeLanguageWebChat(manager, currentConfig);
 
-  const setChangeLanguageWebChat = (external: string | null | undefined, language: string) => {
-    if (external) {
-      changeLanguageWebChat(external);
-    } else {
-      changeLanguageWebChat(language);
-    }
-  };
-
-  setChangeLanguageWebChat(externalWebChatLanguage, initialLanguage);
+  changeLanguageWebChat(externalWebChatLanguage || initialLanguage);
 
   // If caller is waiting for a counselor to connect, disable input (default language)
   if (manager.chatClient) {
@@ -184,7 +176,7 @@ export const initWebchat = async () => {
     const { language } = payload.formData;
 
     // Here we collect caller language (from preEngagement select) and change UI language
-    setChangeLanguageWebChat(externalWebChatLanguage, language);
+    changeLanguageWebChat(externalWebChatLanguage || language);
 
     const channel = await chatChannel(manager);
 

@@ -54,6 +54,6 @@ function isHTMLElement(node: Node): node is HTMLElement {
   return node.nodeType === Node.ELEMENT_NODE;
 }
 
-export function setExternalWebChatLanguage() {
+export function getWebChatLanguageAttributeValue() {
   return document?.currentScript?.getAttribute('data-language');
 }
