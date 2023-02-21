@@ -14,16 +14,16 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-import {PreEngagementConfig,Translations,Configuration,MapHelplineLanguage, ContactType} from '../types'
+import { PreEngagementConfig, Translations, Configuration, MapHelplineLanguage, ContactType } from '../types';
 
 const accountSid = 'AC542ee9a6613ce5ff976d075a3e3bd38d';
 const flexFlowSid = 'FOfe2df2f82dd40be24d41347fff7c6f1c';
-const defaultLanguage ='en-GB';
+const defaultLanguage = 'en-GB';
 const captureIp = true;
 const contactType: ContactType = 'ip';
 
 const preEngagementConfig: PreEngagementConfig = {
-  description: "Welcome to the Revenge Porn and Report Harmful Content Helplines.",
+  description: 'Welcome to the Revenge Porn and Report Harmful Content Helplines.',
   fields: [
     {
       label: 'Select the service',
@@ -43,7 +43,7 @@ const preEngagementConfig: PreEngagementConfig = {
           value: 'RHC',
           label: 'Report Harmful Content Helpline',
           selected: false,
-        }
+        },
       ],
     },
   ],
@@ -54,7 +54,7 @@ const translations: Translations = {
   'en-GB': {
     WelcomeMessage: 'Thank you for reaching out.',
     MessageCanvasTrayContent: '',
-    MessageInputDisabledReasonHold: 
+    MessageInputDisabledReasonHold:
       "Thank you very much for this information. We'll transfer you now. Please hold for a practitioner.",
     AutoFirstMessage: 'Incoming webchat contact from',
     TypingIndicator: 'Counselor is typing',
@@ -68,7 +68,7 @@ const memberDisplayOptions = {
   yourFriendlyNameOverride: false,
   theirFriendlyNameOverride: false,
   theirDefaultName: 'Counsellor',
-}
+};
 
 const mapHelplineLanguage: MapHelplineLanguage = (helpline) => {
   switch (helpline) {
@@ -76,8 +76,6 @@ const mapHelplineLanguage: MapHelplineLanguage = (helpline) => {
       return defaultLanguage;
   }
 };
-
-
 
 export const config: Configuration = {
   accountSid,
@@ -87,5 +85,6 @@ export const config: Configuration = {
   preEngagementConfig,
   mapHelplineLanguage,
   memberDisplayOptions,
-  captureIp,contactType,
+  captureIp,
+  contactType,
 };

@@ -14,18 +14,9 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-import en from './en';
-import es from './es';
-import fr from './fr';
-import hu from './hu';
-import ru from './ru';
-import ukr from './ukr';
-
+// eslint-disable-next-line global-require, import/no-unused-modules
 export default {
-  en,
-  es,
-  fr,
-  hu,
-  ru,
-  ukr,
-} as Record<string, Record<string, string>>;
+  EndChatButtonLabel: 'Terminer Conversation',
+  QuickExitButtonLabel: 'Sortie Rapide',
+  QuickExitDescription: 'Besoin de Partir Rapidement?',
+} as Record<string, string>;

@@ -23,7 +23,7 @@ import { Reducer } from 'redux';
 
 import { getUserIp } from './ip-tracker';
 import { displayOperatingHours } from './operating-hours';
-import { updateZIndex } from './dom-utils';
+import { updateZIndex, setExternalWebChatLanguage } from './dom-utils';
 import blockedIps from './blockedIps.json';
 import CloseChatButtons from './end-chat/CloseChatButtons';
 import { getChangeLanguageWebChat } from './language';
@@ -37,6 +37,7 @@ import { config } from './config';
 
 updateZIndex();
 
+// eslint-disable-next-line import/no-unused-modules
 export const getCurrentConfig = (): Configuration => {
   if (!config) {
     throw new Error(`Failed trying to load config file ${webpack.env.CONFIG}`);
@@ -46,6 +47,7 @@ export const getCurrentConfig = (): Configuration => {
 };
 
 const currentConfig = getCurrentConfig();
+const externalWebChatLanguage = setExternalWebChatLanguage();
 
 const { defaultLanguage, translations } = currentConfig;
 const initialLanguage = defaultLanguage;
@@ -138,7 +140,15 @@ export const initWebchat = async () => {
 
   const changeLanguageWebChat = getChangeLanguageWebChat(manager, currentConfig);
 
-  changeLanguageWebChat(initialLanguage);
+  const setChangeLanguageWebChat = (external: string | null | undefined, language: string) => {
+    if (external) {
+      changeLanguageWebChat(external);
+    } else {
+      changeLanguageWebChat(language);
+    }
+  };
+
+  setChangeLanguageWebChat(externalWebChatLanguage, initialLanguage);
 
   // If caller is waiting for a counselor to connect, disable input (default language)
   if (manager.chatClient) {
@@ -174,7 +184,7 @@ export const initWebchat = async () => {
     const { language } = payload.formData;
 
     // Here we collect caller language (from preEngagement select) and change UI language
-    changeLanguageWebChat(language);
+    setChangeLanguageWebChat(externalWebChatLanguage, language);
 
     const channel = await chatChannel(manager);
 
