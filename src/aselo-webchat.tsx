@@ -176,7 +176,7 @@ export const initWebchat = async () => {
     const { language } = payload.formData;
 
     // Here we collect caller language (from preEngagement select) and change UI language
-    changeLanguageWebChat(externalWebChatLanguage || language);
+    changeLanguageWebChat(language || externalWebChatLanguage);
 
     const channel = await chatChannel(manager);
 
