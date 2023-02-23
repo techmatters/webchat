@@ -43,7 +43,22 @@ import {
       MessageCanvasTrayContent: '',
       AutoFirstMessage: 'Incoming webchat contact from',
       StartChat: 'Start Chat!',
-    }
+    },
+    'fr-CA': {
+      MessageInputDisabledReasonHold:
+        "Merci! Attendez un conseiller, s'il vous plaît.",
+      EntryPointTagLine: 'Discute avec nous',
+      PreEngagementDescription: "Commençons",
+      Today: 'Aujourd\'hui',
+      InputPlaceHolder: 'Saisir un message',
+      WelcomeMessage: 'Bienvenue à Jeunesse, J\'écoute.',
+      Yesterday: 'Hier',
+      TypingIndicator: 'Le conseiller tape...',
+      MessageCanvasTrayButton: 'Démarrer une nouvelle chat',
+      MessageCanvasTrayContent: '',
+      AutoFirstMessage: 'Contact de chat entrant',
+      StartChat: 'Démarrer la chat!',
+    }  
   };
   
   const preEngagementConfig: PreEngagementConfig = {
