@@ -37,6 +37,33 @@ const translations: Translations = {
     AutoFirstMessage: 'Incoming webchat contact from',
     StartChat: 'Start Chat!',
   },
+  'fr-CA': {
+    WelcomeMessage: "Bienvenue à Jeunesse, J'écoute",
+    MessageCanvasTrayContent: '',
+    MessageInputDisabledReasonHold:
+      "Je vous remercie beaucoup pour l'info. Nous allons le transférer maintenant. Veuillez attendre un agent.",
+    AutoFirstMessage: 'Nouveau contact de web',
+    TypingIndicator: "{0} est écrit ... ",
+    StartChat: 'Démarrer la chat!',
+    MessageCanvasTrayButton: "Démarrer une nouvelle chat",
+    EntryPointTagline: "Discute avec nous",
+    InvalidPreEngagementMessage: "Les formulaires de pré-engagement n'ont pas été établis et sont nécessaires pour démarrer le chat Web. Veuillez les configurer maintenant dans les paramètres.",
+    InvalidPreEngagementButton: "Apprendre encore plus",
+    PredefinedChatMessageAuthorName: "Bot",
+    PredefinedChatMessageBody: "Salut! Que peut-on faire pour vous aider aujourd'hui?",
+    InputPlaceHolder: "Écrire un message",
+    Read: "Vu",
+    MessageSendingDisabled: "L'envoi de messages a été désactivé",
+    Today: "Aujourd'hui",
+    Yesterday: "Hier",
+    Save: "Sauvegarder",
+    Reset: "RÉINITIALISER",
+    MessageCharacterCountStatus: "{{currentCharCount}} / {{maxCharCount}}",
+    SendMessageTooltip: "Envoyer un message",
+    FieldValidationRequiredField: "Champs requis",
+    PreEngagementDescription: "Commençons",
+    BotGreeting: "Comment je peux aider?",
+  }
 };
 
 const preEngagementConfig: PreEngagementConfig = {
