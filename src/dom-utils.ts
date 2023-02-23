@@ -53,3 +53,7 @@ export function updateZIndex() {
 function isHTMLElement(node: Node): node is HTMLElement {
   return node.nodeType === Node.ELEMENT_NODE;
 }
+
+export function getWebChatLanguageAttributeValue() {
+  return document?.currentScript?.getAttribute('data-language');
+}
