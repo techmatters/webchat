@@ -1,3 +1,19 @@
+/**
+ * Copyright (C) 2021-2023 Technology Matters
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see https://www.gnu.org/licenses/.
+ */
+
 import React from 'react';
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
 import { Channel } from 'twilio-chat/lib/channel';
@@ -7,8 +23,7 @@ import { Reducer } from 'redux';
 
 import { getUserIp } from './ip-tracker';
 import { displayOperatingHours } from './operating-hours';
-import { getCurrentConfig } from '../configurations';
-import { updateZIndex } from './dom-utils';
+import { updateZIndex, getWebChatLanguageAttributeValue } from './dom-utils';
 import blockedIps from './blockedIps.json';
 import CloseChatButtons from './end-chat/CloseChatButtons';
 import { getChangeLanguageWebChat } from './language';
@@ -16,10 +31,24 @@ import { applyMobileOptimization } from './mobile-optimization';
 import { aseloReducer } from './aselo-webchat-state';
 import { subscribeToChannel } from './task';
 import { addContactIdentifierToContext } from './contact-identifier';
+import type { Configuration } from '../types';
+// eslint-disable-next-line import/no-unresolved
+import { config } from './config';
 
 updateZIndex();
 
+// eslint-disable-next-line import/no-unused-modules
+export const getCurrentConfig = (): Configuration => {
+  if (!config) {
+    throw new Error(`Failed trying to load config file ${webpack.env.CONFIG}`);
+  }
+
+  return config;
+};
+
 const currentConfig = getCurrentConfig();
+const externalWebChatLanguage = getWebChatLanguageAttributeValue();
+
 const { defaultLanguage, translations } = currentConfig;
 const initialLanguage = defaultLanguage;
 
@@ -111,7 +140,7 @@ export const initWebchat = async () => {
 
   const changeLanguageWebChat = getChangeLanguageWebChat(manager, currentConfig);
 
-  changeLanguageWebChat(initialLanguage);
+  changeLanguageWebChat(externalWebChatLanguage || initialLanguage);
 
   // If caller is waiting for a counselor to connect, disable input (default language)
   if (manager.chatClient) {
@@ -147,7 +176,7 @@ export const initWebchat = async () => {
     const { language } = payload.formData;
 
     // Here we collect caller language (from preEngagement select) and change UI language
-    changeLanguageWebChat(language);
+    changeLanguageWebChat(language || externalWebChatLanguage);
 
     const channel = await chatChannel(manager);
 

@@ -1,19 +1,35 @@
+/**
+ * Copyright (C) 2021-2023 Technology Matters
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see https://www.gnu.org/licenses/.
+ */
+
 import {
   PreEngagementConfig,
   Translations,
   Configuration,
   MapHelplineLanguage,
   ContactType
-} from './types';
+} from '../types';
 
 const accountSid = 'ACfb0ccf10880289d67f5c4e85ae26402b';
 const flexFlowSid = 'FOd69e1f3020fd621d4bd9d4be833d8a19';
-const defaultLanguage = 'en-US';
+const defaultLanguage = 'en-MT';
 const captureIp = true;
 const contactType: ContactType = 'ip';
 
 const translations: Translations = {
-  'en-US': {
+  'en-MT': {
     MessageInputDisabledReasonHold:
       "We'll transfer you now. Please hold for a support mentor.",
     EntryPointTagLine: 'Chat with us',
@@ -73,7 +89,7 @@ const preEngagementConfig: PreEngagementConfig = {
       },
       options: [
         {
-          value: 'English',
+          value: 'en-MT',
           label: '1. English',
           selected: true,
         },
@@ -93,7 +109,7 @@ const preEngagementConfig: PreEngagementConfig = {
         type: "InputItem",
         label: "Nickname/Laqam/нікнейм",
         attributes: {
-          name: "friendlyName",
+          name: "nickname",
           type: "text",
           placeholder: "Guest's name. Please enter only your name.",
           required: true,

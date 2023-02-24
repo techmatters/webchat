@@ -1,4 +1,20 @@
-import { PreEngagementConfig, Translations, Configuration, MapHelplineLanguage, ContactType } from './types';
+/**
+ * Copyright (C) 2021-2023 Technology Matters
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see https://www.gnu.org/licenses/.
+ */
+
+import { PreEngagementConfig, Translations, Configuration, MapHelplineLanguage, ContactType } from '../types';
 
 const accountSid = 'ACbdbee34ef7d099e71cf095d540ff3270';
 const flexFlowSid = 'FO9d20dbe99abbc3b9ad7709f961b0fe95';
@@ -27,7 +43,7 @@ const translations: Translations = {
       MessageInputDisabledReasonHold:
         'Továbbítunk egy ügyelőhöz, akivel beszélgetni tudsz.',
       EntryPointTagLine: 'Csetelj velünk',
-      PreEngagementDescription: 'Kezdjük el-ok',
+      PreEngagementDescription: '',
       Today: 'Ma',
       InputPlaceHolder: 'Taipeni ilyashi',
       WelcomeMessage: 'Szia, ez itt a Kék Vonal!',
@@ -42,7 +58,7 @@ const translations: Translations = {
       MessageInputDisabledReasonHold:
         'Зв\'яжемо тебе із нашим консультантом, з яким ти зможеш поговорити.',
       EntryPointTagLine: 'Поспілкуйся з нами в чаті',
-      PreEngagementDescription: 'Давайте розпочнемо',
+      PreEngagementDescription: '',
       Today: 'Сьогодні',
       InputPlaceHolder: "Введіть повідомлення",
       WelcomeMessage: 'Привіт, це Блакитна Лінія!',
@@ -71,10 +87,10 @@ const translations: Translations = {
   };
 
 const preEngagementConfig: PreEngagementConfig = {
-    description: "Kezdjük el-ok",
+    description: "",
     fields: [
       {
-        label: 'Válaszd ki a nyelved-ok',
+        label: '',
         type: 'SelectItem',
         attributes: {
           name: 'language',
@@ -84,18 +100,18 @@ const preEngagementConfig: PreEngagementConfig = {
         options: [
           {
             value: 'ukr-HU',
-            label: '1. Ukrán',
+            label: 'Українська',
             selected: false,
           },
           {
             value: 'ru-HU',
-            label: '2. Orosz',
+            label: 'Русский',
             selected: false,
           }
         ],
       },
     ],
-    submitLabel: 'Chat indítása',
+    submitLabel: 'Start',
   };
 
   const closedHours: PreEngagementConfig = {

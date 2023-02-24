@@ -1,7 +1,23 @@
-import {PreEngagementConfig,Translations,Configuration,MapHelplineLanguage,ContactType} from './types'
+/**
+ * Copyright (C) 2021-2023 Technology Matters
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see https://www.gnu.org/licenses/.
+ */
+
+import {PreEngagementConfig,Translations,Configuration,MapHelplineLanguage,ContactType} from '../types'
 
 const accountSid = 'AC6ca34b61e7bf2d7cf8b8ca24e7efe65f';
-const flexFlowSid = 'FO11691bbc019d7c4c4b9229fedc77961d';
+const flexFlowSid = 'FO005120845e65f5d54a17b8ab6d0bf3f3';
 const defaultLanguage = 'es-CL';
 const captureIp = true;
 const contactType: ContactType = 'email';

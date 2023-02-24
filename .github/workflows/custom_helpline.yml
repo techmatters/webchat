@@ -1,3 +1,17 @@
+# Copyright (C) 2021-2023 Technology Matters
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published
+# by the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see https://www.gnu.org/licenses/.
+
 # This is a basic workflow to build and upload Webchat to S3 bucket with Github Actions
 
 name: Custom Helpline Release
@@ -105,9 +119,9 @@ jobs:
         if: ${{ steps.helpline_code.outputs.lowercase }}-$SHORT_ENVIRONMENT_CODE == jm-prod
         run: curl -o ./src/blockedIps.json https://tl-public-chat-jm-prod.s3.amazonaws.com/blockedIps.json
         shell: bash
-      # Build and compile Webchat
+      # Build and compile Webchat using the corresponding config file
       - name: Run build command
-        run: npm run build:${{ steps.helpline_code.outputs.lowercase }}-${{ inputs.environment }}
+        run: CONFIG=${{ steps.helpline_code.outputs.lowercase }}-${{ inputs.environment }} npm run build
       # Rename the builded js file
       - name: Rename js
         run: mv bundle.js aselo-chat.min.js
