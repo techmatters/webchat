@@ -34,7 +34,7 @@ const translations: Translations = {
 
 const preEngagementConfig: PreEngagementConfig = {
   description:
-    'Thank you for contacting SafeSpot. To chat with a counsellor, please type your name and select the Start Chat button.',
+    'Thank you for contacting Childline Zimbabwe. To chat with a counsellor, please type your name and select the Start Chat button.',
   fields: [
     {
       type: 'InputItem',
