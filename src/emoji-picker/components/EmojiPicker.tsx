@@ -23,6 +23,7 @@ import { Actions, ActionPayload } from '@twilio/flex-webchat-ui';
 import { toggleEmojiPicker } from '../emoji-state';
 import { AseloWebchatState } from '../../aselo-webchat-state';
 import { Popup } from './emoji-styles';
+import { blockedEmojis } from './BlockedEmojis';
 
 const EmojiPicker = ({ channelSid, isPickerOpen, onToggleEmojiPicker }: Props) => {
   const [inputText, setInputText] = useState('');
@@ -80,6 +81,7 @@ const EmojiPicker = ({ channelSid, isPickerOpen, onToggleEmojiPicker }: Props) =
             emojiSize={18}
             onClickOutside={onToggleEmojiPicker}
             onEmojiSelect={handleSelectEmoji}
+            exceptEmojis={blockedEmojis}
           />
         </Popup>
       )}

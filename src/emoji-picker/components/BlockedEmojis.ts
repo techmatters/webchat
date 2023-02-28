@@ -14,27 +14,27 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-import React from 'react';
-import * as FlexWebChat from '@twilio/flex-webchat-ui';
-import { Provider } from 'react-redux';
-
-import EmojiButton from './components/EmojiButton';
-import EmojiPicker from './components/EmojiPicker';
-
-export const renderEmojis = (manager: FlexWebChat.Manager) => {
-
-  const boo = manager.store.getState().flex.session;
-
-  console.log('>>> isEntryPointExpanded', boo)
-  FlexWebChat.MessageInput.Content.add(
-    <Provider store={manager.store as any} key="emojibtn-provider">
-      <EmojiButton />
-    </Provider>,
-  );
-
-  FlexWebChat.MessagingCanvas.Content.add(
-    <Provider store={manager.store as any} key="emojipicker-provider">
-      <EmojiPicker />
-    </Provider>,
-  );
-};
+export const blockedEmojis = [
+  "beer",
+  "beers",
+  "wine_glass",
+  "cocktail",
+  "tropical_drink",
+  "tumbler_glass",
+  "smoking",
+  "middle_finger",
+  "wink",
+  "stuck_out_tongue_winking_eye",
+  "kissing_heart",
+  "kissing",
+  "kissing_closed_eyes",
+  "kissing_smiling_eyes",
+  "tongue",
+  "eggplant",
+  "peach",
+  "dancers",
+  "men-with-bunny-ears-partying",
+  "women-with-bunny-ears-partying",
+  "syringe",
+  "pill"
+]
