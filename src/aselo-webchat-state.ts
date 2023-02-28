@@ -18,15 +18,18 @@ import { combineReducers } from 'redux';
 import { AppState, WebchatReducer } from '@twilio/flex-webchat-ui';
 
 import { taskReducer, TaskState } from './task';
+import { emojiReducer, EmojiState } from './emoji-picker/emoji-state';
 
 export type AseloWebchatState = {
   flex: AppState;
   task: TaskState;
+  emoji: EmojiState
 };
 
 const reducers = {
   flex: (state: AppState | undefined, action: any) => WebchatReducer(state as AppState, action),
   task: taskReducer,
+  emoji:emojiReducer
 } as const;
 
 const combinedReducer = combineReducers<AseloWebchatState>(reducers);

@@ -34,6 +34,8 @@ import { addContactIdentifierToContext } from './contact-identifier';
 import type { Configuration } from '../types';
 // eslint-disable-next-line import/no-unresolved
 import { config } from './config';
+// import { renderEmojis } from './emoji-picker/renderEmojis';
+import EmojiButton from './emoji-picker/components/EmojiButton';
 
 updateZIndex();
 
@@ -189,6 +191,14 @@ export const initWebchat = async () => {
       setTimeout(() => window.open('https://google.com', '_self'), 1000);
     }
   });
+
+  FlexWebChat.MessageInput.Content.add(
+    // <Provider store={manager.store as any} key="emoji-button">
+      <EmojiButton key="emoji-button" />
+    // </Provider>,
+  );
+
+  // FlexWebChat.MessagingCanvas.Content.add(<Provider store={manager.store as any} key="emoji-picker" />);
 
   // Add CloseButtons
   FlexWebChat.MessageInput.Content.add(
