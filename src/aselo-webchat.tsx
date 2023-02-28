@@ -193,7 +193,9 @@ export const initWebchat = async () => {
     }
   });
 
-  renderEmojis(manager);
+  if (currentConfig.showEmojiPicker) {
+    renderEmojis(manager);
+  }
 
   // Add CloseButtons
   FlexWebChat.MessageInput.Content.add(
