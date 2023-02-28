@@ -15,39 +15,90 @@
  */
 
 /* eslint-disable react/require-default-props */
-import * as React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import Picker from '@emoji-mart/react';
 import { connect } from 'react-redux';
+import { Actions, ActionPayload } from '@twilio/flex-webchat-ui';
 
+import { toggleEmojiPicker } from '../emoji-state';
 import { AseloWebchatState } from '../../aselo-webchat-state';
-import { EmojiButtonStyled } from './emoji-styles';
-import EmojiIcon from './EmojiIcon';
+import { Popup } from './emoji-styles';
 
-const EmojiPicker = ({ channelSid, taskSid, isPickerOpen}: Props) => {
-const togglePicker = ()=>{
-return isPickerOpen && !isPickerOpen
-}
+const EmojiPicker = ({ channelSid, isPickerOpen, onToggleEmojiPicker }: Props) => {
+  const [inputText, setInputText] = useState('');
+
+  type onEmojiSelectPayload = {
+    native: string;
+  };
+
+  const concatEmoji = (input: string, emoji: string) => {
+    if (input.length === 0) {
+      return emoji;
+    }
+    return `${inputText}${emoji}`;
+  };
+
+  const handleSelectEmoji = useCallback(
+    (payload: onEmojiSelectPayload) => {
+      const body = concatEmoji(inputText, payload.native);
+
+      Actions.invokeAction('SetInputText', {
+        channelSid,
+        body,
+      });
+
+      toggleEmojiPicker();
+    },
+    [inputText, channelSid],
+  );
+
+  /**
+   * Adds listener on Action.SetInputText to track the InputText value
+   */
+  useEffect(() => {
+    const inputTextListener = (event: ActionPayload) => {
+      setInputText(event.body);
+    };
+    Actions.addListener('afterSetInputText', inputTextListener);
+
+    Actions.addListener('afterSendMessage', () => {
+      setInputText('');
+    });
+
+    return () => {
+      Actions.removeListener('afterSetInputText', inputTextListener);
+    };
+  }, [inputText]);
 
   return (
-    <EmojiButtonStyled onClick={togglePicker}>
-      <EmojiIcon />
-    </EmojiButtonStyled>
+    <>
+      {isPickerOpen && (
+        <Popup>
+          <Picker
+            perLine={6}
+            emojiButtonSize={22}
+            emojiSize={18}
+            onClickOutside={onToggleEmojiPicker}
+            onEmojiSelect={handleSelectEmoji}
+          />
+        </Popup>
+      )}
+    </>
   );
 };
 
-type Props = ReturnType<typeof mapStateToProps> 
-// & ReturnType<typeof mapDispatchToProps>;
+type Props = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
 
 const mapStateToProps = (state: AseloWebchatState) => {
   const { channelSid } = state?.flex?.session ?? {};
   return {
-    taskSid: state?.task?.currentSid,
     channelSid,
-    isPickerOpen: state.emoji
+    isPickerOpen: state?.emoji?.isPickerOpen,
   };
 };
 
+const mapDispatchToProps = {
+  onToggleEmojiPicker: toggleEmojiPicker,
+};
 
-// const mapDispatchToProps = dispatch => {
-//   togglePicker: 
-// }
-export default connect(mapStateToProps)(EmojiButton);
+export default connect(mapStateToProps, mapDispatchToProps)(EmojiPicker);

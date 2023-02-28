@@ -19,3 +19,12 @@ import * as FlexWebChat from '@twilio/flex-webchat-ui';
 const { styled } = FlexWebChat;
 
 export const EmojiButtonStyled = styled('div')``;
+
+export const Popup = styled('div')`
+  position: absolute;
+  left: 0;
+  bottom: 3rem;
+  width: 350px;
+  height: 100%;
+  z-index: 999999;
+`;

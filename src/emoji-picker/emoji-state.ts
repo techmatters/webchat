@@ -14,11 +14,10 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-
 export type EmojiState = {
   isPickerOpen?: boolean;
 };
-const initialState:EmojiState = {isPickerOpen: true}
+const initialState: EmojiState = { isPickerOpen: false };
 
 const TOGGLE_EMOJI_PICKER = 'toggleEmojiPicker';
 
@@ -27,9 +26,14 @@ type ToggleEmojiPicker = {
   isPickerOpen: boolean;
 };
 
-export const emojiReducer = (state = initialState, action:ToggleEmojiPicker) => {
+export const toggleEmojiPicker = (): ToggleEmojiPicker => ({
+  type: TOGGLE_EMOJI_PICKER,
+  isPickerOpen: false,
+});
+
+export const emojiReducer = (state = initialState, action: ToggleEmojiPicker) => {
   if (action.type === TOGGLE_EMOJI_PICKER) {
-    return { ...state, isPickerOpen:!state.isPickerOpen };
+    return { ...state, isPickerOpen: !state.isPickerOpen };
   }
   return state;
-}
+};

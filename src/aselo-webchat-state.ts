@@ -23,13 +23,13 @@ import { emojiReducer, EmojiState } from './emoji-picker/emoji-state';
 export type AseloWebchatState = {
   flex: AppState;
   task: TaskState;
-  emoji: EmojiState
+  emoji: EmojiState;
 };
 
 const reducers = {
   flex: (state: AppState | undefined, action: any) => WebchatReducer(state as AppState, action),
   task: taskReducer,
-  emoji:emojiReducer
+  emoji: emojiReducer,
 } as const;
 
 const combinedReducer = combineReducers<AseloWebchatState>(reducers);

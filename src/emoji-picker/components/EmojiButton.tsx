@@ -18,33 +18,24 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import { AseloWebchatState } from '../../aselo-webchat-state';
+import { toggleEmojiPicker } from '../emoji-state';
 import { EmojiButtonStyled } from './emoji-styles';
 import EmojiIcon from './EmojiIcon';
 
-const EmojiButton = ({ isPickerOpen}: Props) => {
-const togglePicker = ()=>{
-return isPickerOpen && !isPickerOpen
-}
+type Props = typeof mapDispatchToProps;
 
+const EmojiButton = ({ onToggleEmojiPicker }: Props) => {
   return (
-    <EmojiButtonStyled onClick={togglePicker}>
-      <EmojiIcon />
-    </EmojiButtonStyled>
+    <>
+      <EmojiButtonStyled onClick={onToggleEmojiPicker}>
+        <EmojiIcon />
+      </EmojiButtonStyled>
+    </>
   );
 };
 
-type Props = ReturnType<typeof mapStateToProps> 
-// & ReturnType<typeof mapDispatchToProps>;
-
-const mapStateToProps = (state: AseloWebchatState) => {
-  return {
-    isPickerOpen: state.emoji
-  };
+const mapDispatchToProps = {
+  onToggleEmojiPicker: toggleEmojiPicker,
 };
 
-
-// const mapDispatchToProps = dispatch => {
-//   togglePicker: 
-// }
-export default connect(mapStateToProps)(EmojiButton);
+export default connect(null, mapDispatchToProps)(EmojiButton);
