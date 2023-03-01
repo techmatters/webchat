@@ -14,7 +14,7 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-export const BLOCKEDEMOJIS = [
+export const blockedEmoji = [
   'beer',
   'beers',
   'wine_glass',
