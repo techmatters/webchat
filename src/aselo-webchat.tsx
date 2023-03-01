@@ -196,6 +196,7 @@ export const initWebchat = async () => {
       <CloseChatButtons />
     </Provider>,
   );
+  
 
   // Render WebChat
   webchat.init();
