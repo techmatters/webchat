@@ -14,23 +14,22 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-import React from 'react';
-import * as FlexWebChat from '@twilio/flex-webchat-ui';
-import { Provider } from 'react-redux';
-
-import EmojiButton from './components/EmojiButton';
-import EmojiPicker from './components/EmojiPicker';
-
-export const renderEmojis = (manager: FlexWebChat.Manager) => {
-  FlexWebChat.MessageInput.Content.add(
-    <Provider store={manager.store as any} key="emojibtn-provider">
-      <EmojiButton />
-    </Provider>,
-  );
-
-  FlexWebChat.MessagingCanvas.Content.add(
-    <Provider store={manager.store as any} key="emojipicker-provider">
-      <EmojiPicker />
-    </Provider>,
-  );
+type LocaleMap = {
+  [key: string]: string;
 };
+
+const localeMap: LocaleMap = {
+  'en-US': 'en',
+  'en-CA': 'en',
+  es: 'es',
+  'es-CL': 'es',
+  'es-CO': 'es',
+  'fr-CA': 'fr',
+  'hu-HU': 'hu',
+  'ukr-HU': 'uk',
+  'ukr-MT': 'uk',
+  'ru-HU': 'ru',
+};
+
+// https://github.com/missive/emoji-mart#options--props
+export const getLocale = (language: string) => localeMap[language];

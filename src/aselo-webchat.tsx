@@ -34,8 +34,6 @@ import { addContactIdentifierToContext } from './contact-identifier';
 import type { Configuration } from '../types';
 // eslint-disable-next-line import/no-unresolved
 import { config } from './config';
-// import { renderEmojis } from './emoji-picker/renderEmojis';
-import EmojiButton from './emoji-picker/components/EmojiButton';
 import { renderEmojis } from './emoji-picker/renderEmojis';
 
 updateZIndex();
@@ -193,9 +191,8 @@ export const initWebchat = async () => {
     }
   });
 
-  if (currentConfig.showEmojiPicker) {
-    renderEmojis(manager);
-  }
+  // eslint-disable-next-line no-unused-expressions
+  currentConfig.showEmojiPicker !== false && renderEmojis(manager);
 
   // Add CloseButtons
   FlexWebChat.MessageInput.Content.add(

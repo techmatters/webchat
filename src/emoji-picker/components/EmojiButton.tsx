@@ -19,18 +19,18 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 
 import { toggleEmojiPicker } from '../emoji-state';
-import { EmojiButtonStyled } from './emoji-styles';
+import { EmojiRow, EmojiButtonStyled } from './emoji-styles';
 import EmojiIcon from './EmojiIcon';
 
 type Props = typeof mapDispatchToProps;
 
 const EmojiButton = ({ onToggleEmojiPicker }: Props) => {
   return (
-    <>
-      <EmojiButtonStyled onClick={onToggleEmojiPicker}>
+    <EmojiRow>
+      <EmojiButtonStyled type="button" onClick={onToggleEmojiPicker}>
         <EmojiIcon />
       </EmojiButtonStyled>
-    </>
+    </EmojiRow>
   );
 };
 

@@ -18,13 +18,28 @@ import * as FlexWebChat from '@twilio/flex-webchat-ui';
 
 const { styled } = FlexWebChat;
 
-export const EmojiButtonStyled = styled('div')``;
+export const EmojiRow = styled('div')`
+  display: flex;
+  justify-content: flex-end;
+  @media screen and (pointer: coarse) and (hover: none) {
+    display: none;
+  }
+`;
+
+export const EmojiButtonStyled = styled('button')`
+  border: none;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  &:hover {
+    background: rgb(225, 227, 234);
+  }
+`;
 
 export const Popup = styled('div')`
   position: absolute;
-  left: 0;
-  bottom: 3rem;
+  left: 2;
+  bottom: 4rem;
   width: 350px;
-  height: 100%;
-  z-index: 999999;
+  /* height: 100%; */
 `;
