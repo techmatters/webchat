@@ -23,12 +23,10 @@ const TOGGLE_EMOJI_PICKER = 'toggleEmojiPicker';
 
 type ToggleEmojiPicker = {
   type: typeof TOGGLE_EMOJI_PICKER;
-  isPickerOpen: boolean;
 };
 
 export const toggleEmojiPicker = (): ToggleEmojiPicker => ({
   type: TOGGLE_EMOJI_PICKER,
-  isPickerOpen: false,
 });
 
 export const emojiReducer = (state = initialState, action: ToggleEmojiPicker) => {

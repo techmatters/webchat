@@ -192,7 +192,7 @@ export const initWebchat = async () => {
   });
 
   // eslint-disable-next-line no-unused-expressions
-  currentConfig.showEmojiPicker !== false && renderEmojis(manager);
+  currentConfig.showEmojiPicker !== false && renderEmojis(manager, currentConfig.blockedEmojis);
 
   // Add CloseButtons
   FlexWebChat.MessageInput.Content.add(

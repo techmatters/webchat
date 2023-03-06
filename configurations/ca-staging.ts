@@ -828,6 +828,31 @@ const mapHelplineLanguage: MapHelplineLanguage = (helpline) => {
   }
 };
 
+const blockedEmojis = [
+  'beer',
+  'beers',
+  'wine_glass',
+  'cocktail',
+  'tropical_drink',
+  'tumbler_glass',
+  'smoking',
+  'middle_finger',
+  'wink',
+  'stuck_out_tongue_winking_eye',
+  'kissing_heart',
+  'kissing',
+  'kissing_closed_eyes',
+  'kissing_smiling_eyes',
+  'tongue',
+  'eggplant',
+  'peach',
+  'dancers',
+  'men-with-bunny-ears-partying',
+  'women-with-bunny-ears-partying',
+  'syringe',
+  'pill',
+];
+
 export const config: Configuration = {
   accountSid,
   flexFlowSid,
@@ -841,4 +866,5 @@ export const config: Configuration = {
   memberDisplayOptions,
   captureIp,
   contactType,
+  blockedEmojis,
 };

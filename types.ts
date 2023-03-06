@@ -41,6 +41,7 @@ export type Configuration = {
   checkOpenHours?: boolean;
   contactType: ContactType;
   showEmojiPicker?: boolean;
+  blockedEmojis?: string[];
 };
 
 type OperatingHoursStatus = 'open' | 'closed' | 'holiday';

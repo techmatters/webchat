@@ -31,6 +31,7 @@ export const EmojiButtonStyled = styled('button')`
   width: 35px;
   height: 35px;
   border-radius: 50%;
+  cursor: pointer;
   &:hover {
     background: rgb(225, 227, 234);
   }

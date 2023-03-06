@@ -23,10 +23,9 @@ import { Actions, ActionPayload } from '@twilio/flex-webchat-ui';
 import { AseloWebchatState } from '../../aselo-webchat-state';
 import { toggleEmojiPicker } from '../emoji-state';
 import { Popup } from './emoji-styles';
-import { blockedEmoji } from './blockedEmojis';
 import { getLocale } from './localizedEmojiPicker';
 
-const EmojiPicker = ({ channelSid, isPickerOpen, onToggleEmojiPicker, language }: Props) => {
+const EmojiPicker = ({ channelSid, isPickerOpen, onToggleEmojiPicker, language, blockedEmojis }: Props) => {
   const [inputText, setInputText] = useState('');
 
   type onEmojiSelectPayload = {
@@ -70,7 +69,7 @@ const EmojiPicker = ({ channelSid, isPickerOpen, onToggleEmojiPicker, language }
 
     return () => {
       Actions.removeListener('afterSetInputText', inputTextListener);
-      Actions.addListener('afterSendMessage', () => {
+      Actions.removeListener('afterSendMessage', () => {
         setInputText('');
       });
     };
@@ -86,7 +85,7 @@ const EmojiPicker = ({ channelSid, isPickerOpen, onToggleEmojiPicker, language }
             emojiSize={20}
             onClickOutside={onToggleEmojiPicker}
             onEmojiSelect={handleSelectEmoji}
-            exceptEmojis={blockedEmoji}
+            exceptEmojis={blockedEmojis}
             locale={getLocale(language || 'en-US')}
           />
         </Popup>
@@ -95,12 +94,16 @@ const EmojiPicker = ({ channelSid, isPickerOpen, onToggleEmojiPicker, language }
   );
 };
 
-type Props = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
+type OwnProps = {
+  blockedEmojis: string[];
+};
+
+type Props = OwnProps & ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
 
 const mapStateToProps = (state: AseloWebchatState) => {
   return {
     isPickerOpen: state?.emoji?.isPickerOpen,
-    channelSid: state?.flex?.session.channelSid ?? {},
+    channelSid: state?.flex?.session?.channelSid ?? {},
     language: state?.flex?.config?.language,
   };
 };
