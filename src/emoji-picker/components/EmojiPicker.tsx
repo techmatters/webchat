@@ -25,6 +25,10 @@ import { toggleEmojiPicker } from '../emoji-state';
 import { Popup } from './emoji-styles';
 import { getLocale } from './localizedEmojiPicker';
 
+type OwnProps = {
+  blockedEmojis?: string[] | undefined;
+};
+
 const EmojiPicker = ({ channelSid, isPickerOpen, onToggleEmojiPicker, language, blockedEmojis }: Props) => {
   const [inputText, setInputText] = useState('');
 
@@ -85,17 +89,13 @@ const EmojiPicker = ({ channelSid, isPickerOpen, onToggleEmojiPicker, language, 
             emojiSize={20}
             onClickOutside={onToggleEmojiPicker}
             onEmojiSelect={handleSelectEmoji}
-            exceptEmojis={blockedEmojis}
+            exceptEmojis={blockedEmojis || undefined}
             locale={getLocale(language || 'en-US')}
           />
         </Popup>
       )}
     </>
   );
-};
-
-type OwnProps = {
-  blockedEmojis: string[];
 };
 
 type Props = OwnProps & ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;

@@ -21,7 +21,7 @@ import { Provider } from 'react-redux';
 import EmojiButton from './components/EmojiButton';
 import EmojiPicker from './components/EmojiPicker';
 
-export const renderEmojis = (manager: FlexWebChat.Manager, blockedEmojis: string[]) => {
+export const renderEmojis = (manager: FlexWebChat.Manager, blockedEmojis: string[] | undefined) => {
   FlexWebChat.MessageInput.Content.add(
     <Provider store={manager.store as any} key="emojibtn-provider">
       <EmojiButton />
