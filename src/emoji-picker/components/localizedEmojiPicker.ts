@@ -14,26 +14,22 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-import { combineReducers } from 'redux';
-import { AppState, WebchatReducer } from '@twilio/flex-webchat-ui';
-
-import { taskReducer, TaskState } from './task';
-import { emojiReducer, EmojiState } from './emoji-picker/emoji-state';
-
-export type AseloWebchatState = {
-  flex: AppState;
-  task: TaskState;
-  emoji: EmojiState;
+type LocaleMap = {
+  [key: string]: string;
 };
 
-const reducers = {
-  flex: (state: AppState | undefined, action: any) => WebchatReducer(state as AppState, action),
-  task: taskReducer,
-  emoji: emojiReducer,
-} as const;
-
-const combinedReducer = combineReducers<AseloWebchatState>(reducers);
-
-export const aseloReducer = (state: AseloWebchatState | undefined, action: any) => {
-  return combinedReducer(state, action);
+const localeMap: LocaleMap = {
+  'en-US': 'en',
+  'en-CA': 'en',
+  es: 'es',
+  'es-CL': 'es',
+  'es-CO': 'es',
+  'fr-CA': 'fr',
+  'hu-HU': 'hu',
+  'ukr-HU': 'uk',
+  'ukr-MT': 'uk',
+  'ru-HU': 'ru',
 };
+
+// https://github.com/missive/emoji-mart#options--props
+export const getLocale = (language: string) => localeMap[language];

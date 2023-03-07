@@ -14,26 +14,24 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-import { combineReducers } from 'redux';
-import { AppState, WebchatReducer } from '@twilio/flex-webchat-ui';
+export type EmojiState = {
+  isPickerOpen?: boolean;
+};
+const initialState: EmojiState = { isPickerOpen: false };
 
-import { taskReducer, TaskState } from './task';
-import { emojiReducer, EmojiState } from './emoji-picker/emoji-state';
+const TOGGLE_EMOJI_PICKER = 'toggleEmojiPicker';
 
-export type AseloWebchatState = {
-  flex: AppState;
-  task: TaskState;
-  emoji: EmojiState;
+type ToggleEmojiPicker = {
+  type: typeof TOGGLE_EMOJI_PICKER;
 };
 
-const reducers = {
-  flex: (state: AppState | undefined, action: any) => WebchatReducer(state as AppState, action),
-  task: taskReducer,
-  emoji: emojiReducer,
-} as const;
+export const toggleEmojiPicker = (): ToggleEmojiPicker => ({
+  type: TOGGLE_EMOJI_PICKER,
+});
 
-const combinedReducer = combineReducers<AseloWebchatState>(reducers);
-
-export const aseloReducer = (state: AseloWebchatState | undefined, action: any) => {
-  return combinedReducer(state, action);
+export const emojiReducer = (state = initialState, action: ToggleEmojiPicker) => {
+  if (action.type === TOGGLE_EMOJI_PICKER) {
+    return { ...state, isPickerOpen: !state.isPickerOpen };
+  }
+  return state;
 };

@@ -14,26 +14,23 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-import { combineReducers } from 'redux';
-import { AppState, WebchatReducer } from '@twilio/flex-webchat-ui';
+import React from 'react';
+import * as FlexWebChat from '@twilio/flex-webchat-ui';
+import { Provider } from 'react-redux';
 
-import { taskReducer, TaskState } from './task';
-import { emojiReducer, EmojiState } from './emoji-picker/emoji-state';
+import EmojiButton from './components/EmojiButton';
+import EmojiPicker from './components/EmojiPicker';
 
-export type AseloWebchatState = {
-  flex: AppState;
-  task: TaskState;
-  emoji: EmojiState;
-};
+export const renderEmojis = (manager: FlexWebChat.Manager, blockedEmojis: string[] | undefined) => {
+  FlexWebChat.MessageInput.Content.add(
+    <Provider store={manager.store as any} key="emojibtn-provider">
+      <EmojiButton />
+    </Provider>,
+  );
 
-const reducers = {
-  flex: (state: AppState | undefined, action: any) => WebchatReducer(state as AppState, action),
-  task: taskReducer,
-  emoji: emojiReducer,
-} as const;
-
-const combinedReducer = combineReducers<AseloWebchatState>(reducers);
-
-export const aseloReducer = (state: AseloWebchatState | undefined, action: any) => {
-  return combinedReducer(state, action);
+  FlexWebChat.MessagingCanvas.Content.add(
+    <Provider store={manager.store as any} key="emojipicker-provider">
+      <EmojiPicker blockedEmojis={blockedEmojis} />
+    </Provider>,
+  );
 };

@@ -22,7 +22,6 @@ const defaultLanguage = 'en-US';
 const captureIp = true;
 const contactType: ContactType = 'ip';
 
-
 const translations: Translations = {
   'ar': {
     MessageCanvasTrayContent: '',

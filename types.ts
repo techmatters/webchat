@@ -40,6 +40,8 @@ export type Configuration = {
   captureIp: boolean;
   checkOpenHours?: boolean;
   contactType: ContactType;
+  showEmojiPicker?: boolean;
+  blockedEmojis?: string[];
 };
 
 type OperatingHoursStatus = 'open' | 'closed' | 'holiday';

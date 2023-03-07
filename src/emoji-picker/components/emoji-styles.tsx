@@ -14,26 +14,33 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-import { combineReducers } from 'redux';
-import { AppState, WebchatReducer } from '@twilio/flex-webchat-ui';
+import * as FlexWebChat from '@twilio/flex-webchat-ui';
 
-import { taskReducer, TaskState } from './task';
-import { emojiReducer, EmojiState } from './emoji-picker/emoji-state';
+const { styled } = FlexWebChat;
 
-export type AseloWebchatState = {
-  flex: AppState;
-  task: TaskState;
-  emoji: EmojiState;
-};
+export const EmojiRow = styled('div')`
+  display: flex;
+  justify-content: flex-end;
+  @media screen and (pointer: coarse) and (hover: none) {
+    display: none;
+  }
+`;
 
-const reducers = {
-  flex: (state: AppState | undefined, action: any) => WebchatReducer(state as AppState, action),
-  task: taskReducer,
-  emoji: emojiReducer,
-} as const;
+export const EmojiButtonStyled = styled('button')`
+  border: none;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  cursor: pointer;
+  &:hover {
+    background: rgb(225, 227, 234);
+  }
+`;
 
-const combinedReducer = combineReducers<AseloWebchatState>(reducers);
-
-export const aseloReducer = (state: AseloWebchatState | undefined, action: any) => {
-  return combinedReducer(state, action);
-};
+export const Popup = styled('div')`
+  position: absolute;
+  left: 2;
+  bottom: 4rem;
+  width: 350px;
+  /* height: 100%; */
+`;

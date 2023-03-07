@@ -14,15 +14,15 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-import type { PreEngagementConfig, Translations, Configuration, MapHelplineLanguage, ContactType } from '../types';
+import type { PreEngagementConfig, Translations, Configuration, MapHelplineLanguage } from '../types';
 
 const accountSid = 'ACd8a2e89748318adf6ddff7df6948deaf';
 const flexFlowSid = 'FO8c2d9c388e7feba8b08d06a4bc3f69d1';
 const defaultLanguage = 'en-US';
 const captureIp = true;
 const checkOpenHours = true;
-
-const contactType: ContactType = 'email';
+const contactType = 'ip';
+const showEmojiPicker = true;
 
 const translations: Translations = {
   'en-US': {
@@ -65,16 +65,6 @@ const translations: Translations = {
 const preEngagementConfig: PreEngagementConfig = {
   description: "Let's get started",
   fields: [
-    {
-      label: 'What is your email?',
-      type: 'InputItem',
-      attributes: {
-        name: 'contactIdentifier',
-        type: 'email',
-        required: true,
-        readOnly: false,
-      },
-    },
     {
       label: 'What is your helpline?',
       type: 'SelectItem',
@@ -139,6 +129,31 @@ const mapHelplineLanguage: MapHelplineLanguage = (helpline) => {
   }
 };
 
+const blockedEmojis = [
+  'beer',
+  'beers',
+  'wine_glass',
+  'cocktail',
+  'tropical_drink',
+  'tumbler_glass',
+  'smoking',
+  'middle_finger',
+  'wink',
+  'stuck_out_tongue_winking_eye',
+  'kissing_heart',
+  'kissing',
+  'kissing_closed_eyes',
+  'kissing_smiling_eyes',
+  'tongue',
+  'eggplant',
+  'peach',
+  'dancers',
+  'men-with-bunny-ears-partying',
+  'women-with-bunny-ears-partying',
+  'syringe',
+  'pill',
+];
+
 export const config: Configuration = {
   accountSid,
   flexFlowSid,
@@ -151,4 +166,6 @@ export const config: Configuration = {
   mapHelplineLanguage,
   captureIp,
   contactType,
+  showEmojiPicker,
+  blockedEmojis,
 };

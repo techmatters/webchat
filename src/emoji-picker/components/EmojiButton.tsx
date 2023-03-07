@@ -14,26 +14,28 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-import { combineReducers } from 'redux';
-import { AppState, WebchatReducer } from '@twilio/flex-webchat-ui';
+/* eslint-disable react/require-default-props */
+import * as React from 'react';
+import { connect } from 'react-redux';
 
-import { taskReducer, TaskState } from './task';
-import { emojiReducer, EmojiState } from './emoji-picker/emoji-state';
+import { toggleEmojiPicker } from '../emoji-state';
+import { EmojiRow, EmojiButtonStyled } from './emoji-styles';
+import EmojiIcon from './EmojiIcon';
 
-export type AseloWebchatState = {
-  flex: AppState;
-  task: TaskState;
-  emoji: EmojiState;
+type Props = typeof mapDispatchToProps;
+
+const EmojiButton = ({ onToggleEmojiPicker }: Props) => {
+  return (
+    <EmojiRow>
+      <EmojiButtonStyled type="button" onClick={onToggleEmojiPicker}>
+        <EmojiIcon />
+      </EmojiButtonStyled>
+    </EmojiRow>
+  );
 };
 
-const reducers = {
-  flex: (state: AppState | undefined, action: any) => WebchatReducer(state as AppState, action),
-  task: taskReducer,
-  emoji: emojiReducer,
-} as const;
-
-const combinedReducer = combineReducers<AseloWebchatState>(reducers);
-
-export const aseloReducer = (state: AseloWebchatState | undefined, action: any) => {
-  return combinedReducer(state, action);
+const mapDispatchToProps = {
+  onToggleEmojiPicker: toggleEmojiPicker,
 };
+
+export default connect(null, mapDispatchToProps)(EmojiButton);
