@@ -14,7 +14,7 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-import { PreEngagementConfig, Translations, Configuration, MapHelplineLanguage, ContactType } from '../types';
+import { Translations, Configuration, MapHelplineLanguage, ContactType, LocalizedFormAttributes } from '../types';
 
 const accountSid = 'ACfd932bd76669f9cc2145e67e6c3e03ea';
 const flexFlowSid = 'FOe37919dd07e25959ef5c480519270d91';
@@ -31,34 +31,36 @@ const translations: Translations = {
   },
 };
 
-const preEngagementConfig: PreEngagementConfig = {
-  description: "Let's get started",
-  fields: [
-    {
-      label: 'Hidden Field',
-      type: 'InputField',
-      attributes: {
-        name: '',
-        readOnly: true,
+const preEngagementConfig: LocalizedFormAttributes = {
+  'en-US': {
+    description: "Let's get started",
+    fields: [
+      {
+        label: 'Hidden Field',
+        type: 'InputField',
+        attributes: {
+          name: '',
+          readOnly: true,
+        },
       },
-    },
-  ],
-  submitLabel: 'Start Chat!',
+    ],
+    submitLabel: 'Start Chat!',
+  },
 };
 
-const mapHelplineLanguage: MapHelplineLanguage = helpline => {
+const mapHelplineLanguage: MapHelplineLanguage = (helpline) => {
   switch (helpline) {
     default:
       return defaultLanguage;
   }
-}
+};
 
 const memberDisplayOptions = {
   yourDefaultName: 'You',
   yourFriendlyNameOverride: false,
   theirFriendlyNameOverride: false,
   theirDefaultName: 'Adama Helpline Counsellor',
-}
+};
 
 export const config: Configuration = {
   accountSid,
@@ -69,5 +71,5 @@ export const config: Configuration = {
   mapHelplineLanguage,
   memberDisplayOptions,
   captureIp,
-  contactType
+  contactType,
 };

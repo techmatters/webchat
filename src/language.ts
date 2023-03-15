@@ -16,7 +16,7 @@
 
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
 
-import { Configuration } from '../types';
+import { Configuration, LocalizedFormAttributes, PreEngagementConfig, Translations } from '../types';
 import standardTranslations from './translations';
 
 /**
@@ -33,6 +33,11 @@ const standardTranslationsForLanguage = (language: string): Record<string, strin
   const languageTranslations = standardTranslations[languageOnlyCode] ?? {};
   const cultureSpecificTranslations = (languageOnlyCode !== language ? standardTranslations[language] : {}) ?? {};
   return { ...languageTranslations, ...cultureSpecificTranslations };
+};
+
+const getPreEngagementForm = (language: string, preEngagementForm: LocalizedFormAttributes) => {
+  const [languageOnlyCode] = language.split('-');
+  return preEngagementForm[language] ? preEngagementForm[language] : preEngagementForm[languageOnlyCode] ?? {};
 };
 
 export const getChangeLanguageWebChat = (manager: FlexWebChat.Manager, config: Configuration) => {
@@ -60,8 +65,10 @@ export const getChangeLanguageWebChat = (manager: FlexWebChat.Manager, config: C
     }
   };
 
-  return (language: string) => {
+  return (language: string, preEngagementForm: LocalizedFormAttributes) => {
     try {
+      const preEngagementConfig = getPreEngagementForm(language, preEngagementForm);
+      manager.updateConfig({ preEngagementConfig });
       setNewLanguage(language);
     } catch (err) {
       const translationErrorMsg = 'Could not translate, using default';

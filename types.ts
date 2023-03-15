@@ -25,6 +25,10 @@ export type Translations = {
   };
 };
 
+export type LocalizedFormAttributes = {
+  [language: string]: PreEngagementConfig;
+} & PreEngagementConfig;
+
 export type MapHelplineLanguage = (helpline: string) => string;
 
 export type Configuration = {

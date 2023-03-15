@@ -14,7 +14,13 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-import type { PreEngagementConfig, Translations, Configuration, MapHelplineLanguage } from '../types';
+import type {
+  PreEngagementConfig,
+  Translations,
+  Configuration,
+  MapHelplineLanguage,
+  LocalizedFormAttributes,
+} from '../types';
 
 const accountSid = 'ACd8a2e89748318adf6ddff7df6948deaf';
 const flexFlowSid = 'FO8c2d9c388e7feba8b08d06a4bc3f69d1';
@@ -62,32 +68,34 @@ const translations: Translations = {
   },
 };
 
-const preEngagementConfig: PreEngagementConfig = {
-  description: "Let's get started",
-  fields: [
-    {
-      label: 'What is your helpline?',
-      type: 'SelectItem',
-      attributes: {
-        name: 'helpline',
-        required: true,
-        readOnly: false,
+const preEngagementConfig: LocalizedFormAttributes = {
+  'en-US': {
+    description: "Let's get started",
+    fields: [
+      {
+        label: 'What is your helpline?',
+        type: 'SelectItem',
+        attributes: {
+          name: 'helpline',
+          required: true,
+          readOnly: false,
+        },
+        options: [
+          {
+            value: 'Select helpline',
+            label: 'Select helpline',
+            selected: true,
+          },
+          {
+            value: 'Fake Helpline',
+            label: 'Fake Helpline',
+            selected: false,
+          },
+        ],
       },
-      options: [
-        {
-          value: 'Select helpline',
-          label: 'Select helpline',
-          selected: true,
-        },
-        {
-          value: 'Fake Helpline',
-          label: 'Fake Helpline',
-          selected: false,
-        },
-      ],
-    },
-  ],
-  submitLabel: "Let's chat!",
+    ],
+    submitLabel: "Let's chat!",
+  },
 };
 
 const closedHours: PreEngagementConfig = {

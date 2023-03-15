@@ -14,7 +14,7 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-import { PreEngagementConfig, Translations, Configuration, MapHelplineLanguage, ContactType } from '../types';
+import { Translations, Configuration, MapHelplineLanguage, ContactType, LocalizedFormAttributes } from '../types';
 
 const accountSid = 'AC542ee9a6613ce5ff976d075a3e3bd38d';
 const flexFlowSid = 'FOfe2df2f82dd40be24d41347fff7c6f1c';
@@ -22,32 +22,34 @@ const defaultLanguage = 'en-GB';
 const captureIp = true;
 const contactType: ContactType = 'ip';
 
-const preEngagementConfig: PreEngagementConfig = {
-  description: 'Welcome to the Revenge Porn and Report Harmful Content Helplines.',
-  fields: [
-    {
-      label: 'Select the service',
-      type: 'SelectItem',
-      attributes: {
-        name: 'helpline',
-        required: true,
-        readOnly: false,
+const preEngagementConfig: LocalizedFormAttributes = {
+  'en-GB': {
+    description: 'Welcome to the Revenge Porn and Report Harmful Content Helplines.',
+    fields: [
+      {
+        label: 'Select the service',
+        type: 'SelectItem',
+        attributes: {
+          name: 'helpline',
+          required: true,
+          readOnly: false,
+        },
+        options: [
+          {
+            value: 'RevengePorn',
+            label: 'Revenge Porn Helpline',
+            selected: true,
+          },
+          {
+            value: 'RHC',
+            label: 'Report Harmful Content Helpline',
+            selected: false,
+          },
+        ],
       },
-      options: [
-        {
-          value: 'RevengePorn',
-          label: 'Revenge Porn Helpline',
-          selected: true,
-        },
-        {
-          value: 'RHC',
-          label: 'Report Harmful Content Helpline',
-          selected: false,
-        },
-      ],
-    },
-  ],
-  submitLabel: 'Start Chat!',
+    ],
+    submitLabel: 'Start Chat!',
+  },
 };
 
 const translations: Translations = {

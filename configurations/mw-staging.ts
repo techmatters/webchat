@@ -46,19 +46,19 @@ const preEngagementConfig: PreEngagementConfig = {
   submitLabel: 'Start Chat!',
 };
 
-const mapHelplineLanguage: MapHelplineLanguage = helpline => {
+const mapHelplineLanguage: MapHelplineLanguage = (helpline: string) => {
   switch (helpline) {
     default:
       return defaultLanguage;
   }
-}
+};
 
 const memberDisplayOptions = {
   yourDefaultName: 'You',
   yourFriendlyNameOverride: false,
   theirFriendlyNameOverride: false,
   theirDefaultName: 'Tithandizane Counsellor',
-}
+};
 
 export const config: Configuration = {
   accountSid,
@@ -68,5 +68,6 @@ export const config: Configuration = {
   preEngagementConfig,
   mapHelplineLanguage,
   memberDisplayOptions,
-  captureIp,contactType
+  captureIp,
+  contactType,
 };

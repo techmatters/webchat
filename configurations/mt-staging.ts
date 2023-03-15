@@ -14,13 +14,7 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-import {
-  PreEngagementConfig,
-  Translations,
-  Configuration,
-  MapHelplineLanguage,
-  ContactType
-} from '../types';
+import { Translations, Configuration, MapHelplineLanguage, ContactType, LocalizedFormAttributes } from '../types';
 
 const accountSid = 'ACfb0ccf10880289d67f5c4e85ae26402b';
 const flexFlowSid = 'FOd69e1f3020fd621d4bd9d4be833d8a19';
@@ -30,8 +24,7 @@ const contactType: ContactType = 'ip';
 
 const translations: Translations = {
   'en-MT': {
-    MessageInputDisabledReasonHold:
-      "We'll transfer you now. Please hold for a support mentor.",
+    MessageInputDisabledReasonHold: "We'll transfer you now. Please hold for a support mentor.",
     EntryPointTagLine: 'Chat with us',
     PreEngagementDescription: "Let's get started",
     Today: 'Today',
@@ -45,10 +38,9 @@ const translations: Translations = {
     StartChat: 'Start Chat!',
   },
   'mt-MT': {
-    MessageInputDisabledReasonHold:
-      "Ha nittrasferuk lil wieħed mis-Support Mentors tagħna.",
+    MessageInputDisabledReasonHold: 'Ha nittrasferuk lil wieħed mis-Support Mentors tagħna.',
     EntryPointTagLine: 'Chat magħna',
-    PreEngagementDescription: "Ejja nibdew",
+    PreEngagementDescription: 'Ejja nibdew',
     Today: 'Illum',
     InputPlaceHolder: 'Tip Messaġġ',
     WelcomeMessage: 'Merħba lil Kellimni!',
@@ -60,63 +52,64 @@ const translations: Translations = {
     StartChat: 'Ibda Chat!',
   },
   'ukr-MT': {
-      MessageInputDisabledReasonHold:
-        'Зв\'яжемо тебе із нашим консультантом, з яким ти зможеш поговорити.',
-      EntryPointTagLine: 'Поспілкуйся з нами в чаті',
-      PreEngagementDescription: 'Давайте розпочнемо',
-      Today: 'Сьогодні',
-      InputPlaceHolder: "Введіть повідомлення",
-      WelcomeMessage: 'Привіт, це Блакитна Лінія!',
-      Yesterday: 'вчора',
-      TypingIndicator: 'набір тексту...',
-      MessageCanvasTrayButton: 'Почати чат',
-      MessageCanvasTrayContent: '',
-      AutoFirstMessage: 'Вхідний чат',
-      StartChat: 'Почати чат!',
+    MessageInputDisabledReasonHold: "Зв'яжемо тебе із нашим консультантом, з яким ти зможеш поговорити.",
+    EntryPointTagLine: 'Поспілкуйся з нами в чаті',
+    PreEngagementDescription: 'Давайте розпочнемо',
+    Today: 'Сьогодні',
+    InputPlaceHolder: 'Введіть повідомлення',
+    WelcomeMessage: 'Привіт, це Блакитна Лінія!',
+    Yesterday: 'вчора',
+    TypingIndicator: 'набір тексту...',
+    MessageCanvasTrayButton: 'Почати чат',
+    MessageCanvasTrayContent: '',
+    AutoFirstMessage: 'Вхідний чат',
+    StartChat: 'Почати чат!',
   },
 };
 
-const preEngagementConfig: PreEngagementConfig = {
-  description: "Let's get started",
-  fields: [
-    {
-      label: 'Select your language',
-      type: 'SelectItem',
-      attributes: {
-        name: 'language',
-        required: true,
-        readOnly: false,
-      },
-      options: [
-        {
-          value: 'en-MT',
-          label: '1. English',
-          selected: true,
-        },
-        {
-          value: 'mt-MT',
-          label: '2. Maltese',
-          selected: false,
-        },
-        {
-          value: 'ukr-MT',
-          label: '3. Ukrainian',
-          selected: false,
-        },
-      ],
-    },
-    {
-        type: "InputItem",
-        label: "Nickname/Laqam/нікнейм",
+const preEngagementConfig: LocalizedFormAttributes = {
+  'en-MT': {
+    description: "Let's get started",
+    fields: [
+      {
+        label: 'Select your language',
+        type: 'SelectItem',
         attributes: {
-          name: "nickname",
-          type: "text",
+          name: 'language',
+          required: true,
+          readOnly: false,
+        },
+        options: [
+          {
+            value: 'en-MT',
+            label: '1. English',
+            selected: true,
+          },
+          {
+            value: 'mt-MT',
+            label: '2. Maltese',
+            selected: false,
+          },
+          {
+            value: 'ukr-MT',
+            label: '3. Ukrainian',
+            selected: false,
+          },
+        ],
+      },
+      {
+        type: 'InputItem',
+        label: 'Nickname/Laqam/нікнейм',
+        attributes: {
+          name: 'nickname',
+          type: 'text',
           placeholder: "Guest's name. Please enter only your name.",
           required: true,
-        }
-    },
-  ],
-  submitLabel: 'Start Chat!',
+        },
+      },
+    ],
+    submitLabel: 'Start Chat!',
+  },
 };
 
 const memberDisplayOptions = {
@@ -124,14 +117,14 @@ const memberDisplayOptions = {
   yourFriendlyNameOverride: false,
   theirFriendlyNameOverride: false,
   theirDefaultName: 'Support Mentor',
-}
+};
 
-const mapHelplineLanguage: MapHelplineLanguage = helpline => {
+const mapHelplineLanguage: MapHelplineLanguage = (helpline) => {
   switch (helpline) {
     default:
       return defaultLanguage;
   }
-}
+};
 
 export const config: Configuration = {
   accountSid,
@@ -141,5 +134,6 @@ export const config: Configuration = {
   preEngagementConfig,
   mapHelplineLanguage,
   memberDisplayOptions,
-  captureIp,contactType
+  captureIp,
+  contactType,
 };

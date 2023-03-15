@@ -14,14 +14,13 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-import { PreEngagementConfig, Translations, Configuration, MapHelplineLanguage, ContactType } from '../types';
+import { Translations, Configuration, MapHelplineLanguage, ContactType, LocalizedFormAttributes } from '../types';
 
 const accountSid = 'AC6a65d4fbbc731e64e1c94e9806675c3b';
 const flexFlowSid = 'FOfce25fd1dff726dcdae2899de86de6c5';
 const defaultLanguage = 'en-US';
 const captureIp = true;
 const contactType: ContactType = 'ip';
-
 
 const translations: Translations = {
   'en-US': {
@@ -40,19 +39,21 @@ const translations: Translations = {
   },
 };
 
-const preEngagementConfig: PreEngagementConfig = {
-  description: "Let's get started",
-  fields: [
-    {
-      label: 'Hidden Field',
-      type: 'InputField',
-      attributes: {
-        name: '',
-        readOnly: true,
+const preEngagementConfig: LocalizedFormAttributes = {
+  'en-US': {
+    description: "Let's get started",
+    fields: [
+      {
+        label: 'Hidden Field',
+        type: 'InputField',
+        attributes: {
+          name: '',
+          readOnly: true,
+        },
       },
-    },
-  ],
-  submitLabel: 'Start Chat!',
+    ],
+    submitLabel: 'Start Chat!',
+  },
 };
 
 const memberDisplayOptions = {
@@ -78,5 +79,5 @@ export const config: Configuration = {
   mapHelplineLanguage,
   memberDisplayOptions,
   captureIp,
-  contactType
+  contactType,
 };

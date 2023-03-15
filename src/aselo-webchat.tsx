@@ -31,7 +31,7 @@ import { applyMobileOptimization } from './mobile-optimization';
 import { aseloReducer } from './aselo-webchat-state';
 import { subscribeToChannel } from './task';
 import { addContactIdentifierToContext } from './contact-identifier';
-import type { Configuration } from '../types';
+import type { Configuration, LocalizedFormAttributes } from '../types';
 // eslint-disable-next-line import/no-unresolved
 import { config } from './config';
 import { renderEmojis } from './emoji-picker/renderEmojis';
@@ -50,7 +50,7 @@ export const getCurrentConfig = (): Configuration => {
 const currentConfig = getCurrentConfig();
 const externalWebChatLanguage = getWebChatLanguageAttributeValue();
 
-const { defaultLanguage, translations } = currentConfig;
+const { defaultLanguage, translations, preEngagementConfig } = currentConfig;
 const initialLanguage = defaultLanguage;
 
 const chatChannel = async (manager: FlexWebChat.Manager): Promise<Channel> => {
@@ -141,7 +141,7 @@ export const initWebchat = async () => {
 
   const changeLanguageWebChat = getChangeLanguageWebChat(manager, currentConfig);
 
-  changeLanguageWebChat(externalWebChatLanguage || initialLanguage);
+  changeLanguageWebChat(externalWebChatLanguage || initialLanguage, preEngagementConfig as LocalizedFormAttributes);
 
   // If caller is waiting for a counselor to connect, disable input (default language)
   if (manager.chatClient) {
@@ -177,7 +177,7 @@ export const initWebchat = async () => {
     const { language } = payload.formData;
 
     // Here we collect caller language (from preEngagement select) and change UI language
-    changeLanguageWebChat(language || externalWebChatLanguage);
+    changeLanguageWebChat(language || externalWebChatLanguage, preEngagementConfig as LocalizedFormAttributes);
 
     const channel = await chatChannel(manager);
 
