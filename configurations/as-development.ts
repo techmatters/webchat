@@ -29,6 +29,7 @@ const captureIp = true;
 const checkOpenHours = true;
 const contactType = 'ip';
 const showEmojiPicker = true;
+const fakeHelpline = 'Fake Helpline';
 
 const translations: Translations = {
   'en-US': {
@@ -87,8 +88,8 @@ const preEngagementConfig: LocalizedFormAttributes = {
             selected: true,
           },
           {
-            value: 'Fake Helpline',
-            label: 'Fake Helpline',
+            value: fakeHelpline,
+            label: fakeHelpline,
             selected: false,
           },
         ],
