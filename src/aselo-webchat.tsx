@@ -141,7 +141,10 @@ export const initWebchat = async () => {
 
   const changeLanguageWebChat = getChangeLanguageWebChat(manager, currentConfig);
 
-  changeLanguageWebChat(externalWebChatLanguage || initialLanguage, preEngagementConfig as LocalizedFormAttributes);
+  changeLanguageWebChat(externalWebChatLanguage || initialLanguage);
+  currentConfig.preEngagementConfig.description = (manager.strings as Record<string, string>)[
+    currentConfig.preEngagementConfig.description
+  ];
 
   // If caller is waiting for a counselor to connect, disable input (default language)
   if (manager.chatClient) {
@@ -177,7 +180,7 @@ export const initWebchat = async () => {
     const { language } = payload.formData;
 
     // Here we collect caller language (from preEngagement select) and change UI language
-    changeLanguageWebChat(language || externalWebChatLanguage, preEngagementConfig as LocalizedFormAttributes);
+    changeLanguageWebChat(language || externalWebChatLanguage);
 
     const channel = await chatChannel(manager);
 

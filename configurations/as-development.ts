@@ -20,6 +20,7 @@ import type {
   Configuration,
   MapHelplineLanguage,
   LocalizedFormAttributes,
+  FormAttribute,
 } from '../types';
 
 const accountSid = 'ACd8a2e89748318adf6ddff7df6948deaf';
@@ -37,6 +38,7 @@ const translations: Translations = {
     MessageCanvasTrayContent: '',
     MessageInputDisabledReasonHold: 'Please hold for a counselor.',
     AutoFirstMessage: 'Incoming webchat contact from',
+    description: "Let's get started",
   },
   es: {
     EntryPointTagline: 'Chatea con nosotros',
@@ -69,34 +71,32 @@ const translations: Translations = {
   },
 };
 
-const preEngagementConfig: LocalizedFormAttributes = {
-  'en-US': {
-    description: "Let's get started",
-    fields: [
-      {
-        label: 'What is your helpline?',
-        type: 'SelectItem',
-        attributes: {
-          name: 'helpline',
-          required: true,
-          readOnly: false,
-        },
-        options: [
-          {
-            value: 'Select helpline',
-            label: 'Select helpline',
-            selected: true,
-          },
-          {
-            value: fakeHelpline,
-            label: fakeHelpline,
-            selected: false,
-          },
-        ],
+const preEngagementConfig: PreEngagementConfig = {
+  description: translations['en-US'].description,
+  fields: [
+    {
+      label: 'What is your helpline?',
+      type: 'SelectItem',
+      attributes: {
+        name: 'helpline',
+        required: true,
+        readOnly: false,
       },
-    ],
-    submitLabel: "Let's chat!",
-  },
+      options: [
+        {
+          value: 'Select helpline',
+          label: 'Select helpline',
+          selected: true,
+        },
+        {
+          value: fakeHelpline,
+          label: fakeHelpline,
+          selected: false,
+        },
+      ],
+    },
+  ],
+  submitLabel: "Let's chat!",
 };
 
 const closedHours: PreEngagementConfig = {

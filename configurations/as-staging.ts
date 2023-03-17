@@ -14,7 +14,7 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-import { Translations, Configuration, MapHelplineLanguage, ContactType, LocalizedFormAttributes } from '../types';
+import { PreEngagementConfig, Translations, Configuration, MapHelplineLanguage, ContactType } from '../types';
 
 const accountSid = 'AC6b99858a6faf7af1b572c83988b50eb1';
 const flexFlowSid = 'FO57c22d5dfc7a18dcada507aa70ca0cb3';
@@ -83,92 +83,90 @@ const translations: Translations = {
   },
 };
 
-const preEngagementConfig: LocalizedFormAttributes = {
-  'en-US': {
-    description: "Let's get started",
-    fields: [
-      {
-        label: 'What is your helpline?',
-        type: 'SelectItem',
-        attributes: {
-          name: 'helpline',
-          required: true,
-          readOnly: false,
-        },
-        options: [
-          {
-            value: 'Select helpline',
-            label: 'Select helpline',
-            selected: true,
-          },
-          {
-            value: 'Børns Vilkår (DK)',
-            label: 'Børns Vilkår (DK)',
-            selected: false,
-          },
-          {
-            value: 'Childhelp (US)',
-            label: 'Childhelp (US)',
-            selected: false,
-          },
-          {
-            value: 'CHILDLINE India (IN)',
-            label: 'CHILDLINE India (IN)',
-            selected: false,
-          },
-          {
-            value: 'Childline South Africa (SA)',
-            label: 'Childline South Africa (SA)',
-            selected: false,
-          },
-          {
-            value: 'ChildLine Zambia (ZM)',
-            label: 'ChildLine Zambia (ZM)',
-            selected: false,
-          },
-          {
-            value: 'Child Helpline Cambodia (KH)',
-            label: 'Child Helpline Cambodia (KH)',
-            selected: false,
-          },
-          {
-            value: 'Jordan River 110 (JO)',
-            label: 'Jordan River 110 (JO)',
-            selected: false,
-          },
-          {
-            value: 'SMILE OF THE CHILD (GR)',
-            label: 'SMILE OF THE CHILD (GR)',
-            selected: false,
-          },
-          {
-            value: 'Telefono Azzurro (IT)',
-            label: 'Telefono Azzurro (IT)',
-            selected: false,
-          },
-          {
-            value: 'BRIS (SE)',
-            label: 'BRIS (SE)',
-            selected: false,
-          },
-          {
-            value: '2NDFLOOR (US)',
-            label: '2NDFLOOR (US)',
-            selected: false,
-          },
-          {
-            value: 'Palo Alto Testing (Text)',
-            label: 'Palo Alto Testing (Text)',
-            selected: false,
-          },
-        ],
+const preEngagementConfig: PreEngagementConfig = {
+  description: "Let's get started",
+  fields: [
+    {
+      label: 'What is your helpline?',
+      type: 'SelectItem',
+      attributes: {
+        name: 'helpline',
+        required: true,
+        readOnly: false,
       },
-    ],
-    submitLabel: "Let's chat!",
-  },
+      options: [
+        {
+          value: 'Select helpline',
+          label: 'Select helpline',
+          selected: true,
+        },
+        {
+          value: 'Børns Vilkår (DK)',
+          label: 'Børns Vilkår (DK)',
+          selected: false,
+        },
+        {
+          value: 'Childhelp (US)',
+          label: 'Childhelp (US)',
+          selected: false,
+        },
+        {
+          value: 'CHILDLINE India (IN)',
+          label: 'CHILDLINE India (IN)',
+          selected: false,
+        },
+        {
+          value: 'Childline South Africa (SA)',
+          label: 'Childline South Africa (SA)',
+          selected: false,
+        },
+        {
+          value: 'ChildLine Zambia (ZM)',
+          label: 'ChildLine Zambia (ZM)',
+          selected: false,
+        },
+        {
+          value: 'Child Helpline Cambodia (KH)',
+          label: 'Child Helpline Cambodia (KH)',
+          selected: false,
+        },
+        {
+          value: 'Jordan River 110 (JO)',
+          label: 'Jordan River 110 (JO)',
+          selected: false,
+        },
+        {
+          value: 'SMILE OF THE CHILD (GR)',
+          label: 'SMILE OF THE CHILD (GR)',
+          selected: false,
+        },
+        {
+          value: 'Telefono Azzurro (IT)',
+          label: 'Telefono Azzurro (IT)',
+          selected: false,
+        },
+        {
+          value: 'BRIS (SE)',
+          label: 'BRIS (SE)',
+          selected: false,
+        },
+        {
+          value: '2NDFLOOR (US)',
+          label: '2NDFLOOR (US)',
+          selected: false,
+        },
+        {
+          value: 'Palo Alto Testing (Text)',
+          label: 'Palo Alto Testing (Text)',
+          selected: false,
+        },
+      ],
+    },
+  ],
+  submitLabel: "Let's chat!",
 };
 
-const mapHelplineLanguage: MapHelplineLanguage = (helpline: string) => {
+const mapHelplineLanguage: MapHelplineLanguage = (helpline) => {
   switch (helpline) {
     case 'Børns Vilkår (DK)':
       return 'da';

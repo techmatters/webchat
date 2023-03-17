@@ -65,10 +65,12 @@ export const getChangeLanguageWebChat = (manager: FlexWebChat.Manager, config: C
     }
   };
 
-  return (language: string, preEngagementForm: LocalizedFormAttributes) => {
+  return (language: string) => {
     try {
-      const preEngagementConfig = getPreEngagementForm(language, preEngagementForm);
-      manager.updateConfig({ preEngagementConfig });
+      /*
+       * const preEngagementConfig = getPreEngagementForm(language, preEngagementForm);
+       * manager.updateConfig({ preEngagementConfig });
+       */
       setNewLanguage(language);
     } catch (err) {
       const translationErrorMsg = 'Could not translate, using default';

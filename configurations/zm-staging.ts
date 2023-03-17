@@ -14,7 +14,7 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-import { Translations, Configuration, MapHelplineLanguage, LocalizedFormAttributes } from '../types';
+import { PreEngagementConfig, Translations, Configuration, MapHelplineLanguage } from '../types';
 
 const accountSid = 'ACc59300c7ca018e8652e4d6d86c2d50e6';
 const flexFlowSid = 'FObb9dfe97f1c59f455ab01811bec74cd5';
@@ -123,59 +123,57 @@ const translations: Translations = {
   },
 };
 
-const preEngagementConfig: LocalizedFormAttributes = {
-  'en-US': {
-    description: "Let's get started",
-    fields: [
-      {
-        label: 'Select your language',
-        type: 'SelectItem',
-        attributes: {
-          name: 'language',
-          required: true,
-          readOnly: false,
-        },
-        options: [
-          {
-            value: 'English',
-            label: '1. English',
-            selected: true,
-          },
-          {
-            value: 'Bemba',
-            label: '2. Bemba',
-            selected: false,
-          },
-          {
-            value: 'Tonga',
-            label: '3. Tonga',
-            selected: false,
-          },
-          {
-            value: 'Lunda',
-            label: '4. Lunda',
-            selected: false,
-          },
-          {
-            value: 'Nyanja',
-            label: '5. Nyanja',
-            selected: false,
-          },
-          {
-            value: 'Kaonde',
-            label: '6. Kaonde',
-            selected: false,
-          },
-          {
-            value: 'Lozi',
-            label: '7. Lozi',
-            selected: false,
-          },
-        ],
+const preEngagementConfig: PreEngagementConfig = {
+  description: "Let's get started",
+  fields: [
+    {
+      label: 'Select your language',
+      type: 'SelectItem',
+      attributes: {
+        name: 'language',
+        required: true,
+        readOnly: false,
       },
-    ],
-    submitLabel: 'Start Chat!',
-  },
+      options: [
+        {
+          value: 'English',
+          label: '1. English',
+          selected: true,
+        },
+        {
+          value: 'Bemba',
+          label: '2. Bemba',
+          selected: false,
+        },
+        {
+          value: 'Tonga',
+          label: '3. Tonga',
+          selected: false,
+        },
+        {
+          value: 'Lunda',
+          label: '4. Lunda',
+          selected: false,
+        },
+        {
+          value: 'Nyanja',
+          label: '5. Nyanja',
+          selected: false,
+        },
+        {
+          value: 'Kaonde',
+          label: '6. Kaonde',
+          selected: false,
+        },
+        {
+          value: 'Lozi',
+          label: '7. Lozi',
+          selected: false,
+        },
+      ],
+    },
+  ],
+  submitLabel: 'Start Chat!',
 };
 
 const memberDisplayOptions = {
