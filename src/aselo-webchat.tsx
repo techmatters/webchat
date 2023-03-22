@@ -31,7 +31,7 @@ import { applyMobileOptimization } from './mobile-optimization';
 import { aseloReducer } from './aselo-webchat-state';
 import { subscribeToChannel } from './task';
 import { addContactIdentifierToContext } from './contact-identifier';
-import type { Configuration, LocalizedFormAttributes } from '../types';
+import { Configuration, FormField, LocalizedFormAttributes, PreEngagementConfig } from '../types';
 // eslint-disable-next-line import/no-unresolved
 import { config } from './config';
 import { renderEmojis } from './emoji-picker/renderEmojis';
@@ -98,6 +98,7 @@ const setChannelAfterStartEngagement = async (channel: Channel, manager: FlexWeb
   const message = `${translations[initialLanguage].AutoFirstMessage} ${contactIdentifier}`;
   channel.sendMessage(message);
 };
+// eslint-disable-next-line sonarjs/cognitive-complexity
 export const initWebchat = async () => {
   let ip: string | undefined;
   if (currentConfig.captureIp) {
@@ -113,7 +114,7 @@ export const initWebchat = async () => {
     accountSid: currentConfig.accountSid,
     flexFlowSid: currentConfig.flexFlowSid,
     startEngagementOnInit: false,
-    preEngagementConfig: currentConfig.preEngagementConfig,
+    preEngagementConfig: currentConfig.preEngagementConfig.language as PreEngagementConfig,
     context: {
       ip,
     },
@@ -142,9 +143,6 @@ export const initWebchat = async () => {
   const changeLanguageWebChat = getChangeLanguageWebChat(manager, currentConfig);
 
   changeLanguageWebChat(externalWebChatLanguage || initialLanguage);
-  currentConfig.preEngagementConfig.description = (manager.strings as Record<string, string>)[
-    currentConfig.preEngagementConfig.description
-  ];
 
   // If caller is waiting for a counselor to connect, disable input (default language)
   if (manager.chatClient) {

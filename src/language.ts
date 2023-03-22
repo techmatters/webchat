@@ -41,7 +41,7 @@ const getPreEngagementForm = (language: string, preEngagementForm: LocalizedForm
 };
 
 export const getChangeLanguageWebChat = (manager: FlexWebChat.Manager, config: Configuration) => {
-  const { defaultLanguage, translations: configTranslations } = config;
+  const { defaultLanguage, translations: configTranslations, preEngagementConfig } = config;
   const setNewLanguage = (language: string) => {
     const twilioStrings = { ...manager.strings }; // save the originals
     const defaultLanguageTranslations = standardTranslationsForLanguage(defaultLanguage);
@@ -67,10 +67,11 @@ export const getChangeLanguageWebChat = (manager: FlexWebChat.Manager, config: C
 
   return (language: string) => {
     try {
-      /*
-       * const preEngagementConfig = getPreEngagementForm(language, preEngagementForm);
-       * manager.updateConfig({ preEngagementConfig });
-       */
+      const preEngagement = getPreEngagementForm(language, preEngagementConfig);
+      manager.updateConfig({
+        preEngagementConfig: preEngagement,
+      });
+
       setNewLanguage(language);
     } catch (err) {
       const translationErrorMsg = 'Could not translate, using default';

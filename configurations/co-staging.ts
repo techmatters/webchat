@@ -14,7 +14,14 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-import { PreEngagementConfig, Translations, Configuration, MapHelplineLanguage, ContactType } from '../types';
+import {
+  PreEngagementConfig,
+  Translations,
+  Configuration,
+  MapHelplineLanguage,
+  ContactType,
+  LocalizedFormAttributes,
+} from '../types';
 
 const accountSid = 'AC76b8bd2798b01b067a1be7f17d36c894';
 const flexFlowSid = 'FOd992a9ef451a263c83c8e556b5393887';
@@ -23,19 +30,21 @@ const captureIp = true;
 const checkOpenHours = false;
 const contactType: ContactType = 'ip';
 
-const preEngagementConfig: PreEngagementConfig = {
-  description: 'Comencemos',
-  fields: [
-    {
-      label: 'Hidden Field',
-      type: 'InputField',
-      attributes: {
-        name: '',
-        readOnly: true,
+const preEngagementConfig: LocalizedFormAttributes = {
+  'es-CO': {
+    description: 'Comencemos',
+    fields: [
+      {
+        label: 'Hidden Field',
+        type: 'InputField',
+        attributes: {
+          name: '',
+          readOnly: true,
+        },
       },
-    },
-  ],
-  submitLabel: 'Comenzar Nuevo Chat!',
+    ],
+    submitLabel: 'Comenzar Nuevo Chat!',
+  },
 };
 
 const closedHours: PreEngagementConfig = {

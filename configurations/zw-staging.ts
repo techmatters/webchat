@@ -14,7 +14,14 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-import { PreEngagementConfig, Translations, Configuration, MapHelplineLanguage, ContactType } from '../types';
+import {
+  PreEngagementConfig,
+  Translations,
+  Configuration,
+  MapHelplineLanguage,
+  ContactType,
+  LocalizedFormAttributes,
+} from '../types';
 
 const accountSid = 'AC48d146ce2460184b8944cc7fdf8c5d25';
 const flexFlowSid = 'FO7494aba81cf5899543d90aa1902a1064';
@@ -32,22 +39,24 @@ const translations: Translations = {
   },
 };
 
-const preEngagementConfig: PreEngagementConfig = {
-  description:
-    'Thank you for contacting Childline Zimbabwe. To chat with a counsellor, please type your name and select the Start Chat button.',
-  fields: [
-    {
-      type: 'InputItem',
-      label: 'What is your name?',
-      attributes: {
-        name: 'friendlyName',
-        type: 'text',
-        placeholder: 'Guest',
-        required: true,
+const preEngagementConfig: LocalizedFormAttributes = {
+  'en-US': {
+    description:
+      'Thank you for contacting Childline Zimbabwe. To chat with a counsellor, please type your name and select the Start Chat button.',
+    fields: [
+      {
+        type: 'InputItem',
+        label: 'What is your name?',
+        attributes: {
+          name: 'friendlyName',
+          type: 'text',
+          placeholder: 'Guest',
+          required: true,
+        },
       },
-    },
-  ],
-  submitLabel: 'Start Chat!',
+    ],
+    submitLabel: 'Start Chat!',
+  },
 };
 
 const mapHelplineLanguage: MapHelplineLanguage = (helpline) => {

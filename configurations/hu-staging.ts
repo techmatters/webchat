@@ -14,7 +14,14 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-import { PreEngagementConfig, Translations, Configuration, MapHelplineLanguage, ContactType } from '../types';
+import {
+  PreEngagementConfig,
+  Translations,
+  Configuration,
+  MapHelplineLanguage,
+  ContactType,
+  LocalizedFormAttributes,
+} from '../types';
 
 const accountSid = 'ACbdbee34ef7d099e71cf095d540ff3270';
 const flexFlowSid = 'FO9d20dbe99abbc3b9ad7709f961b0fe95';
@@ -82,32 +89,34 @@ const translations: Translations = {
   },
 };
 
-const preEngagementConfig: PreEngagementConfig = {
-  description: '',
-  fields: [
-    {
-      label: '',
-      type: 'SelectItem',
-      attributes: {
-        name: 'language',
-        required: true,
-        readOnly: false,
+const preEngagementConfig: LocalizedFormAttributes = {
+  'ukr-HU': {
+    description: '',
+    fields: [
+      {
+        label: '',
+        type: 'SelectItem',
+        attributes: {
+          name: 'language',
+          required: true,
+          readOnly: false,
+        },
+        options: [
+          {
+            value: 'ukr-HU',
+            label: 'Українська',
+            selected: false,
+          },
+          {
+            value: 'ru-HU',
+            label: 'Русский',
+            selected: false,
+          },
+        ],
       },
-      options: [
-        {
-          value: 'ukr-HU',
-          label: 'Українська',
-          selected: false,
-        },
-        {
-          value: 'ru-HU',
-          label: 'Русский',
-          selected: false,
-        },
-      ],
-    },
-  ],
-  submitLabel: 'Start',
+    ],
+    submitLabel: 'Start',
+  },
 };
 
 const closedHours: PreEngagementConfig = {

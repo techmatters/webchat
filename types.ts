@@ -17,7 +17,6 @@
 import { FormAttributes as PreEngagementConfig } from '@twilio/flex-ui-core';
 import type { MemberDisplayOptions } from '@twilio/flex-ui-core/src/components/channel/MessagingCanvas';
 
-// eslint-disable-next-line import/no-unused-modules
 export type { PreEngagementConfig };
 
 export type Translations = {
@@ -26,54 +25,31 @@ export type Translations = {
   };
 };
 
-type FormField = {
-  label: string;
-  type: string;
-  attributes: { name: string; required: true; readOnly: false };
-  options: ({ value: string; label: string; selected: true } | { value: string; label: string; selected: false })[];
+export type FormField = {
+  label?: string;
+  type?: string;
+  attributes?: { name?: string; type?: string; required?: boolean; readOnly?: boolean; placeholder?: string };
+  options?: (
+    | { value?: string; label?: string; selected?: true }
+    | { value?: string; label?: string; selected?: false }
+  )[];
 };
 
-// eslint-disable-next-line import/no-unused-modules
-export interface FormAttribute {
-  [locale: string]: {
+export type LocalizedFormAttributes = {
+  [language: string]: {
     description: string;
     fields: {
       label: string;
       type: string;
-      attributes: {
-        name: string;
-        required?: boolean;
-        readOnly?: boolean;
-      };
-      options?: {
-        value: string;
-        label: string;
-        selected?: boolean;
-      }[];
+      attributes: { name: string; type?: string; required?: boolean; readOnly?: boolean; placeholder?: string };
+      options?: (
+        | { value: string; label: string; selected: true }
+        | { value: string; label: string; selected: false }
+      )[];
     }[];
     submitLabel: string;
   };
-}
-
-// eslint-disable-next-line import/no-unused-modules
-export interface LocalizedFormAttribute {
-  [language: string]: {
-    type?: string;
-    name?: string;
-    hideMessage?: boolean;
-    fields: Array<FormField>;
-    submitLabel?: string;
-    description?: string;
-    message?: string;
-    disabled?: boolean;
-    readOnly?: boolean;
-  } & PreEngagementConfig;
-}
-
-// eslint-disable-next-line import/no-unused-modules
-export type LocalizedFormAttributes = {
-  [language: string]: PreEngagementConfig;
-} & PreEngagementConfig;
+};
 
 export type MapHelplineLanguage = (helpline: string) => string;
 
@@ -82,7 +58,7 @@ export type Configuration = {
   flexFlowSid: string;
   defaultLanguage: string;
   translations: Translations;
-  preEngagementConfig: PreEngagementConfig;
+  preEngagementConfig: LocalizedFormAttributes;
   closedHours?: PreEngagementConfig;
   holidayHours?: PreEngagementConfig;
   mapHelplineLanguage: MapHelplineLanguage;
