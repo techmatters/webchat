@@ -133,10 +133,6 @@ const preEngagementConfig: PreEngagementConfig = {
           label: "Unborn"
         },
         {
-          value: "0",
-          label: "0"
-        },
-        {
           value: "1",
           label: "1"
         },
@@ -261,22 +257,22 @@ const preEngagementConfig: PreEngagementConfig = {
       options: [
         {
           value: 'female',
-          label: '1. Female/Mara/Жінка',
+          label: 'Female/Mara/Жінка',
           selected: false,
         },
         {
           value: 'male',
-          label: '2. Male/Raġel/Чоловік',
+          label: 'Male/Raġel/Чоловік',
           selected: false,
         },
         {
           value: 'other',
-          label: '3. Others/Oħrajn/Інші',
+          label: 'Others/Oħrajn/Інші',
           selected: false,
         },
         {
           value: 'notSay',
-          label: '4. Rather not say/Ma nixtieqx naghti risposta/Не хочу відповідати',
+          label: 'Rather not say/Ma nixtieqx naghti risposta/Не хочу відповідати',
           selected: false,
         },
       ],
@@ -292,32 +288,32 @@ const preEngagementConfig: PreEngagementConfig = {
       options: [
         {
           value: 'happy',
-          label: '1. Happy/Ferħan/Щасливий',
+          label: 'Happy/Ferħan/Щасливий',
           selected: false,
         },
         {
           value: 'confused',
-          label: '2. Confused/Konfuż/Збентежений',
+          label: 'Confused/Konfuż/Збентежений',
           selected: false,
         },
         {
           value: 'angry',
-          label: '3. Angry/Rrabjat/Злий',
+          label: 'Angry/Rrabjat/Злий',
           selected: false,
         },
         {
           value: 'shocked',
-          label: '4. Shocked/Ixxukkjat/Шокований',
+          label: 'Shocked/Ixxukkjat/Шокований',
           selected: false,
         },
         {
           value: 'scared',
-          label: '5. Scared/Begħzan/Переляканий',
+          label: 'Scared/Begħzan/Переляканий',
           selected: false,
         },
         {
           value: 'uncertain',
-          label: '6. Uncertain/Inċert/Розгублений',
+          label: 'Uncertain/Inċert/Розгублений',
           selected: false,
         },
       ],
