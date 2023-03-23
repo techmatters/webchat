@@ -30,6 +30,11 @@ const translations: Translations = {
     MessageCanvasTrayContent: '',
     MessageInputDisabledReasonHold: 'Please hold for a counselor.',
     AutoFirstMessage: 'Incoming webchat contact from',
+    PreEngagementConfigFormDescription: `Let's get started`,
+    PreEngagementConfigFormWhatIsYourHelpline: 'What is your helpline?',
+    PreEngagementConfigFormHelpline: 'helpline',
+    PreEngagementConfigFormSelectHelpline: 'Select helpline',
+    PreEngagementConfigFormFakeHelpline: 'Fake Helpline',
   },
   es: {
     EntryPointTagline: 'Chatea con nosotros',
@@ -63,25 +68,25 @@ const translations: Translations = {
 };
 
 const preEngagementConfig: PreEngagementConfig = {
-  description: "Let's get started",
+  description: 'PreEngagementConfigFormDescription',
   fields: [
     {
-      label: 'What is your helpline?',
+      label: 'PreEngagementConfigFormWhatIsYourHelpline',
       type: 'SelectItem',
       attributes: {
-        name: 'helpline',
+        name: 'PreEngagementConfigFormHelpline',
         required: true,
         readOnly: false,
       },
       options: [
         {
           value: 'Select helpline',
-          label: 'Select helpline',
+          label: 'PreEngagementConfigFormSelectHelpline',
           selected: true,
         },
         {
           value: 'Fake Helpline',
-          label: 'Fake Helpline',
+          label: 'PreEngagementConfigFormFakeHelpline',
           selected: false,
         },
       ],

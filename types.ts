@@ -25,6 +25,17 @@ export type Translations = {
   };
 };
 
+// eslint-disable-next-line import/no-unused-modules
+export type FormField = {
+  label?: string;
+  type?: string;
+  attributes?: { name?: string; type?: string; required?: boolean; readOnly?: boolean; placeholder?: string };
+  options?: (
+    | { value?: string; label?: string; selected?: true }
+    | { value?: string; label?: string; selected?: false }
+  )[];
+};
+
 export type MapHelplineLanguage = (helpline: string) => string;
 
 export type Configuration = {

@@ -31,7 +31,7 @@ import { applyMobileOptimization } from './mobile-optimization';
 import { aseloReducer } from './aselo-webchat-state';
 import { subscribeToChannel } from './task';
 import { addContactIdentifierToContext } from './contact-identifier';
-import type { Configuration } from '../types';
+import type { Configuration, FormField } from '../types';
 // eslint-disable-next-line import/no-unresolved
 import { config } from './config';
 import { renderEmojis } from './emoji-picker/renderEmojis';
@@ -98,6 +98,7 @@ const setChannelAfterStartEngagement = async (channel: Channel, manager: FlexWeb
   const message = `${translations[initialLanguage].AutoFirstMessage} ${contactIdentifier}`;
   channel.sendMessage(message);
 };
+// eslint-disable-next-line sonarjs/cognitive-complexity
 export const initWebchat = async () => {
   let ip: string | undefined;
   if (currentConfig.captureIp) {
@@ -149,6 +150,48 @@ export const initWebchat = async () => {
     await setChannelOnCreateWebChat(channel, manager);
     await subscribeToChannel(manager, channel);
   }
+
+  const translatedPreEngagement = { ...currentConfig.preEngagementConfig };
+
+  translatedPreEngagement.description = (manager.strings as Record<string, string>)[
+    currentConfig.preEngagementConfig.description as string
+  ];
+  translatedPreEngagement.submitLabel = (manager.strings as Record<string, string>)[
+    currentConfig.preEngagementConfig.submitLabel as string
+  ];
+
+  translatedPreEngagement.fields.forEach((field: FormField) =>
+    currentConfig.preEngagementConfig.fields.forEach((configField: FormField) => {
+      const options =
+        field.options &&
+        field.options.forEach(
+          (option) =>
+            configField.options &&
+            configField.options.map((conOption) => {
+              return {
+                ...option,
+                label: (option.label = (manager.strings as Record<string, string>)[conOption.label as string]),
+              };
+            }),
+        );
+
+      return {
+        ...field,
+        label: (field.label = (manager.strings as Record<string, string>)[configField.label as string]),
+        attributes: {
+          ...field.attributes,
+          name: field.attributes
+            ? (field.attributes.name =
+                (manager.strings as Record<string, string>)[configField.attributes?.name as string] ||
+                field.attributes?.name)
+            : undefined,
+        },
+        options,
+      };
+    }),
+  );
+
+  manager.updateConfig({ preEngagementConfig: translatedPreEngagement });
 
   // Disable greeting message as chatbot already includes one
   FlexWebChat.MessagingCanvas.defaultProps.predefinedMessage = undefined;
