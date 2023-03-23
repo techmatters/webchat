@@ -67,7 +67,7 @@ export const getChangeLanguageWebChat = (manager: FlexWebChat.Manager, config: C
 
   return (language: string) => {
     try {
-      const preEngagement = getPreEngagementForm(language, preEngagementConfig);
+      const preEngagement = getPreEngagementForm(language || defaultLanguage, preEngagementConfig);
       manager.updateConfig({
         preEngagementConfig: preEngagement,
       });
