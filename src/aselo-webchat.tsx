@@ -151,43 +151,6 @@ export const initWebchat = async () => {
     await subscribeToChannel(manager, channel);
   }
 
-  const translatedPreEngagement = { ...currentConfig.preEngagementConfig };
-
-  // Checks if key exists in manager.string and returns the key in manager.string or the initial key if undefined.
-  const lookupTranslation = (key: string) => {
-    return (manager.strings as Record<string, string>)[key] ?? key;
-  };
-
-  translatedPreEngagement.description = lookupTranslation(currentConfig.preEngagementConfig.description as string);
-
-  translatedPreEngagement.submitLabel = lookupTranslation(currentConfig.preEngagementConfig.submitLabel as string);
-
-  translatedPreEngagement.fields.forEach((field: FormField, index) => {
-    field.label = lookupTranslation(currentConfig.preEngagementConfig.fields[index].label ?? '');
-
-    /*
-     * For some reason the FormAttributes type in @twilio/flex-ui-core wasn't optimize to check for all properties in fields.
-     * Had to caste fields properties to 'any' in other check for missing fields types.
-     */
-    if (field.type === 'InputItem') {
-      const inputAttributes = field.attributes as any;
-      inputAttributes.placeholder = lookupTranslation(
-        (currentConfig.preEngagementConfig.fields[index].attributes as any).placeholder,
-      );
-    }
-
-    if (field.type === 'SelectItem') {
-      const inputOptions = field.options as any[];
-      inputOptions.forEach((option, optionIndex) => {
-        option.label = lookupTranslation(
-          (currentConfig.preEngagementConfig.fields[index] as any).options[optionIndex].label ?? '',
-        );
-      });
-    }
-  });
-
-  manager.updateConfig({ preEngagementConfig: translatedPreEngagement });
-
   // Disable greeting message as chatbot already includes one
   FlexWebChat.MessagingCanvas.defaultProps.predefinedMessage = undefined;
 
