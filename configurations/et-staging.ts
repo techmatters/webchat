@@ -28,11 +28,13 @@ const translations: Translations = {
     MessageCanvasTrayContent: '',
     MessageInputDisabledReasonHold: 'Please hold for a counselor.',
     AutoFirstMessage: 'Incoming webchat contact from',
+    PreEngagementDescription: "Let's get started",
+    StartChat: 'Start Chat!',
   },
 };
 
 const preEngagementConfig: PreEngagementConfig = {
-  description: "Let's get started",
+  description: 'PreEngagementDescription',
   fields: [
     {
       label: 'Hidden Field',
@@ -43,22 +45,22 @@ const preEngagementConfig: PreEngagementConfig = {
       },
     },
   ],
-  submitLabel: 'Start Chat!',
+  submitLabel: 'StartChat',
 };
 
-const mapHelplineLanguage: MapHelplineLanguage = helpline => {
+const mapHelplineLanguage: MapHelplineLanguage = (helpline) => {
   switch (helpline) {
     default:
       return defaultLanguage;
   }
-}
+};
 
 const memberDisplayOptions = {
   yourDefaultName: 'You',
   yourFriendlyNameOverride: false,
   theirFriendlyNameOverride: false,
   theirDefaultName: 'Adama Helpline Counsellor',
-}
+};
 
 export const config: Configuration = {
   accountSid,
@@ -69,5 +71,5 @@ export const config: Configuration = {
   mapHelplineLanguage,
   memberDisplayOptions,
   captureIp,
-  contactType
+  contactType,
 };

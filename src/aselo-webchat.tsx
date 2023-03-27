@@ -153,43 +153,38 @@ export const initWebchat = async () => {
 
   const translatedPreEngagement = { ...currentConfig.preEngagementConfig };
 
-  translatedPreEngagement.description = (manager.strings as Record<string, string>)[
-    currentConfig.preEngagementConfig.description as string
-  ];
-  translatedPreEngagement.submitLabel = (manager.strings as Record<string, string>)[
-    currentConfig.preEngagementConfig.submitLabel as string
-  ];
+  // Checks if key exists in manager.string and returns the key in manager.string or the initial key if undefined.
+  const lookupTranslation = (key: string) => {
+    return (manager.strings as Record<string, string>)[key] ?? key;
+  };
 
-  translatedPreEngagement.fields.forEach((field: FormField) =>
-    currentConfig.preEngagementConfig.fields.forEach((configField: FormField) => {
-      const options =
-        field.options &&
-        field.options.forEach(
-          (option) =>
-            configField.options &&
-            configField.options.map((conOption) => {
-              return {
-                ...option,
-                label: (option.label = (manager.strings as Record<string, string>)[conOption.label as string]),
-              };
-            }),
+  translatedPreEngagement.description = lookupTranslation(currentConfig.preEngagementConfig.description as string);
+
+  translatedPreEngagement.submitLabel = lookupTranslation(currentConfig.preEngagementConfig.submitLabel as string);
+
+  translatedPreEngagement.fields.forEach((field: FormField, index) => {
+    field.label = lookupTranslation(currentConfig.preEngagementConfig.fields[index].label ?? '');
+
+    /*
+     * For some reason the FormAttributes type in @twilio/flex-ui-core wasn't optimize to check for all properties in fields.
+     * Had to caste fields properties to 'any' in other check for missing fields types.
+     */
+    if (field.type === 'InputItem') {
+      const inputAttributes = field.attributes as any;
+      inputAttributes.placeholder = lookupTranslation(
+        (currentConfig.preEngagementConfig.fields[index].attributes as any).placeholder,
+      );
+    }
+
+    if (field.type === 'SelectItem') {
+      const inputOptions = field.options as any[];
+      inputOptions.forEach((option, optionIndex) => {
+        option.label = lookupTranslation(
+          (currentConfig.preEngagementConfig.fields[index] as any).options[optionIndex].label ?? '',
         );
-
-      return {
-        ...field,
-        label: (field.label = (manager.strings as Record<string, string>)[configField.label as string]),
-        attributes: {
-          ...field.attributes,
-          name: field.attributes
-            ? (field.attributes.name =
-                (manager.strings as Record<string, string>)[configField.attributes?.name as string] ||
-                field.attributes?.name)
-            : undefined,
-        },
-        options,
-      };
-    }),
-  );
+      });
+    }
+  });
 
   manager.updateConfig({ preEngagementConfig: translatedPreEngagement });
 

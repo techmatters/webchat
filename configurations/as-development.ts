@@ -30,11 +30,11 @@ const translations: Translations = {
     MessageCanvasTrayContent: '',
     MessageInputDisabledReasonHold: 'Please hold for a counselor.',
     AutoFirstMessage: 'Incoming webchat contact from',
-    PreEngagementConfigFormDescription: `Let's get started`,
-    PreEngagementConfigFormWhatIsYourHelpline: 'What is your helpline?',
-    PreEngagementConfigFormHelpline: 'helpline',
-    PreEngagementConfigFormSelectHelpline: 'Select helpline',
-    PreEngagementConfigFormFakeHelpline: 'Fake Helpline',
+    PreEngagementDescription: `Let's get started`,
+    WhatIsYourHelpline: 'What is your helpline?',
+    SelectHelpline: 'Select helpline',
+    FakeHelpline: 'Fake Helpline',
+    LetsChat: "Let's chat!",
   },
   es: {
     EntryPointTagline: 'Chatea con nosotros',
@@ -57,6 +57,12 @@ const translations: Translations = {
 
     PreEngagementDescription: 'Comencemos',
 
+    // Needs to be translated
+    WhatIsYourHelpline: 'What is your helpline?',
+    SelectHelpline: 'Select helpline',
+    FakeHelpline: 'Fake Helpline',
+    LetsChat: "Let's chat!",
+
     WelcomeMessage: '¡Bienvenido a Aselo!',
     MessageCanvasTrayContent: '',
     AutoFirstMessage: '',
@@ -68,31 +74,31 @@ const translations: Translations = {
 };
 
 const preEngagementConfig: PreEngagementConfig = {
-  description: 'PreEngagementConfigFormDescription',
+  description: 'PreEngagementDescription',
   fields: [
     {
-      label: 'PreEngagementConfigFormWhatIsYourHelpline',
+      label: 'WhatIsYourHelpline',
       type: 'SelectItem',
       attributes: {
-        name: 'PreEngagementConfigFormHelpline',
+        name: 'helpline',
         required: true,
         readOnly: false,
       },
       options: [
         {
           value: 'Select helpline',
-          label: 'PreEngagementConfigFormSelectHelpline',
+          label: 'SelectHelpline',
           selected: true,
         },
         {
           value: 'Fake Helpline',
-          label: 'PreEngagementConfigFormFakeHelpline',
+          label: 'FakeHelpline',
           selected: false,
         },
       ],
     },
   ],
-  submitLabel: "Let's chat!",
+  submitLabel: 'LetsChat',
 };
 
 const closedHours: PreEngagementConfig = {
