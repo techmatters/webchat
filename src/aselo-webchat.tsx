@@ -31,7 +31,7 @@ import { applyMobileOptimization } from './mobile-optimization';
 import { aseloReducer } from './aselo-webchat-state';
 import { subscribeToChannel } from './task';
 import { addContactIdentifierToContext } from './contact-identifier';
-import type { Configuration } from '../types';
+import type { Configuration, FormField } from '../types';
 // eslint-disable-next-line import/no-unresolved
 import { config } from './config';
 import { renderEmojis } from './emoji-picker/renderEmojis';
@@ -98,6 +98,7 @@ const setChannelAfterStartEngagement = async (channel: Channel, manager: FlexWeb
   const message = `${translations[initialLanguage].AutoFirstMessage} ${contactIdentifier}`;
   channel.sendMessage(message);
 };
+// eslint-disable-next-line sonarjs/cognitive-complexity
 export const initWebchat = async () => {
   let ip: string | undefined;
   if (currentConfig.captureIp) {

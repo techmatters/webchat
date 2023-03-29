@@ -29,16 +29,19 @@ const translations: Translations = {
     MessageInputDisabledReasonHold:
       "Thank you very much for this information. We'll transfer you now. Please hold for a counsellor.",
     AutoFirstMessage: 'Incoming webchat contact from',
+    PreEngagementDescription:
+      'Thank you for contacting Childline Zimbabwe. To chat with a counsellor, please type your name and select the Start Chat button.',
+    WhatIsYourName: 'What is your name?',
+    StartChat: 'Start Chat!',
   },
 };
 
 const preEngagementConfig: PreEngagementConfig = {
-  description:
-    'Thank you for contacting Childline Zimbabwe. To chat with a counsellor, please type your name and select the Start Chat button.',
+  description: 'PreEngagementDescription',
   fields: [
     {
       type: 'InputItem',
-      label: 'What is your name?',
+      label: 'WhatIsYourName',
       attributes: {
         name: 'friendlyName',
         type: 'text',
@@ -47,7 +50,7 @@ const preEngagementConfig: PreEngagementConfig = {
       },
     },
   ],
-  submitLabel: 'Start Chat!',
+  submitLabel: 'StartChat',
 };
 
 const mapHelplineLanguage: MapHelplineLanguage = (helpline) => {
@@ -74,5 +77,5 @@ export const config: Configuration = {
   mapHelplineLanguage,
   memberDisplayOptions,
   captureIp,
-  contactType
+  contactType,
 };

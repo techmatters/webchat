@@ -22,7 +22,6 @@ const defaultLanguage = 'en-US';
 const captureIp = true;
 const contactType: ContactType = 'ip';
 
-
 const translations: Translations = {
   'en-US': {
     MessageInputDisabledReasonHold: "We'll transfer you now. Please hold for a counsellor.",
@@ -41,7 +40,7 @@ const translations: Translations = {
 };
 
 const preEngagementConfig: PreEngagementConfig = {
-  description: "Let's get started",
+  description: 'PreEngagementDescription',
   fields: [
     {
       label: 'Hidden Field',
@@ -52,7 +51,7 @@ const preEngagementConfig: PreEngagementConfig = {
       },
     },
   ],
-  submitLabel: 'Start Chat!',
+  submitLabel: 'StartChat',
 };
 
 const memberDisplayOptions = {
@@ -78,5 +77,5 @@ export const config: Configuration = {
   mapHelplineLanguage,
   memberDisplayOptions,
   captureIp,
-  contactType
+  contactType,
 };
