@@ -35,6 +35,7 @@ import type { Configuration } from '../types';
 // eslint-disable-next-line import/no-unresolved
 import { config } from './config';
 import { renderEmojis } from './emoji-picker/renderEmojis';
+import PreEngagementForm from './pre-engagement-form';
 
 updateZIndex();
 
@@ -200,6 +201,9 @@ export const initWebchat = async () => {
       <CloseChatButtons />
     </Provider>,
   );
+
+  // Replace pre engagement form
+  FlexWebChat.PreEngagementCanvas.Content.replace(<PreEngagementForm key="pre-engagement" manager={manager} />);
 
   // Render WebChat
   webchat.init();

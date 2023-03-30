@@ -30,6 +30,9 @@ const translations: Translations = {
     MessageCanvasTrayContent: '',
     MessageInputDisabledReasonHold: 'Please hold for a counselor.',
     AutoFirstMessage: 'Incoming webchat contact from',
+    PreEngagementDescription: `Let's get started`,
+    WhatIsYourHelpline: 'What is your helpline?',
+    LetsChat: "Let's chat!",
   },
   es: {
     EntryPointTagline: 'Chatea con nosotros',
