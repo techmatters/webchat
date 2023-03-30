@@ -96,8 +96,8 @@ const translations: Translations = {
     FirstNationsreserve: 'First Nations reserve',
     LabelScale: 'On a scale of 1 to 7, how upset are you right now?',
     Upset: 'upset',
-    NotVery: 'Not Very',
-    Very: 'Very',
+    NotVery: '1 - Not Very',
+    Very: '7 - Very',
     Ethnicity: 'ethnicity',
     BlackEthnicity: 'Black (e.g., African, Afro-Caribbean, African Canadian descent)',
     EastAsian: 'East Asian (e.g., East Asian descent; Korean, Chinese, Japanese, etc.)',
@@ -224,8 +224,8 @@ const translations: Translations = {
     FirstNationsreserve: 'Réserve des Premières Nations',
     LabelScale: 'Sur une échelle de 1 à 7, à quel point es-tu bouleversé en ce moment?',
     Upset: 'upset',
-    NotVery: 'Pas tellement',
-    Very: 'Extrêmement',
+    NotVery: '1 - Pas tellement',
+    Very: '7 - Extrêmement',
     Ethnicity: 'ethnicity',
     BlackEthnicity: 'Noir (p. ex., Africain, Afro-Antillais, Canadien d’origine africaine)',
     EastAsian: 'Asiatique de l’Est (p. ex., originaire de l’Asie de l’Est, Coréen, Chinois, Japonais)',
@@ -274,7 +274,7 @@ const preEngagementConfig: PreEngagementConfig = {
   fields: [
     {
       type: 'InputItem',
-      label: 'Nickname (please do not share your real name)',
+      label: 'LabelNickname',
       attributes: {
         name: 'nickname',
         type: 'text',
@@ -293,7 +293,7 @@ const preEngagementConfig: PreEngagementConfig = {
       options: [
         {
           value: '5 or younger',
-          label: '5 or younger',
+          label: 'FiveOrYounger',
           selected: true,
         },
         {
@@ -715,7 +715,7 @@ const preEngagementConfig: PreEngagementConfig = {
       options: [
         {
           value: '1',
-          label: '1 - NotVery',
+          label: 'NotVery',
           selected: true,
         },
         {
@@ -745,7 +745,7 @@ const preEngagementConfig: PreEngagementConfig = {
         },
         {
           value: '7',
-          label: '7 - Very',
+          label: 'Very',
           selected: false,
         },
       ],

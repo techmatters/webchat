@@ -102,6 +102,9 @@ export const getChangeLanguageWebChat = (manager: FlexWebChat.Manager, config: C
         manager.updateConfig({ preEngagementConfig: translatedPreEngagement });
       };
 
+      // eslint-disable-next-line sonarjs/no-use-of-empty-return-value
+      console.log('translatePreEngagement()', translatePreEngagement(), manager);
+
       setNewLanguage(language);
       translatePreEngagement();
     } catch (err) {
