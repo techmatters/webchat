@@ -32,6 +32,8 @@ const translations: Translations = {
     AutoFirstMessage: 'Incoming webchat contact from',
     PreEngagementDescription: `Let's get started`,
     WhatIsYourHelpline: 'What is your helpline?',
+    SelectHelpline: 'Select helpline',
+    FakeHelpline: 'Fake Helpline',
     LetsChat: "Let's chat!",
   },
   es: {
@@ -55,6 +57,12 @@ const translations: Translations = {
 
     PreEngagementDescription: 'Comencemos',
 
+    // Needs to be translated
+    WhatIsYourHelpline: 'What is your helpline?',
+    SelectHelpline: 'Select helpline',
+    FakeHelpline: 'Fake Helpline',
+    LetsChat: "Let's chat!",
+
     WelcomeMessage: '¡Bienvenido a Aselo!',
     MessageCanvasTrayContent: '',
     AutoFirstMessage: '',
@@ -66,10 +74,10 @@ const translations: Translations = {
 };
 
 const preEngagementConfig: PreEngagementConfig = {
-  description: "Let's get started",
+  description: 'PreEngagementDescription',
   fields: [
     {
-      label: 'What is your helpline?',
+      label: 'WhatIsYourHelpline',
       type: 'SelectItem',
       attributes: {
         name: 'helpline',
@@ -79,18 +87,18 @@ const preEngagementConfig: PreEngagementConfig = {
       options: [
         {
           value: 'Select helpline',
-          label: 'Select helpline',
+          label: 'SelectHelpline',
           selected: true,
         },
         {
           value: 'Fake Helpline',
-          label: 'Fake Helpline',
+          label: 'FakeHelpline',
           selected: false,
         },
       ],
     },
   ],
-  submitLabel: "Let's chat!",
+  submitLabel: 'LetsChat',
 };
 
 const closedHours: PreEngagementConfig = {

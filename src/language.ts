@@ -16,7 +16,7 @@
 
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
 
-import { Configuration } from '../types';
+import { Configuration, FormField } from '../types';
 import { notifyStringsUpdated } from './pre-engagement-form/localization';
 import standardTranslations from './translations';
 
@@ -37,7 +37,7 @@ const standardTranslationsForLanguage = (language: string): Record<string, strin
 };
 
 export const getChangeLanguageWebChat = (manager: FlexWebChat.Manager, config: Configuration) => {
-  const { defaultLanguage, translations: configTranslations } = config;
+  const { defaultLanguage, translations: configTranslations, preEngagementConfig } = config;
   const setNewLanguage = (language: string) => {
     const twilioStrings = { ...manager.strings }; // save the originals
     const defaultLanguageTranslations = standardTranslationsForLanguage(defaultLanguage);
@@ -45,6 +45,7 @@ export const getChangeLanguageWebChat = (manager: FlexWebChat.Manager, config: C
     const setConfigLanguage = (language: string) => (manager.store.getState().flex.config.language = language);
     const setNewStrings = (newStrings: FlexWebChat.Strings) =>
       (manager.strings = { ...manager.strings, ...newStrings });
+
     if (language && language !== defaultLanguage) {
       const languageTranslations = standardTranslationsForLanguage(language);
       setConfigLanguage(language);
@@ -63,7 +64,47 @@ export const getChangeLanguageWebChat = (manager: FlexWebChat.Manager, config: C
 
   return (language: string) => {
     try {
+      // Checks if key exists in manager.string and returns the key in manager.string or the initial key if undefined.
+      const lookupTranslation = (key: string) => {
+        return (manager.strings as Record<string, string>)[key] ?? key;
+      };
+
+      const translatePreEngagement = () => {
+        const translatedPreEngagement = { ...preEngagementConfig };
+
+        translatedPreEngagement.description = lookupTranslation(preEngagementConfig.description as string);
+
+        translatedPreEngagement.submitLabel = lookupTranslation(preEngagementConfig.submitLabel as string);
+
+        translatedPreEngagement.fields.forEach((field: FormField, index) => {
+          field.label = lookupTranslation(preEngagementConfig.fields[index].label ?? '');
+
+          /*
+           * For some reason, the FormAttributes type in @twilio/flex-ui-core wasn't optimize to check for all properties in fields.
+           * Had to caste fields properties to 'any' in other check for missing fields types.
+           */
+          if (field.type === 'InputItem') {
+            const inputAttributes = field.attributes as any;
+            inputAttributes.placeholder = lookupTranslation(
+              (preEngagementConfig.fields[index].attributes as any).placeholder,
+            );
+          }
+
+          if (field.type === 'SelectItem') {
+            const inputOptions = field.options as any[];
+            inputOptions.forEach((option, optionIndex) => {
+              option.label = lookupTranslation(
+                (preEngagementConfig.fields[index] as any).options[optionIndex].label ?? '',
+              );
+            });
+          }
+        });
+
+        manager.updateConfig({ preEngagementConfig: translatedPreEngagement });
+      };
+
       setNewLanguage(language);
+      translatePreEngagement();
     } catch (err) {
       const translationErrorMsg = 'Could not translate, using default';
       window.alert(translationErrorMsg);

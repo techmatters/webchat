@@ -23,10 +23,10 @@ const captureIp = true;
 const contactType: ContactType = 'ip';
 
 const preEngagementConfig: PreEngagementConfig = {
-  description: 'Welcome to the Revenge Porn and Report Harmful Content Helplines.',
+  description: 'PreEngagementDescription',
   fields: [
     {
-      label: 'Select the service',
+      label: 'LabelService',
       type: 'SelectItem',
       attributes: {
         name: 'helpline',
@@ -36,18 +36,18 @@ const preEngagementConfig: PreEngagementConfig = {
       options: [
         {
           value: 'RevengePorn',
-          label: 'Revenge Porn Helpline',
+          label: 'RevengePornHelpline',
           selected: true,
         },
         {
           value: 'RHC',
-          label: 'Report Harmful Content Helpline',
+          label: 'ReportHarmfulContentHelpline',
           selected: false,
         },
       ],
     },
   ],
-  submitLabel: 'Start Chat!',
+  submitLabel: 'StartChat',
 };
 
 const translations: Translations = {
@@ -60,6 +60,10 @@ const translations: Translations = {
     TypingIndicator: 'Counselor is typing',
     StartChat: 'Start Chat!',
     MessageCanvasTrayButton: 'Start New Chat',
+    LabelService: 'Select the service',
+    PreEngagementDescription: 'Welcome to the Revenge Porn and Report Harmful Content Helplines.',
+    RevengePornHelpline: 'Revenge Porn Helpline',
+    ReportHarmfulContentHelpline: 'Report Harmful Content Helpline',
   },
 };
 

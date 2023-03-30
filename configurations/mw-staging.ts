@@ -28,14 +28,17 @@ const translations: Translations = {
     MessageCanvasTrayContent: '',
     MessageInputDisabledReasonHold: 'Please hold for a counselor.',
     AutoFirstMessage: 'Incoming webchat contact from',
+    PreEngagementDescription: "Let's get started",
+    LabelHiddenField: 'Hidden Field',
+    StartChat: 'Start Chat!',
   },
 };
 
 const preEngagementConfig: PreEngagementConfig = {
-  description: "Let's get started",
+  description: 'PreEngagementDescription',
   fields: [
     {
-      label: 'Hidden Field',
+      label: 'LabelHiddenField',
       type: 'InputField',
       attributes: {
         name: '',
@@ -43,22 +46,22 @@ const preEngagementConfig: PreEngagementConfig = {
       },
     },
   ],
-  submitLabel: 'Start Chat!',
+  submitLabel: 'StartChat',
 };
 
-const mapHelplineLanguage: MapHelplineLanguage = helpline => {
+const mapHelplineLanguage: MapHelplineLanguage = (helpline) => {
   switch (helpline) {
     default:
       return defaultLanguage;
   }
-}
+};
 
 const memberDisplayOptions = {
   yourDefaultName: 'You',
   yourFriendlyNameOverride: false,
   theirFriendlyNameOverride: false,
   theirDefaultName: 'Tithandizane Counsellor',
-}
+};
 
 export const config: Configuration = {
   accountSid,
@@ -68,5 +71,6 @@ export const config: Configuration = {
   preEngagementConfig,
   mapHelplineLanguage,
   memberDisplayOptions,
-  captureIp,contactType
+  captureIp,
+  contactType,
 };

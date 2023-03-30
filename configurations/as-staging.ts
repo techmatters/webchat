@@ -23,149 +23,160 @@ const captureIp = true;
 const contactType: ContactType = 'ip';
 
 const translations: Translations = {
-  'ar': {
+  ar: {
     MessageCanvasTrayContent: '',
     AutoFirstMessage: '',
   },
-  'el': {
+  el: {
     MessageCanvasTrayContent: '',
     AutoFirstMessage: '',
   },
   'en-US': {
-    WelcomeMessage: "Welcome to Aselo!",
+    WelcomeMessage: 'Welcome to Aselo!',
     MessageCanvasTrayContent: '',
-    MessageInputDisabledReasonHold: "Please hold for a counsellor.",
-    AutoFirstMessage: "Incoming webchat contact from",
+    MessageInputDisabledReasonHold: 'Please hold for a counsellor.',
+    AutoFirstMessage: 'Incoming webchat contact from',
+    PreEngagementDescription: `Let's get started`,
+    WhatIsYourHelpline: 'What is your helpline?',
+    SelectHelpline: 'Select helpline',
+    LetsChat: "Let's chat!",
   },
-  'es': {
-    EntryPointTagline: "Chatea con nosotros",
-    MessageCanvasTrayButton: "EMPEZAR NUEVO CHAT",
-    InvalidPreEngagementMessage: "Los formularios previos al compromiso no se han establecido y son necesarios para iniciar el chat web. Por favor configúrelos ahora en la configuración.",
-    InvalidPreEngagementButton: "Aprende más",
-    PredefinedChatMessageAuthorName: "Bot",
-    PredefinedChatMessageBody: "¡Hola! ¿Cómo podemos ayudarte hoy?",
-    InputPlaceHolder: "Escribe un mensaje",
-    TypingIndicator: "{0} está escribiendo ... ",
-    Read: "Visto",
-    MessageSendingDisabled: "El envío de mensajes ha sido desactivado",
-    Today: "HOY",
-    Yesterday: "AYER",
-    Save: "GUARDAR",
-    Reset: "RESETEAR",
-    MessageCharacterCountStatus: "{{currentCharCount}} / {{maxCharCount}}",
-    SendMessageTooltip: "Enviar Mensaje",
-    FieldValidationRequiredField: "Campo requerido",
-    FieldValidationInvalidEmail: "Por favor provea una dirección válida de email",
+  es: {
+    EntryPointTagline: 'Chatea con nosotros',
+    MessageCanvasTrayButton: 'EMPEZAR NUEVO CHAT',
+    InvalidPreEngagementMessage:
+      'Los formularios previos al compromiso no se han establecido y son necesarios para iniciar el chat web. Por favor configúrelos ahora en la configuración.',
+    InvalidPreEngagementButton: 'Aprende más',
+    PredefinedChatMessageAuthorName: 'Bot',
+    PredefinedChatMessageBody: '¡Hola! ¿Cómo podemos ayudarte hoy?',
+    InputPlaceHolder: 'Escribe un mensaje',
+    TypingIndicator: '{0} está escribiendo ... ',
+    Read: 'Visto',
+    MessageSendingDisabled: 'El envío de mensajes ha sido desactivado',
+    Today: 'HOY',
+    Yesterday: 'AYER',
+    Save: 'GUARDAR',
+    Reset: 'RESETEAR',
+    MessageCharacterCountStatus: '{{currentCharCount}} / {{maxCharCount}}',
+    SendMessageTooltip: 'Enviar Mensaje',
+    FieldValidationRequiredField: 'Campo requerido',
+    FieldValidationInvalidEmail: 'Por favor provea una dirección válida de email',
 
-    PreEngagementDescription: "Comencemos",
+    PreEngagementDescription: 'Comencemos',
 
-    BotGreeting: "¿Cómo puedo ayudar?",
-    WelcomeMessage: "¡Bienvenido a Aselo!",
+    BotGreeting: '¿Cómo puedo ayudar?',
+    WelcomeMessage: '¡Bienvenido a Aselo!',
+    MessageCanvasTrayContent: '',
+    AutoFirstMessage: '',
+
+    // Needs to be translated
+    WhatIsYourHelpline: 'What is your helpline?',
+    SelectHelpline: 'Select helpline',
+    FakeHelpline: 'Fake Helpline',
+    LetsChat: "Let's chat!",
+  },
+  da: {
     MessageCanvasTrayContent: '',
     AutoFirstMessage: '',
   },
-  'da': {
+  it: {
     MessageCanvasTrayContent: '',
     AutoFirstMessage: '',
   },
-  'it': {
+  km: {
     MessageCanvasTrayContent: '',
     AutoFirstMessage: '',
   },
-  'km': {
+  sv: {
     MessageCanvasTrayContent: '',
     AutoFirstMessage: '',
   },
-  'sv': {
-    MessageCanvasTrayContent: '',
-    AutoFirstMessage: '',
-  }
 };
 
 const preEngagementConfig: PreEngagementConfig = {
-  description: "Let's get started",
-  fields:
-    [{
-      label: "What is your helpline?",
-      type: "SelectItem",
+  description: 'PreEngagementDescription',
+  fields: [
+    {
+      label: 'What is your helpline?',
+      type: 'SelectItem',
       attributes: {
-        name: "helpline",
+        name: 'helpline',
         required: true,
-        readOnly: false
+        readOnly: false,
       },
-      options: 
-      [
+      options: [
         {
-          value: "Select helpline",
-          label: "Select helpline",
-          selected: true
+          value: 'Select helpline',
+          label: 'WhatIsYourHelpline',
+          selected: true,
         },
         {
-          value: "Børns Vilkår (DK)",
-          label: "Børns Vilkår (DK)",
-          selected: false
+          value: 'Børns Vilkår (DK)',
+          label: 'Børns Vilkår (DK)',
+          selected: false,
         },
         {
-          value: "Childhelp (US)",
-          label: "Childhelp (US)",
-          selected: false
+          value: 'Childhelp (US)',
+          label: 'Childhelp (US)',
+          selected: false,
         },
         {
-          value: "CHILDLINE India (IN)",
-          label: "CHILDLINE India (IN)",
-          selected: false
+          value: 'CHILDLINE India (IN)',
+          label: 'CHILDLINE India (IN)',
+          selected: false,
         },
         {
-          value: "Childline South Africa (SA)",
-          label: "Childline South Africa (SA)",
-          selected: false
+          value: 'Childline South Africa (SA)',
+          label: 'Childline South Africa (SA)',
+          selected: false,
         },
         {
-          value: "ChildLine Zambia (ZM)",
-          label: "ChildLine Zambia (ZM)",
-          selected: false
+          value: 'ChildLine Zambia (ZM)',
+          label: 'ChildLine Zambia (ZM)',
+          selected: false,
         },
         {
-          value: "Child Helpline Cambodia (KH)",
-          label: "Child Helpline Cambodia (KH)",
-          selected: false
+          value: 'Child Helpline Cambodia (KH)',
+          label: 'Child Helpline Cambodia (KH)',
+          selected: false,
         },
         {
-          value: "Jordan River 110 (JO)",
-          label: "Jordan River 110 (JO)",
-          selected: false
+          value: 'Jordan River 110 (JO)',
+          label: 'Jordan River 110 (JO)',
+          selected: false,
         },
         {
-          value: "SMILE OF THE CHILD (GR)",
-          label: "SMILE OF THE CHILD (GR)",
-          selected: false
+          value: 'SMILE OF THE CHILD (GR)',
+          label: 'SMILE OF THE CHILD (GR)',
+          selected: false,
         },
         {
-          value: "Telefono Azzurro (IT)",
-          label: "Telefono Azzurro (IT)",
-          selected: false
+          value: 'Telefono Azzurro (IT)',
+          label: 'Telefono Azzurro (IT)',
+          selected: false,
         },
         {
-          value: "BRIS (SE)",
-          label: "BRIS (SE)",
-          selected: false
+          value: 'BRIS (SE)',
+          label: 'BRIS (SE)',
+          selected: false,
         },
         {
-          value: "2NDFLOOR (US)",
-          label: "2NDFLOOR (US)",
-          selected: false
+          value: '2NDFLOOR (US)',
+          label: '2NDFLOOR (US)',
+          selected: false,
         },
         {
-          value: "Palo Alto Testing (Text)",
-          label: "Palo Alto Testing (Text)",
-          selected: false
-        }
-      ]
-    }],
-  submitLabel: "Let's chat!"
+          value: 'Palo Alto Testing (Text)',
+          label: 'Palo Alto Testing (Text)',
+          selected: false,
+        },
+      ],
+    },
+  ],
+  submitLabel: 'LetsChat',
 };
 
-const mapHelplineLanguage: MapHelplineLanguage = helpline => {
+const mapHelplineLanguage: MapHelplineLanguage = (helpline) => {
   switch (helpline) {
     case 'Børns Vilkår (DK)':
       return 'da';
@@ -184,7 +195,7 @@ const mapHelplineLanguage: MapHelplineLanguage = helpline => {
     default:
       return defaultLanguage;
   }
-}
+};
 
 export const config: Configuration = {
   accountSid,
@@ -194,5 +205,5 @@ export const config: Configuration = {
   preEngagementConfig,
   mapHelplineLanguage,
   captureIp,
-  contactType
+  contactType,
 };
