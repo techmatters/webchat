@@ -35,7 +35,7 @@ import type { Configuration } from '../types';
 // eslint-disable-next-line import/no-unresolved
 import { config } from './config';
 import { renderEmojis } from './emoji-picker/renderEmojis';
-import { applyWidgetBranding } from './global-overrides';
+import { applyWidgetBranding } from './branding-overrides';
 
 updateZIndex();
 
