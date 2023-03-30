@@ -23,101 +23,20 @@ import * as FlexWebChat from '@twilio/flex-webchat-ui';
 import { AseloWebchatState } from '../aselo-webchat-state';
 import type { PreEngagementForm as PreEngagementFormDefinition } from './form-components/types';
 import { generateForm } from './form-components';
-import { LocalizationProvider, useLocalization } from './localization';
+import { LocalizationProvider } from './localization';
 import SubmitButton from './form-components/submit-button';
 import Title from './form-components/title';
 
-const form: PreEngagementFormDefinition = {
-  description: 'PreEngagementDescription',
-  submitLabel: 'LetsChat',
-  fields: [
-    {
-      type: 'input-text',
-      name: 'firstName',
-      label: 'First Name',
-      placeholder: 'John',
-      required: true,
-    },
-    {
-      type: 'input-text',
-      name: 'email',
-      label: 'Email',
-      required: 'Email is required',
-      pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-    },
-    {
-      type: 'select',
-      name: 'continent',
-      label: 'Continent',
-      options: [
-        { value: '', label: '' },
-        { value: 'North America', label: 'North America' },
-        { value: 'South America', label: 'South America' },
-        { value: 'Europe', label: 'Europe' },
-        { value: 'Africa', label: 'Africa' },
-        { value: 'Oceania', label: 'Oceania' },
-        { value: 'Asia', label: 'Asia' },
-      ],
-    },
-    {
-      type: 'dependent-select',
-      dependsOn: 'continent',
-      name: 'country',
-      label: 'Country',
-      required: true,
-      options: {
-        'North America': [
-          { value: '', label: '' },
-          { value: 'Canada', label: 'Canada' },
-          { value: 'USA', label: 'USA' },
-          { value: 'Mexico', label: 'Mexico' },
-        ],
-        'South America': [
-          { value: '', label: '' },
-          { value: 'Chile', label: 'Chile' },
-          { value: 'Argentina', label: 'Argentina' },
-          { value: 'Brazil', label: 'Brazil' },
-          { value: 'Colombia', label: 'Colombia' },
-        ],
-        Europe: [
-          { value: '', label: '' },
-          { value: 'Spain', label: 'Spain' },
-          { value: 'Portugal', label: 'Portugal' },
-          { value: 'France', label: 'France' },
-          { value: 'Ireland', label: 'Ireland' },
-          { value: 'UK', label: 'UK' },
-          { value: 'Germany', label: 'Germany' },
-          { value: 'Italy', label: 'Italy' },
-        ],
-        Africa: [
-          { value: '', label: '' },
-          { value: 'Nigeria', label: 'Nigeria' },
-          { value: 'South Africa', label: 'South Africa' },
-          { value: 'Egypt', label: 'Egypt' },
-          { value: 'Ethiopia', label: 'Ethiopia' },
-          { value: 'Zambia', label: 'Zambia' },
-        ],
-        Oceania: [
-          { value: '', label: '' },
-          { value: 'Australia', label: 'Australia' },
-          { value: 'New Zealand', label: 'New Zealand' },
-        ],
-        Asia: [
-          { value: '', label: '' },
-          { value: 'Japan', label: 'Japan' },
-          { value: 'China', label: 'China' },
-          { value: 'South Korea', label: 'South Korea' },
-        ],
-      },
-    },
-  ],
-};
+export { PreEngagementFormDefinition };
+
+export const EMAIL_PATTERN = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 
 type Props = {
   manager: FlexWebChat.Manager;
+  formDefinition: PreEngagementFormDefinition;
 } & ReturnType<typeof mapStateToProps>;
 
-const PreEngagementForm: React.FC<Props> = ({ preEngagementFormState, manager }) => {
+const PreEngagementForm: React.FC<Props> = ({ preEngagementFormState, formDefinition, manager }) => {
   const methods = useForm({ defaultValues: preEngagementFormState, mode: 'onChange' });
   const { handleSubmit, formState } = methods;
   const { isValid } = formState;
@@ -132,9 +51,9 @@ const PreEngagementForm: React.FC<Props> = ({ preEngagementFormState, manager })
     <FormProvider {...methods}>
       <LocalizationProvider manager={manager}>
         <form className="Twilio-DynamicForm" onSubmit={onSubmit}>
-          <Title title={form.description} />
-          {generateForm(form.fields)}
-          <SubmitButton label={form.submitLabel} disabled={!isValid} />
+          <Title title={formDefinition.description} />
+          {generateForm(formDefinition.fields)}
+          {formDefinition.submitLabel && <SubmitButton label={formDefinition.submitLabel} disabled={!isValid} />}
         </form>
       </LocalizationProvider>
     </FormProvider>

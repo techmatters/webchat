@@ -43,6 +43,6 @@ type DependentSelect = {
 export type PreEngagementFormItem = InputText | Select | DependentSelect;
 export type PreEngagementForm = {
   description: string;
-  submitLabel: string;
+  submitLabel?: string;
   fields: PreEngagementFormItem[];
 };

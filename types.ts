@@ -17,23 +17,14 @@
 import { FormAttributes as PreEngagementConfig } from '@twilio/flex-ui-core';
 import type { MemberDisplayOptions } from '@twilio/flex-ui-core/src/components/channel/MessagingCanvas';
 
+import type { PreEngagementFormDefinition } from './src/pre-engagement-form';
+
 export type { PreEngagementConfig };
 
 export type Translations = {
   [language: string]: {
     [key: string]: string;
   };
-};
-
-// eslint-disable-next-line import/no-unused-modules
-export type FormField = {
-  label?: string;
-  type?: string;
-  attributes?: { name?: string; type?: string; required?: boolean; readOnly?: boolean; placeholder?: string };
-  options?: (
-    | { value?: string; label?: string; selected?: true }
-    | { value?: string; label?: string; selected?: false }
-  )[];
 };
 
 export type MapHelplineLanguage = (helpline: string) => string;
@@ -43,9 +34,9 @@ export type Configuration = {
   flexFlowSid: string;
   defaultLanguage: string;
   translations: Translations;
-  preEngagementConfig: PreEngagementConfig;
-  closedHours?: PreEngagementConfig;
-  holidayHours?: PreEngagementConfig;
+  preEngagementConfig: PreEngagementFormDefinition | PreEngagementConfig;
+  closedHours?: PreEngagementFormDefinition | PreEngagementConfig;
+  holidayHours?: PreEngagementFormDefinition | PreEngagementConfig;
   mapHelplineLanguage: MapHelplineLanguage;
   memberDisplayOptions?: MemberDisplayOptions;
   captureIp: boolean;
