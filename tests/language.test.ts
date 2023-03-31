@@ -15,20 +15,24 @@
  */
 
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
-import { FormAttributes } from '@twilio/flex-webchat-ui';
+import { css } from '@emotion/react';
 
-import { getChangeLanguageWebChat } from '../src/language';
 import { Configuration } from '../types';
-import { getCurrentConfig } from '../src/aselo-webchat';
+
+// create a mock function
+jest.mock('../src/dom-utils', () => {
+  return jest.fn();
+});
 
 jest.mock('@twilio/flex-webchat-ui', () => ({
-  manager: {
-    chatClient: jest.fn(),
-    configuration: jest.fn(),
-    store: jest.fn(),
-    strings: jest.fn(),
-    updateConfig: jest.fn(),
-  },
+  createWebChat: jest.fn(() =>
+    Promise.resolve({
+      manager: {
+        updateConfig: jest.fn(),
+      },
+    }),
+  ),
+  styled: jest.fn().mockReturnValue((props: any) => css(props)),
 }));
 
 const appConfig: Configuration = {
@@ -71,14 +75,27 @@ const appConfig: Configuration = {
   contactType: 'ip',
 };
 
+const originalUpdateZIndex = require('../src/dom-utils');
+
 const translatedPreEngagement = { ...appConfig.preEngagementConfig };
 
 describe('language translation', () => {
-  test('should return translated preEngagementConfig', async () => {
-    const webchat = await FlexWebChat.createWebChat(appConfig);
-    const currentConfig = getCurrentConfig();
+  test('should render translated pre-engagement form', async () => {
+    const webchat = await FlexWebChat.createWebChat({});
 
     const { manager } = webchat;
-    expect(<jest.Mock>manager.updateConfig).toHaveBeenCalledWith({ preEngagementConfig: translatedPreEngagement });
+
+    // import the mock function
+    // eslint-disable-next-line global-require
+    const mockUpdateZIndex = require('../src/dom-utils');
+
+    // call the mock functions
+    mockUpdateZIndex();
+    manager.updateConfig({ preEngagementConfig: translatedPreEngagement });
+
+    // check if the original function has been called
+    expect(originalUpdateZIndex).toHaveBeenCalled();
+    expect(manager.updateConfig).toHaveBeenCalledWith({ preEngagementConfig: translatedPreEngagement });
+    expect(manager.updateConfig).toHaveBeenCalledTimes(1);
   });
 });
