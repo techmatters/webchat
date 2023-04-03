@@ -29,6 +29,7 @@ type Select = {
   label: string;
   name: string;
   options: SelectOption[];
+  defaultValue?: string;
 } & UseControllerProps['rules'];
 
 type DependentSelectOptions = { [key: string]: SelectOption[] };

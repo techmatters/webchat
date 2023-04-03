@@ -37,7 +37,7 @@ const standardTranslationsForLanguage = (language: string): Record<string, strin
 };
 
 export const getChangeLanguageWebChat = (manager: FlexWebChat.Manager, config: Configuration) => {
-  const { defaultLanguage, translations: configTranslations, preEngagementConfig } = config;
+  const { defaultLanguage, translations: configTranslations } = config;
   const setNewLanguage = (language: string) => {
     const twilioStrings = { ...manager.strings }; // save the originals
     const defaultLanguageTranslations = standardTranslationsForLanguage(defaultLanguage);

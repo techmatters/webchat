@@ -33,6 +33,7 @@ import { Label } from './styles';
 
 type OwnProps = {
   label: string;
+  defaultValue?: string;
   children: JSX.Element;
 };
 
@@ -61,7 +62,7 @@ const getErrorMessage = (error: any | FieldError | undefined, strings: Record<st
   return '';
 };
 
-const FormComponent: React.FC<Props> = ({ name, label, rules, handleChange, children }) => {
+const FormComponent: React.FC<Props> = ({ name, label, rules, defaultValue, handleChange, children }) => {
   const { strings, getLabel } = useLocalization();
   const {
     control,
@@ -78,7 +79,7 @@ const FormComponent: React.FC<Props> = ({ name, label, rules, handleChange, chil
       <Controller
         name={name}
         rules={rules}
-        defaultValue=""
+        defaultValue={defaultValue || ''}
         control={control}
         render={({ field }) => {
           const inputOverrides = {

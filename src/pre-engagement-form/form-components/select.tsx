@@ -30,11 +30,12 @@ type Option = {
 type OwnProps = {
   label: string;
   options: Option[];
+  defaultValue?: string;
 };
 
 type Props = OwnProps & UseControllerProps;
 
-const Select: React.FC<Props> = ({ name, label, rules, options }) => {
+const Select: React.FC<Props> = ({ name, label, rules, options, defaultValue }) => {
   const { getLabel } = useLocalization();
 
   const buildOptions = () =>
@@ -45,7 +46,7 @@ const Select: React.FC<Props> = ({ name, label, rules, options }) => {
     ));
 
   return (
-    <FormComponent name={name} label={label} rules={rules}>
+    <FormComponent name={name} label={label} rules={rules} defaultValue={defaultValue}>
       <StyledSelect disabled={false}>{buildOptions()}</StyledSelect>
     </FormComponent>
   );

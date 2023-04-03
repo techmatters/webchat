@@ -14,7 +14,7 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-import type { PreEngagementConfig, Translations, Configuration, MapHelplineLanguage } from '../types';
+import type { Translations, Configuration, MapHelplineLanguage } from '../types';
 import { PreEngagementFormDefinition, EMAIL_PATTERN } from '../src/pre-engagement-form';
 
 const accountSid = 'ACd8a2e89748318adf6ddff7df6948deaf';
@@ -96,6 +96,7 @@ const preEngagementConfig: PreEngagementFormDefinition = {
       type: 'select',
       name: 'continent',
       label: 'Continent',
+      defaultValue: 'Europe',
       options: [
         { value: '', label: '' },
         { value: 'North America', label: 'North America' },

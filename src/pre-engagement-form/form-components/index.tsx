@@ -35,7 +35,16 @@ const generateFormItem = (item: PreEngagementFormItem) => {
     case 'input-text':
       return <InputText key={item.name} name={item.name} label={item.label} rules={rules} />;
     case 'select':
-      return <Select key={item.name} name={item.name} label={item.label} rules={rules} options={item.options} />;
+      return (
+        <Select
+          key={item.name}
+          name={item.name}
+          label={item.label}
+          rules={rules}
+          options={item.options}
+          defaultValue={item.defaultValue}
+        />
+      );
     case 'dependent-select':
       return (
         <DependentSelect
