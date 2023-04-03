@@ -14,7 +14,8 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-import { PreEngagementConfig, Translations, Configuration, MapHelplineLanguage, ContactType } from '../types';
+import { Translations, Configuration, MapHelplineLanguage, ContactType } from '../types';
+import type { PreEngagementFormDefinition } from '../src/pre-engagement-form';
 
 const accountSid = 'ACb3da2ab24338c616db45ba3b4afce61a';
 const flexFlowSid = 'FO83947facb0df52ee4849d30275334213';
@@ -37,21 +38,18 @@ const translations: Translations = {
   },
 };
 
-const preEngagementConfig: PreEngagementConfig = {
+const preEngagementConfig: PreEngagementFormDefinition = {
   description: 'PreEngagementDescription',
+  submitLabel: 'StartChat',
   fields: [
     {
-      type: 'InputItem',
+      type: 'input-text',
+      name: 'friendlyName',
       label: 'WhatIsYourName',
-      attributes: {
-        name: 'friendlyName',
-        type: 'text',
-        placeholder: 'Guest',
-        required: true,
-      },
+      placeholder: 'Guest',
+      required: true,
     },
   ],
-  submitLabel: 'StartChat',
 };
 
 const mapHelplineLanguage: MapHelplineLanguage = (helpline) => {

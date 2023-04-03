@@ -14,7 +14,8 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-import { PreEngagementConfig, Translations, Configuration, MapHelplineLanguage, ContactType } from '../types';
+import { Translations, Configuration, MapHelplineLanguage, ContactType } from '../types';
+import type { PreEngagementFormDefinition } from '../src/pre-engagement-form';
 
 const accountSid = 'AC76b8bd2798b01b067a1be7f17d36c894';
 const flexFlowSid = 'FOd992a9ef451a263c83c8e556b5393887';
@@ -23,50 +24,21 @@ const captureIp = true;
 const checkOpenHours = false;
 const contactType: ContactType = 'ip';
 
-const preEngagementConfig: PreEngagementConfig = {
+const preEngagementConfig: PreEngagementFormDefinition = {
   description: 'PreEngagementDescription',
-  fields: [
-    {
-      label: 'Hidden Field',
-      type: 'InputField',
-      attributes: {
-        name: '',
-        readOnly: true,
-      },
-    },
-  ],
   submitLabel: 'MessageCanvasTrayButton',
+  fields: [],
 };
 
-const closedHours: PreEngagementConfig = {
+const closedHours: PreEngagementFormDefinition = {
   description:
     'Por el momento no estamos atendiendo. Nuestros horarios de atención son de Lunes a Viernes de 8am a 5pm.',
-  fields: [
-    {
-      label: 'Hidden Field',
-      type: 'InputField',
-      attributes: {
-        name: '',
-        required: true,
-        readOnly: true,
-      },
-    },
-  ],
+  fields: [],
 };
 
-const holidayHours: PreEngagementConfig = {
+const holidayHours: PreEngagementFormDefinition = {
   description: 'Lo siento, no atendemos durante días festivos. ¡Vuelve a escribirnos en el siguiente día hábil!',
-  fields: [
-    {
-      label: 'Hidden Field',
-      type: 'InputField',
-      attributes: {
-        name: '',
-        required: true,
-        readOnly: true,
-      },
-    },
-  ],
+  fields: [],
 };
 
 const translations: Translations = {

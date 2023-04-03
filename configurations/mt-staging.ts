@@ -14,7 +14,8 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-import { PreEngagementConfig, Translations, Configuration, MapHelplineLanguage, ContactType } from '../types';
+import { Translations, Configuration, MapHelplineLanguage, ContactType } from '../types';
+import type { PreEngagementFormDefinition } from '../src/pre-engagement-form';
 
 const accountSid = 'ACfb0ccf10880289d67f5c4e85ae26402b';
 const flexFlowSid = 'FOd69e1f3020fd621d4bd9d4be833d8a19';
@@ -71,47 +72,30 @@ const translations: Translations = {
   },
 };
 
-const preEngagementConfig: PreEngagementConfig = {
+const preEngagementConfig: PreEngagementFormDefinition = {
   description: 'PreEngagementDescription',
+  submitLabel: 'StartChat',
   fields: [
     {
+      type: 'select',
+      name: 'language',
       label: 'Select your language',
-      type: 'SelectItem',
-      attributes: {
-        name: 'language',
-        required: true,
-        readOnly: false,
-      },
+      defaultValue: 'en-MT',
+      required: true,
       options: [
-        {
-          value: 'en-MT',
-          label: '1. English',
-          selected: true,
-        },
-        {
-          value: 'mt-MT',
-          label: '2. Maltese',
-          selected: false,
-        },
-        {
-          value: 'ukr-MT',
-          label: '3. Ukrainian',
-          selected: false,
-        },
+        { value: 'en-MT', label: '1. English' },
+        { value: 'mt-MT', label: '2. Maltese' },
+        { value: 'ukr-MT', label: '3. Ukrainian' },
       ],
     },
     {
-      type: 'InputItem',
+      type: 'input-text',
+      name: 'nickname',
       label: 'Nickname',
-      attributes: {
-        name: 'nickname',
-        type: 'text',
-        placeholder: 'GuestName',
-        required: true,
-      },
+      placeholder: 'GuestName',
+      required: true,
     },
   ],
-  submitLabel: 'StartChat',
 };
 
 const memberDisplayOptions = {

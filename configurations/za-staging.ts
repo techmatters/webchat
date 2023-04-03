@@ -14,7 +14,8 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-import { PreEngagementConfig, Translations, Configuration, MapHelplineLanguage, ContactType } from '../types';
+import { Translations, Configuration, MapHelplineLanguage, ContactType } from '../types';
+import type { PreEngagementFormDefinition } from '../src/pre-engagement-form';
 
 const accountSid = 'AC16dd71c6fd135ee250bd213ad1efa2e8';
 const flexFlowSid = 'FOd655fd61e9e7ac6faf9d0be97a49863b';
@@ -37,53 +38,30 @@ const translations: Translations = {
   },
 };
 
-const preEngagementConfig: PreEngagementConfig = {
+const preEngagementConfig: PreEngagementFormDefinition = {
   description: 'PreEngagementDescription',
+  submitLabel: 'StartChat',
   fields: [
     {
-      type: 'InputItem',
+      type: 'input-text',
+      name: 'friendlyName',
       label: 'WhatIsYourName',
-      attributes: {
-        name: 'friendlyName',
-        type: 'text',
-        placeholder: 'GuestsName',
-        required: true,
-      },
+      placeholder: 'GuestsName',
+      required: true,
     },
   ],
-  submitLabel: 'StartChat',
 };
 
-const closedHours: PreEngagementConfig = {
+const closedHours: PreEngagementFormDefinition = {
   description:
     'Our counsellors are currently offline. We are here Monday – Friday, 11am-1pm & 2pm-6pm. If you need to speak to a Counsellor, call our 24 hour Tollfree Number on 116. If you feel you are in immediate danger, please call the Police on 10111.',
-  fields: [
-    {
-      label: 'Hidden Field',
-      type: 'InputField',
-      attributes: {
-        name: '',
-        required: true,
-        readOnly: true,
-      },
-    },
-  ],
+  fields: [],
 };
 
-const holidayHours: PreEngagementConfig = {
+const holidayHours: PreEngagementFormDefinition = {
   description:
     'Our counsellors are currently offline for the Public Holiday today. We are here on normal working days: Monday – Friday, 11am-1pm & 2pm-6pm. Please note that messages sent on this platform out of these hours are not received by our team and if you need to speak to a Counsellor, call our 24 hour Tollfree Number on 116. If you feel you are in immediate danger, please call the Police on 10111.',
-  fields: [
-    {
-      label: 'Hidden Field',
-      type: 'InputField',
-      attributes: {
-        name: '',
-        required: true,
-        readOnly: true,
-      },
-    },
-  ],
+  fields: [],
 };
 
 const mapHelplineLanguage: MapHelplineLanguage = (helpline) => {

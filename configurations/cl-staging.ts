@@ -14,7 +14,8 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-import { PreEngagementConfig, Translations, Configuration, MapHelplineLanguage, ContactType } from '../types';
+import { Translations, Configuration, MapHelplineLanguage, ContactType } from '../types';
+import { PreEngagementFormDefinition, EMAIL_PATTERN } from '../src/pre-engagement-form';
 
 const accountSid = 'AC6ca34b61e7bf2d7cf8b8ca24e7efe65f';
 const flexFlowSid = 'FO005120845e65f5d54a17b8ab6d0bf3f3';
@@ -22,62 +23,42 @@ const defaultLanguage = 'es-CL';
 const captureIp = true;
 const contactType: ContactType = 'email';
 
-const preEngagementConfig: PreEngagementConfig = {
+const preEngagementConfig: PreEngagementFormDefinition = {
   description: 'WelcomeMessage',
+  submitLabel: 'StartChat',
   fields: [
     {
-      type: 'InputItem',
+      type: 'input-text',
+      name: 'contactIdentifier',
       label: 'Email',
-      attributes: {
-        name: 'contactIdentifier',
-        type: 'email',
-        placeholder: 'Email',
-        required: true,
+      required: true,
+      placeholder: 'Email',
+      pattern: {
+        value: EMAIL_PATTERN,
+        message: 'FieldValidationInvalidEmail',
       },
     },
     {
-      type: 'InputItem',
+      type: 'input-text',
+      name: 'age',
       label: 'Edad',
-      attributes: {
-        name: 'age',
-        type: 'text',
-        placeholder: 'Edad',
-        required: true,
-      },
+      placeholder: 'Edad',
+      required: true,
     },
     {
+      type: 'select',
+      name: 'gender',
       label: 'Gender',
-      type: 'SelectItem',
-      attributes: {
-        name: 'gender',
-        required: true,
-        readOnly: false,
-      },
+      defaultValue: 'Masculino',
+      required: true,
       options: [
-        {
-          value: 'Masculino',
-          label: 'Masculino',
-          selected: true,
-        },
-        {
-          value: 'Femenino',
-          label: 'Femenino',
-          selected: false,
-        },
-        {
-          value: 'Otro',
-          label: 'Otro',
-          selected: false,
-        },
-        {
-          value: 'Prefiero no decir',
-          label: 'PrefieroNoDecir',
-          selected: false,
-        },
+        { value: 'Masculino', label: 'Masculino' },
+        { value: 'Femenino', label: 'Femenino' },
+        { value: 'Otro', label: 'Otro' },
+        { value: 'Prefiero no decir', label: 'PrefieroNoDecir' },
       ],
     },
   ],
-  submitLabel: 'StartChat',
 };
 
 const translations: Translations = {

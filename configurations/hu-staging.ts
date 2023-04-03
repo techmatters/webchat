@@ -14,7 +14,8 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-import { PreEngagementConfig, Translations, Configuration, MapHelplineLanguage, ContactType } from '../types';
+import { Translations, Configuration, MapHelplineLanguage, ContactType } from '../types';
+import type { PreEngagementFormDefinition } from '../src/pre-engagement-form';
 
 const accountSid = 'ACbdbee34ef7d099e71cf095d540ff3270';
 const flexFlowSid = 'FO9d20dbe99abbc3b9ad7709f961b0fe95';
@@ -82,48 +83,27 @@ const translations: Translations = {
   },
 };
 
-const preEngagementConfig: PreEngagementConfig = {
+const preEngagementConfig: PreEngagementFormDefinition = {
   description: '',
+  submitLabel: 'Start',
   fields: [
     {
+      type: 'select',
+      name: 'language',
       label: '',
-      type: 'SelectItem',
-      attributes: {
-        name: 'language',
-        required: true,
-        readOnly: false,
-      },
+      required: true,
       options: [
-        {
-          value: 'ukr-HU',
-          label: 'Українська',
-          selected: false,
-        },
-        {
-          value: 'ru-HU',
-          label: 'Русский',
-          selected: false,
-        },
+        { value: 'ukr-HU', label: 'Українська' },
+        { value: 'ru-HU', label: 'Русский' },
       ],
     },
   ],
-  submitLabel: 'Start',
 };
 
-const closedHours: PreEngagementConfig = {
+const closedHours: PreEngagementFormDefinition = {
   description:
     'Привіт, це Kék Vonal. Наразі усі наші оператори зайняті. Спілкуватися українською чи російською мовами ти можеш у вівторок і четвер з 16:00 до 20:00. Чекаємо твого дзвінка! \n\nПривет, это Kék Vonal. На данный момент все наши операторы заняты. Общаться на украинском или русском языке ты можешь во вторник и четверг с 16:00 до 20:00. Ждем твоего звонка!',
-  fields: [
-    {
-      label: 'Hidden Field',
-      type: 'InputField',
-      attributes: {
-        name: '',
-        required: true,
-        readOnly: true,
-      },
-    },
-  ],
+  fields: [],
 };
 
 const mapHelplineLanguage: MapHelplineLanguage = (helpline) => {

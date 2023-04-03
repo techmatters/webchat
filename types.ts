@@ -14,12 +14,9 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-import { FormAttributes as PreEngagementConfig } from '@twilio/flex-ui-core';
 import type { MemberDisplayOptions } from '@twilio/flex-ui-core/src/components/channel/MessagingCanvas';
 
 import type { PreEngagementFormDefinition } from './src/pre-engagement-form';
-
-export type { PreEngagementConfig };
 
 export type Translations = {
   [language: string]: {
@@ -34,9 +31,9 @@ export type Configuration = {
   flexFlowSid: string;
   defaultLanguage: string;
   translations: Translations;
-  preEngagementConfig: PreEngagementFormDefinition | PreEngagementConfig;
-  closedHours?: PreEngagementFormDefinition | PreEngagementConfig;
-  holidayHours?: PreEngagementFormDefinition | PreEngagementConfig;
+  preEngagementConfig: PreEngagementFormDefinition;
+  closedHours?: PreEngagementFormDefinition;
+  holidayHours?: PreEngagementFormDefinition;
   mapHelplineLanguage: MapHelplineLanguage;
   memberDisplayOptions?: MemberDisplayOptions;
   captureIp: boolean;
