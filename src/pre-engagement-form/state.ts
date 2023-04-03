@@ -18,6 +18,7 @@ export type PreEngagementFormState = { [key: string]: string };
 
 const initialState: PreEngagementFormState = {};
 
+const RESET_FORM = 'RESET_FORM';
 const SET_VALUE = 'SET_VALUE';
 
 type SetValue = {
@@ -27,6 +28,10 @@ type SetValue = {
     value: string;
   };
 };
+
+export const resetForm = () => ({
+  type: RESET_FORM,
+});
 
 export const setValue = (name: string, value: string): SetValue => ({
   type: SET_VALUE,
@@ -42,6 +47,10 @@ export const preEngagementFormReducer = (state = initialState, action: SetValue)
       ...state,
       [action.payload.name]: action.payload.value,
     };
+  }
+
+  if (action.type === RESET_FORM) {
+    return initialState;
   }
 
   return state;

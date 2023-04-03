@@ -26,6 +26,7 @@ import { generateForm } from './form-components';
 import { LocalizationProvider } from './localization';
 import SubmitButton from './form-components/submit-button';
 import Title from './form-components/title';
+import { resetForm } from './state';
 
 export { PreEngagementFormDefinition };
 
@@ -34,9 +35,10 @@ export const EMAIL_PATTERN = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 type Props = {
   manager: FlexWebChat.Manager;
   formDefinition: PreEngagementFormDefinition;
-} & ReturnType<typeof mapStateToProps>;
+} & ReturnType<typeof mapStateToProps> &
+  typeof mapDispatchToProps;
 
-const PreEngagementForm: React.FC<Props> = ({ preEngagementFormState, formDefinition, manager }) => {
+const PreEngagementForm: React.FC<Props> = ({ preEngagementFormState, formDefinition, manager, resetFormAction }) => {
   const methods = useForm({ defaultValues: preEngagementFormState, mode: 'onChange' });
   const { handleSubmit, formState } = methods;
   const { isValid } = formState;
@@ -45,6 +47,7 @@ const PreEngagementForm: React.FC<Props> = ({ preEngagementFormState, formDefini
     const payload = { formData: data };
     console.log({ payload });
     FlexWebChat.Actions.invokeAction('StartEngagement', payload);
+    resetFormAction();
   });
 
   return (
@@ -62,4 +65,8 @@ const PreEngagementForm: React.FC<Props> = ({ preEngagementFormState, formDefini
 
 const mapStateToProps = (state: AseloWebchatState) => ({ preEngagementFormState: state?.preEngagementForm });
 
-export default connect(mapStateToProps)(PreEngagementForm);
+const mapDispatchToProps = {
+  resetFormAction: resetForm,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PreEngagementForm);
