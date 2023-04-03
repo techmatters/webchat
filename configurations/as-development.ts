@@ -80,7 +80,7 @@ const preEngagementConfig: PreEngagementFormDefinition = {
   fields: [
     {
       type: 'input-text',
-      name: 'friendlyName',
+      name: 'name',
       label: 'First Name',
       placeholder: 'John',
       required: true,
