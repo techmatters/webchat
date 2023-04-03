@@ -205,11 +205,7 @@ export const initWebchat = async () => {
 
   // Replace pre engagement form
   FlexWebChat.PreEngagementCanvas.Content.replace(
-    <PreEngagementForm
-      key="pre-engagement"
-      formDefinition={currentConfig.preEngagementConfig as PreEngagementFormDefinition}
-      manager={manager}
-    />,
+    <PreEngagementForm key="pre-engagement" formDefinition={currentConfig.preEngagementConfig} manager={manager} />,
   );
 
   // Render WebChat
