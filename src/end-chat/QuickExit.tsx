@@ -48,17 +48,17 @@ export default function QuickExit({ channelSid, token, language, finishTask }: P
 
   return (
     <ExitWrapper>
+      <StyledQuickExitButton onClick={handleExit}>
+        <QuickExitText>
+          <Template code="QuickExitButtonLabel" />
+        </QuickExitText>
+        <QuickExitIcon />
+      </StyledQuickExitButton>
       <ExitDescWrapper>
         <ExitDescText>
           <Template code="QuickExitDescription" />
         </ExitDescText>
       </ExitDescWrapper>
-      <StyledQuickExitButton onClick={handleExit}>
-        <QuickExitIcon />
-        <QuickExitText>
-          <Template code="QuickExitButtonLabel" />
-        </QuickExitText>
-      </StyledQuickExitButton>
     </ExitWrapper>
   );
 }

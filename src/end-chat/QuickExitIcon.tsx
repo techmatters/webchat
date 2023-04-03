@@ -21,11 +21,11 @@ import React from 'react';
 const QuickExitIcon = () => {
   return (
     <svg
-      width="18px"
-      height="18px"
-      viewBox="0 0 20 20"
+      width="20px"
+      height="20px"
+      viewBox="0 -3 20 20"
       version="1.1"
-      fontSize="10px"
+      fontSize="11px"
       xmlns="http://www.w3.org/2000/svg"
       // eslint-disable-next-line react/no-unknown-property
       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -49,7 +49,7 @@ const QuickExitIcon = () => {
                 <g id="Icon" fillRule="nonzero" />
                 <rect
                   id="inner-rect"
-                  fill="#D22F2F"
+                  fill="#FFF"
                   mask="url(#mask-2)"
                   x="4.16669838e-08"
                   y="4.16666048e-08"

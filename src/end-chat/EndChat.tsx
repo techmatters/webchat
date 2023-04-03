@@ -16,7 +16,7 @@
 
 /* eslint-disable react/require-default-props */
 import React, { useState } from 'react';
-import { Template } from '@twilio/flex-webchat-ui';
+import { Template, Icon } from '@twilio/flex-webchat-ui';
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
 
 import { finishChatTask } from './end-chat-service';
@@ -53,6 +53,7 @@ export default function EndChat({ channelSid, token, language, action }: Props) 
   return (
     <EndChatWrapper>
       <StyledEndButton onClick={handleEndChat} disabled={disabled}>
+        <Icon icon="CloseLarge" />
         <Template code="EndChatButtonLabel" />
       </StyledEndButton>
     </EndChatWrapper>

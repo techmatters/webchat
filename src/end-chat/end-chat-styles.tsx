@@ -20,34 +20,34 @@ const { styled } = FlexWebChat;
 
 export const EndChatWrapper = styled('div')`
   margin: 2px auto;
-  width: 100%;
+  width: 45%;
   display: flex;
+  justify-content: inherit;
 `;
 
 export const StyledEndButton = styled('button')`
-  margin: 5px;
-  background-color: #1876d0;
-  color: #fff;
-  width: 100%;
+  margin: 2px auto;
+  background-color: #fff;
+  color: #d22f2f;
   flex-grow: 1;
   height: 29px;
   font-weight: bold;
-  border: none;
+  border: 1.5px solid #d22f2f;
   border-radius: 4px;
   cursor: pointer;
   font-family: Open Sans;
   font-size: 11px;
   line-height: 24px;
-  text-align: center;
-  white-space: nowrap;
-  overflow-wrap: break-word;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-evenly;
   &:focus: {
     outline: auto;
   }
 `;
 
-export const ExitWrapper = styled('div')`
-  margin: 3px 2px 10px 5px;
+export const ButtonWrapper = styled('div')`
   width: 100%;
   display: flex;
   justify-content: space-around;
@@ -64,25 +64,22 @@ export const ExitDescWrapper = styled('div')`
 
 export const ExitDescText = styled('span')`
   margin: 2px 0 0 2px;
-  color: #606b85;
-  padding: 0 10px;
+  color: #d22f2f;
+  padding: 0 5px;
+  margin-top: -2px;
   font-family: Open Sans;
-  font-size: 11px;
+  font-size: 9px;
   line-height: 15px;
-  text-align: center;
+  font-weight: bold;
   max-width: fit-content;
 `;
 
 export const StyledQuickExitButton = styled('button')`
   display: flex;
-  margin: 3px 10px 0 0;
-  background-color: #fbf2f2;
-  color: #d22f2f;
-  place-items: center;
-  min-width: fit-content;
-  justify-content: center;
-  font-size: 11px;
-  min-width: 50%;
+  width: 90%;
+  margin: 4px auto;
+  background-color: #d22f2f;
+  color: #fff;
   flex-grow: 1;
   height: 29px;
   font-weight: bold;
@@ -90,10 +87,12 @@ export const StyledQuickExitButton = styled('button')`
   border-radius: 4px;
   cursor: pointer;
   font-family: Open Sans;
+  font-size: 11px;
   line-height: 24px;
   text-align: center;
   white-space: nowrap;
   overflow-wrap: break-word;
+  padding-left: 20px;
   &:focus: {
     outline: auto;
   }
@@ -101,4 +100,9 @@ export const StyledQuickExitButton = styled('button')`
 
 export const QuickExitText = styled('span')`
   padding: 0 5px 1px 2px;
+`;
+
+// eslint-disable-next-line import/no-unused-modules
+export const ExitWrapper = styled('div')`
+  margin-top: '0';
 `;
