@@ -18,91 +18,77 @@ import * as FlexWebChat from '@twilio/flex-webchat-ui';
 
 const { styled } = FlexWebChat;
 
-export const EndChatWrapper = styled('div')`
-  margin: 2px auto;
-  width: 45%;
-  display: flex;
-  justify-content: inherit;
+export const EndChatWrapper = styled('span')`
+  position: relative;
+  top: 2%;
+  left: -20%;
+`;
+
+export const IconWrapper = styled('div')`
+  position: relative;
+  top: 6%;
+  left: -35%;
 `;
 
 export const StyledEndButton = styled('button')`
-  margin: 2px auto;
+  display: flex;
   background-color: #fff;
   color: #d22f2f;
-  flex-grow: 1;
   height: 29px;
   font-weight: bold;
   border: 1.5px solid #d22f2f;
   border-radius: 4px;
   cursor: pointer;
   font-family: Open Sans;
-  font-size: 11px;
+  font-size: 12px;
+  margin-right: 2px;
+  padding: 0px 30px 0px 60px;
+  height: 29px;
   line-height: 24px;
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  justify-content: space-evenly;
-  &:focus: {
-    outline: auto;
-  }
 `;
 
 export const ButtonWrapper = styled('div')`
-  width: 100%;
   display: flex;
-  justify-content: space-around;
-  flex-flow: row wrap;
+  text-align: center;
+  margin: -20px auto auto auto;
+  padding-top: 25px;
 `;
 
-export const ExitDescWrapper = styled('div')`
-  flex-basis: 100px;
-  flex-grow: 1;
-  display: inline-grid;
-  align-content: center;
-  justify-items: center;
-`;
+export const ExitDescWrapper = styled('div')``;
 
 export const ExitDescText = styled('span')`
-  margin: 2px 0 0 2px;
   color: #d22f2f;
-  padding: 0 5px;
-  margin-top: -2px;
+  text-align: justify;
   font-family: Open Sans;
-  font-size: 9px;
-  line-height: 15px;
   font-weight: bold;
-  max-width: fit-content;
+  margin: 2px 0 0 2px;
+  &:after {
+    content: '';
+    display: inline-block;
+    width: 100%;
+  }
 `;
 
 export const StyledQuickExitButton = styled('button')`
-  display: flex;
-  width: 90%;
-  margin: 4px auto;
   background-color: #d22f2f;
   color: #fff;
-  flex-grow: 1;
-  height: 29px;
   font-weight: bold;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-family: Open Sans;
-  font-size: 11px;
+  font-size: 12px;
+  margin-left: 2px;
+  padding: 0px 30px 0px 60px;
+  height: 29px;
   line-height: 24px;
-  text-align: center;
-  white-space: nowrap;
-  overflow-wrap: break-word;
-  padding-left: 20px;
-  &:focus: {
-    outline: auto;
-  }
 `;
 
 export const QuickExitText = styled('span')`
-  padding: 0 5px 1px 2px;
+  position: relative;
+  top: -18%;
+  left: -20%;
 `;
 
 // eslint-disable-next-line import/no-unused-modules
-export const ExitWrapper = styled('div')`
-  margin-top: '0';
-`;
+export const ExitWrapper = styled('div')``;

@@ -22,7 +22,7 @@ const QuickExitIcon = () => {
   return (
     <svg
       width="20px"
-      height="20px"
+      height="24px"
       viewBox="0 -3 20 20"
       version="1.1"
       fontSize="11px"
