@@ -15,87 +15,93 @@
  */
 
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
-import { css } from '@emotion/react';
 
 import { Configuration } from '../types';
+import { getChangeLanguageWebChat } from '../src/language';
 
-// create a mock function
-jest.mock('../src/dom-utils', () => {
-  return jest.fn();
-});
+describe('getChangeLanguageWebChat', () => {
+  const mockManager: any = {
+    strings: {
+      greeting: 'Hello',
+      goodbye: 'Goodbye',
+    },
+    store: {
+      getState: jest.fn().mockReturnValue({ flex: { config: { language: 'en-US' } } }),
+    },
+    updateConfig: jest.fn(),
+  };
 
-jest.mock('@twilio/flex-webchat-ui', () => ({
-  createWebChat: jest.fn(() =>
-    Promise.resolve({
-      manager: {
-        updateConfig: jest.fn(),
+  const mockConfig: Configuration = {
+    accountSid: 'test1',
+    flexFlowSid: 'flow1',
+    defaultLanguage: 'en-US',
+    translations: {
+      'en-US': {
+        greeting: 'Hello',
+        goodbye: 'Goodbye',
       },
-    }),
-  ),
-  styled: jest.fn().mockReturnValue((props: any) => css(props)),
-}));
-
-const appConfig: Configuration = {
-  accountSid: 'test1',
-  flexFlowSid: 'flow1',
-  defaultLanguage: 'en-US',
-  translations: {},
-  preEngagementConfig: {
-    description: 'PreEngagementDescription',
-    fields: [
-      {
-        label: 'WhatIsYourHelpline',
-        type: 'SelectItem',
-        attributes: {
-          name: 'helpline',
-          required: true,
-          readOnly: false,
+      'fr-CA': {
+        greeting: 'Bonjour',
+        goodbye: 'Au revoir',
+      },
+    },
+    preEngagementConfig: {
+      description: 'Please fill out the form below',
+      submitLabel: 'Submit',
+      fields: [
+        {
+          type: 'InputItem',
+          label: 'Name',
+          attributes: { name: 'name', placeholder: 'Enter your name' },
         },
-        options: [
-          {
-            value: 'Select helpline',
-            label: 'SelectHelpline',
-            selected: true,
-          },
-          {
-            value: 'Fake Helpline',
-            label: 'FakeHelpline',
-            selected: false,
-          },
-        ],
-      },
-    ],
-  },
-  closedHours: undefined,
-  holidayHours: undefined,
-  mapHelplineLanguage(helpline: string): string {
-    throw new Error('Function not implemented.');
-  },
-  captureIp: false,
-  contactType: 'ip',
-};
+        {
+          type: 'SelectItem',
+          label: 'Language',
+          attributes: { name: 'language' },
+          options: [
+            { label: 'English', value: 'en-US' },
+            { label: 'French', value: 'fr-CA' },
+          ],
+        },
+      ],
+    },
+    mapHelplineLanguage(helpline: string): string {
+      throw new Error('Function not implemented.');
+    },
+    captureIp: false,
+    contactType: 'ip',
+  };
 
-const originalUpdateZIndex = require('../src/dom-utils');
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
 
-const translatedPreEngagement = { ...appConfig.preEngagementConfig };
+  it('should set the default language when no language is provided', () => {
+    const changeLanguage = getChangeLanguageWebChat(mockManager, mockConfig);
+    changeLanguage('');
 
-describe('language translation', () => {
-  test('should render translated pre-engagement form', async () => {
-    const webchat = await FlexWebChat.createWebChat({});
+    expect(mockManager.store.getState().flex.config.language).toBe('en-US');
+    expect(mockManager.strings.greeting).toBe('Hello');
+    expect(mockManager.strings.goodbye).toBe('Goodbye');
+    expect(mockManager.updateConfig).toHaveBeenCalledWith({ preEngagementConfig: mockConfig.preEngagementConfig });
+  });
 
-    const { manager } = webchat;
+  it('should set a new language when a language is provided', () => {
+    const changeLanguage = getChangeLanguageWebChat(mockManager, mockConfig);
+    changeLanguage('fr-CA');
 
-    // import the mock function
-    // eslint-disable-next-line global-require
-    const mockUpdateZIndex = require('../src/dom-utils');
+    expect(mockManager.store.getState().flex.config.language).toBe('fr-CA');
+    expect(mockManager.strings.greeting).toBe('Bonjour');
+    expect(mockManager.strings.goodbye).toBe('Au revoir');
+    expect(mockManager.updateConfig).toHaveBeenCalledWith({ preEngagementConfig: expect.any(Object) });
 
-    // call the mock functions
-    mockUpdateZIndex();
-    manager.updateConfig({ preEngagementConfig: translatedPreEngagement });
-
-    // check if the original function has been called
-    expect(originalUpdateZIndex).toHaveBeenCalled();
-    expect(manager.updateConfig).toHaveBeenCalledWith({ preEngagementConfig: translatedPreEngagement });
-    expect(manager.updateConfig).toHaveBeenCalledTimes(1);
+    const updatedPreEngagementConfig = mockManager.updateConfig.mock.calls[0][0].preEngagementConfig;
+    expect(updatedPreEngagementConfig.description).toBe('Please fill out the form below');
+    expect(updatedPreEngagementConfig.submitLabel).toBe('Submit');
+    expect(updatedPreEngagementConfig.fields[0].label).toBe('Name');
+    expect(updatedPreEngagementConfig.fields[0].attributes.placeholder).toBe('Enter your name');
+    expect(updatedPreEngagementConfig.fields[1].label).toBe('Language');
+    expect(updatedPreEngagementConfig.fields[1].options[0].label).toBe('English');
+    expect(updatedPreEngagementConfig.fields[1].options[1].label).toBe('French');
   });
 });
