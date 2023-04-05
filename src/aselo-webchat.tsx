@@ -37,6 +37,7 @@ import { config } from './config';
 import { renderEmojis } from './emoji-picker/renderEmojis';
 import PreEngagementForm from './pre-engagement-form';
 import { setFormDefinition } from './pre-engagement-form/state';
+import { applyWidgetBranding } from './branding-overrides';
 
 updateZIndex();
 
@@ -212,4 +213,5 @@ export const initWebchat = async () => {
   webchat.init();
 
   applyMobileOptimization(manager);
+  applyWidgetBranding();
 };
