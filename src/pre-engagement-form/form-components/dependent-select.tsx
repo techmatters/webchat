@@ -46,27 +46,28 @@ const DependentSelect: React.FC<Props> = ({ name, label, rules, dependsOn, optio
     setValue,
     formState: { dirtyFields },
   } = useFormContext();
-  const watchedValue = watch(dependsOn);
+  const currentValue = watch(name);
+  const dependsOnValue = watch(dependsOn);
   const prevValueRef = useRef();
 
-  const isDirty = dirtyFields[name];
-  const shouldClear = watchedValue !== prevValueRef.current;
+  const isDirty = currentValue || dirtyFields[name];
+  const shouldClear = prevValueRef.current && dependsOnValue !== prevValueRef.current;
 
   useEffect(() => {
-    prevValueRef.current = watchedValue;
-  }, [watchedValue]);
+    prevValueRef.current = dependsOnValue;
+  }, [dependsOnValue]);
 
   // Resets <select> when dependsOn value changes
   useEffect(() => {
     if (shouldClear) {
       setValue(name, '', { shouldValidate: isDirty }); // isDirty here prevents displaying errors too soon
-      setValueOnRedux(name, ''); // I don't love having this here explicilty
+      setValueOnRedux(name, '');
     }
-  }, [name, watchedValue, shouldClear, isDirty, setValue, setValueOnRedux]);
+  }, [name, dependsOnValue, shouldClear, isDirty, setValue, setValueOnRedux]);
 
   const buildOptions = () =>
-    watchedValue && options[watchedValue]
-      ? options[watchedValue].map((option) => (
+    dependsOnValue && options[dependsOnValue]
+      ? options[dependsOnValue].map((option) => (
           <option key={option.value} value={option.value}>
             {getLabel(option.label)}
           </option>
@@ -75,7 +76,7 @@ const DependentSelect: React.FC<Props> = ({ name, label, rules, dependsOn, optio
 
   return (
     <FormComponent name={name} label={label} rules={rules}>
-      <StyledSelect disabled={!watchedValue}>{buildOptions()}</StyledSelect>
+      <StyledSelect disabled={!dependsOnValue}>{buildOptions()}</StyledSelect>
     </FormComponent>
   );
 };

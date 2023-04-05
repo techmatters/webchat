@@ -15,12 +15,14 @@
  */
 
 /* eslint-disable react/require-default-props */
-import React from 'react';
-import { UseControllerProps } from 'react-hook-form';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { UseControllerProps, useFormContext } from 'react-hook-form';
 
 import { StyledSelect } from './styles';
 import FormComponent from './form-component';
 import { useLocalization } from '../localization';
+import { setValue as setValueAction } from '../state';
 
 type Option = {
   value: any;
@@ -33,10 +35,19 @@ type OwnProps = {
   defaultValue?: string;
 };
 
-type Props = OwnProps & UseControllerProps;
+type Props = OwnProps & UseControllerProps & typeof mapDispatchToProps;
 
-const Select: React.FC<Props> = ({ name, label, rules, options, defaultValue }) => {
+const Select: React.FC<Props> = ({ name, label, rules, options, defaultValue, setValueOnRedux }) => {
   const { getLabel } = useLocalization();
+  const { watch } = useFormContext();
+  const currentvalue = watch(name);
+
+  // Initialize value on redux
+  useEffect(() => {
+    if (!currentvalue && defaultValue) {
+      setValueOnRedux(name, defaultValue);
+    }
+  }, [name, defaultValue, currentvalue, setValueOnRedux]);
 
   const buildOptions = () =>
     options.map((option) => (
@@ -52,4 +63,8 @@ const Select: React.FC<Props> = ({ name, label, rules, options, defaultValue }) 
   );
 };
 
-export default Select;
+const mapDispatchToProps = {
+  setValueOnRedux: (name: string, value: string) => setValueAction(name, value),
+};
+
+export default connect(null, mapDispatchToProps)(Select);

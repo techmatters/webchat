@@ -14,12 +14,23 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-export type PreEngagementFormState = { [key: string]: string };
+import type { PreEngagementFormDefinition } from '.';
 
-const initialState: PreEngagementFormState = {};
+export type PreEngagementFormState = {
+  formDefinition?: PreEngagementFormDefinition;
+  formState: {
+    [key: string]: string;
+  };
+};
+
+const initialState: PreEngagementFormState = {
+  formState: {},
+  formDefinition: undefined,
+};
 
 const RESET_FORM = 'RESET_FORM';
 const SET_VALUE = 'SET_VALUE';
+const SET_FORM_DEFINITION = 'SET_FORM_DEFINITION';
 
 type SetValue = {
   type: typeof SET_VALUE;
@@ -29,7 +40,18 @@ type SetValue = {
   };
 };
 
-export const resetForm = () => ({
+type ResetForm = {
+  type: typeof RESET_FORM;
+};
+
+type SetFormDefinition = {
+  type: typeof SET_FORM_DEFINITION;
+  payload: PreEngagementFormDefinition;
+};
+
+type Action = SetValue | ResetForm | SetFormDefinition;
+
+export const resetForm = (): ResetForm => ({
   type: RESET_FORM,
 });
 
@@ -41,16 +63,31 @@ export const setValue = (name: string, value: string): SetValue => ({
   },
 });
 
-export const preEngagementFormReducer = (state = initialState, action: SetValue) => {
+export const setFormDefinition = (formDefinition: PreEngagementFormDefinition): SetFormDefinition => ({
+  type: SET_FORM_DEFINITION,
+  payload: formDefinition,
+});
+
+export const preEngagementFormReducer = (state = initialState, action: Action) => {
   if (action.type === SET_VALUE) {
     return {
       ...state,
-      [action.payload.name]: action.payload.value,
+      formState: {
+        ...state.formState,
+        [action.payload.name]: action.payload.value,
+      },
     };
   }
 
   if (action.type === RESET_FORM) {
     return initialState;
+  }
+
+  if (action.type === SET_FORM_DEFINITION) {
+    return {
+      ...state,
+      formDefinition: action.payload,
+    };
   }
 
   return state;

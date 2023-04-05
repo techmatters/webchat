@@ -35,7 +35,8 @@ import type { Configuration } from '../types';
 // eslint-disable-next-line import/no-unresolved
 import { config } from './config';
 import { renderEmojis } from './emoji-picker/renderEmojis';
-import PreEngagementForm, { PreEngagementFormDefinition } from './pre-engagement-form';
+import PreEngagementForm from './pre-engagement-form';
+import { setFormDefinition } from './pre-engagement-form/state';
 
 updateZIndex();
 
@@ -138,6 +139,7 @@ export const initWebchat = async () => {
   const webchat = await FlexWebChat.createWebChat(appConfig);
   const { manager } = webchat;
   manager.store.replaceReducer(aseloReducer as Reducer<FlexState>);
+  manager.store.dispatch(setFormDefinition(currentConfig.preEngagementConfig));
 
   await displayOperatingHours(currentConfig, manager);
 
@@ -204,9 +206,7 @@ export const initWebchat = async () => {
   );
 
   // Replace pre engagement form
-  FlexWebChat.PreEngagementCanvas.Content.replace(
-    <PreEngagementForm key="pre-engagement" formDefinition={currentConfig.preEngagementConfig} manager={manager} />,
-  );
+  FlexWebChat.PreEngagementCanvas.Content.replace(<PreEngagementForm key="pre-engagement" manager={manager} />);
 
   // Render WebChat
   webchat.init();

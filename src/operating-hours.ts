@@ -17,6 +17,7 @@
 import { Manager } from '@twilio/flex-webchat-ui';
 
 import { Configuration, OperatingHoursResponse } from '../types';
+import { setFormDefinition } from './pre-engagement-form/state';
 
 const getOperatingHours = async (language: string): Promise<OperatingHoursResponse> => {
   const body = { channel: 'webchat', includeMessageTextInResponse: 'true', language };
@@ -58,20 +59,24 @@ export const displayOperatingHours = async (config: Configuration, manager: Mana
        * Support legacy function to avoid braking changes
        * TODO: remove once every account has been migrated
        */
-      if (typeof operatingState === 'string') {
-        if (operatingState === 'closed' && config.closedHours) {
-          manager.updateConfig({ preEngagementConfig: config.closedHours });
-        } else if (operatingState === 'holiday' && config.holidayHours) {
-          manager.updateConfig({ preEngagementConfig: config.holidayHours });
-        }
-      } else {
-        // eslint-disable-next-line no-lonely-if
-        if (operatingState.status === 'closed' && config.closedHours) {
-          manager.updateConfig({ preEngagementConfig: { ...config.closedHours, description: operatingState.message } });
-        } else if (operatingState.status === 'holiday' && config.holidayHours) {
-          manager.updateConfig({
-            preEngagementConfig: { ...config.holidayHours, description: operatingState.message },
-          });
+      const isClosed =
+        operatingState === 'closed' || (typeof operatingState !== 'string' && operatingState.status === 'closed');
+      const isHoliday =
+        operatingState === 'holiday' || (typeof operatingState !== 'string' && operatingState.status === 'holiday');
+
+      const shouldUpdateForm = isClosed || isHoliday;
+
+      if (shouldUpdateForm) {
+        const formToUse = isClosed ? config.closedHours : config.holidayHours;
+
+        if (formToUse) {
+          const description = (typeof operatingState !== 'string' && operatingState.message) || formToUse.description;
+          const formDefinition = {
+            ...formToUse,
+            description,
+          };
+
+          manager.store.dispatch(setFormDefinition(formDefinition));
         }
       }
     } catch (error) {
