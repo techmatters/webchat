@@ -116,7 +116,7 @@ const preEngagementConfig: PreEngagementConfig = {
         }
     },
     {
-      label: 'Select your Age/Età/літа',
+      label: 'Age/Età/літа',
       type: 'SelectItem',
       attributes: {
         name: 'age',
@@ -129,43 +129,43 @@ const preEngagementConfig: PreEngagementConfig = {
           label: ""
         },
         {
-          value: "Unborn",
-          label: "Unborn"
+          value: "00",
+          label: "0"
         },
         {
-          value: "1",
+          value: "01",
           label: "1"
         },
         {
-          value: "2",
+          value: "02",
           label: "2"
         },
         {
-          value: "3",
+          value: "03",
           label: "3"
         },
         {
-          value: "4",
+          value: "04",
           label: "4"
         },
         {
-          value: "5",
+          value: "05",
           label: "5"
         },
         {
-          value: "6",
+          value: "06",
           label: "6"
         },
         {
-          value: "7",
+          value: "07",
           label: "7"
         },
         {
-          value: "8",
+          value: "08",
           label: "8"
         },
         {
-          value: "9",
+          value: "09",
           label: "9"
         },
         {
@@ -247,7 +247,7 @@ const preEngagementConfig: PreEngagementConfig = {
       ],
     },
     {
-      label: 'Select your gender/sess/Стать',
+      label: 'Gender/Sess/Стать',
       type: 'SelectItem',
       attributes: {
         name: 'gender',
