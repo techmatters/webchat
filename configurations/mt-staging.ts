@@ -100,7 +100,7 @@ const preEngagementConfig: PreEngagementFormDefinition = {
       type: 'select',
       name: 'age',
       required: true,
-      defaultValue: '5 or younger',
+      defaultValue: '',
       options: [
         {
           value: "",
@@ -229,7 +229,7 @@ const preEngagementConfig: PreEngagementFormDefinition = {
       type: 'select',
       name: 'gender',
       required: true,
-      defaultValue:'female',
+      defaultValue: 'female',
       options: [
         {
           value: 'female',
@@ -254,7 +254,7 @@ const preEngagementConfig: PreEngagementFormDefinition = {
       type: 'select',
       name: 'gender',
       required: true,
-      defaultValue:'happy',
+      defaultValue: 'happy',
       options: [
         {
           value: 'happy',
