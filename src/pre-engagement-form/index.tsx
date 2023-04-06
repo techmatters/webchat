@@ -44,7 +44,6 @@ const PreEngagementForm: React.FC<Props> = ({ formState: defaultValues, formDefi
 
   const onSubmit = handleSubmit((data) => {
     const payload = { formData: data };
-    console.log({ payload });
     FlexWebChat.Actions.invokeAction('StartEngagement', payload);
     resetFormAction();
   });
