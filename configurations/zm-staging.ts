@@ -14,7 +14,8 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-import { PreEngagementConfig, Translations, Configuration, MapHelplineLanguage } from '../types';
+import { Translations, Configuration, MapHelplineLanguage } from '../types';
+import type { PreEngagementFormDefinition } from '../src/pre-engagement-form';
 
 const accountSid = 'ACc59300c7ca018e8652e4d6d86c2d50e6';
 const flexFlowSid = 'FObb9dfe97f1c59f455ab01811bec74cd5';
@@ -136,57 +137,27 @@ const translations: Translations = {
   },
 };
 
-const preEngagementConfig: PreEngagementConfig = {
+const preEngagementConfig: PreEngagementFormDefinition = {
   description: 'PreEngagementDescription',
+  submitLabel: 'StartChat',
   fields: [
     {
+      type: 'select',
+      name: 'language',
       label: 'SelectLanguage',
-      type: 'SelectItem',
-      attributes: {
-        name: 'language',
-        required: true,
-        readOnly: false,
-      },
+      defaultValue: 'English',
+      required: true,
       options: [
-        {
-          value: 'English',
-          label: '1. English',
-          selected: true,
-        },
-        {
-          value: 'Bemba',
-          label: '2. Bemba',
-          selected: false,
-        },
-        {
-          value: 'Tonga',
-          label: '3. Tonga',
-          selected: false,
-        },
-        {
-          value: 'Lunda',
-          label: '4. Lunda',
-          selected: false,
-        },
-        {
-          value: 'Nyanja',
-          label: '5. Nyanja',
-          selected: false,
-        },
-        {
-          value: 'Kaonde',
-          label: '6. Kaonde',
-          selected: false,
-        },
-        {
-          value: 'Lozi',
-          label: '7. Lozi',
-          selected: false,
-        },
+        { value: 'English', label: '1. English' },
+        { value: 'Bemba', label: '2. Bemba' },
+        { value: 'Tonga', label: '3. Tonga' },
+        { value: 'Lunda', label: '4. Lunda' },
+        { value: 'Nyanja', label: '5. Nyanja' },
+        { value: 'Kaonde', label: '6. Kaonde' },
+        { value: 'Lozi', label: '7. Lozi' },
       ],
     },
   ],
-  submitLabel: 'StartChat',
 };
 
 const memberDisplayOptions = {

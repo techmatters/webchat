@@ -14,7 +14,8 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-import { PreEngagementConfig, Translations, Configuration, MapHelplineLanguage, ContactType } from '../types';
+import { Translations, Configuration, MapHelplineLanguage, ContactType } from '../types';
+import type { PreEngagementFormDefinition } from '../src/pre-engagement-form';
 
 const accountSid = 'AC542ee9a6613ce5ff976d075a3e3bd38d';
 const flexFlowSid = 'FOfe2df2f82dd40be24d41347fff7c6f1c';
@@ -22,32 +23,22 @@ const defaultLanguage = 'en-GB';
 const captureIp = true;
 const contactType: ContactType = 'ip';
 
-const preEngagementConfig: PreEngagementConfig = {
+const preEngagementConfig: PreEngagementFormDefinition = {
   description: 'PreEngagementDescription',
+  submitLabel: 'StartChat',
   fields: [
     {
+      type: 'select',
+      name: 'helpline',
       label: 'LabelService',
-      type: 'SelectItem',
-      attributes: {
-        name: 'helpline',
-        required: true,
-        readOnly: false,
-      },
+      defaultValue: 'RevengePorn',
+      required: true,
       options: [
-        {
-          value: 'RevengePorn',
-          label: 'RevengePornHelpline',
-          selected: true,
-        },
-        {
-          value: 'RHC',
-          label: 'ReportHarmfulContentHelpline',
-          selected: false,
-        },
+        { value: 'RevengePorn', label: 'RevengePornHelpline' },
+        { value: 'RHC', label: 'ReportHarmfulContentHelpline' },
       ],
     },
   ],
-  submitLabel: 'StartChat',
 };
 
 const translations: Translations = {
