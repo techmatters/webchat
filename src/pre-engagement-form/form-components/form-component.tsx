@@ -59,7 +59,7 @@ const getErrorMessage = (error: any | FieldError | undefined, strings: Record<st
     return error.message || strings.FieldValidationInvalidEmail;
   }
 
-  return '';
+  return error.message || '';
 };
 
 const FormComponent: React.FC<Props> = ({ name, label, rules, defaultValue, handleChange, children }) => {
