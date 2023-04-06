@@ -19,18 +19,16 @@ import * as FlexWebChat from '@twilio/flex-webchat-ui';
 const { styled } = FlexWebChat;
 
 export const EndChatWrapper = styled('span')`
-  position: relative;
-  top: 2%;
-  left: -20%;
+  width: 100%;
 `;
 
 export const IconWrapper = styled('div')`
   position: relative;
-  top: 6%;
-  left: -35%;
+  left: 11%;
 `;
 
 export const StyledEndButton = styled('button')`
+  width: 90%;
   display: flex;
   background-color: #fff;
   color: #d22f2f;
@@ -41,8 +39,7 @@ export const StyledEndButton = styled('button')`
   cursor: pointer;
   font-family: Open Sans;
   font-size: 12px;
-  margin-right: 2px;
-  padding: 0px 30px 0px 60px;
+  margin-left: 5px;
   height: 29px;
   line-height: 24px;
 `;
@@ -52,16 +49,16 @@ export const ButtonWrapper = styled('div')`
   text-align: center;
   margin: -20px auto auto auto;
   padding-top: 25px;
+  width: 100%;
 `;
-
-export const ExitDescWrapper = styled('div')``;
 
 export const ExitDescText = styled('span')`
   color: #d22f2f;
   text-align: justify;
   font-family: Open Sans;
   font-weight: bold;
-  margin: 2px 0 0 2px;
+  margin: 2px 0 0 1px;
+  font-size: 11px;
   &:after {
     content: '';
     display: inline-block;
@@ -70,6 +67,8 @@ export const ExitDescText = styled('span')`
 `;
 
 export const StyledQuickExitButton = styled('button')`
+  width: 90%;
+  display: inline-block;
   background-color: #d22f2f;
   color: #fff;
   font-weight: bold;
@@ -78,17 +77,18 @@ export const StyledQuickExitButton = styled('button')`
   cursor: pointer;
   font-family: Open Sans;
   font-size: 12px;
-  margin-left: 2px;
-  padding: 0px 30px 0px 60px;
+  margin-right: -10px;
   height: 29px;
   line-height: 24px;
 `;
 
 export const QuickExitText = styled('span')`
   position: relative;
-  top: -18%;
-  left: -20%;
+  top: -20%;
+  left: -15px;
 `;
 
 // eslint-disable-next-line import/no-unused-modules
-export const ExitWrapper = styled('div')``;
+export const ExitWrapper = styled('div')`
+  width: 100%;
+`;
