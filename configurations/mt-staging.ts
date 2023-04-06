@@ -97,12 +97,10 @@ const preEngagementConfig: PreEngagementFormDefinition = {
     },
     {
       label: 'Age/Età/літа',
-      type: 'SelectItem',
-      attributes: {
-        name: 'age',
-        required: true,
-        readOnly: false,
-      },
+      type: 'select',
+      name: 'age',
+      required: true,
+      defaultValue: '',
       options: [
         {
           value: "",
@@ -228,73 +226,59 @@ const preEngagementConfig: PreEngagementFormDefinition = {
     },
     {
       label: 'Gender/Sess/Стать',
-      type: 'SelectItem',
-      attributes: {
-        name: 'gender',
-        required: true,
-        readOnly: false,
-      },
+      type: 'select',
+      name: 'gender',
+      required: true,
+      defaultValue: 'female',
       options: [
         {
           value: 'female',
           label: 'Female/Mara/Жінка',
-          selected: false,
         },
         {
           value: 'male',
           label: 'Male/Raġel/Чоловік',
-          selected: false,
         },
         {
           value: 'other',
           label: 'Others/Oħrajn/Інші',
-          selected: false,
         },
         {
           value: 'notSay',
           label: 'Rather not say/Ma nixtieqx naghti risposta/Не хочу відповідати',
-          selected: false,
         },
       ],
     },
     {
       label: 'How are you feeling/tħossok/почуття',
-      type: 'SelectItem',
-      attributes: {
-        name: 'gender',
-        required: true,
-        readOnly: false,
-      },
+      type: 'select',
+      name: 'gender',
+      required: true,
+      defaultValue: 'happy',
       options: [
         {
           value: 'happy',
           label: 'Happy/Ferħan/Щасливий',
-          selected: false,
         },
         {
           value: 'confused',
           label: 'Confused/Konfuż/Збентежений',
-          selected: false,
         },
         {
           value: 'angry',
           label: 'Angry/Rrabjat/Злий',
-          selected: false,
         },
         {
           value: 'shocked',
           label: 'Shocked/Ixxukkjat/Шокований',
-          selected: false,
         },
         {
           value: 'scared',
           label: 'Scared/Begħzan/Переляканий',
-          selected: false,
         },
         {
           value: 'uncertain',
           label: 'Uncertain/Inċert/Розгублений',
-          selected: false,
         },
       ],
     },
