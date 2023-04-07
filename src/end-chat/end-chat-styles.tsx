@@ -52,9 +52,8 @@ export const ButtonWrapper = styled('div')`
   width: 100%;
 `;
 
-export const ExitDescText = styled('span')`
+export const ExitDescText = styled('p')`
   color: #d22f2f;
-  text-align: justify;
   font-family: Open Sans;
   font-weight: bold;
   margin: 2px 0 0 1px;
@@ -85,7 +84,7 @@ export const StyledQuickExitButton = styled('button')`
 export const QuickExitText = styled('span')`
   position: relative;
   top: -20%;
-  left: -15px;
+  left: -7%;
 `;
 
 // eslint-disable-next-line import/no-unused-modules
