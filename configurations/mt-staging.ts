@@ -252,7 +252,7 @@ const preEngagementConfig: PreEngagementFormDefinition = {
     {
       label: 'How are you feeling/tħossok/почуття',
       type: 'select',
-      name: 'gender',
+      name: 'feeling',
       required: true,
       defaultValue: 'happy',
       options: [
