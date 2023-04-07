@@ -14,7 +14,8 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-import { PreEngagementConfig, Translations, Configuration, MapHelplineLanguage, ContactType } from '../types';
+import { Translations, Configuration, MapHelplineLanguage, ContactType } from '../types';
+import type { PreEngagementFormDefinition } from '../src/pre-engagement-form';
 
 const accountSid = 'AC48d146ce2460184b8944cc7fdf8c5d25';
 const flexFlowSid = 'FO7494aba81cf5899543d90aa1902a1064';
@@ -29,25 +30,25 @@ const translations: Translations = {
     MessageInputDisabledReasonHold:
       "Thank you very much for this information. We'll transfer you now. Please hold for a counsellor.",
     AutoFirstMessage: 'Incoming webchat contact from',
+    PreEngagementDescription:
+      'Thank you for contacting Childline Zimbabwe. To chat with a counsellor, please type your name and select the Start Chat button.',
+    WhatIsYourName: 'What is your name?',
+    StartChat: 'Start Chat!',
   },
 };
 
-const preEngagementConfig: PreEngagementConfig = {
-  description:
-    'Thank you for contacting SafeSpot. To chat with a counsellor, please type your name and select the Start Chat button.',
+const preEngagementConfig: PreEngagementFormDefinition = {
+  description: 'PreEngagementDescription',
+  submitLabel: 'StartChat',
   fields: [
     {
-      type: 'InputItem',
-      label: 'What is your name?',
-      attributes: {
-        name: 'friendlyName',
-        type: 'text',
-        placeholder: 'Guest',
-        required: true,
-      },
+      type: 'input-text',
+      name: 'friendlyName',
+      label: 'WhatIsYourName',
+      placeholder: 'Guest',
+      required: true,
     },
   ],
-  submitLabel: 'Start Chat!',
 };
 
 const mapHelplineLanguage: MapHelplineLanguage = (helpline) => {
@@ -74,5 +75,5 @@ export const config: Configuration = {
   mapHelplineLanguage,
   memberDisplayOptions,
   captureIp,
-  contactType
+  contactType,
 };

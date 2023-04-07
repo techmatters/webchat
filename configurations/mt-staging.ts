@@ -14,13 +14,8 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-import {
-  PreEngagementConfig,
-  Translations,
-  Configuration,
-  MapHelplineLanguage,
-  ContactType
-} from '../types';
+import { Translations, Configuration, MapHelplineLanguage, ContactType } from '../types';
+import type { PreEngagementFormDefinition } from '../src/pre-engagement-form';
 
 const accountSid = 'ACfb0ccf10880289d67f5c4e85ae26402b';
 const flexFlowSid = 'FOd69e1f3020fd621d4bd9d4be833d8a19';
@@ -30,8 +25,7 @@ const contactType: ContactType = 'ip';
 
 const translations: Translations = {
   'en-MT': {
-    MessageInputDisabledReasonHold:
-      "We'll transfer you now. Please hold for a support mentor.",
+    MessageInputDisabledReasonHold: "We'll transfer you now. Please hold for a support mentor.",
     EntryPointTagLine: 'Chat with us',
     PreEngagementDescription: "Let's get started",
     Today: 'Today',
@@ -43,12 +37,13 @@ const translations: Translations = {
     MessageCanvasTrayContent: '',
     AutoFirstMessage: 'Incoming webchat contact from',
     StartChat: 'Start Chat!',
+    Nickname: 'Nickname',
+    GuestName: "Guest's name. Please enter only your name.",
   },
   'mt-MT': {
-    MessageInputDisabledReasonHold:
-      "Ha nittrasferuk lil wieħed mis-Support Mentors tagħna.",
+    MessageInputDisabledReasonHold: 'Ha nittrasferuk lil wieħed mis-Support Mentors tagħna.',
     EntryPointTagLine: 'Chat magħna',
-    PreEngagementDescription: "Ejja nibdew",
+    PreEngagementDescription: 'Ejja nibdew',
     Today: 'Illum',
     InputPlaceHolder: 'Tip Messaġġ',
     WelcomeMessage: 'Merħba lil Kellimni!',
@@ -58,65 +53,236 @@ const translations: Translations = {
     MessageCanvasTrayContent: '',
     AutoFirstMessage: 'Incoming webchat contact from',
     StartChat: 'Ibda Chat!',
+    Nickname: 'Laqam',
   },
   'ukr-MT': {
-      MessageInputDisabledReasonHold:
-        'Зв\'яжемо тебе із нашим консультантом, з яким ти зможеш поговорити.',
-      EntryPointTagLine: 'Поспілкуйся з нами в чаті',
-      PreEngagementDescription: 'Давайте розпочнемо',
-      Today: 'Сьогодні',
-      InputPlaceHolder: "Введіть повідомлення",
-      WelcomeMessage: 'Привіт, це Блакитна Лінія!',
-      Yesterday: 'вчора',
-      TypingIndicator: 'набір тексту...',
-      MessageCanvasTrayButton: 'Почати чат',
-      MessageCanvasTrayContent: '',
-      AutoFirstMessage: 'Вхідний чат',
-      StartChat: 'Почати чат!',
+    MessageInputDisabledReasonHold: "Зв'яжемо тебе із нашим консультантом, з яким ти зможеш поговорити.",
+    EntryPointTagLine: 'Поспілкуйся з нами в чаті',
+    PreEngagementDescription: 'Давайте розпочнемо',
+    Today: 'Сьогодні',
+    InputPlaceHolder: 'Введіть повідомлення',
+    WelcomeMessage: 'Привіт, це Блакитна Лінія!',
+    Yesterday: 'вчора',
+    TypingIndicator: 'набір тексту...',
+    MessageCanvasTrayButton: 'Почати чат',
+    MessageCanvasTrayContent: '',
+    AutoFirstMessage: 'Вхідний чат',
+    StartChat: 'Почати чат!',
+    Nickname: 'нікнейм',
   },
 };
 
-const preEngagementConfig: PreEngagementConfig = {
-  description: "Let's get started",
+const preEngagementConfig: PreEngagementFormDefinition = {
+  description: 'PreEngagementDescription',
+  submitLabel: 'StartChat',
   fields: [
     {
+      type: 'select',
+      name: 'language',
       label: 'Select your language',
-      type: 'SelectItem',
-      attributes: {
-        name: 'language',
-        required: true,
-        readOnly: false,
-      },
+      defaultValue: 'en-MT',
+      required: true,
+      options: [
+        { value: 'en-MT', label: '1. English' },
+        { value: 'mt-MT', label: '2. Maltese' },
+        { value: 'ukr-MT', label: '3. Ukrainian' },
+      ],
+    },
+    {
+      type: 'input-text',
+      name: 'nickname',
+      label: 'Nickname',
+      placeholder: 'GuestName',
+      required: true,
+    },
+    {
+      label: 'Age/Età/літа',
+      type: 'select',
+      name: 'age',
+      required: true,
+      defaultValue: '',
       options: [
         {
-          value: 'en-MT',
-          label: '1. English',
-          selected: true,
+          value: "",
+          label: ""
         },
         {
-          value: 'mt-MT',
-          label: '2. Maltese',
-          selected: false,
+          value: "00",
+          label: "0"
         },
         {
-          value: 'ukr-MT',
-          label: '3. Ukrainian',
-          selected: false,
+          value: "01",
+          label: "1"
+        },
+        {
+          value: "02",
+          label: "2"
+        },
+        {
+          value: "03",
+          label: "3"
+        },
+        {
+          value: "04",
+          label: "4"
+        },
+        {
+          value: "05",
+          label: "5"
+        },
+        {
+          value: "06",
+          label: "6"
+        },
+        {
+          value: "07",
+          label: "7"
+        },
+        {
+          value: "08",
+          label: "8"
+        },
+        {
+          value: "09",
+          label: "9"
+        },
+        {
+          value: "10",
+          label: "10"
+        },
+        {
+          value: "11",
+          label: "11"
+        },
+        {
+          value: "12",
+          label: "12"
+        },
+        {
+          value: "13",
+          label: "13"
+        },
+        {
+          value: "14",
+          label: "14"
+        },
+        {
+          value: "15",
+          label: "15"
+        },
+        {
+          value: "16",
+          label: "16"
+        },
+        {
+          value: "17",
+          label: "17"
+        },
+        {
+          value: "18",
+          label: "18"
+        },
+        {
+          value: "19",
+          label: "19"
+        },
+        {
+          value: "20",
+          label: "20"
+        },
+        {
+          value: "21",
+          label: "21"
+        },
+        {
+          value: "22",
+          label: "22"
+        },
+        {
+          value: "23",
+          label: "23"
+        },
+        {
+          value: "24",
+          label: "24"
+        },
+        {
+          value: "25",
+          label: "25"
+        },
+        {
+          value: ">25",
+          label: ">25"
+        },
+        {
+          value: "Unknown",
+          label: "Unknown"
+        },
+        {
+          value: "Other",
+          label: "Other"
+        }
+      ],
+    },
+    {
+      label: 'Gender/Sess/Стать',
+      type: 'select',
+      name: 'gender',
+      required: true,
+      defaultValue: 'female',
+      options: [
+        {
+          value: 'female',
+          label: 'Female/Mara/Жінка',
+        },
+        {
+          value: 'male',
+          label: 'Male/Raġel/Чоловік',
+        },
+        {
+          value: 'other',
+          label: 'Others/Oħrajn/Інші',
+        },
+        {
+          value: 'notSay',
+          label: 'Rather not say/Ma nixtieqx naghti risposta/Не хочу відповідати',
         },
       ],
     },
     {
-        type: "InputItem",
-        label: "Nickname/Laqam/нікнейм",
-        attributes: {
-          name: "nickname",
-          type: "text",
-          placeholder: "Guest's name. Please enter only your name.",
-          required: true,
-        }
+      label: 'How are you feeling/tħossok/почуття',
+      type: 'select',
+      name: 'feeling',
+      required: true,
+      defaultValue: 'happy',
+      options: [
+        {
+          value: 'happy',
+          label: 'Happy/Ferħan/Щасливий',
+        },
+        {
+          value: 'confused',
+          label: 'Confused/Konfuż/Збентежений',
+        },
+        {
+          value: 'angry',
+          label: 'Angry/Rrabjat/Злий',
+        },
+        {
+          value: 'shocked',
+          label: 'Shocked/Ixxukkjat/Шокований',
+        },
+        {
+          value: 'scared',
+          label: 'Scared/Begħzan/Переляканий',
+        },
+        {
+          value: 'uncertain',
+          label: 'Uncertain/Inċert/Розгублений',
+        },
+      ],
     },
   ],
-  submitLabel: 'Start Chat!',
 };
 
 const memberDisplayOptions = {
@@ -124,14 +290,14 @@ const memberDisplayOptions = {
   yourFriendlyNameOverride: false,
   theirFriendlyNameOverride: false,
   theirDefaultName: 'Support Mentor',
-}
+};
 
-const mapHelplineLanguage: MapHelplineLanguage = helpline => {
+const mapHelplineLanguage: MapHelplineLanguage = (helpline) => {
   switch (helpline) {
     default:
       return defaultLanguage;
   }
-}
+};
 
 export const config: Configuration = {
   accountSid,
@@ -141,5 +307,6 @@ export const config: Configuration = {
   preEngagementConfig,
   mapHelplineLanguage,
   memberDisplayOptions,
-  captureIp,contactType
+  captureIp,
+  contactType,
 };

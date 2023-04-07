@@ -6,6 +6,7 @@
     "allowJs": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
+    "esModuleInterop": true,
     "jsx": "react-jsx",
     "allowSyntheticDefaultImports": true,
   }

@@ -14,13 +14,8 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-import {
-  PreEngagementConfig,
-  Translations,
-  Configuration,
-  MapHelplineLanguage,
-  ContactType
-} from '../types';
+import { Translations, Configuration, MapHelplineLanguage, ContactType } from '../types';
+import type { PreEngagementFormDefinition } from '../src/pre-engagement-form';
 
 const accountSid = 'ACbeffd85714fecd060d38aa4d84c3fc03';
 const flexFlowSid = 'FO1991160f1788af24f3c207be5b16f893';
@@ -30,8 +25,7 @@ const contactType: ContactType = 'ip';
 
 const translations: Translations = {
   'en-US': {
-    MessageInputDisabledReasonHold:
-      "We'll transfer you now. Please hold for a counsellor.",
+    MessageInputDisabledReasonHold: "We'll transfer you now. Please hold for a counsellor.",
     EntryPointTagLine: 'Chat with us',
     PreEngagementDescription: "Let's get started",
     Today: 'Today',
@@ -46,19 +40,10 @@ const translations: Translations = {
   },
 };
 
-const preEngagementConfig: PreEngagementConfig = {
-  description: "Let's get started",
-  fields: [
-    {
-      label: 'Hidden Field',
-      type: 'InputField',
-      attributes: {
-        name: '',
-        readOnly: true,
-      },
-    },
-  ],
-  submitLabel: 'Start Chat!',
+const preEngagementConfig: PreEngagementFormDefinition = {
+  description: 'PreEngagementDescription',
+  submitLabel: 'StartChat',
+  fields: [],
 };
 
 const memberDisplayOptions = {
@@ -66,14 +51,14 @@ const memberDisplayOptions = {
   yourFriendlyNameOverride: false,
   theirFriendlyNameOverride: false,
   theirDefaultName: 'Telefonul Copilului Counsellor',
-}
+};
 
-const mapHelplineLanguage: MapHelplineLanguage = helpline => {
+const mapHelplineLanguage: MapHelplineLanguage = (helpline) => {
   switch (helpline) {
     default:
       return defaultLanguage;
   }
-}
+};
 
 export const config: Configuration = {
   accountSid,
@@ -83,5 +68,6 @@ export const config: Configuration = {
   preEngagementConfig,
   mapHelplineLanguage,
   memberDisplayOptions,
-  captureIp,contactType,
+  captureIp,
+  contactType,
 };

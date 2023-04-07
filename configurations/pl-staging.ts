@@ -14,7 +14,8 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-import { PreEngagementConfig, Translations, Configuration, MapHelplineLanguage, ContactType } from '../types';
+import { Translations, Configuration, MapHelplineLanguage, ContactType } from '../types';
+import type { PreEngagementFormDefinition } from '../src/pre-engagement-form';
 
 const accountSid = 'ACb3da2ab24338c616db45ba3b4afce61a';
 const flexFlowSid = 'FO83947facb0df52ee4849d30275334213';
@@ -29,40 +30,41 @@ const translations: Translations = {
     MessageInputDisabledReasonHold:
       "Thank you very much for this information. We'll transfer you now. Please hold for a counsellor.",
     AutoFirstMessage: 'Incoming webchat contact from',
+    PreEngagementDescription:
+      'Thank you for contacting Telefon Zaufania. To chat with a counsellor, please type your name and select the Start Chat button.',
+    WhatIsYourName: 'What is your name?',
+    Guest: 'Guest',
+    StartChat: 'Start Chat!',
   },
 };
 
-const preEngagementConfig: PreEngagementConfig = {
-  description: "Thank you for contacting Telefon Zaufania. To chat with a counsellor, please type your name and select the Start Chat button.",
-  fields:
-    [
-      {
-        type: "InputItem",
-        label: "What is your name?",
-        attributes: {
-          name: "friendlyName",
-          type: "text",
-          placeholder: "Guest",
-          required: true,
-        }
-      }
-    ],
-  submitLabel: "Start Chat!"
+const preEngagementConfig: PreEngagementFormDefinition = {
+  description: 'PreEngagementDescription',
+  submitLabel: 'StartChat',
+  fields: [
+    {
+      type: 'input-text',
+      name: 'friendlyName',
+      label: 'WhatIsYourName',
+      placeholder: 'Guest',
+      required: true,
+    },
+  ],
 };
 
-const mapHelplineLanguage: MapHelplineLanguage = helpline => {
+const mapHelplineLanguage: MapHelplineLanguage = (helpline) => {
   switch (helpline) {
     default:
       return defaultLanguage;
   }
-}
+};
 
 const memberDisplayOptions = {
   yourDefaultName: 'You',
   yourFriendlyNameOverride: false,
   theirFriendlyNameOverride: false,
   theirDefaultName: 'Telefon Zaufania Counsellor',
-}
+};
 
 export const config: Configuration = {
   accountSid,
@@ -72,5 +74,6 @@ export const config: Configuration = {
   preEngagementConfig,
   mapHelplineLanguage,
   memberDisplayOptions,
-  captureIp,contactType
+  captureIp,
+  contactType,
 };

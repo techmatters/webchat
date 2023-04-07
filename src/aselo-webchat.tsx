@@ -34,6 +34,10 @@ import { addContactIdentifierToContext } from './contact-identifier';
 import type { Configuration } from '../types';
 // eslint-disable-next-line import/no-unresolved
 import { config } from './config';
+import { renderEmojis } from './emoji-picker/renderEmojis';
+import PreEngagementForm from './pre-engagement-form';
+import { setFormDefinition } from './pre-engagement-form/state';
+import { applyWidgetBranding } from './branding-overrides';
 
 updateZIndex();
 
@@ -97,6 +101,7 @@ const setChannelAfterStartEngagement = async (channel: Channel, manager: FlexWeb
   const message = `${translations[initialLanguage].AutoFirstMessage} ${contactIdentifier}`;
   channel.sendMessage(message);
 };
+// eslint-disable-next-line sonarjs/cognitive-complexity
 export const initWebchat = async () => {
   let ip: string | undefined;
   if (currentConfig.captureIp) {
@@ -135,6 +140,7 @@ export const initWebchat = async () => {
   const webchat = await FlexWebChat.createWebChat(appConfig);
   const { manager } = webchat;
   manager.store.replaceReducer(aseloReducer as Reducer<FlexState>);
+  manager.store.dispatch(setFormDefinition(currentConfig.preEngagementConfig));
 
   await displayOperatingHours(currentConfig, manager);
 
@@ -190,6 +196,9 @@ export const initWebchat = async () => {
     }
   });
 
+  // eslint-disable-next-line no-unused-expressions
+  currentConfig.showEmojiPicker !== false && renderEmojis(manager, currentConfig.blockedEmojis);
+
   // Add CloseButtons
   FlexWebChat.MessageInput.Content.add(
     <Provider store={manager.store as any} key="closechatprovider">
@@ -197,8 +206,12 @@ export const initWebchat = async () => {
     </Provider>,
   );
 
+  // Replace pre engagement form
+  FlexWebChat.PreEngagementCanvas.Content.replace(<PreEngagementForm key="pre-engagement" manager={manager} />);
+
   // Render WebChat
   webchat.init();
 
   applyMobileOptimization(manager);
+  applyWidgetBranding();
 };
