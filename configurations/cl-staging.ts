@@ -21,7 +21,19 @@ const accountSid = 'AC6ca34b61e7bf2d7cf8b8ca24e7efe65f';
 const flexFlowSid = 'FO005120845e65f5d54a17b8ab6d0bf3f3';
 const defaultLanguage = 'es-CL';
 const captureIp = true;
+const checkOpenHours = true;
 const contactType: ContactType = 'email';
+
+const closedHours: PreEngagementFormDefinition = {
+  description:
+    'Hola, bienvenid@ a Línea Libre. Gracias por escribirnos. Recibimos tu mensaje exitosamente. En estos comentos nos encontramos fuera del horario de atención. Te recordamos que éste es de lunes a viernes entre las 10:00 y las 22:00 hrs. Nuestr@s psicólog@s estarán disponibles para ti una vez iniciada la jornada. En caso de tener alguna emergencia, te sugerimos llamar a: Salud Responde 600 360 7777 - Fono niñ@s 147 - Fono familia 149.',
+  fields: [],
+};
+
+const holidayHours: PreEngagementFormDefinition = {
+  description: 'Hola, bienvenid@ a Línea Libre. Gracias por escribirnos. Recibimos tu mensaje exitosamente. Por ser feriado legal, nuestros psicólog@s no se encuentran atendiendo, pero estarán disponibles para ti una vez que retomemos el horario habitual. Te recordamos que éste es de lunes a viernes entre las 10:00 y las 22:00 hrs. En caso de tener alguna emergencia, te sugerimos llamar a: Salud Responde 600 360 7777 - Fono niñ@s 147 - Fono familia 149.',
+  fields: [],
+};
 
 const preEngagementConfig: PreEngagementFormDefinition = {
   description: 'WelcomeMessage',
