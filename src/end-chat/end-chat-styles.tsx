@@ -24,7 +24,7 @@ export const EndChatWrapper = styled('span')`
 
 export const IconWrapper = styled('div')`
   position: relative;
-  left: 11%;
+  left: 5%;
 `;
 
 export const StyledEndButton = styled('button')`
