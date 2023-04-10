@@ -31,8 +31,6 @@ type Props = OwnProps & UseControllerProps;
 
 const InputText: React.FC<Props> = ({ name, label, placeholder, rules }) => {
   const { getLabel } = useLocalization();
-  const value = getLabel(placeholder, true) as string;
-  console.log('>> placeholder: ', value);
 
   return (
     <FormComponent name={name} label={label} rules={rules}>
