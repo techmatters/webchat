@@ -60,7 +60,6 @@ export const QuickExitText = styled('span')`
 
 export const StyledQuickExitButton = styled('button')`
   width: 90%;
-  /* display: inline-block; */
   background-color: #d22f2f;
   color: #fff;
   font-weight: bold;
