@@ -18,37 +18,63 @@ import * as FlexWebChat from '@twilio/flex-webchat-ui';
 
 const { styled } = FlexWebChat;
 
-export const EndChatWrapper = styled('span')`
-  width: 100%;
-`;
-
-export const IconWrapper = styled('div')`
-  position: relative;
-  left: 5%;
-`;
-
-export const StyledEndButton = styled('button')`
-  width: 90%;
-  display: flex;
-  background-color: #fff;
-  color: #d22f2f;
-  height: 29px;
-  font-weight: bold;
-  border: 1.5px solid #d22f2f;
-  border-radius: 4px;
-  cursor: pointer;
-  font-family: Open Sans;
-  font-size: 12px;
-  margin-left: 5px;
-  height: 29px;
-  line-height: 24px;
-`;
-
-export const ButtonWrapper = styled('div')`
+export const ButtonsWrapper = styled('div')`
   display: flex;
   text-align: center;
   margin: -20px auto auto auto;
   padding-top: 25px;
+  width: 100%;
+`;
+
+export const EndChatText = styled('span')`
+  flex-grow: 1;
+  text-align: center;
+`;
+
+export const EndChatIcon = styled('span')`
+  position: relative;
+  left: 20%;
+`;
+
+export const StyledEndButton = styled('button')`
+  align-items: center;
+  background-color: #fff;
+  border: 1.5px solid #d22f2f;
+  border-radius: 4px;
+  color: #d22f2f;
+  cursor: pointer;
+  display: flex;
+  font-family: Open Sans;
+  font-size: 12px;
+  font-weight: bold;
+  height: 29px;
+  margin-left: 5px;
+  width: 90%;
+`;
+
+export const QuickExitText = styled('span')`
+  position: relative;
+  top: -20%;
+  left: -7%;
+`;
+
+export const StyledQuickExitButton = styled('button')`
+  width: 90%;
+  /* display: inline-block; */
+  background-color: #d22f2f;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: Open Sans;
+  font-size: 12px;
+  margin-right: -10px;
+  height: 29px;
+  align-items: center;
+`;
+
+export const ExitWrapper = styled('div')`
   width: 100%;
 `;
 
@@ -63,31 +89,4 @@ export const ExitDescText = styled('p')`
     display: inline-block;
     width: 100%;
   }
-`;
-
-export const StyledQuickExitButton = styled('button')`
-  width: 90%;
-  display: inline-block;
-  background-color: #d22f2f;
-  color: #fff;
-  font-weight: bold;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-family: Open Sans;
-  font-size: 12px;
-  margin-right: -10px;
-  height: 29px;
-  line-height: 24px;
-`;
-
-export const QuickExitText = styled('span')`
-  position: relative;
-  top: -20%;
-  left: -7%;
-`;
-
-// eslint-disable-next-line import/no-unused-modules
-export const ExitWrapper = styled('div')`
-  width: 100%;
 `;
