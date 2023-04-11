@@ -25,14 +25,14 @@ const contactType: ContactType = 'ip';
 
 const translations: Translations = {
   'en-MT': {
-    MessageInputDisabledReasonHold: "We'll transfer you now. Please hold for a support mentor.",
+    MessageInputDisabledReasonHold: "We'll transfer you now. Please hold for a professional.",
     EntryPointTagLine: 'Chat with us',
     PreEngagementDescription: "Let's get started",
     Today: 'Today',
     InputPlaceHolder: 'Type Message',
     WelcomeMessage: 'Welcome to Kellimni!',
     Yesterday: 'Yesterday',
-    TypingIndicator: 'Support mentor is typing',
+    TypingIndicator: 'Professional is typing',
     MessageCanvasTrayButton: 'Start New Chat',
     MessageCanvasTrayContent: '',
     AutoFirstMessage: 'Incoming webchat contact from',
@@ -41,14 +41,14 @@ const translations: Translations = {
     GuestName: "Guest's name. Please enter only your name.",
   },
   'mt-MT': {
-    MessageInputDisabledReasonHold: 'Ha nittrasferuk lil wieħed mis-Support Mentors tagħna.',
+    MessageInputDisabledReasonHold: 'Ha nittrasferuk lil wieħed mis-Professionals tagħna.',
     EntryPointTagLine: 'Chat magħna',
     PreEngagementDescription: 'Ejja nibdew',
     Today: 'Illum',
     InputPlaceHolder: 'Tip Messaġġ',
     WelcomeMessage: 'Merħba lil Kellimni!',
     Yesterday: 'Ilbieraħ',
-    TypingIndicator: 'Il support mentor qed jittajpja',
+    TypingIndicator: 'Il Professional qed jittajpja',
     MessageCanvasTrayButton: 'Ibda Chat Ġdida',
     MessageCanvasTrayContent: '',
     AutoFirstMessage: 'Incoming webchat contact from',
@@ -80,12 +80,13 @@ const preEngagementConfig: PreEngagementFormDefinition = {
       type: 'select',
       name: 'language',
       label: 'Select your language',
-      defaultValue: 'en-MT',
+      defaultValue: '',
       required: true,
       options: [
-        { value: 'en-MT', label: '1. English' },
-        { value: 'mt-MT', label: '2. Maltese' },
-        { value: 'ukr-MT', label: '3. Ukrainian' },
+        { value: '', label: '' },
+        { value: 'en-MT', label: 'English' },
+        { value: 'mt-MT', label: 'Maltese' },
+        { value: 'ukr-MT', label: 'Ukrainian' },
       ],
     },
     {
@@ -229,8 +230,12 @@ const preEngagementConfig: PreEngagementFormDefinition = {
       type: 'select',
       name: 'gender',
       required: true,
-      defaultValue: 'female',
+      defaultValue: '',
       options: [
+        {
+          value: "",
+          label: ""
+        },
         {
           value: 'female',
           label: 'Female/Mara/Жінка',
@@ -254,8 +259,12 @@ const preEngagementConfig: PreEngagementFormDefinition = {
       type: 'select',
       name: 'feeling',
       required: true,
-      defaultValue: 'happy',
+      defaultValue: '',
       options: [
+        {
+          value: "",
+          label: ""
+        },
         {
           value: 'happy',
           label: 'Happy/Ferħan/Щасливий',
@@ -289,7 +298,7 @@ const memberDisplayOptions = {
   yourDefaultName: 'You',
   yourFriendlyNameOverride: false,
   theirFriendlyNameOverride: false,
-  theirDefaultName: 'Support Mentor',
+  theirDefaultName: 'Professional',
 };
 
 const mapHelplineLanguage: MapHelplineLanguage = (helpline) => {
