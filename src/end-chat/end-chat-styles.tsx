@@ -26,16 +26,6 @@ export const ButtonsWrapper = styled('div')`
   width: 100%;
 `;
 
-export const EndChatText = styled('span')`
-  flex-grow: 1;
-  text-align: center;
-`;
-
-export const EndChatIcon = styled('span')`
-  position: relative;
-  left: 20%;
-`;
-
 export const StyledEndButton = styled('button')`
   align-items: center;
   background-color: #fff;
@@ -50,6 +40,20 @@ export const StyledEndButton = styled('button')`
   height: 29px;
   margin-left: 5px;
   width: 90%;
+`;
+
+export const EndChatText = styled('span')`
+  flex-grow: 1;
+  text-align: center;
+`;
+
+export const EndChatIcon = styled('span')`
+  position: relative;
+  left: 7%;
+`;
+
+export const ExitWrapper = styled('div')`
+  width: 100%;
 `;
 
 export const QuickExitText = styled('span')`
@@ -71,10 +75,6 @@ export const StyledQuickExitButton = styled('button')`
   margin-right: -10px;
   height: 29px;
   align-items: center;
-`;
-
-export const ExitWrapper = styled('div')`
-  width: 100%;
 `;
 
 export const ExitDescText = styled('p')`
