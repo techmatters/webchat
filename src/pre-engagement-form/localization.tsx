@@ -18,6 +18,8 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import type { Manager } from '@twilio/flex-webchat-ui';
 import PubSub from 'pubsub-js';
 
+import { safeParseHtml } from '../safe-html-parser';
+
 type LocalizationProviderProps = {
   manager: Manager;
   children: JSX.Element;
@@ -45,7 +47,10 @@ export const LocalizationProvider: React.FC<LocalizationProviderProps> = ({ mana
 export const useLocalization = () => {
   const strings = useContext<Record<string, string>>(LocalizationContext);
 
-  const getLabel = (label?: string) => (label ? strings[label] ?? label : '');
+  const getLabel = (label?: string, disableHtml?: boolean) => {
+    const localizedLabel = label ? strings[label] ?? label : '';
+    return disableHtml ? localizedLabel : safeParseHtml(localizedLabel);
+  };
 
   return {
     strings,
