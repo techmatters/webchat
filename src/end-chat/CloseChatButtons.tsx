@@ -21,13 +21,14 @@ import { connect } from 'react-redux';
 import Exit from './QuickExit';
 import End from './EndChat';
 import { AseloWebchatState } from '../aselo-webchat-state';
+import { ButtonWrapper } from './end-chat-styles';
 
 const CloseChatButtons = ({ channelSid, token, language, taskSid }: MapStateToProps) => {
   if (!channelSid || !token) {
     return null;
   }
   return (
-    <>
+    <ButtonWrapper>
       <End
         channelSid={channelSid}
         token={token}
@@ -35,7 +36,7 @@ const CloseChatButtons = ({ channelSid, token, language, taskSid }: MapStateToPr
         action={taskSid ? 'finishTask' : 'restartEngagement'}
       />
       <Exit channelSid={channelSid} token={token} language={language} finishTask={Boolean(taskSid)} />
-    </>
+    </ButtonWrapper>
   );
 };
 

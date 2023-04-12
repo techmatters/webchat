@@ -200,10 +200,13 @@ export const initWebchat = async () => {
   currentConfig.showEmojiPicker !== false && renderEmojis(manager, currentConfig.blockedEmojis);
 
   // Add CloseButtons
-  FlexWebChat.MessageInput.Content.add(
+  FlexWebChat.MessagingCanvas.Content.add(
     <Provider store={manager.store as any} key="closechatprovider">
       <CloseChatButtons />
     </Provider>,
+    {
+      sortOrder: -2,
+    },
   );
 
   // Replace pre engagement form

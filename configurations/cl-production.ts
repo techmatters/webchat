@@ -22,6 +22,7 @@ const flexFlowSid = 'FOe38b0b2d8c8c6b82aa1c335eaaa01d12';
 
 export const config: Configuration = {
   ...clStaging,
+  checkOpenHours: true,
   accountSid,
   flexFlowSid,
 };
