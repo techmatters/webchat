@@ -14,29 +14,18 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-/* eslint-disable react/require-default-props */
-import React from 'react';
-import { UseControllerProps } from 'react-hook-form';
+import ReactHtmlParser from 'react-html-parser';
+import DOMPurify from 'dompurify';
 
-import { StyledInputText } from './styles';
-import FormComponent from './form-component';
-import { useLocalization } from '../localization';
+/**
+ * Adds target="_blank" rel="noopener" to <a> elements
+ */
+DOMPurify.addHook('afterSanitizeAttributes', (node) => {
+  if ('target' in node) {
+    node.setAttribute('target', '_blank');
+    node.setAttribute('rel', 'noopener');
+  }
+});
 
-type OwnProps = {
-  label: string;
-  placeholder?: string;
-};
-
-type Props = OwnProps & UseControllerProps;
-
-const InputText: React.FC<Props> = ({ name, label, placeholder, rules }) => {
-  const { getLabel } = useLocalization();
-
-  return (
-    <FormComponent name={name} label={label} rules={rules}>
-      <StyledInputText placeholder={getLabel(placeholder, true) as string} />
-    </FormComponent>
-  );
-};
-
-export default InputText;
+export const safeParseHtml = (htmlString: string) =>
+  ReactHtmlParser(DOMPurify.sanitize(htmlString, { USE_PROFILES: { html: true } }));

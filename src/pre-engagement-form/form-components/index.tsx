@@ -34,7 +34,9 @@ const generateFormItem = (item: PreEngagementFormItem) => {
 
   switch (item.type) {
     case 'input-text':
-      return <InputText key={item.name} name={item.name} label={item.label} rules={rules} />;
+      return (
+        <InputText key={item.name} name={item.name} label={item.label} placeholder={item.placeholder} rules={rules} />
+      );
     case 'select':
       return (
         <Select
