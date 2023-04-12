@@ -19,7 +19,6 @@ import React from 'react';
 
 import { StyledTitle } from './styles';
 import { useLocalization } from '../localization';
-import { safeParseHtml } from '../../safe-html-parser';
 
 type OwnProps = {
   title: string;
