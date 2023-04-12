@@ -35,7 +35,7 @@ import type { Configuration } from '../types';
 // eslint-disable-next-line import/no-unresolved
 import { config } from './config';
 import { renderEmojis } from './emoji-picker/renderEmojis';
-import PreEngagementForm from './pre-engagement-form';
+import PreEngagementForm, { PLACEHOLDER_PRE_ENGAGEMENT_CONFIG } from './pre-engagement-form';
 import { setFormDefinition } from './pre-engagement-form/state';
 import { applyWidgetBranding } from './branding-overrides';
 
@@ -117,7 +117,7 @@ export const initWebchat = async () => {
     accountSid: currentConfig.accountSid,
     flexFlowSid: currentConfig.flexFlowSid,
     startEngagementOnInit: false,
-    preEngagementConfig: currentConfig.preEngagementConfig,
+    preEngagementConfig: PLACEHOLDER_PRE_ENGAGEMENT_CONFIG,
     context: {
       ip,
     },
