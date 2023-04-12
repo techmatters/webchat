@@ -93,6 +93,11 @@ const preEngagementConfig: PreEngagementFormDefinition = {
       pattern: EMAIL_PATTERN,
     },
     {
+      type: 'checkbox',
+      name: 'subscribe',
+      label: 'Subscribe by email',
+    },
+    {
       type: 'select',
       name: 'continent',
       label: 'Continent',

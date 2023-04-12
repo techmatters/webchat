@@ -41,7 +41,13 @@ type DependentSelect = {
   options: DependentSelectOptions;
 } & UseControllerProps['rules'];
 
-export type PreEngagementFormItem = InputText | Select | DependentSelect;
+type Checkbox = {
+  type: 'checkbox';
+  label: string;
+  name: string;
+} & UseControllerProps['rules'];
+
+export type PreEngagementFormItem = InputText | Select | DependentSelect | Checkbox;
 export type PreEngagementForm = {
   description: string;
   submitLabel?: string;

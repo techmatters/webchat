@@ -18,6 +18,7 @@ import React from 'react';
 import InputText from './input-text';
 import Select from './select';
 import DependentSelect from './dependent-select';
+import Checkbox from './checkbox';
 import type { PreEngagementForm, PreEngagementFormItem } from './types';
 
 const generateFormItem = (item: PreEngagementFormItem) => {
@@ -56,9 +57,20 @@ const generateFormItem = (item: PreEngagementFormItem) => {
           options={item.options}
         />
       );
+    case 'checkbox':
+      return <Checkbox key={item.name} name={item.name} label={item.label} rules={rules} />;
     default:
       return <div>Invalid form item: {item}</div>;
   }
 };
+
+/*
+(
+        <div style={{ marginBottom: '10px', display: 'flex', alignItems: 'center' }}>
+          <input id={item.name} type="checkbox" key={item.name} name={item.name} />
+          <label htmlFor={item.name}>{item.label}</label>
+        </div>
+      );
+*/
 
 export const generateForm = (form: PreEngagementForm['fields']) => form.map((item) => generateFormItem(item));

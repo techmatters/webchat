@@ -35,7 +35,11 @@ export const StyledTitle = styled('h2')`
   margin-bottom: 20px;
 `;
 
-export const Label = styled('label')`
+type LabelProps = {
+  isCheckbox?: boolean;
+};
+
+export const Label = styled('label')<LabelProps>`
   margin-bottom: 20px;
 
   .label {
@@ -46,6 +50,9 @@ export const Label = styled('label')`
   .error {
     color: rgb(203, 50, 50);
   }
+
+  ${(props) => props.isCheckbox && 'display: flex;'}
+  ${(props) => props.isCheckbox && 'align-items: center;'}
 `;
 
 export const StyledInputText = styled('input')<Props>`
@@ -70,6 +77,13 @@ export const StyledSelect = styled('select')<Props>`
   padding: 7px 6px;
   box-sizing: border-box;
   box-shadow: none;
+`;
+
+export const StyledCheckbox = styled('input')<Props>`
+  height: 16px;
+  width: 16px;
+  margin-left: 0;
+  margin-right: 5px;
 `;
 
 export const StyledButton = styled('button')`
