@@ -15,7 +15,7 @@
  */
 
 /* eslint-disable react/require-default-props */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useForm, FormProvider } from 'react-hook-form';
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
@@ -38,12 +38,53 @@ type Props = {
   typeof mapDispatchToProps;
 
 const PreEngagementForm: React.FC<Props> = ({ formState: defaultValues, formDefinition, manager, resetFormAction }) => {
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>('6Ld9E4ElAAAAAPwByxFPxCucSopHboogCI6Os7tR');
+
+  // v3 implementation
+  const generateCaptchaToken = async () => {
+    const siteKey = '6Ld9E4ElAAAAAPwByxFPxCucSopHboogCI6OstR';
+    console.log('>>> generateCaptchaToken');
+    const token = await grecaptcha.execute(siteKey, { action: 'submit' });
+    // const token = '6Ld9E4ElAAAAANwj6thHuJkpgq_qYBQu8mUkKaP9'
+    console.log('>>> executed and not ready - await grecaptcha.executen token', token);
+
+    // setRecaptchaToken(token)
+
+    /*
+     * grecaptcha.ready(function() {
+     *   grecaptcha.execute(siteKey, {action: 'submit'}).then(function(token) {
+     *     // submit to serverless
+     *     console.log('>>> token', token)
+     *     setRecaptchaToken(token)
+     *   });
+     * });
+     */
+  };
+
   const methods = useForm({ defaultValues, mode: 'onChange' });
   const { handleSubmit, formState } = methods;
   const { isValid } = formState;
 
   const onSubmit = handleSubmit(async (data) => {
-    const payload = { formData: data };
+    // generateCaptchaToken();
+
+    /*
+     * v2 implementation
+     * const recaptchaResponse = document.getElementById('g-recaptcha-response')?.value;
+     * const recaptchaResponse = '6LfrE4ElAAAAAFH4CPX-nb0hZZOpQ6Yj1wQCiGXE'
+     */
+    const recaptchaResponse = document.getElementById('g-recaptcha-response');
+    console.log('>>> recaptchaResponse', recaptchaResponse);
+
+    /*
+     * if (!recaptchaResponse) {
+     *   alert('Please complete the reCAPTCHA challenge before submitting the form.');
+     *   return;
+     * }
+     */
+
+    const payload = { formData: { ...data, recaptchaToken } };
+    console.log('>>>> onSubmit', payload);
     await FlexWebChat.Actions.invokeAction('StartEngagement', payload);
     resetFormAction();
   });
@@ -52,15 +93,30 @@ const PreEngagementForm: React.FC<Props> = ({ formState: defaultValues, formDefi
     return null;
   }
 
+  useEffect(() => {
+    generateCaptchaToken();
+  }, [recaptchaToken, formState]);
+
   return (
     <FormProvider {...methods}>
-      <LocalizationProvider manager={manager}>
-        <form className="Twilio-DynamicForm" onSubmit={onSubmit}>
-          <Title title={formDefinition.description} />
-          {generateForm(formDefinition.fields)}
-          {formDefinition.submitLabel && <SubmitButton label={formDefinition.submitLabel} disabled={!isValid} />}
-        </form>
-      </LocalizationProvider>
+      {/* v2 checkbox implementation */}
+      <div
+        className="g-recaptcha"
+        data-sitekey="6LfrE4ElAAAAAEQWb0CXszWNFBET_skTMik9A0lU"
+        data-size="invisible"
+        data-callback="recaptchaCallback"
+      >
+        {/* v2 invisible implementation */}
+        {/* <div className="g-recaptcha" data-sitekey="6LfrE4ElAAAAAEQWb0CXszWNFBET_skTMik9A0lU" data-size="invisible"
+  data-callback="recaptchaCallback"></div> */}
+        <LocalizationProvider manager={manager}>
+          <form className="Twilio-DynamicForm" onSubmit={onSubmit}>
+            <Title title={formDefinition.description} />
+            {generateForm(formDefinition.fields)}
+            {formDefinition.submitLabel && <SubmitButton label={formDefinition.submitLabel} disabled={!isValid} />}
+          </form>
+        </LocalizationProvider>
+      </div>
     </FormProvider>
   );
 };
