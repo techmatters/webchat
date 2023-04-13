@@ -75,6 +75,7 @@ export const StyledQuickExitButton = styled('button')`
   margin-right: -10px;
   height: 29px;
   align-items: center;
+  padding: 0;
 `;
 
 export const ExitDescText = styled('p')`
