@@ -26,7 +26,7 @@ const contactType: ContactType = 'ip';
 const translations: Translations = {
   'en-CA': {
     MessageInputDisabledReasonHold: 'Thank you! Please hold for a counsellor.',
-    EntryPointTagLine: 'Chat with us',
+    EntryPointTagLine: 'Tap to Chat',
     PreEngagementDescription: "Let's get started",
     Today: 'Today',
     InputPlaceHolder: 'Type Message',
