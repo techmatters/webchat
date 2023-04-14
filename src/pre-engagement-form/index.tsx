@@ -52,7 +52,7 @@ const PreEngagementForm: React.FC<Props> = ({ formState: defaultValues, formDefi
     try {
       const response = await validateUser(token);
       console.log('>>> await validateUser(token)', response);
-  
+
       if (response) {
         // reCAPTCHA validation succeeded
         const payload = { formData: data };
@@ -60,9 +60,7 @@ const PreEngagementForm: React.FC<Props> = ({ formState: defaultValues, formDefi
         resetFormAction();
       } else {
         // reCAPTCHA validation failed
-        const payload = { formData: data };
-        await FlexWebChat.Actions.invokeAction('StartEngagement', payload);
-        resetFormAction();
+        console.log('>> not validated');
       }
     } catch (error) {
       console.log(error);

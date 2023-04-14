@@ -52,13 +52,11 @@
     "@twilio/flex-webchat-ui": "^2.9.1",
     "buffer": "^6.0.3",
     "dompurify": "^3.0.1",
-    "express": "^4.18.2",
     "pubsub-js": "^1.9.4",
     "react-hook-form": "^7.43.7",
     "react-html-parser": "^2.0.2",
-    "redux": "^4.2.0",
-    "request": "^2.88.2"
-  },
+    "redux": "^4.2.0"
+    },
   "prettier": {
     "endOfLine": "auto"
   }
