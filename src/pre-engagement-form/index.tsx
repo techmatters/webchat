@@ -15,11 +15,14 @@
  */
 
 /* eslint-disable react/require-default-props */
-import React from 'react';
+import React, { useRef } from 'react';
 import { connect } from 'react-redux';
 import { useForm, FormProvider } from 'react-hook-form';
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
+import ReCAPTCHA from 'react-google-recaptcha';
 
+import { validateUser } from './recaptchaValidation';
+import { RECAPTCHA_SITE_KEY } from '../../private/secret';
 import { AseloWebchatState } from '../aselo-webchat-state';
 import type { PreEngagementForm as PreEngagementFormDefinition } from './form-components/types';
 import { generateForm } from './form-components';
@@ -42,10 +45,25 @@ const PreEngagementForm: React.FC<Props> = ({ formState: defaultValues, formDefi
   const { handleSubmit, formState } = methods;
   const { isValid } = formState;
 
+  const recaptchaRef = useRef<any>();
   const onSubmit = handleSubmit(async (data) => {
-    const payload = { formData: data };
-    await FlexWebChat.Actions.invokeAction('StartEngagement', payload);
-    resetFormAction();
+    const token = await recaptchaRef.current.executeAsync();
+    recaptchaRef.current.reset();
+    try {
+      const response = await validateUser(token);
+      console.log('>>> await validateUser(token)', response);
+  
+      if (response) {
+        // reCAPTCHA validation succeeded
+        const payload = { formData: data };
+        await FlexWebChat.Actions.invokeAction('StartEngagement', payload);
+        resetFormAction();
+      } else {
+        // reCAPTCHA validation failed
+      }
+    } catch (error) {
+      console.log(error);
+    }
   });
 
   if (formDefinition === undefined) {
@@ -57,7 +75,9 @@ const PreEngagementForm: React.FC<Props> = ({ formState: defaultValues, formDefi
       <LocalizationProvider manager={manager}>
         <form className="Twilio-DynamicForm" onSubmit={onSubmit}>
           <Title title={formDefinition.description} />
-          {generateForm(formDefinition.fields)}
+          <ReCAPTCHA sitekey={RECAPTCHA_SITE_KEY} size="invisible" ref={recaptchaRef}>
+            {generateForm(formDefinition.fields)}
+          </ReCAPTCHA>
           {formDefinition.submitLabel && <SubmitButton label={formDefinition.submitLabel} disabled={!isValid} />}
         </form>
       </LocalizationProvider>
