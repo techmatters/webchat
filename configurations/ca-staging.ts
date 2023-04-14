@@ -147,7 +147,7 @@ const translations: Translations = {
     TypingIndicator: '{0} est écrit ... ',
     StartChat: 'Démarrer la chat!',
     MessageCanvasTrayButton: 'Démarrer une nouvelle chat',
-    EntryPointTagline: 'Discute avec nous',
+    EntryPointTagline: 'Tape ici pour clavarder',
     InvalidPreEngagementMessage:
       "Les formulaires de pré-engagement n'ont pas été établis et sont nécessaires pour démarrer le chat Web. Veuillez les configurer maintenant dans les paramètres.",
     InvalidPreEngagementButton: 'Apprendre encore plus',
