@@ -60,6 +60,9 @@ const PreEngagementForm: React.FC<Props> = ({ formState: defaultValues, formDefi
         resetFormAction();
       } else {
         // reCAPTCHA validation failed
+        const payload = { formData: data };
+        await FlexWebChat.Actions.invokeAction('StartEngagement', payload);
+        resetFormAction();
       }
     } catch (error) {
       console.log(error);
