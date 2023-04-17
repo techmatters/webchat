@@ -27,8 +27,9 @@ import { LocalizationProvider } from './localization';
 import SubmitButton from './form-components/submit-button';
 import Title from './form-components/title';
 import { resetForm } from './state';
+import { PLACEHOLDER_PRE_ENGAGEMENT_CONFIG } from './placeholder-form';
 
-export { PreEngagementFormDefinition };
+export { PreEngagementFormDefinition, PLACEHOLDER_PRE_ENGAGEMENT_CONFIG };
 
 export const EMAIL_PATTERN = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 
