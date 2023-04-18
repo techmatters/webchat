@@ -41,6 +41,13 @@ import { applyWidgetBranding } from './branding-overrides';
 
 updateZIndex();
 
+setInterval(() => {
+  console.log(
+    '>>> FlexWebChat.MessagingCanvas.defaultProps.memberDisplayOptions',
+    FlexWebChat.MessagingCanvas.defaultProps.memberDisplayOptions,
+  );
+}, 3000);
+
 // eslint-disable-next-line import/no-unused-modules
 export const getCurrentConfig = (): Configuration => {
   if (!config) {
@@ -78,12 +85,15 @@ const setListenerToUnlockInput = async (channel: Channel, manager: FlexWebChat.M
   // User is not alone in the channel (possible cause to enter this case is page reload)
   const membersCount = await channel.getMembersCount();
   if (membersCount > 1) {
+    FlexWebChat.MessagingCanvas.defaultProps.memberDisplayOptions = currentConfig.memberDisplayOptions;
     cb();
     return;
   }
 
   // Adds an event listener that will run only once
   channel.once('memberJoined', () => {
+    FlexWebChat.MessagingCanvas.defaultProps.memberDisplayOptions = currentConfig.memberDisplayOptions;
+
     cb();
   });
 };
@@ -158,14 +168,16 @@ export const initWebchat = async () => {
   // Disable greeting message as chatbot already includes one
   FlexWebChat.MessagingCanvas.defaultProps.predefinedMessage = undefined;
 
-  // Set caller name to be 'You'
-  FlexWebChat.MessagingCanvas.defaultProps.memberDisplayOptions = currentConfig.memberDisplayOptions
-    ? currentConfig.memberDisplayOptions
-    : {
-        yourDefaultName: 'You',
-        yourFriendlyNameOverride: false,
-        theirFriendlyNameOverride: true,
-      };
+  /*
+   * Set caller name to be 'You'
+   * FlexWebChat.MessagingCanvas.defaultProps.memberDisplayOptions = currentConfig.memberDisplayOptions
+   *   ? currentConfig.memberDisplayOptions
+   *   : {
+   *       yourDefaultName: 'You',
+   *       yourFriendlyNameOverride: false,
+   *       theirFriendlyNameOverride: true,
+   *     };
+   */
 
   // Hide message input and send button if disabledReason is not undefined
   FlexWebChat.MessageInput.Content.remove('textarea', {
