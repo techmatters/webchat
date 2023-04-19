@@ -44,7 +44,6 @@ export const LocalizationProvider: React.FC<LocalizationProviderProps> = ({ mana
   return <LocalizationContext.Provider value={strings}>{children}</LocalizationContext.Provider>;
 };
 
-// eslint-disable-next-line import/no-unused-modules
 export const useLocalization = () => {
   const strings = useContext<Record<string, string>>(LocalizationContext);
 

@@ -30,7 +30,6 @@ import { resetForm } from './state';
 
 export { PreEngagementFormDefinition };
 
-// eslint-disable-next-line import/no-unused-modules
 export const EMAIL_PATTERN = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 
 type Props = {
