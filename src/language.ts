@@ -65,6 +65,18 @@ export const getChangeLanguageWebChat = (manager: FlexWebChat.Manager, config: C
   return (language: string) => {
     try {
       setNewLanguage(language);
+
+      const appConfig = manager.configuration;
+
+      const updateConfig = {
+        ...appConfig,
+        context: {
+          ...appConfig.context,
+          language,
+        },
+      };
+
+      manager.updateConfig(updateConfig);
     } catch (err) {
       const translationErrorMsg = 'Could not translate, using default';
       window.alert(translationErrorMsg);
