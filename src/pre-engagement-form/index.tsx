@@ -30,14 +30,22 @@ import { resetForm } from './state';
 
 export { PreEngagementFormDefinition };
 
+// eslint-disable-next-line import/no-unused-modules
 export const EMAIL_PATTERN = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 
 type Props = {
   manager: FlexWebChat.Manager;
+  preEngagementLanguage: string;
 } & ReturnType<typeof mapStateToProps> &
   typeof mapDispatchToProps;
 
-const PreEngagementForm: React.FC<Props> = ({ formState: defaultValues, formDefinition, manager, resetFormAction }) => {
+const PreEngagementForm: React.FC<Props> = ({
+  formState: defaultValues,
+  formDefinition,
+  manager,
+  preEngagementLanguage,
+  resetFormAction,
+}) => {
   const methods = useForm({ defaultValues, mode: 'onChange' });
   const { handleSubmit, formState } = methods;
   const { isValid } = formState;
@@ -57,6 +65,7 @@ const PreEngagementForm: React.FC<Props> = ({ formState: defaultValues, formDefi
       <LocalizationProvider manager={manager}>
         <form className="Twilio-DynamicForm" onSubmit={onSubmit}>
           <Title title={formDefinition.description} />
+          <input type="hidden" defaultValue={preEngagementLanguage} />
           {generateForm(formDefinition.fields)}
           {formDefinition.submitLabel && <SubmitButton label={formDefinition.submitLabel} disabled={!isValid} />}
         </form>

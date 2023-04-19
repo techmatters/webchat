@@ -210,7 +210,13 @@ export const initWebchat = async () => {
   );
 
   // Replace pre engagement form
-  FlexWebChat.PreEngagementCanvas.Content.replace(<PreEngagementForm key="pre-engagement" manager={manager} />);
+  FlexWebChat.PreEngagementCanvas.Content.replace(
+    <PreEngagementForm
+      key="pre-engagement"
+      manager={manager}
+      preEngagementLanguage={externalWebChatLanguage || initialLanguage}
+    />,
+  );
 
   // Render WebChat
   webchat.init();
