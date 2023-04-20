@@ -58,6 +58,7 @@ const translations: Translations = {
     EntryPointTagLine: 'Поспілкуйся з нами в чаті',
     PreEngagementDescription: '',
     Today: 'Сьогодні',
+    Language: 'Мова',
     InputPlaceHolder: 'Введіть повідомлення',
     WelcomeMessage: 'Привіт, це Блакитна Лінія!',
     Yesterday: 'вчора',
@@ -90,7 +91,8 @@ const preEngagementConfig: PreEngagementFormDefinition = {
     {
       type: 'select',
       name: 'language',
-      label: '',
+      label: 'Language',
+      defaultValue: 'ukr-HU',
       required: true,
       options: [
         { value: 'ukr-HU', label: 'Українська' },
