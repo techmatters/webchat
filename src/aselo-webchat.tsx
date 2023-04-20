@@ -23,7 +23,7 @@ import { Reducer } from 'redux';
 
 import { getUserIp } from './ip-tracker';
 import { displayOperatingHours } from './operating-hours';
-import { updateZIndex, getWebChatLanguageAttributeValue } from './dom-utils';
+import { updateZIndex, getWebChatAttributeValues } from './dom-utils';
 import blockedIps from './blockedIps.json';
 import CloseChatButtons from './end-chat/CloseChatButtons';
 import { getChangeLanguageWebChat } from './language';
@@ -32,7 +32,6 @@ import { aseloReducer } from './aselo-webchat-state';
 import { subscribeToChannel } from './task';
 import { addContactIdentifierToContext } from './contact-identifier';
 import type { Configuration } from '../types';
-// eslint-disable-next-line import/no-unresolved
 import { config } from './config';
 import { renderEmojis } from './emoji-picker/renderEmojis';
 import PreEngagementForm from './pre-engagement-form';
@@ -51,7 +50,7 @@ export const getCurrentConfig = (): Configuration => {
 };
 
 const currentConfig = getCurrentConfig();
-const externalWebChatLanguage = getWebChatLanguageAttributeValue();
+const { externalWebChatLanguage, color, backgroundColor } = getWebChatAttributeValues();
 
 const { defaultLanguage, translations } = currentConfig;
 const initialLanguage = defaultLanguage;
@@ -216,5 +215,5 @@ export const initWebchat = async () => {
   webchat.init();
 
   applyMobileOptimization(manager);
-  applyWidgetBranding();
+  applyWidgetBranding(backgroundColor as string, color as string);
 };
