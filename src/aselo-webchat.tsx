@@ -32,6 +32,7 @@ import { aseloReducer } from './aselo-webchat-state';
 import { subscribeToChannel } from './task';
 import { addContactIdentifierToContext } from './contact-identifier';
 import type { Configuration } from '../types';
+// eslint-disable-next-line import/no-unresolved
 import { config } from './config';
 import { renderEmojis } from './emoji-picker/renderEmojis';
 import PreEngagementForm from './pre-engagement-form';
