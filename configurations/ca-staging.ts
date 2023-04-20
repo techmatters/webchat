@@ -319,7 +319,7 @@ const preEngagementConfig: PreEngagementFormDefinition = {
     },
     {
       type: 'select',
-      name: 'Gender',
+      name: 'gender',
       label: 'DoYouConsiderYourselfToBe',
       defaultValue: 'Unknown',
       required: true,
@@ -337,7 +337,7 @@ const preEngagementConfig: PreEngagementFormDefinition = {
     },
     {
       type: 'select',
-      name: 'SexualOrientation',
+      name: 'sexualOrientation',
       label: 'DoYouConsiderYourselfToBe',
       defaultValue: 'Unknown',
       required: true,
@@ -354,7 +354,7 @@ const preEngagementConfig: PreEngagementFormDefinition = {
     },
     {
       type: 'select',
-      name: 'NameNewcomer',
+      name: 'Newcomer',
       label: 'LabelNewcomer',
       defaultValue: 'Unknown',
       required: true,
@@ -393,7 +393,7 @@ const preEngagementConfig: PreEngagementFormDefinition = {
     },
     {
       type: 'select',
-      name: 'Region',
+      name: 'region',
       label: 'TellMoreAboutLive',
       defaultValue: 'Unknown',
       required: true,
@@ -409,7 +409,7 @@ const preEngagementConfig: PreEngagementFormDefinition = {
     },
     {
       type: 'select',
-      name: 'Upset',
+      name: 'upset',
       label: 'LabelScale',
       defaultValue: '1',
       required: true,
@@ -450,7 +450,7 @@ const preEngagementConfig: PreEngagementFormDefinition = {
     },
     {
       type: 'select',
-      name: 'School',
+      name: 'school',
       label: 'LabelSchool',
       defaultValue: 'Unknown',
       required: false,
