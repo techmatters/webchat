@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unused-modules */
 /**
  * Copyright (C) 2021-2023 Technology Matters
  * This program is free software: you can redistribute it and/or modify
@@ -75,6 +76,7 @@ export const StyledQuickExitButton = styled('button')`
   margin-right: -10px;
   height: 29px;
   align-items: center;
+  inline-size: fit-content;
 `;
 
 export const ExitDescText = styled('p')`
