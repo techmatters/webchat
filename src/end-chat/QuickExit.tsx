@@ -54,7 +54,7 @@ export default function QuickExit({ channelSid, token, language, finishTask }: P
   };
 
   return (
-    <StyledEndButton style={{ backgroundColor: 'red' }} onClick={handleExit}>
+    <StyledEndButton style={{ backgroundColor: '#d22f2f' }} onClick={handleExit}>
       <EndChatText style={{ color: 'white' }}>
         <Template code="QuickExitButtonLabel" />
       </EndChatText>

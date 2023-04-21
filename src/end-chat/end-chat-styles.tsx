@@ -43,7 +43,7 @@ export const StyledEndButton = styled('button')`
 `;
 
 export const EndChatText = styled('span')`
-  flex-grow: 1;
+  flex-grow: 0.8;
   text-align: center;
 `;
 
@@ -88,7 +88,6 @@ export const ExitDescText = styled('p')`
   font-size: 11px;
   flex: auto;
   text-align: right;
-  padding-right: 6px;
   width: 50%;
   align-self: flex-end;
   text-align: center;

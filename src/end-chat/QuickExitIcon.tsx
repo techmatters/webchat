@@ -22,11 +22,10 @@ const QuickExitIcon = () => {
   return (
     <svg
       width="20px"
-      height="24px"
-      viewBox="0 -2 20 20"
+      height="20px"
+      viewBox="0 -2 20 22"
       version="1.1"
       fontSize="11px"
-      color="red"
       xmlns="http://www.w3.org/2000/svg"
       // eslint-disable-next-line react/no-unknown-property
       xmlnsXlink="http://www.w3.org/1999/xlink"
