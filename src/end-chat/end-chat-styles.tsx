@@ -22,8 +22,7 @@ const { styled } = FlexWebChat;
 export const ButtonsWrapper = styled('div')`
   display: flex;
   text-align: center;
-  margin: -20px auto auto auto;
-  padding-top: 25px;
+  margin: auto;
   width: 100%;
 `;
 
@@ -87,6 +86,12 @@ export const ExitDescText = styled('p')`
   font-weight: bold;
   margin: 2px 0 0 1px;
   font-size: 11px;
+  flex: auto;
+  text-align: right;
+  padding-right: 6px;
+  width: 50%;
+  align-self: flex-end;
+  text-align: center;
   &:after {
     content: '';
     display: inline-block;
