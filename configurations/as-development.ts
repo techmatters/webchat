@@ -75,7 +75,7 @@ const translations: Translations = {
 };
 
 const preEngagementConfig: PreEngagementFormDefinition = {
-  description: '<strong>A highlighted text</strong> and <a href="https://www.redpapaz.org/wp-content/uploads/2019/02/Politica_de_Tratamiento_de_Informacion_-_Red_PaPaz.pdf">terms and conditions</a>',
+  description: '<strong>Please read through and confirm that you accept our </strong><a href="https://www.redpapaz.org/wp-content/uploads/2019/02/Politica_de_Tratamiento_de_Informacion_-_Red_PaPaz.pdf">terms and conditions</a>',
   submitLabel: 'LetsChat',
   fields: [
     {
