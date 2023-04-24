@@ -113,15 +113,6 @@ const holidayHours: PreEngagementFormDefinition = {
   fields: [],
 };
 
-const mapHelplineLanguage: MapHelplineLanguage = (helpline) => {
-  switch (helpline) {
-    case 'Fake Helpline':
-      return 'dk';
-    default:
-      return defaultLanguage;
-  }
-};
-
 const blockedEmojis = [
   'beer',
   'beers',
@@ -151,6 +142,7 @@ export const config: Configuration = {
   accountSid,
   flexFlowSid,
   translations,
+  defaultLanguage,
   preEngagementConfig,
   closedHours,
   holidayHours,
