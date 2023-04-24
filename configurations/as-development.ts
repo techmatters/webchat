@@ -92,9 +92,9 @@ const preEngagementConfig: PreEngagementFormDefinition = {
       defaultValue: 'English',
       options: [
         { value: '', label: '' },
-        { value: 'English', label: 'English' },
+        { value: 'en-US', label: 'English' },
         { value: 'Vietnamese', label: 'Vietnamese' },
-        { value: 'Spanish', label: 'Spanish' },
+        { value: 'es', label: 'Spanish' },
         { value: 'Chinese', label: 'Chinese' },
         { value: 'French', label: 'French' },
         { value: 'Arabic', label: 'Arabic' },
