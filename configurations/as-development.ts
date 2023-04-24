@@ -150,7 +150,6 @@ const blockedEmojis = [
 export const config: Configuration = {
   accountSid,
   flexFlowSid,
-  defaultLanguage,
   translations,
   preEngagementConfig,
   closedHours,
