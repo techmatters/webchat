@@ -58,7 +58,6 @@ export const ExitDescText = styled('p')`
   margin: 2px 0 0 1px;
   font-size: 11px;
   flex: auto;
-  text-align: right;
   width: 50%;
   align-self: flex-end;
   text-align: center;
