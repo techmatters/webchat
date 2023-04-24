@@ -21,14 +21,7 @@ import { Template } from '@twilio/flex-webchat-ui';
 
 import { finishChatTask } from './end-chat-service';
 import QuickExitIcon from './QuickExitIcon';
-import {
-  ExitWrapper,
-  ExitDescText,
-  QuickExitText,
-  StyledQuickExitButton,
-  StyledEndButton,
-  EndChatText,
-} from './end-chat-styles';
+import { StyledEndButton, StyledCloseChatText } from './end-chat-styles';
 
 type Props = {
   channelSid: string;
@@ -55,9 +48,9 @@ export default function QuickExit({ channelSid, token, language, finishTask }: P
 
   return (
     <StyledEndButton style={{ backgroundColor: '#d22f2f' }} onClick={handleExit}>
-      <EndChatText style={{ color: 'white' }}>
+      <StyledCloseChatText style={{ color: 'white' }}>
         <Template code="QuickExitButtonLabel" />
-      </EndChatText>
+      </StyledCloseChatText>
       <QuickExitIcon />
     </StyledEndButton>
   );

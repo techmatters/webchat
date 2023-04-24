@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unused-modules */
 /**
  * Copyright (C) 2021-2023 Technology Matters
  * This program is free software: you can redistribute it and/or modify
@@ -42,7 +41,7 @@ export const StyledEndButton = styled('button')`
   width: 90%;
 `;
 
-export const EndChatText = styled('span')`
+export const StyledCloseChatText = styled('span')`
   flex-grow: 0.8;
   text-align: center;
 `;
@@ -50,34 +49,6 @@ export const EndChatText = styled('span')`
 export const EndChatIcon = styled('span')`
   position: relative;
   left: 7%;
-`;
-
-export const ExitWrapper = styled('div')`
-  width: 100%;
-`;
-
-export const QuickExitText = styled('span')`
-  position: relative;
-  top: -20%;
-  left: -7%;
-  padding: 0;
-`;
-
-export const StyledQuickExitButton = styled('button')`
-  width: 90%;
-  background-color: #d22f2f;
-  color: #fff;
-  font-weight: bold;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-family: Open Sans;
-  font-size: 12px;
-  margin-right: -10px;
-  height: 29px;
-  align-items: center;
-  display: inline-block;
-  padding: 0;
 `;
 
 export const ExitDescText = styled('p')`
