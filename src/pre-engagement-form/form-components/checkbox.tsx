@@ -20,7 +20,6 @@ import { UseControllerProps } from 'react-hook-form';
 
 import { StyledCheckbox } from './styles';
 import FormComponent from './form-component';
-import { useLocalization } from '../localization';
 
 type OwnProps = {
   label: string;
@@ -28,14 +27,10 @@ type OwnProps = {
 
 type Props = OwnProps & UseControllerProps;
 
-const Checkbox: React.FC<Props> = ({ name, label, rules }) => {
-  const { getLabel } = useLocalization();
-
-  return (
-    <FormComponent name={name} label={label} isCheckbox={true} rules={rules}>
-      <StyledCheckbox type="checkbox" />
-    </FormComponent>
-  );
-};
+const Checkbox: React.FC<Props> = ({ name, label, rules }) => (
+  <FormComponent name={name} label={label} isCheckbox={true} rules={rules}>
+    <StyledCheckbox type="checkbox" />
+  </FormComponent>
+);
 
 export default Checkbox;

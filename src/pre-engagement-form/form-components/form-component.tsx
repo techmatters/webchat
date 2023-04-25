@@ -29,7 +29,7 @@ import { useFormContext, Controller, UseControllerProps, FieldError } from 'reac
 
 import { useLocalization } from '../localization';
 import { setValue } from '../state';
-import { Label } from './styles';
+import { ComponentWrapper, Label } from './styles';
 
 type OwnProps = {
   label: string;
@@ -73,36 +73,38 @@ const FormComponent: React.FC<Props> = ({ name, label, rules, defaultValue, isCh
   const isRequired = Boolean(rules?.required);
 
   return (
-    <Label htmlFor={name} isCheckbox={isCheckbox}>
-      {!isCheckbox && (
-        <span className="label">
-          {getLabel(label)} {isRequired && '*'}
-        </span>
-      )}
-      <Controller
-        name={name}
-        rules={rules}
-        defaultValue={defaultValue || ''}
-        control={control}
-        render={({ field }) => {
-          const inputOverrides = {
-            ...field,
-            id: name,
-            error: Boolean(errors[name]),
-            onBlur: handleChange,
-            ref: () => field.ref({ focus: () => inputRef.current?.focus() }),
-            innerRef: inputRef,
-          };
-          return React.cloneElement(children, { ...inputOverrides });
-        }}
-      />
-      {isCheckbox && (
-        <span>
-          {getLabel(label)} {isRequired && '*'}
-        </span>
-      )}
+    <ComponentWrapper>
+      <Label htmlFor={name} isCheckbox={isCheckbox}>
+        {!isCheckbox && (
+          <span className="label">
+            {getLabel(label)} {isRequired && '*'}
+          </span>
+        )}
+        <Controller
+          name={name}
+          rules={rules}
+          defaultValue={defaultValue || ''}
+          control={control}
+          render={({ field }) => {
+            const inputOverrides = {
+              ...field,
+              id: name,
+              error: Boolean(errors[name]),
+              onBlur: handleChange,
+              ref: () => field.ref({ focus: () => inputRef.current?.focus() }),
+              innerRef: inputRef,
+            };
+            return React.cloneElement(children, { ...inputOverrides });
+          }}
+        />
+        {isCheckbox && (
+          <span>
+            {getLabel(label)} {isRequired && '*'}
+          </span>
+        )}
+      </Label>
       {errors[name] && <span className="error">{getErrorMessage(errors[name], strings)}</span>}
-    </Label>
+    </ComponentWrapper>
   );
 };
 

@@ -35,24 +35,36 @@ export const StyledTitle = styled('h2')`
   margin-bottom: 20px;
 `;
 
+export const ComponentWrapper = styled('div')`
+  margin-bottom: 20px;
+
+  .error {
+    color: rgb(203, 50, 50);
+  }
+`;
+
 type LabelProps = {
   isCheckbox?: boolean;
 };
 
-export const Label = styled('label')<LabelProps>`
-  margin-bottom: 20px;
+/**
+ * It needs '&&&' to achieve a certain level of priority
+ * thats high enough to override Twilio's styles.
+ */
+const checkboxLabelOverride = `
+  &&& {
+    display: flex;
+    align-items: center;
+  }
+`;
 
+export const Label = styled('label')<LabelProps>`
   .label {
     display: block;
     margin-bottom: 10px;
   }
 
-  .error {
-    color: rgb(203, 50, 50);
-  }
-
-  ${(props) => props.isCheckbox && 'display: flex;'}
-  ${(props) => props.isCheckbox && 'align-items: center;'}
+  ${(props) => props.isCheckbox && checkboxLabelOverride}
 `;
 
 export const StyledInputText = styled('input')<Props>`
@@ -84,6 +96,10 @@ export const StyledCheckbox = styled('input')<Props>`
   width: 16px;
   margin-left: 0;
   margin-right: 5px;
+
+  &:focus-visible {
+    margin-left: 3px;
+  }
 `;
 
 export const StyledButton = styled('button')`
