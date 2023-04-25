@@ -66,13 +66,4 @@ const generateFormItem = (item: PreEngagementFormItem) => {
   }
 };
 
-/*
-(
-        <div style={{ marginBottom: '10px', display: 'flex', alignItems: 'center' }}>
-          <input id={item.name} type="checkbox" key={item.name} name={item.name} />
-          <label htmlFor={item.name}>{item.label}</label>
-        </div>
-      );
-*/
-
 export const generateForm = (form: PreEngagementForm['fields']) => form.map((item) => generateFormItem(item));
