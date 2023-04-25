@@ -204,6 +204,12 @@ const blockedEmojis = [
   'syringe',
   'pill',
 ];
+const memberDisplayOptions = {
+  yourDefaultName: 'You',
+  yourFriendlyNameOverride: false,
+  theirFriendlyNameOverride: false,
+  theirDefaultName: 'Counsellor',
+};
 
 export const config: Configuration = {
   accountSid,
@@ -219,4 +225,5 @@ export const config: Configuration = {
   contactType,
   showEmojiPicker,
   blockedEmojis,
+  memberDisplayOptions
 };
