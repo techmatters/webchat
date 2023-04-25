@@ -1595,7 +1595,7 @@ const translations: Translations = {
     PrefieroNoDecir: 'Prefiero no decir',
   },
   'es-CL': {
-    WelcomeMessage: '¡Bienvenido a Línea Libre!',
+    WelcomeMessage: '¡Bienvenido a Línea Libre! <a href="https://www.linealibre.cl/wp-content/uploads/2020/11/TERMINOS-Y-CONDICIONES-DE-USO-Y-POLITICA-DE-PRIVACIDAD-LL.pdf">Lea nuestros términos y condiciones</a>',
     MessageCanvasTrayContent: '',
     MessageInputDisabledReasonHold:
       'Muchas gracias por la información. Lo transferiremos ahora. Por favor espere for un agente.',
