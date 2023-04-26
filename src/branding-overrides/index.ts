@@ -15,10 +15,22 @@
  */
 import { injectGlobal } from 'react-emotion';
 
-export const applyWidgetBranding = () => {
+export const applyWidgetBranding = (backgroundColor: string, color: string) => {
   return injectGlobal`
     .Twilio .Twilio-MainContainer {
         width: 350px;
       }
+    .Twilio .Twilio-EntryPoint {
+      background-image: linear-gradient(to top, ${backgroundColor}, ${backgroundColor});
+      color: ${color};
+     }
+    .Twilio-DynamicForm button {
+      background-image: linear-gradient(to top, ${backgroundColor}, ${backgroundColor}) !important;
+      color: ${color} !important;
+    }
+   .Twilio-MessageInput-SendButton {
+    background: ${backgroundColor} !important;
+    color: ${color} !important;
+    }
   `;
 };

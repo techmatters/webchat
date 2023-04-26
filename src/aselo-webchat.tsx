@@ -23,7 +23,7 @@ import { Reducer } from 'redux';
 
 import { getUserIp } from './ip-tracker';
 import { displayOperatingHours } from './operating-hours';
-import { updateZIndex, getWebChatLanguageAttributeValue } from './dom-utils';
+import { updateZIndex, getWebChatAttributeValues } from './dom-utils';
 import blockedIps from './blockedIps.json';
 import CloseChatButtons from './end-chat/CloseChatButtons';
 import { getChangeLanguageWebChat } from './language';
@@ -51,7 +51,7 @@ export const getCurrentConfig = (): Configuration => {
 };
 
 const currentConfig = getCurrentConfig();
-const externalWebChatLanguage = getWebChatLanguageAttributeValue();
+const { externalWebChatLanguage, color, backgroundColor } = getWebChatAttributeValues();
 
 const { defaultLanguage, translations } = currentConfig;
 const initialLanguage = defaultLanguage;
@@ -216,5 +216,7 @@ export const initWebchat = async () => {
   webchat.init();
 
   applyMobileOptimization(manager);
-  applyWidgetBranding();
+
+  // This adds the custom colors to webchat and revert to the default colors if backgroundColor or color is null/undefined
+  applyWidgetBranding(backgroundColor as string, color as string);
 };
