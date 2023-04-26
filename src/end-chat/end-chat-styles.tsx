@@ -37,18 +37,24 @@ export const StyledEndButton = styled('button')`
   font-size: 12px;
   font-weight: bold;
   height: 29px;
-  margin-left: 5px;
+  margin: 0 2px;
   width: 90%;
 `;
 
 export const StyledCloseChatText = styled('span')`
   flex-grow: 0.8;
   text-align: center;
+  flex: auto;
 `;
 
 export const EndChatIcon = styled('span')`
   position: relative;
-  left: 7%;
+  left: 9%;
+  /* padding-left: 7px; */
+`;
+export const ExitIconWrapper = styled('span')`
+  position: relative;
+  right: 10%;
 `;
 
 export const ExitDescText = styled('p')`
