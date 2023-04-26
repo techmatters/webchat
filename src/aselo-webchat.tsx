@@ -35,6 +35,7 @@ import type { Configuration } from '../types';
 // eslint-disable-next-line import/no-unresolved
 import { config } from './config';
 import { renderEmojis } from './emoji-picker/renderEmojis';
+import { renderCustomMessageBubble } from './messagebubble-component/renderCustomMessageBubble';
 import PreEngagementForm, { PLACEHOLDER_PRE_ENGAGEMENT_CONFIG } from './pre-engagement-form';
 import { setFormDefinition } from './pre-engagement-form/state';
 import { applyWidgetBranding } from './branding-overrides';
@@ -166,6 +167,8 @@ export const initWebchat = async () => {
         yourFriendlyNameOverride: false,
         theirFriendlyNameOverride: true,
       };
+
+  renderCustomMessageBubble();
 
   // Hide message input and send button if disabledReason is not undefined
   FlexWebChat.MessageInput.Content.remove('textarea', {
