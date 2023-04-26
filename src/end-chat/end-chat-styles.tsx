@@ -21,8 +21,7 @@ const { styled } = FlexWebChat;
 export const ButtonsWrapper = styled('div')`
   display: flex;
   text-align: center;
-  margin: -20px auto auto auto;
-  padding-top: 25px;
+  margin: auto;
   width: 100%;
 `;
 
@@ -38,43 +37,24 @@ export const StyledEndButton = styled('button')`
   font-size: 12px;
   font-weight: bold;
   height: 29px;
-  margin-left: 5px;
+  margin: 0 2px;
   width: 90%;
 `;
 
-export const EndChatText = styled('span')`
-  flex-grow: 1;
+export const StyledCloseChatText = styled('span')`
+  flex-grow: 0.8;
   text-align: center;
+  flex: auto;
 `;
 
 export const EndChatIcon = styled('span')`
   position: relative;
-  left: 7%;
+  left: 9%;
+  /* padding-left: 7px; */
 `;
-
-export const ExitWrapper = styled('div')`
-  width: 100%;
-`;
-
-export const QuickExitText = styled('span')`
+export const ExitIconWrapper = styled('span')`
   position: relative;
-  top: -20%;
-  left: -7%;
-`;
-
-export const StyledQuickExitButton = styled('button')`
-  width: 90%;
-  background-color: #d22f2f;
-  color: #fff;
-  font-weight: bold;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-family: Open Sans;
-  font-size: 12px;
-  margin-right: -10px;
-  height: 29px;
-  align-items: center;
+  right: 10%;
 `;
 
 export const ExitDescText = styled('p')`
@@ -83,6 +63,10 @@ export const ExitDescText = styled('p')`
   font-weight: bold;
   margin: 2px 0 0 1px;
   font-size: 11px;
+  flex: auto;
+  width: 50%;
+  align-self: flex-end;
+  text-align: center;
   &:after {
     content: '';
     display: inline-block;
