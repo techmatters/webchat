@@ -89,7 +89,7 @@ const preEngagementConfig: PreEngagementFormDefinition = {
       type: 'select',
       name: 'language',
       label: 'Language',
-      defaultValue: 'English',
+      defaultValue: 'en-US',
       options: [
         { value: '', label: '' },
         { value: 'en-US', label: 'English' },
@@ -112,6 +112,8 @@ const holidayHours: PreEngagementFormDefinition = {
   description: 'We are closed because it is a holiday. Please come back tomorrow',
   fields: [],
 };
+
+const mapHelplineLanguage: MapHelplineLanguage = (helpline) => defaultLanguage;
 
 const blockedEmojis = [
   'beer',
