@@ -28,6 +28,7 @@ import SubmitButton from './form-components/submit-button';
 import Title from './form-components/title';
 import { resetForm } from './state';
 import { PLACEHOLDER_PRE_ENGAGEMENT_CONFIG } from './placeholder-form';
+import { overrideLanguageOnContext } from '../language';
 
 export { PreEngagementFormDefinition, PLACEHOLDER_PRE_ENGAGEMENT_CONFIG };
 
@@ -45,6 +46,15 @@ const PreEngagementForm: React.FC<Props> = ({ formState: defaultValues, formDefi
 
   const onSubmit = handleSubmit(async (data) => {
     const payload = { formData: data };
+
+    /**
+     * If 'language' is defined at the pre-engagement form
+     * it should override the language value on Context.
+     */
+    if (data.language) {
+      overrideLanguageOnContext(manager, data.language);
+    }
+
     await FlexWebChat.Actions.invokeAction('StartEngagement', payload);
     resetFormAction();
   });
