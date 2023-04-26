@@ -216,5 +216,7 @@ export const initWebchat = async () => {
   webchat.init();
 
   applyMobileOptimization(manager);
+
+  // This adds the custom colors to webchat and revert to the default colors if backgroundColor or color is null/undefined
   applyWidgetBranding(backgroundColor as string, color as string);
 };
