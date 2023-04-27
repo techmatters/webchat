@@ -28,7 +28,7 @@ const initialState: PreEngagementFormState = {
   formDefinition: undefined,
 };
 
-const RESET_FORM = 'RESET_FORM';
+const RESET_FORM_STATE = 'RESET_FORM_STATE';
 const SET_VALUE = 'SET_VALUE';
 const SET_FORM_DEFINITION = 'SET_FORM_DEFINITION';
 
@@ -41,7 +41,7 @@ type SetValue = {
 };
 
 type ResetForm = {
-  type: typeof RESET_FORM;
+  type: typeof RESET_FORM_STATE;
 };
 
 type SetFormDefinition = {
@@ -52,7 +52,7 @@ type SetFormDefinition = {
 type Action = SetValue | ResetForm | SetFormDefinition;
 
 export const resetForm = (): ResetForm => ({
-  type: RESET_FORM,
+  type: RESET_FORM_STATE,
 });
 
 export const setValue = (name: string, value: string): SetValue => ({
@@ -79,8 +79,11 @@ export const preEngagementFormReducer = (state = initialState, action: Action) =
     };
   }
 
-  if (action.type === RESET_FORM) {
-    return initialState;
+  if (action.type === RESET_FORM_STATE) {
+    return {
+      ...state,
+      formState: initialState.formState,
+    };
   }
 
   if (action.type === SET_FORM_DEFINITION) {

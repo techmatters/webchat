@@ -23,7 +23,7 @@ import { Reducer } from 'redux';
 
 import { getUserIp } from './ip-tracker';
 import { displayOperatingHours } from './operating-hours';
-import { updateZIndex, getWebChatLanguageAttributeValue } from './dom-utils';
+import { updateZIndex, getWebChatAttributeValues } from './dom-utils';
 import blockedIps from './blockedIps.json';
 import CloseChatButtons from './end-chat/CloseChatButtons';
 import { getChangeLanguageWebChat } from './language';
@@ -35,7 +35,8 @@ import type { Configuration } from '../types';
 // eslint-disable-next-line import/no-unresolved
 import { config } from './config';
 import { renderEmojis } from './emoji-picker/renderEmojis';
-import PreEngagementForm from './pre-engagement-form';
+import { renderCustomMessageBubble } from './messagebubble-component/renderCustomMessageBubble';
+import PreEngagementForm, { PLACEHOLDER_PRE_ENGAGEMENT_CONFIG } from './pre-engagement-form';
 import { setFormDefinition } from './pre-engagement-form/state';
 import { applyWidgetBranding } from './branding-overrides';
 
@@ -51,7 +52,7 @@ export const getCurrentConfig = (): Configuration => {
 };
 
 const currentConfig = getCurrentConfig();
-const externalWebChatLanguage = getWebChatLanguageAttributeValue();
+const { externalWebChatLanguage, color, backgroundColor } = getWebChatAttributeValues();
 
 const { defaultLanguage, translations } = currentConfig;
 const initialLanguage = defaultLanguage;
@@ -117,7 +118,7 @@ export const initWebchat = async () => {
     accountSid: currentConfig.accountSid,
     flexFlowSid: currentConfig.flexFlowSid,
     startEngagementOnInit: false,
-    preEngagementConfig: currentConfig.preEngagementConfig,
+    preEngagementConfig: PLACEHOLDER_PRE_ENGAGEMENT_CONFIG,
     context: {
       ip,
     },
@@ -166,6 +167,8 @@ export const initWebchat = async () => {
         yourFriendlyNameOverride: false,
         theirFriendlyNameOverride: true,
       };
+
+  renderCustomMessageBubble();
 
   // Hide message input and send button if disabledReason is not undefined
   FlexWebChat.MessageInput.Content.remove('textarea', {
@@ -216,5 +219,7 @@ export const initWebchat = async () => {
   webchat.init();
 
   applyMobileOptimization(manager);
-  applyWidgetBranding();
+
+  // This adds the custom colors to webchat and revert to the default colors if backgroundColor or color is null/undefined
+  applyWidgetBranding(backgroundColor as string, color as string);
 };

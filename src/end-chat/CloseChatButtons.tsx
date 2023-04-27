@@ -17,26 +17,32 @@
 /* eslint-disable react/require-default-props */
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { Template } from '@twilio/flex-webchat-ui';
 
 import Exit from './QuickExit';
 import End from './EndChat';
 import { AseloWebchatState } from '../aselo-webchat-state';
-import { ButtonWrapper } from './end-chat-styles';
+import { ButtonsWrapper, ExitDescText } from './end-chat-styles';
 
 const CloseChatButtons = ({ channelSid, token, language, taskSid }: MapStateToProps) => {
   if (!channelSid || !token) {
     return null;
   }
   return (
-    <ButtonWrapper>
-      <End
-        channelSid={channelSid}
-        token={token}
-        language={language}
-        action={taskSid ? 'finishTask' : 'restartEngagement'}
-      />
-      <Exit channelSid={channelSid} token={token} language={language} finishTask={Boolean(taskSid)} />
-    </ButtonWrapper>
+    <>
+      <ButtonsWrapper>
+        <End
+          channelSid={channelSid}
+          token={token}
+          language={language}
+          action={taskSid ? 'finishTask' : 'restartEngagement'}
+        />
+        <Exit channelSid={channelSid} token={token} language={language} finishTask={Boolean(taskSid)} />
+      </ButtonsWrapper>
+      <ExitDescText>
+        <Template code="QuickExitDescription" />
+      </ExitDescText>
+    </>
   );
 };
 

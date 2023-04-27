@@ -26,7 +26,7 @@ const contactType: ContactType = 'ip';
 const translations: Translations = {
   'en-CA': {
     MessageInputDisabledReasonHold: 'Thank you! Please hold for a counsellor.',
-    EntryPointTagLine: 'Chat with us',
+    EntryPointTagLine: 'Tap to Chat',
     PreEngagementDescription: "Let's get started",
     Today: 'Today',
     InputPlaceHolder: 'Type Message',
@@ -147,7 +147,7 @@ const translations: Translations = {
     TypingIndicator: '{0} est écrit ... ',
     StartChat: 'Démarrer la chat!',
     MessageCanvasTrayButton: 'Démarrer une nouvelle chat',
-    EntryPointTagline: 'Discute avec nous',
+    EntryPointTagline: 'Tape ici pour clavarder',
     InvalidPreEngagementMessage:
       "Les formulaires de pré-engagement n'ont pas été établis et sont nécessaires pour démarrer le chat Web. Veuillez les configurer maintenant dans les paramètres.",
     InvalidPreEngagementButton: 'Apprendre encore plus',
@@ -285,7 +285,7 @@ const preEngagementConfig: PreEngagementFormDefinition = {
       type: 'select',
       name: 'age',
       label: 'HowOldAreYou',
-      defaultValue: '5 or younger',
+      defaultValue: 'Unknown',
       required: true,
       options: [
         { value: '5 or younger', label: 'FiveOrYounger' },
@@ -319,9 +319,9 @@ const preEngagementConfig: PreEngagementFormDefinition = {
     },
     {
       type: 'select',
-      name: 'Gender',
+      name: 'gender',
       label: 'DoYouConsiderYourselfToBe',
-      defaultValue: 'Agender',
+      defaultValue: 'Unknown',
       required: true,
       options: [
         { value: 'Agender', label: 'Agender' },
@@ -337,9 +337,9 @@ const preEngagementConfig: PreEngagementFormDefinition = {
     },
     {
       type: 'select',
-      name: 'SexualOrientation',
+      name: 'sexualOrientation',
       label: 'DoYouConsiderYourselfToBe',
-      defaultValue: 'Asexual',
+      defaultValue: 'Unknown',
       required: true,
       options: [
         { value: 'Asexual', label: 'Asexual' },
@@ -354,9 +354,9 @@ const preEngagementConfig: PreEngagementFormDefinition = {
     },
     {
       type: 'select',
-      name: 'NameNewcomer',
+      name: 'Newcomer',
       label: 'LabelNewcomer',
-      defaultValue: 'yes',
+      defaultValue: 'Unknown',
       required: true,
       options: [
         { value: 'yes', label: 'Yes' },
@@ -368,7 +368,7 @@ const preEngagementConfig: PreEngagementFormDefinition = {
       type: 'select',
       name: 'province',
       label: 'LabelProvince',
-      defaultValue: 'Alberta',
+      defaultValue: 'Unknown',
       required: true,
       options: [
         { value: 'Alberta', label: 'Alberta' },
@@ -388,14 +388,14 @@ const preEngagementConfig: PreEngagementFormDefinition = {
         { value: 'Saskatchewan', label: 'Saskatchewan' },
         { value: 'Yukon', label: 'Yukon' },
         { value: 'Contacting us from outside of Canada', label: 'ContactingOutsideCanada' },
-        { value: 'Did not disclose/Did not ask', label: 'PreferNotToAnswer' },
+        { value: 'Unknown', label: 'PreferNotToAnswer' },
       ],
     },
     {
       type: 'select',
-      name: 'Region',
+      name: 'region',
       label: 'TellMoreAboutLive',
-      defaultValue: 'Rural area',
+      defaultValue: 'Unknown',
       required: true,
       options: [
         { value: 'Rural area', label: 'RuralArea' },
@@ -409,7 +409,7 @@ const preEngagementConfig: PreEngagementFormDefinition = {
     },
     {
       type: 'select',
-      name: 'Upset',
+      name: 'upset',
       label: 'LabelScale',
       defaultValue: '1',
       required: true,
@@ -427,7 +427,7 @@ const preEngagementConfig: PreEngagementFormDefinition = {
       type: 'select',
       name: 'ethnicity',
       label: 'DoYouConsiderYourselfToBe',
-      defaultValue: '',
+      defaultValue: 'Unknown',
       required: false,
       options: [
         { value: '', label: '' },
@@ -450,9 +450,9 @@ const preEngagementConfig: PreEngagementFormDefinition = {
     },
     {
       type: 'select',
-      name: 'School',
+      name: 'school',
       label: 'LabelSchool',
-      defaultValue: '',
+      defaultValue: 'Unknown',
       required: false,
       options: [
         { value: '', label: '' },
@@ -472,7 +472,7 @@ const preEngagementConfig: PreEngagementFormDefinition = {
       type: 'select',
       name: 'livingSituation',
       label: 'LabelLivingSituation',
-      defaultValue: '',
+      defaultValue: 'Unknown',
       required: false,
       options: [
         { value: '', label: '' },

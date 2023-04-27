@@ -36,6 +36,20 @@ const standardTranslationsForLanguage = (language: string): Record<string, strin
   return { ...languageTranslations, ...cultureSpecificTranslations };
 };
 
+export const overrideLanguageOnContext = (manager: FlexWebChat.Manager, language: string) => {
+  const appConfig = manager.configuration;
+
+  const updateConfig = {
+    ...appConfig,
+    context: {
+      ...appConfig.context,
+      language,
+    },
+  };
+
+  manager.updateConfig(updateConfig);
+};
+
 export const getChangeLanguageWebChat = (manager: FlexWebChat.Manager, config: Configuration) => {
   const { defaultLanguage, translations: configTranslations } = config;
   const setNewLanguage = (language: string) => {
@@ -65,6 +79,7 @@ export const getChangeLanguageWebChat = (manager: FlexWebChat.Manager, config: C
   return (language: string) => {
     try {
       setNewLanguage(language);
+      overrideLanguageOnContext(manager, language);
     } catch (err) {
       const translationErrorMsg = 'Could not translate, using default';
       window.alert(translationErrorMsg);

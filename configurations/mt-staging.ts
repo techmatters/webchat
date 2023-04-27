@@ -237,19 +237,19 @@ const preEngagementConfig: PreEngagementFormDefinition = {
           label: ""
         },
         {
-          value: 'female',
+          value: 'Female',
           label: 'Female/Mara/Жінка',
         },
         {
-          value: 'male',
+          value: 'Male',
           label: 'Male/Raġel/Чоловік',
         },
         {
-          value: 'other',
+          value: 'Other',
           label: 'Others/Oħrajn/Інші',
         },
         {
-          value: 'notSay',
+          value: 'Unknown',
           label: 'Rather not say/Ma nixtieqx naghti risposta/Не хочу відповідати',
         },
       ],

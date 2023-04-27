@@ -13,24 +13,27 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
-import { injectGlobal } from 'react-emotion';
 
-export const applyWidgetBranding = (backgroundColor: string, color: string) => {
-  return injectGlobal`
-    .Twilio .Twilio-MainContainer {
-        width: 350px;
-      }
-    .Twilio .Twilio-EntryPoint {
-      background-image: linear-gradient(to top, ${backgroundColor}, ${backgroundColor});
-      color: ${color};
-     }
-    .Twilio-DynamicForm button {
-      background-image: linear-gradient(to top, ${backgroundColor}, ${backgroundColor}) !important;
-      color: ${color} !important;
-    }
-   .Twilio-MessageInput-SendButton {
-    background: ${backgroundColor} !important;
-    color: ${color} !important;
-    }
-  `;
+/**
+ * WebChat is created by using the function FlexWebChat.createWebChat(config).
+ * The 'config' parameter expects the property 'preEngagementConfig' to have at
+ * least one field defined.
+ *
+ * This file will provide a placeholder preEngagementConfig that will be used to
+ * call FlexWebChat.createWebChat(config) initially. But that's just to bypass this
+ * WebChat limitation, because we're actually replacing the Twilio's default PreEngagement
+ * with a custom one.
+ */
+
+export const PLACEHOLDER_PRE_ENGAGEMENT_CONFIG = {
+  fields: [
+    {
+      label: 'Hidden Field',
+      type: 'InputField',
+      attributes: {
+        name: '',
+        readOnly: true,
+      },
+    },
+  ],
 };
