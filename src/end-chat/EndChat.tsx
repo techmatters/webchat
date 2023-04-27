@@ -20,7 +20,7 @@ import { Template, Icon } from '@twilio/flex-webchat-ui';
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
 
 import { finishChatTask } from './end-chat-service';
-import { EndChatText, EndChatIcon, StyledEndButton } from './end-chat-styles';
+import { StyledCloseChatText, EndChatIcon, StyledEndButton } from './end-chat-styles';
 
 type Props = {
   channelSid: string;
@@ -55,9 +55,9 @@ export default function EndChat({ channelSid, token, language, action }: Props) 
       <EndChatIcon>
         <Icon icon="CloseLarge" />
       </EndChatIcon>
-      <EndChatText>
+      <StyledCloseChatText>
         <Template code="EndChatButtonLabel" />
-      </EndChatText>
+      </StyledCloseChatText>
     </StyledEndButton>
   );
 }

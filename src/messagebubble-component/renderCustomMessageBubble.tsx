@@ -13,24 +13,12 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
-import { injectGlobal } from 'react-emotion';
 
-export const applyWidgetBranding = (backgroundColor: string, color: string) => {
-  return injectGlobal`
-    .Twilio .Twilio-MainContainer {
-        width: 350px;
-      }
-    .Twilio .Twilio-EntryPoint {
-      background-image: linear-gradient(to top, ${backgroundColor}, ${backgroundColor});
-      color: ${color};
-     }
-    .Twilio-DynamicForm button {
-      background-image: linear-gradient(to top, ${backgroundColor}, ${backgroundColor}) !important;
-      color: ${color} !important;
-    }
-   .Twilio-MessageInput-SendButton {
-    background: ${backgroundColor} !important;
-    color: ${color} !important;
-    }
-  `;
+import React from 'react';
+import * as FlexWebChat from '@twilio/flex-webchat-ui';
+
+import CustomMessageBubble from './CustomMessageBubble';
+
+export const renderCustomMessageBubble = () => {
+  FlexWebChat.MessageListItem.Bubble.Content.replace(<CustomMessageBubble key="header" />);
 };
