@@ -15,10 +15,11 @@
  */
 
 /* eslint-disable react/require-default-props */
-import React from 'react';
+import React, { useRef } from 'react';
 import { connect } from 'react-redux';
 import { useForm, FormProvider } from 'react-hook-form';
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 import { AseloWebchatState } from '../aselo-webchat-state';
 import type { PreEngagementForm as PreEngagementFormDefinition } from './form-components/types';
@@ -29,6 +30,8 @@ import Title from './form-components/title';
 import { resetForm } from './state';
 import { PLACEHOLDER_PRE_ENGAGEMENT_CONFIG } from './placeholder-form';
 import { overrideLanguageOnContext } from '../language';
+import { RECAPTCHA_SITE_KEY } from '../../private/secret';
+// import { validateUser } from './recaptchaValidation';
 
 export { PreEngagementFormDefinition, PLACEHOLDER_PRE_ENGAGEMENT_CONFIG };
 
@@ -36,16 +39,45 @@ export const EMAIL_PATTERN = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 
 type Props = {
   manager: FlexWebChat.Manager;
+  enableRecaptcha?: boolean;
 } & ReturnType<typeof mapStateToProps> &
   typeof mapDispatchToProps;
 
-const PreEngagementForm: React.FC<Props> = ({ formState: defaultValues, formDefinition, manager, resetFormAction }) => {
+const PreEngagementForm: React.FC<Props> = ({
+  formState: defaultValues,
+  formDefinition,
+  manager,
+  resetFormAction,
+  enableRecaptcha,
+}) => {
   const methods = useForm({ defaultValues, mode: 'onChange' });
   const { handleSubmit, formState } = methods;
   const { isValid } = formState;
 
+  const recaptchaRef = useRef<any>();
+const capthcha = async()=>{
+  if (enableRecaptcha) {
+    try {
+      const token = await recaptchaRef.current.executeAsync();
+      console.log('>>> token', token);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
   const onSubmit = handleSubmit(async (data) => {
     const payload = { formData: data };
+    console.log('>>> enableRecaptcha', enableRecaptcha);
+
+    if (enableRecaptcha) {
+      try {
+        capthcha()
+
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    recaptchaRef.current.reset();
 
     /**
      * If 'language' is defined at the pre-engagement form
@@ -69,6 +101,7 @@ const PreEngagementForm: React.FC<Props> = ({ formState: defaultValues, formDefi
         <form className="Twilio-DynamicForm" onSubmit={onSubmit}>
           <Title title={formDefinition.description} />
           {generateForm(formDefinition.fields)}
+          {enableRecaptcha && <ReCAPTCHA sitekey={RECAPTCHA_SITE_KEY} size="normal" ref={recaptchaRef} />}
           {formDefinition.submitLabel && <SubmitButton label={formDefinition.submitLabel} disabled={!isValid} />}
         </form>
       </LocalizationProvider>
