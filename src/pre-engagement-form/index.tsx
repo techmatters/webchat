@@ -31,7 +31,7 @@ import { resetForm } from './state';
 import { PLACEHOLDER_PRE_ENGAGEMENT_CONFIG } from './placeholder-form';
 import { overrideLanguageOnContext } from '../language';
 import { RECAPTCHA_SITE_KEY } from '../../private/secret';
-// import { validateUser } from './recaptchaValidation';
+import { validateUser } from './recaptchaValidation';
 
 export { PreEngagementFormDefinition, PLACEHOLDER_PRE_ENGAGEMENT_CONFIG };
 
@@ -54,30 +54,11 @@ const PreEngagementForm: React.FC<Props> = ({
   const { handleSubmit, formState } = methods;
   const { isValid } = formState;
 
-  const recaptchaRef = useRef<any>();
-const capthcha = async()=>{
-  if (enableRecaptcha) {
-    try {
-      const token = await recaptchaRef.current.executeAsync();
-      console.log('>>> token', token);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-}
+  const recaptchaRef = useRef<any>(null);
+
   const onSubmit = handleSubmit(async (data) => {
     const payload = { formData: data };
-    console.log('>>> enableRecaptcha', enableRecaptcha);
-
-    if (enableRecaptcha) {
-      try {
-        capthcha()
-
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    recaptchaRef.current.reset();
+    console.log('>>> onSubmit enableRecaptcha', enableRecaptcha);
 
     /**
      * If 'language' is defined at the pre-engagement form
@@ -87,8 +68,23 @@ const capthcha = async()=>{
       overrideLanguageOnContext(manager, data.language);
     }
 
-    await FlexWebChat.Actions.invokeAction('StartEngagement', payload);
-    resetFormAction();
+    if (enableRecaptcha) {
+      try {
+        const token = await recaptchaRef.current.getValue();
+        console.log('>>> token', token);
+        let validate = validateUser(token)
+        console.log('>>> validate', validate)
+        await FlexWebChat.Actions.invokeAction('StartEngagement', payload);
+        resetFormAction();
+      } catch (error) {
+        console.log(error);
+      } finally {
+        recaptchaRef.current.reset();
+      }
+    } else {
+      await FlexWebChat.Actions.invokeAction('StartEngagement', payload);
+      resetFormAction();
+    }
   });
 
   if (formDefinition === undefined) {

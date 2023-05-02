@@ -16,7 +16,7 @@
 
 export async function validateUser(token: string) {
   try {
-    const response = await fetch(`http://localhost:3000/verify`, {
+    const response = await fetch(`https://hrm-development.tl.techmatters.org/lambda/recaptchaVerify`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
