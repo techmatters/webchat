@@ -23,14 +23,14 @@ on:
   workflow_call:
     inputs:
       helpline_code:
-        description: 'The short (usually 2 character) upper case code used to identify the helpline internally, e.g. ZA, IN, BR.'
+        description: "The short (usually 2 character) upper case code used to identify the helpline internally, e.g. ZA, IN, BR."
         required: true
         type: string
       environment:
-        description: 'Helpline Environment'
+        description: "Helpline Environment"
         required: true
         type: string
-  
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -45,7 +45,7 @@ jobs:
         id: helpline_code
         uses: "ASzc/change-string-case-action@v5"
         with:
-          string: '${{ inputs.helpline_code }}'
+          string: "${{ inputs.helpline_code }}"
       # Set SHORT_ENVIRONMENT_CODE
       - name: Production Environment
         if: inputs.environment == 'production'
@@ -63,7 +63,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: 'us-east-1'
+          aws-region: "us-east-1"
       # Get AWS parameters
       - name: Set GITHUB_ACTIONS_SLACK_BOT_TOKEN
         uses: "marvinpinto/action-inject-ssm-secrets@latest"
@@ -95,7 +95,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: '14.x'
+          node-version: "14.x"
       # Create and fill secret.ts
       - name: Create secret.ts
         run: |
@@ -106,7 +106,7 @@ jobs:
           export const API_KEY = '${{ env.IP_FIND_API_KEY }}';
           export const SERVERLESS_URL = '${{ env.SERVERLESS_URL }}';
           EOT
-      # Run a single command using the runners shell to install dependencies 
+      # Run a single command using the runners shell to install dependencies
       - name: Install dependencies
         run: npm install
       # Get the blockedIps for as-dev account
@@ -135,8 +135,20 @@ jobs:
           AWS_S3_BUCKET: tl-public-chat-${{ steps.helpline_code.outputs.lowercase }}-$SHORT_ENVIRONMENT_CODE
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: '${{ secrets.AWS_DEFAULT_REGION }}'
-          SOURCE_DIR: 'build'
+          AWS_REGION: "${{ secrets.AWS_DEFAULT_REGION }}"
+          SOURCE_DIR: "build"
+
+      - name: Upload Webchat to assets S3 bucket
+        uses: jakejarvis/s3-sync-action@master
+        with:
+          args: --acl public-read --follow-symlinks --exclude '*' --include '*.js' --content-type 'application/javascript; charset=utf-8'
+        env:
+          AWS_S3_BUCKET: assets-${{ inputs.environment }}.tl.techmatters.org
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: "${{ secrets.AWS_DEFAULT_REGION }}"
+          SOURCE_DIR: "build"
+          DEST_DIR: "webchat/${{ steps.helpline_code.outputs.lowercase }}"
 
       # Send Slack notifying success
       - name: Slack Aselo channel
