@@ -150,6 +150,11 @@ jobs:
           SOURCE_DIR: "build"
           DEST_DIR: "webchat/${{ steps.helpline_code.outputs.lowercase }}"
 
+      - name: Clear cloudfront cache
+        run: |
+          CF_DISTRO=$(aws cloudfront list-distributions --query "DistributionList.Items[*].{id:Id,origin:Origins.Items[0].DomainName}[?origin=='assets-${{ inputs.environment }}.tl.techmatters.org.s3-website.us-east-1.amazonaws.com'].id" --output text)
+          aws cloudfront create-invalidation --distribution-id $CF_DISTRO --paths /webchat/${{ steps.helpline_code.outputs.lowercase }}/*
+
       # Send Slack notifying success
       - name: Slack Aselo channel
         id: slack
