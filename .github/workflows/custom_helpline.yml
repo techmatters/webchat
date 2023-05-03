@@ -105,11 +105,6 @@ jobs:
           cat <<EOT >> ./private/secret.ts
           export const API_KEY = '${{ env.IP_FIND_API_KEY }}';
           export const SERVERLESS_URL = '${{ env.SERVERLESS_URL }}';
-          EOT
-      - name: Conditionally set RECAPTCHA_KEY in secret.ts for AS & CA
-        if: ${{ inputs.helpline_code == 'AS' || inputs.helpline_code == 'CA' }}
-        run: |
-          cat <<EOT >> ./private/secret.ts
           export const RECAPTCHA_KEY = '${{ env.RECAPTCHA_KEY }}';
           EOT
       # Run a single command using the runners shell to install dependencies 
