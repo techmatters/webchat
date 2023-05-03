@@ -30,7 +30,7 @@ import Title from './form-components/title';
 import { resetForm } from './state';
 import { PLACEHOLDER_PRE_ENGAGEMENT_CONFIG } from './placeholder-form';
 import { overrideLanguageOnContext } from '../language';
-import { RECAPTCHA_SITE_KEY } from '../../private/secret';
+import { RECAPTCHA_KEY } from '../../private/secret';
 import { validateUser } from './recaptchaValidation';
 
 export { PreEngagementFormDefinition, PLACEHOLDER_PRE_ENGAGEMENT_CONFIG };
@@ -72,8 +72,8 @@ const PreEngagementForm: React.FC<Props> = ({
       try {
         const token = await recaptchaRef.current.getValue();
         console.log('>>> token', token);
-        let validate = validateUser(token)
-        console.log('>>> validate', validate)
+        const validate = validateUser(token);
+        console.log('>>> validate', validate);
         await FlexWebChat.Actions.invokeAction('StartEngagement', payload);
         resetFormAction();
       } catch (error) {
@@ -97,7 +97,7 @@ const PreEngagementForm: React.FC<Props> = ({
         <form className="Twilio-DynamicForm" onSubmit={onSubmit}>
           <Title title={formDefinition.description} />
           {generateForm(formDefinition.fields)}
-          {enableRecaptcha && <ReCAPTCHA sitekey={RECAPTCHA_SITE_KEY} size="normal" ref={recaptchaRef} />}
+          {enableRecaptcha && <ReCAPTCHA sitekey={RECAPTCHA_KEY} size="normal" ref={recaptchaRef} />}
           {formDefinition.submitLabel && <SubmitButton label={formDefinition.submitLabel} disabled={!isValid} />}
         </form>
       </LocalizationProvider>
