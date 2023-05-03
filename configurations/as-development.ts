@@ -24,6 +24,7 @@ const captureIp = true;
 const checkOpenHours = true;
 const contactType = 'ip';
 const showEmojiPicker = true;
+const enableRecaptcha = true;
 
 const translations: Translations = {
   'en-US': {
@@ -162,5 +163,6 @@ export const config: Configuration = {
   contactType,
   showEmojiPicker,
   blockedEmojis,
-  memberDisplayOptions
+  memberDisplayOptions,
+  enableRecaptcha
 };
