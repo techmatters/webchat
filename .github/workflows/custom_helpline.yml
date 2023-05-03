@@ -95,7 +95,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: '14.x'
+          node-version: '18.x'
       # Create and fill secret.ts
       - name: Create secret.ts
         run: |
@@ -108,7 +108,7 @@ jobs:
           EOT
       # Run a single command using the runners shell to install dependencies 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
       # Get the blockedIps for as-dev account
       - name: Get blockedIps for as-dev
         if: ${{ steps.helpline_code.outputs.lowercase }}-$SHORT_ENVIRONMENT_CODE == as-dev
