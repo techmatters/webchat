@@ -14,11 +14,27 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-/**
- * Create a local file named 'secret.ts' that exports an API_KEY and SERVERLESS_URL
- */
-export const API_KEY = 'xxxxxxxxxxxxxxxxx'; // IP Find API Key
-export const SERVERLESS_URL = 'https://serverlexxxxxxxx-xxx.twil.io';
-export const RECAPTCHA_KEY = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'; // ssm: /global/google/recaptcha/site_key
-export const RECAPTCHA_VERIFY_URL =
-  'https://hrm-development.tl.techmatters.org/lambda/recaptchaVerify';
+// import { RECAPTCHA_VERIFY_URL } from '../../private/secret';
+
+export async function validateUser(token: string) {
+  try {
+    // eslint-disable-next-line global-require
+    const { RECAPTCHA_VERIFY_URL } = require('../../private/secret');
+    const response = await fetch(RECAPTCHA_VERIFY_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: `response=${token}`,
+    });
+    const data = await response.json();
+
+    if (data.success) {
+      return true;
+    }
+    return false;
+  } catch (error) {
+    console.log('>>> error', error);
+    return false;
+  }
+}
