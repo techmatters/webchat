@@ -23,14 +23,14 @@ on:
   workflow_call:
     inputs:
       helpline_code:
-        description: 'The short (usually 2 character) upper case code used to identify the helpline internally, e.g. ZA, IN, BR.'
+        description: "The short (usually 2 character) upper case code used to identify the helpline internally, e.g. ZA, IN, BR."
         required: true
         type: string
       environment:
-        description: 'Helpline Environment'
+        description: "Helpline Environment"
         required: true
         type: string
-  
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -45,14 +45,17 @@ jobs:
         id: helpline_code
         uses: "ASzc/change-string-case-action@v5"
         with:
-          string: '${{ inputs.helpline_code }}'
+          string: "${{ inputs.helpline_code }}"
+
       # Set SHORT_ENVIRONMENT_CODE
       - name: Production Environment
         if: inputs.environment == 'production'
         run: echo "SHORT_ENVIRONMENT_CODE=prod" >> $GITHUB_ENV
+
       - name: Staging Environment
         if: inputs.environment == 'staging'
         run: echo "SHORT_ENVIRONMENT_CODE=stg" >> $GITHUB_ENV
+
       - name: Development Environment
         if: inputs.environment == 'development'
         run: echo "SHORT_ENVIRONMENT_CODE=dev" >> $GITHUB_ENV
@@ -63,70 +66,92 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: 'us-east-1'
+          aws-region: "us-east-1"
+
       # Get AWS parameters
       - name: Set GITHUB_ACTIONS_SLACK_BOT_TOKEN
         uses: "marvinpinto/action-inject-ssm-secrets@latest"
         with:
           ssm_parameter: "GITHUB_ACTIONS_SLACK_BOT_TOKEN"
           env_variable_name: "GITHUB_ACTIONS_SLACK_BOT_TOKEN"
+
       - name: Set ASELO_DEPLOYS_CHANNEL_ID
         uses: "marvinpinto/action-inject-ssm-secrets@latest"
         with:
           ssm_parameter: "ASELO_DEPLOYS_CHANNEL_ID"
           env_variable_name: "ASELO_DEPLOYS_CHANNEL_ID"
+
       - name: Set IP_FIND_API_KEY
         uses: "marvinpinto/action-inject-ssm-secrets@latest"
         with:
           ssm_parameter: "IP_FIND_API_KEY"
           env_variable_name: "IP_FIND_API_KEY"
+
       - name: Set ACCOUNT_SID
         uses: "marvinpinto/action-inject-ssm-secrets@latest"
         with:
           ssm_parameter: "/${{ inputs.environment }}/twilio/${{ inputs.helpline_code }}/account_sid"
           env_variable_name: "ACCOUNT_SID"
+
       - name: Set SERVERLESS_URL
         uses: "marvinpinto/action-inject-ssm-secrets@latest"
         with:
           ssm_parameter: "/${{ inputs.environment }}/serverless/${{ env.ACCOUNT_SID }}/base_url"
           env_variable_name: "SERVERLESS_URL"
+
+      - name: Set RECAPTCHA_KEY
+        uses: "marvinpinto/action-inject-ssm-secrets@latest"
+        with:
+          ssm_parameter: "/global/google/recaptcha/site_key"
+          env_variable_name: "RECAPTCHA_KEY"
+
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+
       - name: Use Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
-          node-version: '14.x'
+          node-version: "18.x"
+
       # Create and fill secret.ts
       - name: Create secret.ts
         run: |
           touch ./private/secret.ts
+
       - name: Fill secret.ts
         run: |
           cat <<EOT >> ./private/secret.ts
           export const API_KEY = '${{ env.IP_FIND_API_KEY }}';
           export const SERVERLESS_URL = '${{ env.SERVERLESS_URL }}';
           export const RECAPTCHA_KEY = '${{ env.RECAPTCHA_KEY }}';
+          export const RECAPTCHA_VERIFY_URL = 'https://hrm-${inputs.environment}.tl.techmatters.org/lambda/recaptchaVerify'
           EOT
-      # Run a single command using the runners shell to install dependencies 
+
+      # Run a single command using the runners shell to install dependencies
       - name: Install dependencies
         run: npm install
+
       # Get the blockedIps for as-dev account
       - name: Get blockedIps for as-dev
         if: ${{ steps.helpline_code.outputs.lowercase }}-$SHORT_ENVIRONMENT_CODE == as-dev
         run: curl -o ./src/blockedIps.json https://tl-public-chat-as-dev.s3.amazonaws.com/blockedIps.json
         shell: bash
+
       # Get the blockedIps for jm-prod account
       - name: Get blockedIps for jm-prod
         if: ${{ steps.helpline_code.outputs.lowercase }}-$SHORT_ENVIRONMENT_CODE == jm-prod
         run: curl -o ./src/blockedIps.json https://tl-public-chat-jm-prod.s3.amazonaws.com/blockedIps.json
         shell: bash
+
       # Build and compile Webchat using the corresponding config file
       - name: Run build command
         run: CONFIG=${{ steps.helpline_code.outputs.lowercase }}-${{ inputs.environment }} npm run build -- --verbose
+
       # Rename the builded js file
       - name: Rename js
         run: mv bundle.js aselo-chat.min.js
         working-directory: ./build
+
       # Upload Webchat to S3 bucket
       - name: Upload Webchat to S3 bucket
         uses: jakejarvis/s3-sync-action@master
@@ -136,8 +161,8 @@ jobs:
           AWS_S3_BUCKET: tl-public-chat-${{ steps.helpline_code.outputs.lowercase }}-$SHORT_ENVIRONMENT_CODE
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: '${{ secrets.AWS_DEFAULT_REGION }}'
-          SOURCE_DIR: 'build'
+          AWS_REGION: "${{ secrets.AWS_DEFAULT_REGION }}"
+          SOURCE_DIR: "build"
 
       # Send Slack notifying success
       - name: Slack Aselo channel

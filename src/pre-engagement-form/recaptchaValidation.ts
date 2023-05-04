@@ -14,9 +14,11 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
+import { RECAPTCHA_VERIFY_URL } from '../../private/secret';
+
 export async function validateUser(token: string) {
   try {
-    const response = await fetch(`https://hrm-development.tl.techmatters.org/lambda/recaptchaVerify`, {
+    const response = await fetch(RECAPTCHA_VERIFY_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
