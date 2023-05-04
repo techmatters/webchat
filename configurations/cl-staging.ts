@@ -57,7 +57,16 @@ const preEngagementConfig: PreEngagementFormDefinition = {
         message: 'FieldValidationInvalidEmail',
       },
     },
-  
+    
+    {
+      type: 'checkbox',
+      name: 'termsAndConditions',
+      label: 'He leído y acepto los <a href="https://www.linealibre.cl/wp-content/uploads/2020/11/TERMINOS-Y-CONDICIONES-DE-USO-Y-POLITICA-DE-PRIVACIDAD-LL.pdf">términos y condiciones</a>',
+      required: {
+        value: true,
+        message: 'You need to accept the terms and conditions',
+      },
+    },
   ],
 };
 
