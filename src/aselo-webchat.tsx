@@ -143,9 +143,9 @@ export const initWebchat = async () => {
   manager.store.replaceReducer(aseloReducer as Reducer<FlexState>);
   manager.store.dispatch(setFormDefinition(currentConfig.preEngagementConfig));
 
-  await displayOperatingHours(currentConfig, manager);
-
   const changeLanguageWebChat = getChangeLanguageWebChat(manager, currentConfig);
+
+  await displayOperatingHours(currentConfig, manager);
 
   changeLanguageWebChat(externalWebChatLanguage || initialLanguage);
 
