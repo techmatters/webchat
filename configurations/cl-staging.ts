@@ -58,6 +58,23 @@ const preEngagementConfig: PreEngagementFormDefinition = {
       },
     },
     {
+      label: 'Edad',
+      type: 'select',
+      name: 'age',
+      required: true,
+      defaultValue: '',
+       options: [
+         {
+          value: "",
+          label: ""
+        },
+        {
+          value: "<5",
+          label: "<5"
+        }
+       ],
+     },  
+    {
       type: 'select',
       name: 'gender',
       label: 'Gender',
