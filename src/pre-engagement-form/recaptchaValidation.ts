@@ -21,17 +21,13 @@ export async function validateUser(token: string) {
     // eslint-disable-next-line global-require
     const { RECAPTCHA_VERIFY_URL } = require('../../private/secret');
     const response = await fetch(RECAPTCHA_VERIFY_URL, {
-      // const response = await fetch('https://hrm-development.tl.techmatters.org/lambda/recaptchaVerify', {
-
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: `response=${token}`,
     });
-    console.log('>>> ', response);
     const data = await response.json();
-    console.log('>>> data', data);
 
     if (data.success) {
       return true;

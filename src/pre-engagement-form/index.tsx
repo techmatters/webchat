@@ -53,17 +53,19 @@ const PreEngagementForm: React.FC<Props> = ({
   const methods = useForm({ defaultValues, mode: 'onChange' });
   const { handleSubmit, formState } = methods;
   const { isValid } = formState;
-  const [token, setToken] = useState<string | null>(null);
-  // const [isRecaptchaVerified, setIsRecaptchaVerified] = useState<boolean>(false)
-  const recaptchaRef = useRef<ReCAPTCHA>(null);
-  const onChange = (tokenv: string | null) => {
-    setToken(tokenv);
 
-    console.log('>>> Captcha value:', tokenv);
+  // State to keep track of whether the Recaptcha has been verified
+  const [isRecaptchaVerified, setIsRecaptchaVerified] = useState<boolean>(false);
+
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
+
+  // Handler function for when the Recaptcha token changes
+  const onChange = (token: string | null) => {
+    setIsRecaptchaVerified(token !== null); // reflect whether the token is null or not - a valid sitekey will return a token along with recaptchaRef
   };
+
   const onSubmit = handleSubmit(async (data) => {
     const payload = { formData: data };
-    console.log('>>> onSubmit enableRecaptcha', enableRecaptcha);
 
     /**
      * If 'language' is defined at the pre-engagement form
@@ -75,18 +77,16 @@ const PreEngagementForm: React.FC<Props> = ({
 
     if (enableRecaptcha) {
       try {
-        const tokenf: string = (await recaptchaRef?.current?.getValue()) ?? '';
-        console.log('>>> tokenf', tokenf);
-        const validate = validateUser(tokenf);
-        console.log('>>> validate', validate);
+        const token: string = (await recaptchaRef?.current?.getValue()) ?? '';
+        validateUser(token);
+        // If the token is valid, submit the form payload and reset the form
         await FlexWebChat.Actions.invokeAction('StartEngagement', payload);
         resetFormAction();
       } catch (error) {
         console.log(error);
-      } finally {
-        // recaptchaRef.current.reset();
       }
     } else {
+      // when enableRecaptcha is not set
       await FlexWebChat.Actions.invokeAction('StartEngagement', payload);
       resetFormAction();
     }
@@ -105,7 +105,13 @@ const PreEngagementForm: React.FC<Props> = ({
           {enableRecaptcha && (
             <ReCAPTCHA sitekey={RECAPTCHA_KEY} size="normal" ref={recaptchaRef} onChange={onChange} />
           )}
-          {formDefinition.submitLabel && <SubmitButton label={formDefinition.submitLabel} disabled={!isValid} />}
+          {formDefinition.submitLabel && (
+            <SubmitButton
+              label={formDefinition.submitLabel}
+              // disabled prop set to true if the form is invalid or the Recaptcha is not verified
+              disabled={!isValid || ((enableRecaptcha ?? false) && !isRecaptchaVerified)}
+            />
+          )}
         </form>
       </LocalizationProvider>
     </FormProvider>
