@@ -21,6 +21,20 @@ jobs:
     runs-on: ubuntu-latest
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      # Setup credentials to access AWS for parameters
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: "us-east-1"
+
+      - name: Set ACCOUNT_SID
+        uses: "marvinpinto/action-inject-ssm-secrets@latest"
+        with:
+          ssm_parameter: "/development/twilio/AS/account_sid"
+          env_variable_name: "ACCOUNT_SID"
+
       - name: Set IP_FIND_API_KEY
         uses: "marvinpinto/action-inject-ssm-secrets@latest"
         with:
@@ -30,7 +44,7 @@ jobs:
       - name: Set SERVERLESS_URL
         uses: "marvinpinto/action-inject-ssm-secrets@latest"
         with:
-          ssm_parameter: "/${{ inputs.environment }}/serverless/${{ env.ACCOUNT_SID }}/base_url"
+          ssm_parameter: "/development/serverless/${{ env.ACCOUNT_SID }}/base_url"
           env_variable_name: "SERVERLESS_URL"
 
       - name: Set RECAPTCHA_KEY
