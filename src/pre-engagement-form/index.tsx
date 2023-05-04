@@ -15,7 +15,7 @@
  */
 
 /* eslint-disable react/require-default-props */
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { connect } from 'react-redux';
 import { useForm, FormProvider } from 'react-hook-form';
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
@@ -53,9 +53,14 @@ const PreEngagementForm: React.FC<Props> = ({
   const methods = useForm({ defaultValues, mode: 'onChange' });
   const { handleSubmit, formState } = methods;
   const { isValid } = formState;
-
+  const [token, setToken] = useState<string | null>(null);
+  // const [isRecaptchaVerified, setIsRecaptchaVerified] = useState<boolean>(false)
   const recaptchaRef = useRef<ReCAPTCHA>(null);
+  const onChange = (tokenv: string | null) => {
+    setToken(tokenv);
 
+    console.log('>>> Captcha value:', tokenv);
+  };
   const onSubmit = handleSubmit(async (data) => {
     const payload = { formData: data };
     console.log('>>> onSubmit enableRecaptcha', enableRecaptcha);
@@ -70,9 +75,9 @@ const PreEngagementForm: React.FC<Props> = ({
 
     if (enableRecaptcha) {
       try {
-        const token: string = (await recaptchaRef?.current?.executeAsync()) ?? '';
-        console.log('>>> token', token);
-        const validate = validateUser(token);
+        const tokenf: string = (await recaptchaRef?.current?.getValue()) ?? '';
+        console.log('>>> tokenf', tokenf);
+        const validate = validateUser(tokenf);
         console.log('>>> validate', validate);
         await FlexWebChat.Actions.invokeAction('StartEngagement', payload);
         resetFormAction();
@@ -97,7 +102,7 @@ const PreEngagementForm: React.FC<Props> = ({
         <form className="Twilio-DynamicForm" onSubmit={onSubmit}>
           <Title title={formDefinition.description} />
           {generateForm(formDefinition.fields)}
-          {enableRecaptcha && <ReCAPTCHA sitekey={RECAPTCHA_KEY} size="normal" ref={recaptchaRef} />}
+          {enableRecaptcha && <ReCAPTCHA sitekey={RECAPTCHA_KEY} size="normal" ref={recaptchaRef} onChange={onChange}/>}
           {formDefinition.submitLabel && <SubmitButton label={formDefinition.submitLabel} disabled={!isValid} />}
         </form>
       </LocalizationProvider>

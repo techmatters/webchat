@@ -14,18 +14,22 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-import { RECAPTCHA_VERIFY_URL } from '../../private/secret';
+// import { RECAPTCHA_VERIFY_URL } from '../../private/secret';
 
 export async function validateUser(token: string) {
   try {
+    // eslint-disable-next-line global-require
+    const { RECAPTCHA_VERIFY_URL } = require('../../private/secret');
     const response = await fetch(RECAPTCHA_VERIFY_URL, {
+    // const response = await fetch('https://hrm-development.tl.techmatters.org/lambda/recaptchaVerify', {
+
       method: 'POST',
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Type': 'application/json',
       },
       body: `response=${token}`,
     });
-
+console.log('>>> ', response)
     const data = await response.json();
     console.log('>>> data', data);
 
