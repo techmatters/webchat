@@ -41,6 +41,13 @@ const preEngagementConfig: PreEngagementFormDefinition = {
   fields: [
     {
       type: 'input-text',
+      name: 'friendlyName',
+      label: 'Nickname',
+      placeholder: 'Nickname',
+      required: true,
+    },
+    {
+      type: 'input-text',
       name: 'contactIdentifier',
       label: 'Email',
       required: true,
@@ -51,17 +58,131 @@ const preEngagementConfig: PreEngagementFormDefinition = {
       },
     },
     {
-      type: 'input-text',
-      name: 'age',
       label: 'Edad',
-      placeholder: 'Edad',
+      type: 'select',
+      name: 'age',
       required: true,
-    },
+      defaultValue: '',
+       options: [
+         {
+          value: "",
+          label: ""
+        },
+        {
+          value: "<5",
+          label: "<5"
+        },
+        {
+          value: "05",
+          label: "5"
+        },
+        {
+          value: "06",
+          label: "6"
+        },
+        {
+          value: "07",
+          label: "7"
+        },
+        {
+          value: "08",
+          label: "8"
+        },
+        {
+          value: "09",
+          label: "9"
+        },
+        {
+          value: "10",
+          label: "10"
+        },
+        {
+          value: "11",
+          label: "11"
+        },
+        {
+          value: "12",
+          label: "12"
+        },
+        {
+          value: "13",
+          label: "13"
+        },
+        {
+          value: "14",
+          label: "14"
+        },
+        {
+          value: "15",
+          label: "15"
+        },
+        {
+          value: "16",
+          label: "16"
+        },
+        {
+          value: "17",
+          label: "17"
+        },
+        {
+          value: "18",
+          label: "18"
+        },
+        {
+          value: "19",
+          label: "19"
+        },
+        {
+          value: "20",
+          label: "20"
+        },
+        {
+          value: "21",
+          label: "21"
+        },
+        {
+          value: "22",
+          label: "22"
+        },
+        {
+          value: "23",
+          label: "23"
+        },
+        {
+          value: "24",
+          label: "24"
+        },
+        {
+          value: "25",
+          label: "25"
+        },
+        {
+          value: "26",
+          label: "26"
+        },
+        {
+          value: "27",
+          label: "27"
+        },
+        {
+          value: "28",
+          label: "28"
+        },
+        {
+          value: "29",
+          label: "29"
+        },
+        {
+          value: ">29",
+          label: ">29"
+        }
+       ],
+     },  
     {
       type: 'select',
       name: 'gender',
       label: 'Gender',
-      defaultValue: 'Masculino',
+      defaultValue: '',
       required: true,
       options: [
         { value: 'Masculino', label: 'Masculino' },
@@ -74,6 +195,7 @@ const preEngagementConfig: PreEngagementFormDefinition = {
       type: 'select',
       name: 'province',
       label: 'Región',
+      required: true,
       defaultValue: '',
       options: [
         {
@@ -144,7 +266,7 @@ const preEngagementConfig: PreEngagementFormDefinition = {
           value: 'Metropolitana de Santiago',
           label: 'Metropolitana de Santiago'
         }
-      ]
+      ],
     },
     {
       name: 'district',
@@ -154,6 +276,10 @@ const preEngagementConfig: PreEngagementFormDefinition = {
       required: true,
       options: {
         'Arica y Parinacota': [
+          {
+            value: '',
+            label: ''
+          },
           {
             value: 'Arica',
             label: 'Arica'
@@ -172,6 +298,10 @@ const preEngagementConfig: PreEngagementFormDefinition = {
           }
         ],
         'Tarapacá': [
+          {
+            value: '',
+            label: ''
+          },
           {
             value: 'Iquique',
             label: 'Iquique'
@@ -202,6 +332,10 @@ const preEngagementConfig: PreEngagementFormDefinition = {
           }
         ],
         'Antofagasta': [
+          {
+            value: '',
+            label: ''
+          },
           {
             value: 'Antofagasta',
             label: 'Antofagasta'
@@ -241,6 +375,10 @@ const preEngagementConfig: PreEngagementFormDefinition = {
         ],
         'Atacama': [
           {
+            value: '',
+            label: ''
+          },
+          {
             value: 'Copiapó',
             label: 'Copiapó'
           },
@@ -278,6 +416,10 @@ const preEngagementConfig: PreEngagementFormDefinition = {
           }
         ],
         'Coquimbo': [
+          {
+            value: '',
+            label: ''
+          },
           {
             value: 'La Serena',
             label: 'La Serena'
@@ -340,6 +482,10 @@ const preEngagementConfig: PreEngagementFormDefinition = {
           }
         ],
         'Valparaíso': [
+          {
+            value: '',
+            label: ''
+          },
           {
             value: 'Valparaíso',
             label: 'Valparaíso'
@@ -495,6 +641,10 @@ const preEngagementConfig: PreEngagementFormDefinition = {
         ],
         "Lib. Gral. Bernardo O'Higgins": [
           {
+            value: '',
+            label: ''
+          },
+          {
             value: 'Rancagua',
             label: 'Rancagua'
           },
@@ -629,6 +779,10 @@ const preEngagementConfig: PreEngagementFormDefinition = {
         ],
         'Maule': [
           {
+            value: '',
+            label: ''
+          },
+          {
             value: 'Talca',
             label: 'Talca'
           },
@@ -751,6 +905,10 @@ const preEngagementConfig: PreEngagementFormDefinition = {
         ],
         'Ñuble': [
           {
+            value: '',
+            label: ''
+          },
+          {
             value: 'Chillán',
             label: 'Chillán'
           },
@@ -836,6 +994,10 @@ const preEngagementConfig: PreEngagementFormDefinition = {
           }
         ],
         'Biobío': [
+          {
+            value: '',
+            label: ''
+          },
           {
             value: 'Concepción',
             label: 'Concepción'
@@ -971,6 +1133,10 @@ const preEngagementConfig: PreEngagementFormDefinition = {
         ],
         'La Araucanía': [
           {
+            value: '',
+            label: ''
+          },
+          {
             value: 'Temuco',
             label: 'Temuco'
           },
@@ -1101,6 +1267,10 @@ const preEngagementConfig: PreEngagementFormDefinition = {
         ],
         'Los Ríos': [
           {
+            value: '',
+            label: ''
+          },
+          {
             value: 'Valdivia',
             label: 'Valdivia'
           },
@@ -1150,6 +1320,10 @@ const preEngagementConfig: PreEngagementFormDefinition = {
           }
         ],
         'Los Lagos': [
+          {
+            value: '',
+            label: ''
+          },
           {
             value: 'Puerto Montt',
             label: 'Puerto Montt'
@@ -1273,6 +1447,10 @@ const preEngagementConfig: PreEngagementFormDefinition = {
         ],
         'Aysén': [
           {
+            value: '',
+            label: ''
+          },
+          {
             value: 'Coyhaique',
             label: 'Coyhaique'
           },
@@ -1314,6 +1492,10 @@ const preEngagementConfig: PreEngagementFormDefinition = {
           }
         ],
         'Magallanes y Antártica Chilena': [
+          {
+            value: '',
+            label: ''
+          },
           {
             value: 'Punta Arenas',
             label: 'Punta Arenas'
@@ -1360,6 +1542,10 @@ const preEngagementConfig: PreEngagementFormDefinition = {
           }
         ],
         'Metropolitana de Santiago': [
+          {
+            value: '',
+            label: ''
+          },
           {
             value: 'Santiago',
             label: 'Santiago'
@@ -1568,9 +1754,18 @@ const preEngagementConfig: PreEngagementFormDefinition = {
             value: 'Peñaflor',
             label: 'Peñaflor'
           }
-        ]
+        ],
       }
-    }
+    },
+    {
+      type: 'checkbox',
+      name: 'termsAndConditions',
+      label: 'He leído y acepto los <a href="https://www.linealibre.cl/wp-content/uploads/2020/11/TERMINOS-Y-CONDICIONES-DE-USO-Y-POLITICA-DE-PRIVACIDAD-LL.pdf">términos y condiciones</a>',
+      required: {
+        value: true,
+        message: 'You need to accept the terms and conditions',
+      },
+    },
   ],
 };
 
@@ -1585,17 +1780,16 @@ const translations: Translations = {
     StartChat: 'Start Chat!',
     MessageCanvasTrayButton: 'Start New Chat',
     Email: 'Email',
-    Edad: 'Edad',
-
-    // Needs to be translated
-    Gender: '¿Cuál es tu género?',
-    Masculino: 'Masculino',
-    Femenino: 'Femenino',
-    Otro: 'Otro',
-    PrefieroNoDecir: 'Prefiero no decir',
+    Edad: 'Age',
+    Gender: 'What is your gender',
+    Masculino: 'Male',
+    Femenino: 'Female',
+    Otro: 'Other',
+    PrefieroNoDecir: 'Prefer not to say',
+    Nickname: 'Nickname',
   },
   'es-CL': {
-    WelcomeMessage: '¡Bienvenido a Línea Libre! <a href="https://www.linealibre.cl/wp-content/uploads/2020/11/TERMINOS-Y-CONDICIONES-DE-USO-Y-POLITICA-DE-PRIVACIDAD-LL.pdf">Lea nuestros términos y condiciones</a>',
+    WelcomeMessage: '¡Bienvenid@ a Línea Libre!',
     MessageCanvasTrayContent: '',
     MessageInputDisabledReasonHold:
       'Muchas gracias por la información. Lo transferiremos ahora. Por favor espere for un agente.',
@@ -1627,10 +1821,9 @@ const translations: Translations = {
     Femenino: 'Femenino',
     Otro: 'Otro',
     PrefieroNoDecir: 'Prefiero no decir',
-
-    // NEEDS TO BE TRANSLATED
     Email: 'Email',
     Edad: 'Edad',
+    Nickname: 'Nickname',
   },
 };
 
@@ -1638,7 +1831,7 @@ const memberDisplayOptions = {
   yourDefaultName: 'Usted',
   yourFriendlyNameOverride: false,
   theirFriendlyNameOverride: false,
-  theirDefaultName: 'Guía',
+  theirDefaultName: 'Psicólog@',
 };
 
 const mapHelplineLanguage: MapHelplineLanguage = (helpline) => {
