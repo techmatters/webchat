@@ -121,7 +121,7 @@ jobs:
         shell: bash
       # Build and compile Webchat using the corresponding config file
       - name: Run build command
-        run: CONFIG=${{ steps.helpline_code.outputs.lowercase }}-${{ inputs.environment }} npm run build --verbose
+        run: CONFIG=${{ steps.helpline_code.outputs.lowercase }}-${{ inputs.environment }} npm run build -- --verbose
       # Rename the builded js file
       - name: Rename js
         run: mv bundle.js aselo-chat.min.js

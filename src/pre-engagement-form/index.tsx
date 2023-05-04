@@ -46,10 +46,10 @@ const PreEngagementForm: React.FC<Props> = ({ formState: defaultValues, formDefi
   const { handleSubmit, formState } = methods;
   const { isValid } = formState;
 
-  const recaptchaRef = createRef<ReCAPTCHA>();
+  // const recaptchaRef = createRef<ReCAPTCHA>();
   // const [token, setToken] = useState<string | null>(null);
 
-  console.log('>>> recaptchaRef', recaptchaRef);
+  // console.log('>>> recaptchaRef', recaptchaRef);
 
   // const onChange = (tokenv: string | null) => {
   //   setToken(tokenv);
