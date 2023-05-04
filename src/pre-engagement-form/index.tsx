@@ -77,7 +77,7 @@ const PreEngagementForm: React.FC<Props> = ({
 
     if (enableRecaptcha) {
       try {
-        const token: string = (await recaptchaRef?.current?.getValue()) ?? '';
+        const token: string = recaptchaRef?.current?.getValue() ?? '';
         validateUser(token);
         // If the token is valid, submit the form payload and reset the form
         await FlexWebChat.Actions.invokeAction('StartEngagement', payload);
