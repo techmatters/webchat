@@ -47,18 +47,18 @@ const PreEngagementForm: React.FC<Props> = ({ formState: defaultValues, formDefi
   const { isValid } = formState;
 
   const recaptchaRef = createRef<ReCAPTCHA>();
-  const [token, setToken] = useState<string | null>(null);
+  // const [token, setToken] = useState<string | null>(null);
 
   console.log('>>> recaptchaRef', recaptchaRef);
 
-  const onChange = (tokenv: string | null) => {
-    setToken(tokenv);
-    console.log('>>> Captcha value:', tokenv);
-  };
+  // const onChange = (tokenv: string | null) => {
+  //   setToken(tokenv);
+  //   console.log('>>> Captcha value:', tokenv);
+  // };
 
   const onSubmit = handleSubmit(async (data) => {
-    recaptchaRef.current?.getValue();
-    console.log('>>> token', token);
+    // recaptchaRef.current?.getValue();
+    // console.log('>>> token', token);
 
     const payload = { formData: data };
 
