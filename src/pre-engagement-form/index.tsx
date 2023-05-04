@@ -70,7 +70,7 @@ const PreEngagementForm: React.FC<Props> = ({
 
     if (enableRecaptcha) {
       try {
-        const token:string= (await recaptchaRef?.current?.executeAsync()) ?? "";
+        const token: string = (await recaptchaRef?.current?.executeAsync()) ?? '';
         console.log('>>> token', token);
         const validate = validateUser(token);
         console.log('>>> validate', validate);
