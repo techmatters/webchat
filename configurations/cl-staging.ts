@@ -185,6 +185,7 @@ const preEngagementConfig: PreEngagementFormDefinition = {
       defaultValue: '',
       required: true,
       options: [
+        { value: '', label: '' },
         { value: 'Masculino', label: 'Masculino' },
         { value: 'Femenino', label: 'Femenino' },
         { value: 'Otro', label: 'Otro' },
