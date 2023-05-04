@@ -15,11 +15,10 @@
  */
 
 /* eslint-disable react/require-default-props */
-import React, { useState, createRef } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { useForm, FormProvider } from 'react-hook-form';
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
-import ReCAPTCHA from 'react-google-recaptcha';
 
 import { AseloWebchatState } from '../aselo-webchat-state';
 import type { PreEngagementForm as PreEngagementFormDefinition } from './form-components/types';
@@ -30,7 +29,6 @@ import Title from './form-components/title';
 import { resetForm } from './state';
 import { PLACEHOLDER_PRE_ENGAGEMENT_CONFIG } from './placeholder-form';
 import { overrideLanguageOnContext } from '../language';
-import { RECAPTCHA_KEY } from '../../private/secret';
 
 export { PreEngagementFormDefinition, PLACEHOLDER_PRE_ENGAGEMENT_CONFIG };
 
@@ -46,20 +44,7 @@ const PreEngagementForm: React.FC<Props> = ({ formState: defaultValues, formDefi
   const { handleSubmit, formState } = methods;
   const { isValid } = formState;
 
-  // const recaptchaRef = createRef<ReCAPTCHA>();
-  // const [token, setToken] = useState<string | null>(null);
-
-  // console.log('>>> recaptchaRef', recaptchaRef);
-
-  // const onChange = (tokenv: string | null) => {
-  //   setToken(tokenv);
-  //   console.log('>>> Captcha value:', tokenv);
-  // };
-
   const onSubmit = handleSubmit(async (data) => {
-    // recaptchaRef.current?.getValue();
-    // console.log('>>> token', token);
-
     const payload = { formData: data };
 
     /**
@@ -84,7 +69,6 @@ const PreEngagementForm: React.FC<Props> = ({ formState: defaultValues, formDefi
         <form className="Twilio-DynamicForm" onSubmit={onSubmit}>
           <Title title={formDefinition.description} />
           {generateForm(formDefinition.fields)}
-          {/* <ReCAPTCHA sitekey={RECAPTCHA_KEY} size="normal" ref={recaptchaRef} onChange={onChange} /> */}
           {formDefinition.submitLabel && <SubmitButton label={formDefinition.submitLabel} disabled={!isValid} />}
         </form>
       </LocalizationProvider>
