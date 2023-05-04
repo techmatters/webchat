@@ -15,7 +15,7 @@
  */
 
 import type { Translations, Configuration, MapHelplineLanguage } from '../types';
-import { PreEngagementFormDefinition, EMAIL_PATTERN } from '../src/pre-engagement-form';
+import { PreEngagementFormDefinition } from '../src/pre-engagement-form';
 
 const accountSid = 'ACd8a2e89748318adf6ddff7df6948deaf';
 const flexFlowSid = 'FO8c2d9c388e7feba8b08d06a4bc3f69d1';
@@ -76,7 +76,7 @@ const translations: Translations = {
 };
 
 const preEngagementConfig: PreEngagementFormDefinition = {
-  description: '<strong>A highlighted text</strong> and <a href="https://www.redpapaz.org/wp-content/uploads/2019/02/Politica_de_Tratamiento_de_Informacion_-_Red_PaPaz.pdf">terms and conditions</a>',
+  description: 'PreEngagementDescription',
   submitLabel: 'LetsChat',
   fields: [
     {
@@ -87,76 +87,13 @@ const preEngagementConfig: PreEngagementFormDefinition = {
       required: true,
     },
     {
-      type: 'input-text',
-      name: 'email',
-      label: 'Email',
-      required: 'Email is required',
-      pattern: EMAIL_PATTERN,
-    },
-    {
-      type: 'select',
-      name: 'continent',
-      label: 'Continent',
-      defaultValue: 'Europe',
-      options: [
-        { value: '', label: '' },
-        { value: 'North America', label: 'North America' },
-        { value: 'South America', label: 'South America' },
-        { value: 'Europe', label: 'Europe' },
-        { value: 'Africa', label: 'Africa' },
-        { value: 'Oceania', label: 'Oceania' },
-        { value: 'Asia', label: 'Asia' },
-      ],
-    },
-    {
-      type: 'dependent-select',
-      dependsOn: 'continent',
-      name: 'country',
-      label: 'Country',
-      required: true,
-      options: {
-        'North America': [
-          { value: '', label: '' },
-          { value: 'Canada', label: 'Canada' },
-          { value: 'USA', label: 'USA' },
-          { value: 'Mexico', label: 'Mexico' },
-        ],
-        'South America': [
-          { value: '', label: '' },
-          { value: 'Chile', label: 'Chile' },
-          { value: 'Argentina', label: 'Argentina' },
-          { value: 'Brazil', label: 'Brazil' },
-          { value: 'Colombia', label: 'Colombia' },
-        ],
-        Europe: [
-          { value: '', label: '' },
-          { value: 'Spain', label: 'Spain' },
-          { value: 'Portugal', label: 'Portugal' },
-          { value: 'France', label: 'France' },
-          { value: 'Ireland', label: 'Ireland' },
-          { value: 'UK', label: 'UK' },
-          { value: 'Germany', label: 'Germany' },
-          { value: 'Italy', label: 'Italy' },
-        ],
-        Africa: [
-          { value: '', label: '' },
-          { value: 'Nigeria', label: 'Nigeria' },
-          { value: 'South Africa', label: 'South Africa' },
-          { value: 'Egypt', label: 'Egypt' },
-          { value: 'Ethiopia', label: 'Ethiopia' },
-          { value: 'Zambia', label: 'Zambia' },
-        ],
-        Oceania: [
-          { value: '', label: '' },
-          { value: 'Australia', label: 'Australia' },
-          { value: 'New Zealand', label: 'New Zealand' },
-        ],
-        Asia: [
-          { value: '', label: '' },
-          { value: 'Japan', label: 'Japan' },
-          { value: 'China', label: 'China' },
-          { value: 'South Korea', label: 'South Korea' },
-        ],
+      type: 'checkbox',
+      name: 'termsAndConditions',
+      label:
+        'Accept <a href="https://www.redpapaz.org/wp-content/uploads/2019/02/Politica_de_Tratamiento_de_Informacion_-_Red_PaPaz.pdf">terms and conditions</a>',
+      required: {
+        value: true,
+        message: 'You need to accept the terms and conditions',
       },
     },
   ],

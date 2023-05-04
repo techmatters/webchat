@@ -77,7 +77,7 @@ jobs:
 
       # Run a single command using the runners shell to install dependencies
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       # Get the blockedIps for this account
       - name: Get blockedIps
