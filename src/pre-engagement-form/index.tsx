@@ -15,11 +15,11 @@
  */
 
 /* eslint-disable react/require-default-props */
-import React, { useRef } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { useForm, FormProvider } from 'react-hook-form';
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
-import ReCAPTCHA from 'react-google-recaptcha';
+// import ReCAPTCHA from 'react-google-recaptcha';
 
 import { AseloWebchatState } from '../aselo-webchat-state';
 import type { PreEngagementForm as PreEngagementFormDefinition } from './form-components/types';
@@ -46,8 +46,10 @@ const PreEngagementForm: React.FC<Props> = ({ formState: defaultValues, formDefi
   const { handleSubmit, formState } = methods;
   const { isValid } = formState;
 
-  // const recaptchaRef = useRef<ReCAPTCHA>(null);
-  // console.log('>>> ', recaptchaRef);
+  /*
+   * const recaptchaRef = useRef<ReCAPTCHA>(null);
+   * console.log('>>> ', recaptchaRef);
+   */
 
   const onSubmit = handleSubmit(async (data) => {
     const payload = { formData: data };
