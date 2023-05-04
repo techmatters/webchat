@@ -14,20 +14,20 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-import { RECAPTCHA_VERIFY_URL } from '../../private/secret';
+// import { RECAPTCHA_VERIFY_URL } from '../../private/secret';
 
 export async function validateUser(token: string) {
   try {
+    // eslint-disable-next-line global-require
+    const { RECAPTCHA_VERIFY_URL } = require('../../private/secret');
     const response = await fetch(RECAPTCHA_VERIFY_URL, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Type': 'application/json',
       },
       body: `response=${token}`,
     });
-
     const data = await response.json();
-    console.log('>>> data', data);
 
     if (data.success) {
       return true;

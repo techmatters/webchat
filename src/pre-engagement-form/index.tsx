@@ -15,7 +15,7 @@
  */
 
 /* eslint-disable react/require-default-props */
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { connect } from 'react-redux';
 import { useForm, FormProvider } from 'react-hook-form';
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
@@ -54,11 +54,18 @@ const PreEngagementForm: React.FC<Props> = ({
   const { handleSubmit, formState } = methods;
   const { isValid } = formState;
 
+  // State to keep track of whether the Recaptcha has been verified
+  const [isRecaptchaVerified, setIsRecaptchaVerified] = useState<boolean>(false);
+
   const recaptchaRef = useRef<ReCAPTCHA>(null);
+
+  // Handler function for when the Recaptcha token changes
+  const onChange = (token: string | null) => {
+    setIsRecaptchaVerified(token !== null); // reflect whether the token is null or not - a valid sitekey will return a token along with recaptchaRef
+  };
 
   const onSubmit = handleSubmit(async (data) => {
     const payload = { formData: data };
-    console.log('>>> onSubmit enableRecaptcha', enableRecaptcha);
 
     /**
      * If 'language' is defined at the pre-engagement form
@@ -70,18 +77,16 @@ const PreEngagementForm: React.FC<Props> = ({
 
     if (enableRecaptcha) {
       try {
-        const token: string = (await recaptchaRef?.current?.executeAsync()) ?? '';
-        console.log('>>> token', token);
-        const validate = validateUser(token);
-        console.log('>>> validate', validate);
+        const token: string = (await recaptchaRef?.current?.getValue()) ?? '';
+        validateUser(token);
+        // If the token is valid, submit the form payload and reset the form
         await FlexWebChat.Actions.invokeAction('StartEngagement', payload);
         resetFormAction();
       } catch (error) {
         console.log(error);
-      } finally {
-        // recaptchaRef.current.reset();
       }
     } else {
+      // when enableRecaptcha is not set
       await FlexWebChat.Actions.invokeAction('StartEngagement', payload);
       resetFormAction();
     }
@@ -97,8 +102,16 @@ const PreEngagementForm: React.FC<Props> = ({
         <form className="Twilio-DynamicForm" onSubmit={onSubmit}>
           <Title title={formDefinition.description} />
           {generateForm(formDefinition.fields)}
-          {enableRecaptcha && <ReCAPTCHA sitekey={RECAPTCHA_KEY} size="normal" ref={recaptchaRef} />}
-          {formDefinition.submitLabel && <SubmitButton label={formDefinition.submitLabel} disabled={!isValid} />}
+          {enableRecaptcha && (
+            <ReCAPTCHA sitekey={RECAPTCHA_KEY} size="normal" ref={recaptchaRef} onChange={onChange} />
+          )}
+          {formDefinition.submitLabel && (
+            <SubmitButton
+              label={formDefinition.submitLabel}
+              // disabled prop set to true if the form is invalid or the Recaptcha is not verified
+              disabled={!isValid || ((enableRecaptcha ?? false) && !isRecaptchaVerified)}
+            />
+          )}
         </form>
       </LocalizationProvider>
     </FormProvider>
