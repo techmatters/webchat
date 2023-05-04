@@ -15,7 +15,7 @@
  */
 
 /* eslint-disable react/require-default-props */
-import React from 'react';
+import React, {useRef} from 'react';
 import { connect } from 'react-redux';
 import { useForm, FormProvider } from 'react-hook-form';
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
@@ -44,6 +44,8 @@ const PreEngagementForm: React.FC<Props> = ({ formState: defaultValues, formDefi
   const methods = useForm({ defaultValues, mode: 'onChange' });
   const { handleSubmit, formState } = methods;
   const { isValid } = formState;
+
+  const recaptchaRef = useRef<ReCAPTCHA>(null)
 
   const onSubmit = handleSubmit(async (data) => {
     const payload = { formData: data };
