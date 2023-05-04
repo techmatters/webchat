@@ -54,7 +54,7 @@ const PreEngagementForm: React.FC<Props> = ({
   const { handleSubmit, formState } = methods;
   const { isValid } = formState;
 
-  const recaptchaRef = useRef<any>(null);
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   const onSubmit = handleSubmit(async (data) => {
     const payload = { formData: data };
@@ -70,7 +70,7 @@ const PreEngagementForm: React.FC<Props> = ({
 
     if (enableRecaptcha) {
       try {
-        const token = await recaptchaRef.current.getValue();
+        const token:string= (await recaptchaRef?.current?.executeAsync()) ?? "";
         console.log('>>> token', token);
         const validate = validateUser(token);
         console.log('>>> validate', validate);
@@ -79,7 +79,7 @@ const PreEngagementForm: React.FC<Props> = ({
       } catch (error) {
         console.log(error);
       } finally {
-        recaptchaRef.current.reset();
+        // recaptchaRef.current.reset();
       }
     } else {
       await FlexWebChat.Actions.invokeAction('StartEngagement', payload);
