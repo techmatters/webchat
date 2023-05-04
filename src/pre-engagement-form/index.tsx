@@ -46,8 +46,8 @@ const PreEngagementForm: React.FC<Props> = ({ formState: defaultValues, formDefi
   const { handleSubmit, formState } = methods;
   const { isValid } = formState;
 
-  const recaptchaRef = useRef<ReCAPTCHA>(null);
-  console.log('>>> ', recaptchaRef);
+  // const recaptchaRef = useRef<ReCAPTCHA>(null);
+  // console.log('>>> ', recaptchaRef);
 
   const onSubmit = handleSubmit(async (data) => {
     const payload = { formData: data };
@@ -74,7 +74,7 @@ const PreEngagementForm: React.FC<Props> = ({ formState: defaultValues, formDefi
         <form className="Twilio-DynamicForm" onSubmit={onSubmit}>
           <Title title={formDefinition.description} />
           {generateForm(formDefinition.fields)}
-          <ReCAPTCHA sitekey={RECAPTCHA_KEY} ref={recaptchaRef} />
+          {/* <ReCAPTCHA sitekey={RECAPTCHA_KEY} ref={recaptchaRef} /> */}
           {formDefinition.submitLabel && <SubmitButton label={formDefinition.submitLabel} disabled={!isValid} />}
         </form>
       </LocalizationProvider>
