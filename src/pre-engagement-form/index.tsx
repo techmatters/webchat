@@ -19,6 +19,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { useForm, FormProvider } from 'react-hook-form';
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 import { AseloWebchatState } from '../aselo-webchat-state';
 import type { PreEngagementForm as PreEngagementFormDefinition } from './form-components/types';
