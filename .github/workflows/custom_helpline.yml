@@ -36,7 +36,7 @@ on:
         type: string
 
 env:
-  recaptcha_verify_url: https://hrm-${inputs.environment}.tl.techmatters.org/lambda/recaptchaVerify
+  recaptcha_verify_url: https://hrm-${{ inputs.environment }}.tl.techmatters.org/lambda/recaptchaVerify
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
