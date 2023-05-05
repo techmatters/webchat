@@ -51,7 +51,7 @@ const getOperatingHours = async (language: string): Promise<OperatingHoursRespon
 export const displayOperatingHours = async (
   config: Configuration,
   manager: Manager,
-  externalWebChatLanguage?: string,
+  externalWebChatLanguage?: string | null,
   // eslint-disable-next-line sonarjs/cognitive-complexity
 ) => {
   // If a helpline has operating hours configuration set, the pre engagement config will show alternative canvas during closed or holiday times/days
