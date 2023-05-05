@@ -48,13 +48,16 @@ const getOperatingHours = async (language: string): Promise<OperatingHoursRespon
   return responseJson;
 };
 
-// eslint-disable-next-line sonarjs/cognitive-complexity
-export const displayOperatingHours = async (config: Configuration, manager: Manager) => {
+export const displayOperatingHours = async (
+  config: Configuration,
+  manager: Manager,
+  externalWebChatLanguage?: string,
+  // eslint-disable-next-line sonarjs/cognitive-complexity
+) => {
   // If a helpline has operating hours configuration set, the pre engagement config will show alternative canvas during closed or holiday times/days
   if (config.checkOpenHours) {
     try {
-      const operatingState = await getOperatingHours(config.defaultLanguage);
-
+      const operatingState = await getOperatingHours(externalWebChatLanguage || config.defaultLanguage);
       /*
        * Support legacy function to avoid braking changes
        * TODO: remove once every account has been migrated

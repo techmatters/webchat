@@ -144,10 +144,9 @@ export const initWebchat = async () => {
   manager.store.dispatch(setFormDefinition(currentConfig.preEngagementConfig));
 
   const changeLanguageWebChat = getChangeLanguageWebChat(manager, currentConfig);
-
-  await displayOperatingHours(currentConfig, manager);
-
   changeLanguageWebChat(externalWebChatLanguage || initialLanguage);
+
+  await displayOperatingHours(currentConfig, manager, externalWebChatLanguage);
 
   // If caller is waiting for a counselor to connect, disable input (default language)
   if (manager.chatClient) {
