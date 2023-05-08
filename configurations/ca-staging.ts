@@ -23,6 +23,8 @@ const defaultLanguage = 'en-CA';
 const captureIp = false;
 const checkOpenHours = false;
 const contactType: ContactType = 'ip';
+const enableRecaptcha = true;
+
 const translations: Translations = {
   'en-CA': {
     MessageInputDisabledReasonHold: 'Thank you! Please hold for a counsellor.',
@@ -2318,4 +2320,5 @@ export const config: Configuration = {
   captureIp,
   contactType,
   blockedEmojis,
+  enableRecaptcha
 };
