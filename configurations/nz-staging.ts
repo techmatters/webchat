@@ -22,7 +22,7 @@ const flexFlowSid = 'FO0a4844fcc193072407dad94b76fcc94d';
 const defaultLanguage = 'en-US';
 const captureIp = true;
 const checkOpenHours = true;
-const contactType: ContactType = 'email';
+const contactType: ContactType = 'ip';
 
 const closedHours: PreEngagementFormDefinition = {
   description: "We're closed at the moment. Operating hours are 8am-6pm",
