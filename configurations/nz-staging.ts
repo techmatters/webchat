@@ -209,7 +209,7 @@ const translations: Translations = {
 };
 
 const memberDisplayOptions = {
-  yourDefaultName: 'Usted',
+  yourDefaultName: 'You',
   yourFriendlyNameOverride: false,
   theirFriendlyNameOverride: false,
   theirDefaultName: 'Counselor',
