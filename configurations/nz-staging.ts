@@ -46,17 +46,6 @@ const preEngagementConfig: PreEngagementFormDefinition = {
       required: true,
     },
     {
-      type: 'input-text',
-      name: 'contactIdentifier',
-      label: 'Email',
-      required: true,
-      placeholder: 'Email',
-      pattern: {
-        value: EMAIL_PATTERN,
-        message: 'FieldValidationInvalidEmail',
-      },
-    },
-    {
       label: 'Age',
       type: 'select',
       name: 'age',
