@@ -18,7 +18,7 @@ import { Configuration } from '../types';
 import { config as caStaging } from '../configurations/ca-staging';
 
 const accountSid = 'AC9f951863c83dc61cf94bdc12a12270a5';
-const flexFlowSid = 'FOf2f4b4487edb4b226d17dd4bd2de5382';
+const flexFlowSid = 'FOa3e32f6b854254daf4b49c8ed3a04303';
 
 export const config: Configuration = {
   ...caStaging,
