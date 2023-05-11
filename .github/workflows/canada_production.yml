@@ -29,4 +29,4 @@ jobs:
       environment: production
       helpline_code: CA
       # this is part of a dirty hack to get the right recaptcha_verify_url. see note on the "Fill secret.ts" step of custom_helpline.yml
-      recaptcha_verify_url: https://hrm-production-ca.tl.techmatters.org/lambdas/recaptchaVerify
+      recaptcha_verify_url: https://hrm-production-ca.tl.techmatters.org/lambda/recaptchaVerify
