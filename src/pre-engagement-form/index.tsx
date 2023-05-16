@@ -49,6 +49,7 @@ const PreEngagementForm: React.FC<Props> = ({
   manager,
   resetFormAction,
   enableRecaptcha,
+  friendlyName,
 }) => {
   const methods = useForm({ defaultValues, mode: 'onChange' });
   const { handleSubmit, formState } = methods;
@@ -58,6 +59,21 @@ const PreEngagementForm: React.FC<Props> = ({
   const [isRecaptchaVerified, setIsRecaptchaVerified] = useState<boolean>(false);
 
   const recaptchaRef = useRef<ReCAPTCHA>(null);
+
+  // Function that overrides the friendlyName value on context
+  const overrideFriendlyNameOnContext = () => {
+    const appConfig = manager.configuration;
+
+    const updateConfig = {
+      ...appConfig,
+      context: {
+        ...appConfig.context,
+        friendlyName,
+      },
+    };
+
+    manager.updateConfig(updateConfig);
+  };
 
   // Handler function for when the Recaptcha token changes
   const onChange = (token: string | null) => {
@@ -73,6 +89,14 @@ const PreEngagementForm: React.FC<Props> = ({
      */
     if (data.language) {
       overrideLanguageOnContext(manager, data.language);
+    }
+
+    /**
+     * If 'friendlyName' is defined at the pre-engagement form
+     * it should override the friendlyName value on Context.
+     */
+    if (friendlyName) {
+      overrideFriendlyNameOnContext();
     }
 
     if (enableRecaptcha) {
@@ -126,6 +150,7 @@ const mapStateToProps = (state: AseloWebchatState) => {
   return {
     formDefinition,
     formState,
+    friendlyName: formState.friendlyName,
   };
 };
 
