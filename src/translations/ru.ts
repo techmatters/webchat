@@ -16,7 +16,7 @@
 
 // eslint-disable-next-line global-require
 export default {
-  EndChatButtonLabel: 'Конец чат',
+  EndChatButtonLabel: 'Выход из чата',
   QuickExitButtonLabel: 'Быстрый выход',
   QuickExitDescription: 'Нужно быстро уйти?',
 } as Record<string, string>;
