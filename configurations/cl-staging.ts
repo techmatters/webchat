@@ -31,7 +31,8 @@ const closedHours: PreEngagementFormDefinition = {
 };
 
 const holidayHours: PreEngagementFormDefinition = {
-  description: 'Hola, bienvenid@ a Línea Libre. Gracias por escribirnos. Recibimos tu mensaje exitosamente. Por ser feriado legal, nuestros psicólog@s no se encuentran atendiendo, pero estarán disponibles para ti una vez que retomemos el horario habitual. Te recordamos que éste es de lunes a viernes entre las 10:00 y las 22:00 hrs. En caso de tener alguna emergencia, te sugerimos llamar a: Salud Responde 600 360 7777 - Fono niñ@s 147 - Fono familia 149.',
+  description:
+    'Hola, bienvenid@ a Línea Libre. Gracias por escribirnos. Recibimos tu mensaje exitosamente. Por ser feriado legal, nuestros psicólog@s no se encuentran atendiendo, pero estarán disponibles para ti una vez que retomemos el horario habitual. Te recordamos que éste es de lunes a viernes entre las 10:00 y las 22:00 hrs. En caso de tener alguna emergencia, te sugerimos llamar a: Salud Responde 600 360 7777 - Fono niñ@s 147 - Fono familia 149.',
   fields: [],
 };
 
@@ -63,121 +64,121 @@ const preEngagementConfig: PreEngagementFormDefinition = {
       name: 'age',
       required: true,
       defaultValue: '',
-       options: [
-         {
-          value: "",
-          label: ""
+      options: [
+        {
+          value: '',
+          label: '',
         },
         {
-          value: "<5",
-          label: "<5"
+          value: '<5',
+          label: '<5',
         },
         {
-          value: "05",
-          label: "5"
+          value: '05',
+          label: '5',
         },
         {
-          value: "06",
-          label: "6"
+          value: '06',
+          label: '6',
         },
         {
-          value: "07",
-          label: "7"
+          value: '07',
+          label: '7',
         },
         {
-          value: "08",
-          label: "8"
+          value: '08',
+          label: '8',
         },
         {
-          value: "09",
-          label: "9"
+          value: '09',
+          label: '9',
         },
         {
-          value: "10",
-          label: "10"
+          value: '10',
+          label: '10',
         },
         {
-          value: "11",
-          label: "11"
+          value: '11',
+          label: '11',
         },
         {
-          value: "12",
-          label: "12"
+          value: '12',
+          label: '12',
         },
         {
-          value: "13",
-          label: "13"
+          value: '13',
+          label: '13',
         },
         {
-          value: "14",
-          label: "14"
+          value: '14',
+          label: '14',
         },
         {
-          value: "15",
-          label: "15"
+          value: '15',
+          label: '15',
         },
         {
-          value: "16",
-          label: "16"
+          value: '16',
+          label: '16',
         },
         {
-          value: "17",
-          label: "17"
+          value: '17',
+          label: '17',
         },
         {
-          value: "18",
-          label: "18"
+          value: '18',
+          label: '18',
         },
         {
-          value: "19",
-          label: "19"
+          value: '19',
+          label: '19',
         },
         {
-          value: "20",
-          label: "20"
+          value: '20',
+          label: '20',
         },
         {
-          value: "21",
-          label: "21"
+          value: '21',
+          label: '21',
         },
         {
-          value: "22",
-          label: "22"
+          value: '22',
+          label: '22',
         },
         {
-          value: "23",
-          label: "23"
+          value: '23',
+          label: '23',
         },
         {
-          value: "24",
-          label: "24"
+          value: '24',
+          label: '24',
         },
         {
-          value: "25",
-          label: "25"
+          value: '25',
+          label: '25',
         },
         {
-          value: "26",
-          label: "26"
+          value: '26',
+          label: '26',
         },
         {
-          value: "27",
-          label: "27"
+          value: '27',
+          label: '27',
         },
         {
-          value: "28",
-          label: "28"
+          value: '28',
+          label: '28',
         },
         {
-          value: "29",
-          label: "29"
+          value: '29',
+          label: '29',
         },
         {
-          value: ">29",
-          label: ">29"
-        }
-       ],
-     },  
+          value: '>29',
+          label: '>29',
+        },
+      ],
+    },
     {
       type: 'select',
       name: 'gender',
@@ -201,72 +202,72 @@ const preEngagementConfig: PreEngagementFormDefinition = {
       options: [
         {
           value: '',
-          label: ''
+          label: '',
         },
         {
           value: 'Arica y Parinacota',
-          label: 'Arica y Parinacota'
+          label: 'Arica y Parinacota',
         },
         {
           value: 'Tarapacá',
-          label: 'Tarapacá'
+          label: 'Tarapacá',
         },
         {
           value: 'Antofagasta',
-          label: 'Antofagasta'
+          label: 'Antofagasta',
         },
         {
           value: 'Atacama',
-          label: 'Atacama'
+          label: 'Atacama',
         },
         {
           value: 'Coquimbo',
-          label: 'Coquimbo'
+          label: 'Coquimbo',
         },
         {
           value: 'Valparaíso',
-          label: 'Valparaíso'
+          label: 'Valparaíso',
         },
         {
           value: "Lib. Gral. Bernardo O'Higgins",
-          label: "Lib. Gral. Bernardo O'Higgins"
+          label: "Lib. Gral. Bernardo O'Higgins",
         },
         {
           value: 'Maule',
-          label: 'Maule'
+          label: 'Maule',
         },
         {
           value: 'Ñuble',
-          label: 'Ñuble'
+          label: 'Ñuble',
         },
         {
           value: 'Biobío',
-          label: 'Biobío'
+          label: 'Biobío',
         },
         {
           value: 'La Araucanía',
-          label: 'La Araucanía'
+          label: 'La Araucanía',
         },
         {
           value: 'Los Ríos',
-          label: 'Los Ríos'
+          label: 'Los Ríos',
         },
         {
           value: 'Los Lagos',
-          label: 'Los Lagos'
+          label: 'Los Lagos',
         },
         {
           value: 'Aysén',
-          label: 'Aysén'
+          label: 'Aysén',
         },
         {
           value: 'Magallanes y Antártica Chilena',
-          label: 'Magallanes y Antártica Chilena'
+          label: 'Magallanes y Antártica Chilena',
         },
         {
           value: 'Metropolitana de Santiago',
-          label: 'Metropolitana de Santiago'
-        }
+          label: 'Metropolitana de Santiago',
+        },
       ],
     },
     {
@@ -279,1489 +280,1490 @@ const preEngagementConfig: PreEngagementFormDefinition = {
         'Arica y Parinacota': [
           {
             value: '',
-            label: ''
+            label: '',
           },
           {
             value: 'Arica',
-            label: 'Arica'
+            label: 'Arica',
           },
           {
             value: 'Camarones',
-            label: 'Camarones'
+            label: 'Camarones',
           },
           {
             value: 'Putre',
-            label: 'Putre'
+            label: 'Putre',
           },
           {
             value: 'General Lagos',
-            label: 'General Lagos'
-          }
+            label: 'General Lagos',
+          },
         ],
-        'Tarapacá': [
+        Tarapacá: [
           {
             value: '',
-            label: ''
+            label: '',
           },
           {
             value: 'Iquique',
-            label: 'Iquique'
+            label: 'Iquique',
           },
           {
             value: 'Alto Hospicio',
-            label: 'Alto Hospicio'
+            label: 'Alto Hospicio',
           },
           {
             value: 'Pozo Almonte',
-            label: 'Pozo Almonte'
+            label: 'Pozo Almonte',
           },
           {
             value: 'Camiña',
-            label: 'Camiña'
+            label: 'Camiña',
           },
           {
             value: 'Colchane',
-            label: 'Colchane'
+            label: 'Colchane',
           },
           {
             value: 'Huara',
-            label: 'Huara'
+            label: 'Huara',
           },
           {
             value: 'Pica',
-            label: 'Pica'
-          }
+            label: 'Pica',
+          },
         ],
-        'Antofagasta': [
+        Antofagasta: [
           {
             value: '',
-            label: ''
+            label: '',
           },
           {
             value: 'Antofagasta',
-            label: 'Antofagasta'
+            label: 'Antofagasta',
           },
           {
             value: 'Mejillones',
-            label: 'Mejillones'
+            label: 'Mejillones',
           },
           {
             value: 'Sierra Gorda',
-            label: 'Sierra Gorda'
+            label: 'Sierra Gorda',
           },
           {
             value: 'Taltal',
-            label: 'Taltal'
+            label: 'Taltal',
           },
           {
             value: 'Calama',
-            label: 'Calama'
+            label: 'Calama',
           },
           {
             value: 'Ollagüe',
-            label: 'Ollagüe'
+            label: 'Ollagüe',
           },
           {
             value: 'San Pedro de Atacama',
-            label: 'San Pedro de Atacama'
+            label: 'San Pedro de Atacama',
           },
           {
             value: 'Tocopilla',
-            label: 'Tocopilla'
+            label: 'Tocopilla',
           },
           {
             value: 'María Elena',
-            label: 'María Elena'
-          }
+            label: 'María Elena',
+          },
         ],
-        'Atacama': [
+        Atacama: [
           {
             value: '',
-            label: ''
+            label: '',
           },
           {
             value: 'Copiapó',
-            label: 'Copiapó'
+            label: 'Copiapó',
           },
           {
             value: 'Caldera',
-            label: 'Caldera'
+            label: 'Caldera',
           },
           {
             value: 'Tierra Amarilla',
-            label: 'Tierra Amarilla'
+            label: 'Tierra Amarilla',
           },
           {
             value: 'Chañaral',
-            label: 'Chañaral'
+            label: 'Chañaral',
           },
           {
             value: 'Diego de Almagro',
-            label: 'Diego de Almagro'
+            label: 'Diego de Almagro',
           },
           {
             value: 'Vallenar',
-            label: 'Vallenar'
+            label: 'Vallenar',
           },
           {
             value: 'Alto del Carmen',
-            label: 'Alto del Carmen'
+            label: 'Alto del Carmen',
           },
           {
             value: 'Freirina',
-            label: 'Freirina'
+            label: 'Freirina',
           },
           {
             value: 'Huasco',
-            label: 'Huasco'
-          }
+            label: 'Huasco',
+          },
         ],
-        'Coquimbo': [
+        Coquimbo: [
           {
             value: '',
-            label: ''
+            label: '',
           },
           {
             value: 'La Serena',
-            label: 'La Serena'
+            label: 'La Serena',
           },
           {
             value: 'Coquimbo',
-            label: 'Coquimbo'
+            label: 'Coquimbo',
           },
           {
             value: 'Andacollo',
-            label: 'Andacollo'
+            label: 'Andacollo',
           },
           {
             value: 'La Higuera',
-            label: 'La Higuera'
+            label: 'La Higuera',
           },
           {
             value: 'Paihuano',
-            label: 'Paihuano'
+            label: 'Paihuano',
           },
           {
             value: 'Vicuña',
-            label: 'Vicuña'
+            label: 'Vicuña',
           },
           {
             value: 'Illapel',
-            label: 'Illapel'
+            label: 'Illapel',
           },
           {
             value: 'Canela',
-            label: 'Canela'
+            label: 'Canela',
           },
           {
             value: 'Los Vilos',
-            label: 'Los Vilos'
+            label: 'Los Vilos',
           },
           {
             value: 'Salamanca',
-            label: 'Salamanca'
+            label: 'Salamanca',
           },
           {
             value: 'Ovalle',
-            label: 'Ovalle'
+            label: 'Ovalle',
           },
           {
             value: 'Combarbalá',
-            label: 'Combarbalá'
+            label: 'Combarbalá',
           },
           {
             value: 'Monte Patria',
-            label: 'Monte Patria'
+            label: 'Monte Patria',
           },
           {
             value: 'Punitaqui',
-            label: 'Punitaqui'
+            label: 'Punitaqui',
           },
           {
             value: 'Río Hurtado',
-            label: 'Río Hurtado'
-          }
+            label: 'Río Hurtado',
+          },
         ],
-        'Valparaíso': [
+        Valparaíso: [
           {
             value: '',
-            label: ''
+            label: '',
           },
           {
             value: 'Valparaíso',
-            label: 'Valparaíso'
+            label: 'Valparaíso',
           },
           {
             value: 'Casablanca',
-            label: 'Casablanca'
+            label: 'Casablanca',
           },
           {
             value: 'Concón',
-            label: 'Concón'
+            label: 'Concón',
           },
           {
             value: 'Juan Fernández',
-            label: 'Juan Fernández'
+            label: 'Juan Fernández',
           },
           {
             value: 'Puchuncaví',
-            label: 'Puchuncaví'
+            label: 'Puchuncaví',
           },
           {
             value: 'Quintero',
-            label: 'Quintero'
+            label: 'Quintero',
           },
           {
             value: 'Viña del Mar',
-            label: 'Viña del Mar'
+            label: 'Viña del Mar',
           },
           {
             value: 'Isla de Pascua',
-            label: 'Isla de Pascua'
+            label: 'Isla de Pascua',
           },
           {
             value: 'Los Andes',
-            label: 'Los Andes'
+            label: 'Los Andes',
           },
           {
             value: 'Calle Larga',
-            label: 'Calle Larga'
+            label: 'Calle Larga',
           },
           {
             value: 'Rinconada',
-            label: 'Rinconada'
+            label: 'Rinconada',
           },
           {
             value: 'San Esteban',
-            label: 'San Esteban'
+            label: 'San Esteban',
           },
           {
             value: 'La Ligua',
-            label: 'La Ligua'
+            label: 'La Ligua',
           },
           {
             value: 'Cabildo',
-            label: 'Cabildo'
+            label: 'Cabildo',
           },
           {
             value: 'Papudo',
-            label: 'Papudo'
+            label: 'Papudo',
           },
           {
             value: 'Petorca',
-            label: 'Petorca'
+            label: 'Petorca',
           },
           {
             value: 'Zapallar',
-            label: 'Zapallar'
+            label: 'Zapallar',
           },
           {
             value: 'Quillota',
-            label: 'Quillota'
+            label: 'Quillota',
           },
           {
             value: 'La Calera',
-            label: 'La Calera'
+            label: 'La Calera',
           },
           {
             value: 'Hijuelas',
-            label: 'Hijuelas'
+            label: 'Hijuelas',
           },
           {
             value: 'La Cruz',
-            label: 'La Cruz'
+            label: 'La Cruz',
           },
           {
             value: 'Nogales',
-            label: 'Nogales'
+            label: 'Nogales',
           },
           {
             value: 'San Antonio',
-            label: 'San Antonio'
+            label: 'San Antonio',
           },
           {
             value: 'Algarrobo',
-            label: 'Algarrobo'
+            label: 'Algarrobo',
           },
           {
             value: 'Cartagena',
-            label: 'Cartagena'
+            label: 'Cartagena',
           },
           {
             value: 'El Quisco',
-            label: 'El Quisco'
+            label: 'El Quisco',
           },
           {
             value: 'El Tabo',
-            label: 'El Tabo'
+            label: 'El Tabo',
           },
           {
             value: 'Santo Domingo',
-            label: 'Santo Domingo'
+            label: 'Santo Domingo',
           },
           {
             value: 'San Felipe',
-            label: 'San Felipe'
+            label: 'San Felipe',
           },
           {
             value: 'Catemu',
-            label: 'Catemu'
+            label: 'Catemu',
           },
           {
             value: 'Llay-Llay',
-            label: 'Llay-Llay'
+            label: 'Llay-Llay',
           },
           {
             value: 'Panquehue',
-            label: 'Panquehue'
+            label: 'Panquehue',
           },
           {
             value: 'Putaendo',
-            label: 'Putaendo'
+            label: 'Putaendo',
           },
           {
             value: 'Santa María',
-            label: 'Santa María'
+            label: 'Santa María',
           },
           {
             value: 'Quilpué',
-            label: 'Quilpué'
+            label: 'Quilpué',
           },
           {
             value: 'Limache',
-            label: 'Limache'
+            label: 'Limache',
           },
           {
             value: 'Olmué',
-            label: 'Olmué'
+            label: 'Olmué',
           },
           {
             value: 'Villa Alemana',
-            label: 'Villa Alemana'
-          }
+            label: 'Villa Alemana',
+          },
         ],
         "Lib. Gral. Bernardo O'Higgins": [
           {
             value: '',
-            label: ''
+            label: '',
           },
           {
             value: 'Rancagua',
-            label: 'Rancagua'
+            label: 'Rancagua',
           },
           {
             value: 'Codegua',
-            label: 'Codegua'
+            label: 'Codegua',
           },
           {
             value: 'Coinco',
-            label: 'Coinco'
+            label: 'Coinco',
           },
           {
             value: 'Coltauco',
-            label: 'Coltauco'
+            label: 'Coltauco',
           },
           {
             value: 'Doñihue',
-            label: 'Doñihue'
+            label: 'Doñihue',
           },
           {
             value: 'Graneros',
-            label: 'Graneros'
+            label: 'Graneros',
           },
           {
             value: 'Las Cabras',
-            label: 'Las Cabras'
+            label: 'Las Cabras',
           },
           {
             value: 'Machalí',
-            label: 'Machalí'
+            label: 'Machalí',
           },
           {
             value: 'Malloa',
-            label: 'Malloa'
+            label: 'Malloa',
           },
           {
             value: 'Mostazal',
-            label: 'Mostazal'
+            label: 'Mostazal',
           },
           {
             value: 'Olivar',
-            label: 'Olivar'
+            label: 'Olivar',
           },
           {
             value: 'Peumo',
-            label: 'Peumo'
+            label: 'Peumo',
           },
           {
             value: 'Pichidegua',
-            label: 'Pichidegua'
+            label: 'Pichidegua',
           },
           {
             value: 'Quinta de Tilcoco',
-            label: 'Quinta de Tilcoco'
+            label: 'Quinta de Tilcoco',
           },
           {
             value: 'Rengo',
-            label: 'Rengo'
+            label: 'Rengo',
           },
           {
             value: 'Requínoa',
-            label: 'Requínoa'
+            label: 'Requínoa',
           },
           {
             value: 'San Vicente',
-            label: 'San Vicente'
+            label: 'San Vicente',
           },
           {
             value: 'Pichilemu',
-            label: 'Pichilemu'
+            label: 'Pichilemu',
           },
           {
             value: 'La Estrella',
-            label: 'La Estrella'
+            label: 'La Estrella',
           },
           {
             value: 'Litueche',
-            label: 'Litueche'
+            label: 'Litueche',
           },
           {
             value: 'Marchihue',
-            label: 'Marchihue'
+            label: 'Marchihue',
           },
           {
             value: 'Navidad',
-            label: 'Navidad'
+            label: 'Navidad',
           },
           {
             value: 'Paredones',
-            label: 'Paredones'
+            label: 'Paredones',
           },
           {
             value: 'San Fernando',
-            label: 'San Fernando'
+            label: 'San Fernando',
           },
           {
             value: 'Chépica',
-            label: 'Chépica'
+            label: 'Chépica',
           },
           {
             value: 'Chimbarongo',
-            label: 'Chimbarongo'
+            label: 'Chimbarongo',
           },
           {
             value: 'Lolol',
-            label: 'Lolol'
+            label: 'Lolol',
           },
           {
             value: 'Nancagua',
-            label: 'Nancagua'
+            label: 'Nancagua',
           },
           {
             value: 'Palmilla',
-            label: 'Palmilla'
+            label: 'Palmilla',
           },
           {
             value: 'Peralillo',
-            label: 'Peralillo'
+            label: 'Peralillo',
           },
           {
             value: 'Placilla',
-            label: 'Placilla'
+            label: 'Placilla',
           },
           {
             value: 'Pumanque',
-            label: 'Pumanque'
+            label: 'Pumanque',
           },
           {
             value: 'Santa Cruz',
-            label: 'Santa Cruz'
-          }
+            label: 'Santa Cruz',
+          },
         ],
-        'Maule': [
+        Maule: [
           {
             value: '',
-            label: ''
+            label: '',
           },
           {
             value: 'Talca',
-            label: 'Talca'
+            label: 'Talca',
           },
           {
             value: 'Constitución',
-            label: 'Constitución'
+            label: 'Constitución',
           },
           {
             value: 'Curepto',
-            label: 'Curepto'
+            label: 'Curepto',
           },
           {
             value: 'Empedrado',
-            label: 'Empedrado'
+            label: 'Empedrado',
           },
           {
             value: 'Maule',
-            label: 'Maule'
+            label: 'Maule',
           },
           {
             value: 'Pelarco',
-            label: 'Pelarco'
+            label: 'Pelarco',
           },
           {
             value: 'Pencahue',
-            label: 'Pencahue'
+            label: 'Pencahue',
           },
           {
             value: 'Río Claro',
-            label: 'Río Claro'
+            label: 'Río Claro',
           },
           {
             value: 'San Clemente',
-            label: 'San Clemente'
+            label: 'San Clemente',
           },
           {
             value: 'San Rafael',
-            label: 'San Rafael'
+            label: 'San Rafael',
           },
           {
             value: 'Cauquenes',
-            label: 'Cauquenes'
+            label: 'Cauquenes',
           },
           {
             value: 'Chanco',
-            label: 'Chanco'
+            label: 'Chanco',
           },
           {
             value: 'Pelluhue',
-            label: 'Pelluhue'
+            label: 'Pelluhue',
           },
           {
             value: 'Curicó',
-            label: 'Curicó'
+            label: 'Curicó',
           },
           {
             value: 'Hualañé',
-            label: 'Hualañé'
+            label: 'Hualañé',
           },
           {
             value: 'Licantén',
-            label: 'Licantén'
+            label: 'Licantén',
           },
           {
             value: 'Molina',
-            label: 'Molina'
+            label: 'Molina',
           },
           {
             value: 'Rauco',
-            label: 'Rauco'
+            label: 'Rauco',
           },
           {
             value: 'Romeral',
-            label: 'Romeral'
+            label: 'Romeral',
           },
           {
             value: 'Sagrada Familia',
-            label: 'Sagrada Familia'
+            label: 'Sagrada Familia',
           },
           {
             value: 'Teno',
-            label: 'Teno'
+            label: 'Teno',
           },
           {
             value: 'Vichuquén',
-            label: 'Vichuquén'
+            label: 'Vichuquén',
           },
           {
             value: 'Linares',
-            label: 'Linares'
+            label: 'Linares',
           },
           {
             value: 'Colbún',
-            label: 'Colbún'
+            label: 'Colbún',
           },
           {
             value: 'Longaví',
-            label: 'Longaví'
+            label: 'Longaví',
           },
           {
             value: 'Parral',
-            label: 'Parral'
+            label: 'Parral',
           },
           {
             value: 'Retiro',
-            label: 'Retiro'
+            label: 'Retiro',
           },
           {
             value: 'San Javier',
-            label: 'San Javier'
+            label: 'San Javier',
           },
           {
             value: 'Villa Alegre',
-            label: 'Villa Alegre'
+            label: 'Villa Alegre',
           },
           {
             value: 'Yerbas Buenas',
-            label: 'Yerbas Buenas'
-          }
+            label: 'Yerbas Buenas',
+          },
         ],
-        'Ñuble': [
+        Ñuble: [
           {
             value: '',
-            label: ''
+            label: '',
           },
           {
             value: 'Chillán',
-            label: 'Chillán'
+            label: 'Chillán',
           },
           {
             value: 'Bulnes',
-            label: 'Bulnes'
+            label: 'Bulnes',
           },
           {
             value: 'Chillán Viejo',
-            label: 'Chillán Viejo'
+            label: 'Chillán Viejo',
           },
           {
             value: 'El Carmen',
-            label: 'El Carmen'
+            label: 'El Carmen',
           },
           {
             value: 'Pemuco',
-            label: 'Pemuco'
+            label: 'Pemuco',
           },
           {
             value: 'Pinto',
-            label: 'Pinto'
+            label: 'Pinto',
           },
           {
             value: 'Quillón',
-            label: 'Quillón'
+            label: 'Quillón',
           },
           {
             value: 'San Ignacio',
-            label: 'San Ignacio'
+            label: 'San Ignacio',
           },
           {
             value: 'Yungay',
-            label: 'Yungay'
+            label: 'Yungay',
           },
           {
             value: 'Quirihue',
-            label: 'Quirihue'
+            label: 'Quirihue',
           },
           {
             value: 'Cobquecura',
-            label: 'Cobquecura'
+            label: 'Cobquecura',
           },
           {
             value: 'Coelemu',
-            label: 'Coelemu'
+            label: 'Coelemu',
           },
           {
             value: 'Ninhue',
-            label: 'Ninhue'
+            label: 'Ninhue',
           },
           {
             value: 'Portezuelo',
-            label: 'Portezuelo'
+            label: 'Portezuelo',
           },
           {
             value: 'Ránquil',
-            label: 'Ránquil'
+            label: 'Ránquil',
           },
           {
             value: 'Treguaco',
-            label: 'Treguaco'
+            label: 'Treguaco',
           },
           {
             value: 'San Carlos',
-            label: 'San Carlos'
+            label: 'San Carlos',
           },
           {
             value: 'Coihueco',
-            label: 'Coihueco'
+            label: 'Coihueco',
           },
           {
             value: 'Ñiquén',
-            label: 'Ñiquén'
+            label: 'Ñiquén',
           },
           {
             value: 'San Fabián',
-            label: 'San Fabián'
+            label: 'San Fabián',
           },
           {
             value: 'San Nicolás',
-            label: 'San Nicolás'
-          }
+            label: 'San Nicolás',
+          },
         ],
-        'Biobío': [
+        Biobío: [
           {
             value: '',
-            label: ''
+            label: '',
           },
           {
             value: 'Concepción',
-            label: 'Concepción'
+            label: 'Concepción',
           },
           {
             value: 'Coronel',
-            label: 'Coronel'
+            label: 'Coronel',
           },
           {
             value: 'Chiguayante',
-            label: 'Chiguayante'
+            label: 'Chiguayante',
           },
           {
             value: 'Florida',
-            label: 'Florida'
+            label: 'Florida',
           },
           {
             value: 'Hualqui',
-            label: 'Hualqui'
+            label: 'Hualqui',
           },
           {
             value: 'Lota',
-            label: 'Lota'
+            label: 'Lota',
           },
           {
             value: 'Penco',
-            label: 'Penco'
+            label: 'Penco',
           },
           {
             value: 'San Pedro de La Paz',
-            label: 'San Pedro de La Paz'
+            label: 'San Pedro de La Paz',
           },
           {
             value: 'Santa Juana',
-            label: 'Santa Juana'
+            label: 'Santa Juana',
           },
           {
             value: 'Talcahuano',
-            label: 'Talcahuano'
+            label: 'Talcahuano',
           },
           {
             value: 'Tomé',
-            label: 'Tomé'
+            label: 'Tomé',
           },
           {
             value: 'Hualpén',
-            label: 'Hualpén'
+            label: 'Hualpén',
           },
           {
             value: 'Lebu',
-            label: 'Lebu'
+            label: 'Lebu',
           },
           {
             value: 'Arauco',
-            label: 'Arauco'
+            label: 'Arauco',
           },
           {
             value: 'Cañete',
-            label: 'Cañete'
+            label: 'Cañete',
           },
           {
             value: 'Contulmo',
-            label: 'Contulmo'
+            label: 'Contulmo',
           },
           {
             value: 'Curanilahue',
-            label: 'Curanilahue'
+            label: 'Curanilahue',
           },
           {
             value: 'Los Álamos',
-            label: 'Los Álamos'
+            label: 'Los Álamos',
           },
           {
             value: 'Tirúa',
-            label: 'Tirúa'
+            label: 'Tirúa',
           },
           {
             value: 'Los Ángeles',
-            label: 'Los Ángeles'
+            label: 'Los Ángeles',
           },
           {
             value: 'Antuco',
-            label: 'Antuco'
+            label: 'Antuco',
           },
           {
             value: 'Cabrero',
-            label: 'Cabrero'
+            label: 'Cabrero',
           },
           {
             value: 'Laja',
-            label: 'Laja'
+            label: 'Laja',
           },
           {
             value: 'Mulchén',
-            label: 'Mulchén'
+            label: 'Mulchén',
           },
           {
             value: 'Nacimiento',
-            label: 'Nacimiento'
+            label: 'Nacimiento',
           },
           {
             value: 'Negrete',
-            label: 'Negrete'
+            label: 'Negrete',
           },
           {
             value: 'Quilaco',
-            label: 'Quilaco'
+            label: 'Quilaco',
           },
           {
             value: 'Quilleco',
-            label: 'Quilleco'
+            label: 'Quilleco',
           },
           {
             value: 'San Rosendo',
-            label: 'San Rosendo'
+            label: 'San Rosendo',
           },
           {
             value: 'Santa Bárbara',
-            label: 'Santa Bárbara'
+            label: 'Santa Bárbara',
           },
           {
             value: 'Tucapel',
-            label: 'Tucapel'
+            label: 'Tucapel',
           },
           {
             value: 'Yumbel',
-            label: 'Yumbel'
+            label: 'Yumbel',
           },
           {
             value: 'Alto Biobío',
-            label: 'Alto Biobío'
-          }
+            label: 'Alto Biobío',
+          },
         ],
         'La Araucanía': [
           {
             value: '',
-            label: ''
+            label: '',
           },
           {
             value: 'Temuco',
-            label: 'Temuco'
+            label: 'Temuco',
           },
           {
             value: 'Carahue',
-            label: 'Carahue'
+            label: 'Carahue',
           },
           {
             value: 'Cunco',
-            label: 'Cunco'
+            label: 'Cunco',
           },
           {
             value: 'Curarrehue',
-            label: 'Curarrehue'
+            label: 'Curarrehue',
           },
           {
             value: 'Freire',
-            label: 'Freire'
+            label: 'Freire',
           },
           {
             value: 'Galvarino',
-            label: 'Galvarino'
+            label: 'Galvarino',
           },
           {
             value: 'Gorbea',
-            label: 'Gorbea'
+            label: 'Gorbea',
           },
           {
             value: 'Lautaro',
-            label: 'Lautaro'
+            label: 'Lautaro',
           },
           {
             value: 'Loncoche',
-            label: 'Loncoche'
+            label: 'Loncoche',
           },
           {
             value: 'Melipeuco',
-            label: 'Melipeuco'
+            label: 'Melipeuco',
           },
           {
             value: 'Nueva Imperial',
-            label: 'Nueva Imperial'
+            label: 'Nueva Imperial',
           },
           {
             value: 'Padre Las Casas',
-            label: 'Padre Las Casas'
+            label: 'Padre Las Casas',
           },
           {
             value: 'Perquenco',
-            label: 'Perquenco'
+            label: 'Perquenco',
           },
           {
             value: 'Pitrufquén',
-            label: 'Pitrufquén'
+            label: 'Pitrufquén',
           },
           {
             value: 'Pucón',
-            label: 'Pucón'
+            label: 'Pucón',
           },
           {
             value: 'Saavedra',
-            label: 'Saavedra'
+            label: 'Saavedra',
           },
           {
             value: 'Teodoro Schmidt',
-            label: 'Teodoro Schmidt'
+            label: 'Teodoro Schmidt',
           },
           {
             value: 'Toltén',
-            label: 'Toltén'
+            label: 'Toltén',
           },
           {
             value: 'Vilcún',
-            label: 'Vilcún'
+            label: 'Vilcún',
           },
           {
             value: 'Villarrica',
-            label: 'Villarrica'
+            label: 'Villarrica',
           },
           {
             value: 'Cholchol',
-            label: 'Cholchol'
+            label: 'Cholchol',
           },
           {
             value: 'Angol',
-            label: 'Angol'
+            label: 'Angol',
           },
           {
             value: 'Collipulli',
-            label: 'Collipulli'
+            label: 'Collipulli',
           },
           {
             value: 'Curacautín',
-            label: 'Curacautín'
+            label: 'Curacautín',
           },
           {
             value: 'Ercilla',
-            label: 'Ercilla'
+            label: 'Ercilla',
           },
           {
             value: 'Lonquimay',
-            label: 'Lonquimay'
+            label: 'Lonquimay',
           },
           {
             value: 'Los Sauces',
-            label: 'Los Sauces'
+            label: 'Los Sauces',
           },
           {
             value: 'Lumaco',
-            label: 'Lumaco'
+            label: 'Lumaco',
           },
           {
             value: 'Purén',
-            label: 'Purén'
+            label: 'Purén',
           },
           {
             value: 'Renaico',
-            label: 'Renaico'
+            label: 'Renaico',
           },
           {
             value: 'Traiguén',
-            label: 'Traiguén'
+            label: 'Traiguén',
           },
           {
             value: 'Victoria',
-            label: 'Victoria'
-          }
+            label: 'Victoria',
+          },
         ],
         'Los Ríos': [
           {
             value: '',
-            label: ''
+            label: '',
           },
           {
             value: 'Valdivia',
-            label: 'Valdivia'
+            label: 'Valdivia',
           },
           {
             value: 'Corral',
-            label: 'Corral'
+            label: 'Corral',
           },
           {
             value: 'Lanco',
-            label: 'Lanco'
+            label: 'Lanco',
           },
           {
             value: 'Los Lagos',
-            label: 'Los Lagos'
+            label: 'Los Lagos',
           },
           {
             value: 'Máfil',
-            label: 'Máfil'
+            label: 'Máfil',
           },
           {
             value: 'Mariquina',
-            label: 'Mariquina'
+            label: 'Mariquina',
           },
           {
             value: 'Paillaco',
-            label: 'Paillaco'
+            label: 'Paillaco',
           },
           {
             value: 'Panguipulli',
-            label: 'Panguipulli'
+            label: 'Panguipulli',
           },
           {
             value: 'La Unión',
-            label: 'La Unión'
+            label: 'La Unión',
           },
           {
             value: 'Futrono',
-            label: 'Futrono'
+            label: 'Futrono',
           },
           {
             value: 'Lago Ranco',
-            label: 'Lago Ranco'
+            label: 'Lago Ranco',
           },
           {
             value: 'Río Bueno',
-            label: 'Río Bueno'
-          }
+            label: 'Río Bueno',
+          },
         ],
         'Los Lagos': [
           {
             value: '',
-            label: ''
+            label: '',
           },
           {
             value: 'Puerto Montt',
-            label: 'Puerto Montt'
+            label: 'Puerto Montt',
           },
           {
             value: 'Calbuco',
-            label: 'Calbuco'
+            label: 'Calbuco',
           },
           {
             value: 'Cochamó',
-            label: 'Cochamó'
+            label: 'Cochamó',
           },
           {
             value: 'Fresia',
-            label: 'Fresia'
+            label: 'Fresia',
           },
           {
             value: 'Frutillar',
-            label: 'Frutillar'
+            label: 'Frutillar',
           },
           {
             value: 'Los Muermos',
-            label: 'Los Muermos'
+            label: 'Los Muermos',
           },
           {
             value: 'Llanquihue',
-            label: 'Llanquihue'
+            label: 'Llanquihue',
           },
           {
             value: 'Maullín',
-            label: 'Maullín'
+            label: 'Maullín',
           },
           {
             value: 'Puerto Varas',
-            label: 'Puerto Varas'
+            label: 'Puerto Varas',
           },
           {
             value: 'Castro',
-            label: 'Castro'
+            label: 'Castro',
           },
           {
             value: 'Ancud',
-            label: 'Ancud'
+            label: 'Ancud',
           },
           {
             value: 'Chonchi',
-            label: 'Chonchi'
+            label: 'Chonchi',
           },
           {
             value: 'Curaco de Vélez',
-            label: 'Curaco de Vélez'
+            label: 'Curaco de Vélez',
           },
           {
             value: 'Dalcahue',
-            label: 'Dalcahue'
+            label: 'Dalcahue',
           },
           {
             value: 'Puqueldón',
-            label: 'Puqueldón'
+            label: 'Puqueldón',
           },
           {
             value: 'Queilén',
-            label: 'Queilén'
+            label: 'Queilén',
           },
           {
             value: 'Quellón',
-            label: 'Quellón'
+            label: 'Quellón',
           },
           {
             value: 'Quemchi',
-            label: 'Quemchi'
+            label: 'Quemchi',
           },
           {
             value: 'Quinchao',
-            label: 'Quinchao'
+            label: 'Quinchao',
           },
           {
             value: 'Osorno',
-            label: 'Osorno'
+            label: 'Osorno',
           },
           {
             value: 'Puerto Octay',
-            label: 'Puerto Octay'
+            label: 'Puerto Octay',
           },
           {
             value: 'Purranque',
-            label: 'Purranque'
+            label: 'Purranque',
           },
           {
             value: 'Puyehue',
-            label: 'Puyehue'
+            label: 'Puyehue',
           },
           {
             value: 'Río Negro',
-            label: 'Río Negro'
+            label: 'Río Negro',
           },
           {
             value: 'San Juan de la Costa',
-            label: 'San Juan de la Costa'
+            label: 'San Juan de la Costa',
           },
           {
             value: 'San Pablo',
-            label: 'San Pablo'
+            label: 'San Pablo',
           },
           {
             value: 'Chaitén',
-            label: 'Chaitén'
+            label: 'Chaitén',
           },
           {
             value: 'Futaleufú',
-            label: 'Futaleufú'
+            label: 'Futaleufú',
           },
           {
             value: 'Hualaihué',
-            label: 'Hualaihué'
+            label: 'Hualaihué',
           },
           {
             value: 'Palena',
-            label: 'Palena'
-          }
+            label: 'Palena',
+          },
         ],
-        'Aysén': [
+        Aysén: [
           {
             value: '',
-            label: ''
+            label: '',
           },
           {
             value: 'Coyhaique',
-            label: 'Coyhaique'
+            label: 'Coyhaique',
           },
           {
             value: 'Lago Verde',
-            label: 'Lago Verde'
+            label: 'Lago Verde',
           },
           {
             value: 'Aysén',
-            label: 'Aysén'
+            label: 'Aysén',
           },
           {
             value: 'Cisnes',
-            label: 'Cisnes'
+            label: 'Cisnes',
           },
           {
             value: 'Guaitecas',
-            label: 'Guaitecas'
+            label: 'Guaitecas',
           },
           {
             value: 'Cochrane',
-            label: 'Cochrane'
+            label: 'Cochrane',
           },
           {
             value: "O'Higgins",
-            label: "O'Higgins"
+            label: "O'Higgins",
           },
           {
             value: 'Tortel',
-            label: 'Tortel'
+            label: 'Tortel',
           },
           {
             value: 'Chile Chico',
-            label: 'Chile Chico'
+            label: 'Chile Chico',
           },
           {
             value: 'Río Ibáñez',
-            label: 'Río Ibáñez'
-          }
+            label: 'Río Ibáñez',
+          },
         ],
         'Magallanes y Antártica Chilena': [
           {
             value: '',
-            label: ''
+            label: '',
           },
           {
             value: 'Punta Arenas',
-            label: 'Punta Arenas'
+            label: 'Punta Arenas',
           },
           {
             value: 'Laguna Blanca',
-            label: 'Laguna Blanca'
+            label: 'Laguna Blanca',
           },
           {
             value: 'Río Verde',
-            label: 'Río Verde'
+            label: 'Río Verde',
           },
           {
             value: 'San Gregorio',
-            label: 'San Gregorio'
+            label: 'San Gregorio',
           },
           {
             value: 'Cabo de Hornos',
-            label: 'Cabo de Hornos'
+            label: 'Cabo de Hornos',
           },
           {
             value: 'Antártica',
-            label: 'Antártica'
+            label: 'Antártica',
           },
           {
             value: 'Porvenir',
-            label: 'Porvenir'
+            label: 'Porvenir',
           },
           {
             value: 'Primavera',
-            label: 'Primavera'
+            label: 'Primavera',
           },
           {
             value: 'Timaukel',
-            label: 'Timaukel'
+            label: 'Timaukel',
           },
           {
             value: 'Natales',
-            label: 'Natales'
+            label: 'Natales',
           },
           {
             value: 'Torres del Paine',
-            label: 'Torres del Paine'
-          }
+            label: 'Torres del Paine',
+          },
         ],
         'Metropolitana de Santiago': [
           {
             value: '',
-            label: ''
+            label: '',
           },
           {
             value: 'Santiago',
-            label: 'Santiago'
+            label: 'Santiago',
           },
           {
             value: 'Cerrillos',
-            label: 'Cerrillos'
+            label: 'Cerrillos',
           },
           {
             value: 'Cerro Navia',
-            label: 'Cerro Navia'
+            label: 'Cerro Navia',
           },
           {
             value: 'Conchalí',
-            label: 'Conchalí'
+            label: 'Conchalí',
           },
           {
             value: 'El Bosque',
-            label: 'El Bosque'
+            label: 'El Bosque',
           },
           {
             value: 'Estación Central',
-            label: 'Estación Central'
+            label: 'Estación Central',
           },
           {
             value: 'Huechuraba',
-            label: 'Huechuraba'
+            label: 'Huechuraba',
           },
           {
             value: 'Independencia',
-            label: 'Independencia'
+            label: 'Independencia',
           },
           {
             value: 'La Cisterna',
-            label: 'La Cisterna'
+            label: 'La Cisterna',
           },
           {
             value: 'La Florida',
-            label: 'La Florida'
+            label: 'La Florida',
           },
           {
             value: 'La Granja',
-            label: 'La Granja'
+            label: 'La Granja',
           },
           {
             value: 'La Pintana',
-            label: 'La Pintana'
+            label: 'La Pintana',
           },
           {
             value: 'La Reina',
-            label: 'La Reina'
+            label: 'La Reina',
           },
           {
             value: 'Las Condes',
-            label: 'Las Condes'
+            label: 'Las Condes',
           },
           {
             value: 'Lo Barnechea',
-            label: 'Lo Barnechea'
+            label: 'Lo Barnechea',
           },
           {
             value: 'Lo Espejo',
-            label: 'Lo Espejo'
+            label: 'Lo Espejo',
           },
           {
             value: 'Lo Prado',
-            label: 'Lo Prado'
+            label: 'Lo Prado',
           },
           {
             value: 'Macul',
-            label: 'Macul'
+            label: 'Macul',
           },
           {
             value: 'Maipú',
-            label: 'Maipú'
+            label: 'Maipú',
           },
           {
             value: 'Ñuñoa',
-            label: 'Ñuñoa'
+            label: 'Ñuñoa',
           },
           {
             value: 'Pedro Aguirre Cerda',
-            label: 'Pedro Aguirre Cerda'
+            label: 'Pedro Aguirre Cerda',
           },
           {
             value: 'Peñalolén',
-            label: 'Peñalolén'
+            label: 'Peñalolén',
           },
           {
             value: 'Providencia',
-            label: 'Providencia'
+            label: 'Providencia',
           },
           {
             value: 'Pudahuel',
-            label: 'Pudahuel'
+            label: 'Pudahuel',
           },
           {
             value: 'Quilicura',
-            label: 'Quilicura'
+            label: 'Quilicura',
           },
           {
             value: 'Quinta Normal',
-            label: 'Quinta Normal'
+            label: 'Quinta Normal',
           },
           {
             value: 'Recoleta',
-            label: 'Recoleta'
+            label: 'Recoleta',
           },
           {
             value: 'Renca',
-            label: 'Renca'
+            label: 'Renca',
           },
           {
             value: 'San Joaquín',
-            label: 'San Joaquín'
+            label: 'San Joaquín',
           },
           {
             value: 'San Miguel',
-            label: 'San Miguel'
+            label: 'San Miguel',
           },
           {
             value: 'San Ramón',
-            label: 'San Ramón'
+            label: 'San Ramón',
           },
           {
             value: 'Vitacura',
-            label: 'Vitacura'
+            label: 'Vitacura',
           },
           {
             value: 'Puente Alto',
-            label: 'Puente Alto'
+            label: 'Puente Alto',
           },
           {
             value: 'Pirque',
-            label: 'Pirque'
+            label: 'Pirque',
           },
           {
             value: 'San José de Maipo',
-            label: 'San José de Maipo'
+            label: 'San José de Maipo',
           },
           {
             value: 'Colina',
-            label: 'Colina'
+            label: 'Colina',
           },
           {
             value: 'Lampa',
-            label: 'Lampa'
+            label: 'Lampa',
           },
           {
             value: 'Til Til',
-            label: 'Til Til'
+            label: 'Til Til',
           },
           {
             value: 'San Bernardo',
-            label: 'San Bernardo'
+            label: 'San Bernardo',
           },
           {
             value: 'Buin',
-            label: 'Buin'
+            label: 'Buin',
           },
           {
             value: 'Calera de Tango',
-            label: 'Calera de Tango'
+            label: 'Calera de Tango',
           },
           {
             value: 'Paine',
-            label: 'Paine'
+            label: 'Paine',
           },
           {
             value: 'Melipilla',
-            label: 'Melipilla'
+            label: 'Melipilla',
           },
           {
             value: 'Alhué',
-            label: 'Alhué'
+            label: 'Alhué',
           },
           {
             value: 'Curacaví',
-            label: 'Curacaví'
+            label: 'Curacaví',
           },
           {
             value: 'María Pinto',
-            label: 'María Pinto'
+            label: 'María Pinto',
           },
           {
             value: 'San Pedro',
-            label: 'San Pedro'
+            label: 'San Pedro',
           },
           {
             value: 'Talagante',
-            label: 'Talagante'
+            label: 'Talagante',
           },
           {
             value: 'El Monte',
-            label: 'El Monte'
+            label: 'El Monte',
           },
           {
             value: 'Isla de Maipo',
-            label: 'Isla de Maipo'
+            label: 'Isla de Maipo',
           },
           {
             value: 'Padre Hurtado',
-            label: 'Padre Hurtado'
+            label: 'Padre Hurtado',
           },
           {
             value: 'Peñaflor',
-            label: 'Peñaflor'
-          }
+            label: 'Peñaflor',
+          },
         ],
-      }
+      },
     },
     {
       type: 'checkbox',
       name: 'termsAndConditions',
-      label: 'He leído y acepto los <a href="https://www.linealibre.cl/wp-content/uploads/2020/11/TERMINOS-Y-CONDICIONES-DE-USO-Y-POLITICA-DE-PRIVACIDAD-LL.pdf">términos y condiciones</a>',
+      label:
+        'He leído y acepto los <a href="https://www.linealibre.cl/wp-content/uploads/2020/11/TERMINOS-Y-CONDICIONES-DE-USO-Y-POLITICA-DE-PRIVACIDAD-LL.pdf">términos y condiciones</a>',
       required: {
         value: true,
         message: 'Tienes que approbar los términos y condiciones para poder iniciar un chat.',

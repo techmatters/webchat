@@ -169,10 +169,10 @@ const translations: Translations = {
     BotGreeting: 'Comment je peux aider?',
 
     PreEngagementConfigDescription:
-      "Bienvenue à Kids Help Phone. J'écoute. Pour nous aider à mieux vous servir, veuillez répondre aux questions suivantes.",
+      "Bienvenue à Jeunesse, J'écoute. Pour nous aider à mieux vous servir, veuillez répondre aux questions suivantes.",
     LabelNickname: 'Pseudonyme (Veuillez ne pas partager votre vrai nom)',
     NameNickname: 'nickname',
-    Guest: 'Guest',
+    Guest: 'Invité',
     HowOldAreYou: 'Quel âge as-tu?',
     Age: 'age',
     FiveOrYounger: '5 ans ou moins',
