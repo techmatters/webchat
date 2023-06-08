@@ -86,7 +86,7 @@ const translations: Translations = {
 
 const preEngagementConfig: PreEngagementFormDefinition = {
   description: '',
-  submitLabel: 'Start',
+  submitLabel: 'StartChat',
   fields: [
     {
       type: 'select',
