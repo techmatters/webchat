@@ -14,8 +14,9 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-import { taskReducer, TaskState, setCurrentTaskFromChannel} from '../src/task';
 import { Channel } from 'twilio-chat/lib/channel';
+
+import { taskReducer, TaskState, setCurrentTaskFromChannel } from '../src/task';
 
 describe('task reducer', () => {
   test('should return initial state when no action is passed', () => {
@@ -27,10 +28,10 @@ describe('task reducer', () => {
   });
 
   test('should return new taskSid when updating channel with current task', () => {
-    const initialState: TaskState = { currentSid: 'Task1' };
+    const initialState: TaskState = { tasksSids: ['Task1'] };
 
-    const expected = { ...initialState, currentSid: 'Task2' };
-    const channel: Partial<Channel>= {attributes: { taskSid: 'Task2' } } 
+    const expected = { ...initialState, tasksSids: ['Task1', 'Task2'] };
+    const channel: Partial<Channel> = { attributes: { tasksSids: ['Task1', 'Task2'] } };
     const action = setCurrentTaskFromChannel(channel as Channel);
     const updatedState = taskReducer(initialState, action);
 
