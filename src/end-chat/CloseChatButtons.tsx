@@ -17,24 +17,33 @@
 /* eslint-disable react/require-default-props */
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { Template } from '@twilio/flex-webchat-ui';
 
 import Exit from './QuickExit';
 import End from './EndChat';
 import { AseloWebchatState } from '../aselo-webchat-state';
+import { ButtonsWrapper, ExitDescText } from './end-chat-styles';
 
-const CloseChatButtons = ({ channelSid, token, language, taskSid }: MapStateToProps) => {
+const CloseChatButtons = ({ channelSid, token, language, tasksSids }: MapStateToProps) => {
   if (!channelSid || !token) {
     return null;
   }
+
+  const finishTask = Boolean(tasksSids?.length);
   return (
     <>
-      <End
-        channelSid={channelSid}
-        token={token}
-        language={language}
-        action={taskSid ? 'finishTask' : 'restartEngagement'}
-      />
-      <Exit channelSid={channelSid} token={token} language={language} finishTask={Boolean(taskSid)} />
+      <ButtonsWrapper>
+        <End
+          channelSid={channelSid}
+          token={token}
+          language={language}
+          action={finishTask ? 'finishTask' : 'restartEngagement'}
+        />
+        <Exit channelSid={channelSid} token={token} language={language} finishTask={finishTask} />
+      </ButtonsWrapper>
+      <ExitDescText>
+        <Template code="QuickExitDescription" />
+      </ExitDescText>
     </>
   );
 };
@@ -43,8 +52,9 @@ type MapStateToProps = ReturnType<typeof mapStateToProps>;
 
 const mapStateToProps = (state: AseloWebchatState) => {
   const { channelSid, tokenPayload } = state?.flex?.session ?? {};
+
   return {
-    taskSid: state?.task?.currentSid,
+    tasksSids: state?.task?.tasksSids,
     channelSid,
     token: tokenPayload?.token,
     language: state?.flex?.config?.language,

@@ -14,13 +14,14 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-import { PreEngagementConfig, Translations, Configuration, MapHelplineLanguage } from '../types';
+import { Translations, Configuration, MapHelplineLanguage } from '../types';
+import type { PreEngagementFormDefinition } from '../src/pre-engagement-form';
 
 const accountSid = 'ACc59300c7ca018e8652e4d6d86c2d50e6';
 const flexFlowSid = 'FObb9dfe97f1c59f455ab01811bec74cd5';
 const defaultLanguage = 'en-US';
 const captureIp = true;
-const contactType = 'ip'
+const contactType = 'ip';
 
 const translations: Translations = {
   'en-US': {
@@ -36,6 +37,7 @@ const translations: Translations = {
     MessageCanvasTrayContent: '',
     AutoFirstMessage: 'Incoming webchat contact from',
     StartChat: 'Start Chat!',
+    SelectLanguage: 'Select your language',
   },
   Bemba: {
     MessageInputDisabledReasonHold: 'Twalamutuma nomba kuli Chimbusa, pembeleni ichimpusa nomba.',
@@ -50,6 +52,8 @@ const translations: Translations = {
     MessageCanvasTrayContent: '',
     AutoFirstMessage: '',
     StartChat: 'Yambeni ukulanda mukwai!',
+    // Needs to be translated
+    SelectLanguage: 'Select your language',
   },
   Tonga: {
     MessageInputDisabledReasonHold: 'Tulamuswaanganya lino asikuyumya-yumya/sikulaya. Amujatilile notucimuswaanganya.',
@@ -64,6 +68,8 @@ const translations: Translations = {
     MessageCanvasTrayContent: '',
     AutoFirstMessage: '',
     StartChat: 'Atubandike!',
+    // Needs to be translated
+    SelectLanguage: 'Select your language',
   },
   Lunda: {
     MessageInputDisabledReasonHold: "Chuna kuitemesha ahembeleliku chanti kundi ankhong'u.",
@@ -78,6 +84,8 @@ const translations: Translations = {
     MessageCanvasTrayContent: '',
     AutoFirstMessage: '',
     StartChat: 'Tachikenu kuhanjeka!',
+    // Needs to be translated
+    SelectLanguage: 'Select your language',
   },
   Nyanja: {
     MessageInputDisabledReasonHold: 'Chonde tipeleka lamya lanu ku wa uphungu telo dikilani.',
@@ -92,6 +100,8 @@ const translations: Translations = {
     MessageCanvasTrayContent: '',
     AutoFirstMessage: '',
     StartChat: 'Yambani kulankhula!',
+    // Needs to be translated
+    SelectLanguage: 'Select your language',
   },
   Kaonde: {
     MessageInputDisabledReasonHold: 'Tusakwimi tuma pembelelai, pacheche ba nkwasho.',
@@ -106,6 +116,8 @@ const translations: Translations = {
     MessageCanvasTrayContent: '',
     AutoFirstMessage: '',
     StartChat: 'Twayayi twisambe!',
+    // Needs to be translated
+    SelectLanguage: 'Select your language',
   },
   Lozi: {
     MessageInputDisabledReasonHold: 'Luka kuisa ku mwelezi, u libelele hanyani.',
@@ -120,60 +132,32 @@ const translations: Translations = {
     MessageCanvasTrayContent: '',
     AutoFirstMessage: 'Incoming webchat contact from', // TODO: should this really be English?
     StartChat: 'Alukalise kwa mbola!',
+    // Needs to be translated
+    SelectLanguage: 'Select your language',
   },
 };
 
-const preEngagementConfig: PreEngagementConfig = {
-  description: "Let's get started",
+const preEngagementConfig: PreEngagementFormDefinition = {
+  description: 'PreEngagementDescription',
+  submitLabel: 'StartChat',
   fields: [
     {
-      label: 'Select your language',
-      type: 'SelectItem',
-      attributes: {
-        name: 'language',
-        required: true,
-        readOnly: false,
-      },
+      type: 'select',
+      name: 'language',
+      label: 'SelectLanguage',
+      defaultValue: 'English',
+      required: true,
       options: [
-        {
-          value: 'English',
-          label: '1. English',
-          selected: true,
-        },
-        {
-          value: 'Bemba',
-          label: '2. Bemba',
-          selected: false,
-        },
-        {
-          value: 'Tonga',
-          label: '3. Tonga',
-          selected: false,
-        },
-        {
-          value: 'Lunda',
-          label: '4. Lunda',
-          selected: false,
-        },
-        {
-          value: 'Nyanja',
-          label: '5. Nyanja',
-          selected: false,
-        },
-        {
-          value: 'Kaonde',
-          label: '6. Kaonde',
-          selected: false,
-        },
-        {
-          value: 'Lozi',
-          label: '7. Lozi',
-          selected: false,
-        },
+        { value: 'English', label: '1. English' },
+        { value: 'Bemba', label: '2. Bemba' },
+        { value: 'Tonga', label: '3. Tonga' },
+        { value: 'Lunda', label: '4. Lunda' },
+        { value: 'Nyanja', label: '5. Nyanja' },
+        { value: 'Kaonde', label: '6. Kaonde' },
+        { value: 'Lozi', label: '7. Lozi' },
       ],
     },
   ],
-  submitLabel: 'Start Chat!',
 };
 
 const memberDisplayOptions = {
@@ -199,5 +183,5 @@ export const config: Configuration = {
   mapHelplineLanguage,
   memberDisplayOptions,
   captureIp,
-  contactType
+  contactType,
 };

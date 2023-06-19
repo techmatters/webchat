@@ -72,6 +72,9 @@ module.exports = {
   },
   resolve: {
     extensions: ['.ts', '.js', '.tsx'],
+    fallback: {
+      buffer: require.resolve('buffer'),
+    },
   },
   output: {
     filename: 'bundle.js',

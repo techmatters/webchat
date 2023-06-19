@@ -23,7 +23,7 @@ import { Reducer } from 'redux';
 
 import { getUserIp } from './ip-tracker';
 import { displayOperatingHours } from './operating-hours';
-import { updateZIndex, getWebChatLanguageAttributeValue } from './dom-utils';
+import { updateZIndex, getWebChatAttributeValues } from './dom-utils';
 import blockedIps from './blockedIps.json';
 import CloseChatButtons from './end-chat/CloseChatButtons';
 import { getChangeLanguageWebChat } from './language';
@@ -35,6 +35,10 @@ import type { Configuration } from '../types';
 // eslint-disable-next-line import/no-unresolved
 import { config } from './config';
 import { renderEmojis } from './emoji-picker/renderEmojis';
+import { renderCustomMessageBubble } from './messagebubble-component/renderCustomMessageBubble';
+import PreEngagementForm, { PLACEHOLDER_PRE_ENGAGEMENT_CONFIG } from './pre-engagement-form';
+import { setFormDefinition } from './pre-engagement-form/state';
+import { applyWidgetBranding } from './branding-overrides';
 
 updateZIndex();
 
@@ -48,7 +52,7 @@ export const getCurrentConfig = (): Configuration => {
 };
 
 const currentConfig = getCurrentConfig();
-const externalWebChatLanguage = getWebChatLanguageAttributeValue();
+const { externalWebChatLanguage, color, backgroundColor } = getWebChatAttributeValues();
 
 const { defaultLanguage, translations } = currentConfig;
 const initialLanguage = defaultLanguage;
@@ -98,6 +102,7 @@ const setChannelAfterStartEngagement = async (channel: Channel, manager: FlexWeb
   const message = `${translations[initialLanguage].AutoFirstMessage} ${contactIdentifier}`;
   channel.sendMessage(message);
 };
+// eslint-disable-next-line sonarjs/cognitive-complexity
 export const initWebchat = async () => {
   let ip: string | undefined;
   if (currentConfig.captureIp) {
@@ -113,7 +118,7 @@ export const initWebchat = async () => {
     accountSid: currentConfig.accountSid,
     flexFlowSid: currentConfig.flexFlowSid,
     startEngagementOnInit: false,
-    preEngagementConfig: currentConfig.preEngagementConfig,
+    preEngagementConfig: PLACEHOLDER_PRE_ENGAGEMENT_CONFIG,
     context: {
       ip,
     },
@@ -136,12 +141,12 @@ export const initWebchat = async () => {
   const webchat = await FlexWebChat.createWebChat(appConfig);
   const { manager } = webchat;
   manager.store.replaceReducer(aseloReducer as Reducer<FlexState>);
-
-  await displayOperatingHours(currentConfig, manager);
+  manager.store.dispatch(setFormDefinition(currentConfig.preEngagementConfig));
 
   const changeLanguageWebChat = getChangeLanguageWebChat(manager, currentConfig);
-
   changeLanguageWebChat(externalWebChatLanguage || initialLanguage);
+
+  await displayOperatingHours(currentConfig, manager, externalWebChatLanguage);
 
   // If caller is waiting for a counselor to connect, disable input (default language)
   if (manager.chatClient) {
@@ -161,6 +166,8 @@ export const initWebchat = async () => {
         yourFriendlyNameOverride: false,
         theirFriendlyNameOverride: true,
       };
+
+  renderCustomMessageBubble();
 
   // Hide message input and send button if disabledReason is not undefined
   FlexWebChat.MessageInput.Content.remove('textarea', {
@@ -195,14 +202,25 @@ export const initWebchat = async () => {
   currentConfig.showEmojiPicker !== false && renderEmojis(manager, currentConfig.blockedEmojis);
 
   // Add CloseButtons
-  FlexWebChat.MessageInput.Content.add(
+  FlexWebChat.MessagingCanvas.Content.add(
     <Provider store={manager.store as any} key="closechatprovider">
       <CloseChatButtons />
     </Provider>,
+    {
+      sortOrder: -2,
+    },
+  );
+
+  // Replace pre engagement form
+  FlexWebChat.PreEngagementCanvas.Content.replace(
+    <PreEngagementForm key="pre-engagement" manager={manager} enableRecaptcha={currentConfig.enableRecaptcha} />,
   );
 
   // Render WebChat
   webchat.init();
 
   applyMobileOptimization(manager);
+
+  // This adds the custom colors to webchat and revert to the default colors if backgroundColor or color is null/undefined
+  applyWidgetBranding(backgroundColor as string, color as string);
 };

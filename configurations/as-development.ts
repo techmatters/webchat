@@ -14,7 +14,8 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-import type { PreEngagementConfig, Translations, Configuration, MapHelplineLanguage } from '../types';
+import type { Translations, Configuration, MapHelplineLanguage } from '../types';
+import { PreEngagementFormDefinition } from '../src/pre-engagement-form';
 
 const accountSid = 'ACd8a2e89748318adf6ddff7df6948deaf';
 const flexFlowSid = 'FO8c2d9c388e7feba8b08d06a4bc3f69d1';
@@ -23,6 +24,7 @@ const captureIp = true;
 const checkOpenHours = true;
 const contactType = 'ip';
 const showEmojiPicker = true;
+const enableRecaptcha = true;
 
 const translations: Translations = {
   'en-US': {
@@ -30,6 +32,11 @@ const translations: Translations = {
     MessageCanvasTrayContent: '',
     MessageInputDisabledReasonHold: 'Please hold for a counselor.',
     AutoFirstMessage: 'Incoming webchat contact from',
+    PreEngagementDescription: `Let's get started`,
+    WhatIsYourHelpline: 'What is your helpline?',
+    SelectHelpline: 'Select helpline',
+    FakeHelpline: 'Fake Helpline',
+    LetsChat: "Let's chat!",
   },
   es: {
     EntryPointTagline: 'Chatea con nosotros',
@@ -52,6 +59,12 @@ const translations: Translations = {
 
     PreEngagementDescription: 'Comencemos',
 
+    // Needs to be translated
+    WhatIsYourHelpline: 'What is your helpline?',
+    SelectHelpline: 'Select helpline',
+    FakeHelpline: 'Fake Helpline',
+    LetsChat: "Let's chat!",
+
     WelcomeMessage: '¡Bienvenido a Aselo!',
     MessageCanvasTrayContent: '',
     AutoFirstMessage: '',
@@ -62,62 +75,38 @@ const translations: Translations = {
   },
 };
 
-const preEngagementConfig: PreEngagementConfig = {
-  description: "Let's get started",
+const preEngagementConfig: PreEngagementFormDefinition = {
+  description: 'PreEngagementDescription',
+  submitLabel: 'LetsChat',
   fields: [
     {
-      label: 'What is your helpline?',
-      type: 'SelectItem',
-      attributes: {
-        name: 'helpline',
-        required: true,
-        readOnly: false,
+      type: 'input-text',
+      name: 'name',
+      label: 'First Name',
+      placeholder: 'John',
+      required: true,
+    },
+    {
+      type: 'checkbox',
+      name: 'termsAndConditions',
+      label:
+        'Accept <a href="https://www.redpapaz.org/wp-content/uploads/2019/02/Politica_de_Tratamiento_de_Informacion_-_Red_PaPaz.pdf">terms and conditions</a>',
+      required: {
+        value: true,
+        message: 'You need to accept the terms and conditions',
       },
-      options: [
-        {
-          value: 'Select helpline',
-          label: 'Select helpline',
-          selected: true,
-        },
-        {
-          value: 'Fake Helpline',
-          label: 'Fake Helpline',
-          selected: false,
-        },
-      ],
     },
   ],
-  submitLabel: "Let's chat!",
 };
 
-const closedHours: PreEngagementConfig = {
+const closedHours: PreEngagementFormDefinition = {
   description: "We're closed at the moment. Operating hours are 8am-6pm",
-  fields: [
-    {
-      label: 'Hidden Field',
-      type: 'InputField',
-      attributes: {
-        name: '',
-        required: true,
-        readOnly: true,
-      },
-    },
-  ],
+  fields: [],
 };
 
-const holidayHours: PreEngagementConfig = {
+const holidayHours: PreEngagementFormDefinition = {
   description: 'We are closed because it is a holiday. Please come back tomorrow',
-  fields: [
-    {
-      label: 'Hidden Field',
-      type: 'InputField',
-      attributes: {
-        name: '',
-        required: true,
-        readOnly: true,
-      },
-    },
-  ],
+  fields: [],
 };
 
 const mapHelplineLanguage: MapHelplineLanguage = (helpline) => {
@@ -153,6 +142,12 @@ const blockedEmojis = [
   'syringe',
   'pill',
 ];
+const memberDisplayOptions = {
+  yourDefaultName: 'You',
+  yourFriendlyNameOverride: false,
+  theirFriendlyNameOverride: false,
+  theirDefaultName: 'Counsellor',
+};
 
 export const config: Configuration = {
   accountSid,
@@ -168,4 +163,6 @@ export const config: Configuration = {
   contactType,
   showEmojiPicker,
   blockedEmojis,
+  memberDisplayOptions,
+  enableRecaptcha,
 };

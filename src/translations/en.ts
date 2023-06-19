@@ -18,5 +18,5 @@
 export default {
   EndChatButtonLabel: 'End Chat',
   QuickExitButtonLabel: 'Quick Exit',
-  QuickExitDescription: 'Need to leave quickly?',
+  QuickExitDescription: 'Need to leave immediately?',
 } as Record<string, string>;

@@ -17,6 +17,7 @@
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
 
 import { Configuration } from '../types';
+import { notifyStringsUpdated } from './pre-engagement-form/localization';
 import standardTranslations from './translations';
 
 /**
@@ -35,6 +36,20 @@ const standardTranslationsForLanguage = (language: string): Record<string, strin
   return { ...languageTranslations, ...cultureSpecificTranslations };
 };
 
+export const overrideLanguageOnContext = (manager: FlexWebChat.Manager, language: string) => {
+  const appConfig = manager.configuration;
+
+  const updateConfig = {
+    ...appConfig,
+    context: {
+      ...appConfig.context,
+      language,
+    },
+  };
+
+  manager.updateConfig(updateConfig);
+};
+
 export const getChangeLanguageWebChat = (manager: FlexWebChat.Manager, config: Configuration) => {
   const { defaultLanguage, translations: configTranslations } = config;
   const setNewLanguage = (language: string) => {
@@ -44,6 +59,7 @@ export const getChangeLanguageWebChat = (manager: FlexWebChat.Manager, config: C
     const setConfigLanguage = (language: string) => (manager.store.getState().flex.config.language = language);
     const setNewStrings = (newStrings: FlexWebChat.Strings) =>
       (manager.strings = { ...manager.strings, ...newStrings });
+
     if (language && language !== defaultLanguage) {
       const languageTranslations = standardTranslationsForLanguage(language);
       setConfigLanguage(language);
@@ -63,11 +79,14 @@ export const getChangeLanguageWebChat = (manager: FlexWebChat.Manager, config: C
   return (language: string) => {
     try {
       setNewLanguage(language);
+      overrideLanguageOnContext(manager, language);
     } catch (err) {
       const translationErrorMsg = 'Could not translate, using default';
       window.alert(translationErrorMsg);
       console.error(translationErrorMsg, err);
       setNewLanguage(defaultLanguage);
+    } finally {
+      notifyStringsUpdated();
     }
   };
 };
