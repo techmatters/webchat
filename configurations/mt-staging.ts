@@ -291,6 +291,16 @@ const preEngagementConfig: PreEngagementFormDefinition = {
         },
       ],
     },
+    {
+      type: 'checkbox',
+      name: 'termsAndConditions',
+      label:
+        'I have read and accept the Terms and Conditions https://kellimni.com/chat-terms/',
+      required: {
+        value: true,
+        message: "I'm sorry, if you don't accept our terms and conditions we can't provide counselling to you.",
+      }, 
+    },
   ],
 };
 
