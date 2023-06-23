@@ -185,10 +185,10 @@ jobs:
           SOURCE_DIR: "build"
           DEST_DIR: "webchat/${{ steps.helpline_code.outputs.lowercase }}"
 
-      - name: Upload html files to assets S3 bucket
+      - name: Upload e2e-chat html file to assets S3 bucket
         uses: jakejarvis/s3-sync-action@master
         with:
-          args: --acl public-read --follow-symlinks --exclude '*' --include '*.html' --content-type 'text/html; charset=utf-8'
+          args: --acl public-read --follow-symlinks --exclude '*' --include 'e2e-chat.html' --content-type 'text/html; charset=utf-8'
         env:
           AWS_S3_BUCKET: assets-${{ inputs.environment }}.tl.techmatters.org
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
