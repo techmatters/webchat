@@ -91,7 +91,7 @@ const preEngagementConfig: PreEngagementFormDefinition = {
     },
     {
       type: 'input-text',
-      name: 'nickname',
+      name: 'friendlyName',
       label: 'Nickname',
       placeholder: 'GuestName',
       required: true,
