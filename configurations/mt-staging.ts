@@ -295,7 +295,7 @@ const preEngagementConfig: PreEngagementFormDefinition = {
       type: 'checkbox',
       name: 'termsAndConditions',
       label:
-        'I have read and accept the Terms and Conditions https://kellimni.com/chat-terms/',
+        'I have read and accept the <a href="https://kellimni.com/chat-terms/">Terms and Conditions</a>',
       required: {
         value: true,
         message: "Sorry, if you don't accept our terms and conditions we can't provide counselling to you.",
