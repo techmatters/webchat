@@ -91,7 +91,7 @@ const preEngagementConfig: PreEngagementFormDefinition = {
     },
     {
       type: 'input-text',
-      name: 'nickname',
+      name: 'friendlyName',
       label: 'Nickname',
       placeholder: 'GuestName',
       required: true,
@@ -290,6 +290,16 @@ const preEngagementConfig: PreEngagementFormDefinition = {
           label: 'Uncertain/Inċert/Розгублений',
         },
       ],
+    },
+    {
+      type: 'checkbox',
+      name: 'termsAndConditions',
+      label:
+        'I have read and accept the <a href="https://kellimni.com/chat-terms/">Terms and Conditions</a>',
+      required: {
+        value: true,
+        message: "Sorry, if you don't accept our terms and conditions we can't provide counselling to you.",
+      }, 
     },
   ],
 };
