@@ -19,7 +19,6 @@ import React, { useRef, useState } from 'react';
 import { connect } from 'react-redux';
 import { useForm, FormProvider } from 'react-hook-form';
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
-import ReCAPTCHA from 'react-google-recaptcha';
 
 import { AseloWebchatState } from '../aselo-webchat-state';
 import type { PreEngagementForm as PreEngagementFormDefinition } from './form-components/types';
@@ -30,8 +29,7 @@ import Title from './form-components/title';
 import { resetForm } from './state';
 import { PLACEHOLDER_PRE_ENGAGEMENT_CONFIG } from './placeholder-form';
 import { overrideLanguageOnContext } from '../language';
-import { RECAPTCHA_KEY } from '../../private/secret';
-import { validateUser } from './recaptchaValidation';
+import ReCaptcha from './ReCaptcha';
 
 export { PreEngagementFormDefinition, PLACEHOLDER_PRE_ENGAGEMENT_CONFIG };
 
@@ -40,6 +38,7 @@ export const EMAIL_PATTERN = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 type Props = {
   manager: FlexWebChat.Manager;
   enableRecaptcha?: boolean;
+  bypassCaptcha?: boolean;
 } & ReturnType<typeof mapStateToProps> &
   typeof mapDispatchToProps;
 
@@ -50,15 +49,13 @@ const PreEngagementForm: React.FC<Props> = ({
   resetFormAction,
   enableRecaptcha,
   friendlyName,
+  bypassCaptcha,
 }) => {
   const methods = useForm({ defaultValues, mode: 'onChange' });
   const { handleSubmit, formState } = methods;
   const { isValid } = formState;
 
-  // State to keep track of whether the Recaptcha has been verified
   const [isRecaptchaVerified, setIsRecaptchaVerified] = useState<boolean>(false);
-
-  const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   // Function that overrides the friendlyName value on context
   const overrideFriendlyNameOnContext = () => {
@@ -73,11 +70,6 @@ const PreEngagementForm: React.FC<Props> = ({
     };
 
     manager.updateConfig(updateConfig);
-  };
-
-  // Handler function for when the Recaptcha token changes
-  const onChange = (token: string | null) => {
-    setIsRecaptchaVerified(token !== null); // reflect whether the token is null or not - a valid sitekey will return a token along with recaptchaRef
   };
 
   const onSubmit = handleSubmit(async (data) => {
@@ -99,21 +91,9 @@ const PreEngagementForm: React.FC<Props> = ({
       overrideFriendlyNameOnContext();
     }
 
-    if (enableRecaptcha) {
-      try {
-        const token: string = recaptchaRef?.current?.getValue() ?? '';
-        validateUser(token);
-        // If the token is valid, submit the form payload and reset the form
-        await FlexWebChat.Actions.invokeAction('StartEngagement', payload);
-        resetFormAction();
-      } catch (error) {
-        console.log(error);
-      }
-    } else {
-      // when enableRecaptcha is not set
-      await FlexWebChat.Actions.invokeAction('StartEngagement', payload);
-      resetFormAction();
-    }
+    // when enableRecaptcha is not set
+    await FlexWebChat.Actions.invokeAction('StartEngagement', payload);
+    resetFormAction();
   });
 
   if (formDefinition === undefined) {
@@ -126,14 +106,12 @@ const PreEngagementForm: React.FC<Props> = ({
         <form className="Twilio-DynamicForm" onSubmit={onSubmit}>
           <Title title={formDefinition.description} />
           {generateForm(formDefinition.fields)}
-          {enableRecaptcha && (
-            <ReCAPTCHA sitekey={RECAPTCHA_KEY} size="normal" ref={recaptchaRef} onChange={onChange} />
-          )}
+          {enableRecaptcha && <ReCaptcha bypassCaptcha={bypassCaptcha} onRecaptchaChange={setIsRecaptchaVerified} />}
           {formDefinition.submitLabel && (
             <SubmitButton
               label={formDefinition.submitLabel}
-              // disabled prop set to true if the form is invalid or the Recaptcha is not verified
-              disabled={!isValid || ((enableRecaptcha ?? false) && !isRecaptchaVerified)}
+              // disabled prop set to true if the form is invalid or the Recaptcha is not verified or bypassCaptcha
+              disabled={!isValid || ((enableRecaptcha ?? false) && !isRecaptchaVerified && !bypassCaptcha)}
             />
           )}
         </form>

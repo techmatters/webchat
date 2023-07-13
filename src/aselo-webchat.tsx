@@ -52,7 +52,7 @@ export const getCurrentConfig = (): Configuration => {
 };
 
 const currentConfig = getCurrentConfig();
-const { externalWebChatLanguage, color, backgroundColor } = getWebChatAttributeValues();
+const { externalWebChatLanguage, color, backgroundColor, bypassCaptcha } = getWebChatAttributeValues();
 
 const { defaultLanguage, translations } = currentConfig;
 const initialLanguage = defaultLanguage;
@@ -213,7 +213,12 @@ export const initWebchat = async () => {
 
   // Replace pre engagement form
   FlexWebChat.PreEngagementCanvas.Content.replace(
-    <PreEngagementForm key="pre-engagement" manager={manager} enableRecaptcha={currentConfig.enableRecaptcha} />,
+    <PreEngagementForm
+      key="pre-engagement"
+      manager={manager}
+      enableRecaptcha={currentConfig.enableRecaptcha}
+      bypassCaptcha={bypassCaptcha}
+    />,
   );
 
   // Render WebChat
