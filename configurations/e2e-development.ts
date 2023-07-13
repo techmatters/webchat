@@ -44,7 +44,15 @@ const translations: Translations = {
 const preEngagementConfig: PreEngagementFormDefinition = {
   description: 'PreEngagementDescription',
   submitLabel: 'StartChat',
-  fields: [],
+  fields: [
+    {
+      type: 'input-text',
+      name: 'nickname',
+      label: 'LabelNickname',
+      placeholder: 'Guest',
+      required: true,
+    },
+  ],
 };
 
 const memberDisplayOptions = {
