@@ -60,7 +60,7 @@ export function getWebChatAttributeValues() {
   const backgroundColor = document?.currentScript?.getAttribute('data-background-color');
 
   // bypasses recaptcha validation in e2e automated tests
-  const bypassCaptcha = document?.currentScript?.getAttribute('data-bypassCaptcha') === 'true';
+  const bypassCaptcha = document?.currentScript?.getAttribute('data-e2e-test-mode') === 'true';
 
   return { externalWebChatLanguage, color, backgroundColor, bypassCaptcha };
 }
