@@ -52,7 +52,7 @@ export const getCurrentConfig = (): Configuration => {
 };
 
 const currentConfig = getCurrentConfig();
-const { externalWebChatLanguage, color, backgroundColor, bypassCaptcha } = getWebChatAttributeValues();
+const { externalWebChatLanguage, color, backgroundColor, e2eTestMode } = getWebChatAttributeValues();
 
 const { defaultLanguage, translations } = currentConfig;
 const initialLanguage = defaultLanguage;
@@ -121,6 +121,8 @@ export const initWebchat = async () => {
     preEngagementConfig: PLACEHOLDER_PRE_ENGAGEMENT_CONFIG,
     context: {
       ip,
+      // eslint-disable-next-line camelcase
+      e2e_test_mode: e2eTestMode,
     },
     colorTheme: {
       overrides: {
@@ -217,7 +219,7 @@ export const initWebchat = async () => {
       key="pre-engagement"
       manager={manager}
       enableRecaptcha={currentConfig.enableRecaptcha}
-      bypassCaptcha={bypassCaptcha}
+      bypassCaptcha={e2eTestMode}
     />,
   );
 

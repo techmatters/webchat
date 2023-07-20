@@ -38,7 +38,7 @@ const standardTranslationsForLanguage = (language: string): Record<string, strin
 
 export const overrideLanguageOnContext = (manager: FlexWebChat.Manager, language: string) => {
   const appConfig = manager.configuration;
-  console.log('>>> ', appConfig)
+  console.log('>>> ', appConfig);
 
   const updateConfig = {
     ...appConfig,
