@@ -40,10 +40,39 @@ const preEngagementConfig: PreEngagementFormDefinition = {
   fields: [
     {
       type: 'input-text',
-      name: 'firstName',
-      label: 'Name',
+      name: 'friendlyName',
+      label: 'Preferred Name',
       placeholder: 'Name',
       required: true,
+    },
+    {
+      type: 'select',
+      name: 'gender',
+      label: 'Gender',
+      defaultValue: '',
+      required: true,
+      options: [
+        {
+          value: "",
+          label: ""
+        },
+        {
+          value: "Male / Tāne",
+          label: "Male / Tāne"
+        },
+        {
+          value: "Female / Wāhine",
+          label: "Female / Wāhine"
+        },
+        {
+          value: "Non-binary",
+          label: "Non-binary"
+        },
+        {
+          value: "Unknown",
+          label: "Unknown"
+        }
+      ],
     },
     {
       label: 'Age',
@@ -52,45 +81,17 @@ const preEngagementConfig: PreEngagementFormDefinition = {
       required: true,
       defaultValue: '',
        options: [
-         {
+        {
           value: "",
           label: ""
         },
         {
-          value: "<5",
-          label: "<5"
+          value: "Unknown",
+          label: "Unknown"
         },
         {
-          value: "05",
-          label: "5"
-        },
-        {
-          value: "06",
-          label: "6"
-        },
-        {
-          value: "07",
-          label: "7"
-        },
-        {
-          value: "08",
-          label: "8"
-        },
-        {
-          value: "09",
-          label: "9"
-        },
-        {
-          value: "10",
-          label: "10"
-        },
-        {
-          value: "11",
-          label: "11"
-        },
-        {
-          value: "12",
-          label: "12"
+          value: "<13",
+          label: "<13"
         },
         {
           value: "13",
@@ -161,29 +162,227 @@ const preEngagementConfig: PreEngagementFormDefinition = {
           label: "29"
         },
         {
-          value: ">29",
-          label: ">29"
+          value: "30",
+          label: "30"
+        },
+        {
+          value: "31-64",
+          label: "31-64"
+        },
+        {
+          value: ">64",
+          label: ">64"
         }
        ],
      },  
-    {
+     {
       type: 'select',
-      name: 'gender',
-      label: 'Gender',
+      name: 'region',
+      label: 'Region',
       defaultValue: '',
       required: true,
       options: [
-        { value: '', label: '' },
-        { value: 'Male', label: 'Male' },
-        { value: 'Female', label: 'Female' },
-        { value: 'Non-binary', label: 'Non-binary' },
-        { value: 'Unknown', label: 'Unknown' },
+        {
+          value: "",
+          label: ""
+        },
+        {
+          value: "Unknown",
+          label: "Unknown"
+        },
+        {
+          value: "Northland",
+          label: "Northland"
+        },
+        {
+          value: "Auckland",
+          label: "Auckland"
+        },
+        {
+          value: "Waikato",
+          label: "Waikato"
+        },
+        {
+          value: "Bay of Plenty",
+          label: "Bay of Plenty"
+        },
+        {
+          value: "Gisborne",
+          label: "Gisborne"
+        },
+        {
+          value: "Hawke's Bay",
+          label: "Hawke's Bay"
+        },
+        {
+          value: "Taranaki",
+          label: "Taranaki"
+        },
+        {
+          value: "Manawatū-Whanganui",
+          label: "Manawatū-Whanganui"
+        },
+        {
+          value: "Wellington",
+          label: "Wellington"
+        },
+        {
+          value: "Tasman",
+          label: "Tasman"
+        },
+        {
+          value: "Nelson",
+          label: "Nelson"
+        },
+        {
+          value: "Marlborough",
+          label: "Marlborough"
+        },
+        {
+          value: "West Coast",
+          label: "West Coast"
+        },
+        {
+          value: "Canterbury",
+          label: "Canterbury"
+        },
+        {
+          value: "Otago",
+          label: "Otago"
+        },
+        {
+          value: "Southland",
+          label: "Southland"
+        }
       ],
+    },
+    {
+      label: 'Ethnicity',
+      type: 'select',
+      name: 'ethnicity',
+      required: true,
+      defaultValue: '',
+       options: [
+        {
+          value: "",
+          label: ""
+        },
+        {
+          value: "Unknown",
+          label: "Unknown"
+        },
+        {
+          value: "African",
+          label: "African"
+        },
+        {
+          value: "Chinese",
+          label: "Chinese"
+        },
+        {
+          value: "Cook Island Maori",
+          label: "Cook Island Maori"
+        },
+        {
+          value: "Fijian",
+          label: "Fijian"
+        },
+        {
+          value: "Indian",
+          label: "Indian"
+        },
+        {
+          value: "Latin American",
+          label: "Latin American"
+        },
+        {
+          value: "Maori",
+          label: "Maori"
+        },
+        {
+          value: "Middle Eastern",
+          label: "Middle Eastern"
+        },
+        {
+          value: "Niuean",
+          label: "Niuean"
+        },
+        {
+          value: "NZ European/Pakeha",
+          label: "NZ European/Pakeha"
+        },
+        {
+          value: "Other",
+          label: "Other"
+        },
+        {
+          value: "Other Asian",
+          label: "Other Asian"
+        },
+        {
+          value: "Other European",
+          label: "Other European"
+        },
+        {
+          value: "Other Pacific Peoples",
+          label: "Other Pacific Peoples"
+        },
+        {
+          value: "Samoan",
+          label: "Samoan"
+        },
+        {
+          value: "South-East Asian",
+          label: "South-East Asian"
+        },
+        {
+          value: "Tokelauan",
+          label: "Tokelauan"
+        },
+        {
+          value: "Tongan",
+          label: "Tongan"
+        }
+       ],
+     },
+     {
+      type: 'select',
+      name: 'reason',
+      label: 'Why are you contacting us?',
+      defaultValue: '',
+      options: [
+        {
+          value: "",
+          label: ""
+        },
+        {
+          value: "emergency",
+          label: "I'm having an emergency"
+        },
+        {
+          value: "counselling",
+          label: "I need support or counselling"
+        },
+        {
+          value: "questions",
+          label: "I have questions about the helpline"
+        },
+        {
+          value: "Unknown",
+          label: "Other"
+        }
+      ],
+    },
+    {
+      type: 'input-text',
+      name: 'phoneNumber',
+      label: 'If you are on a managed care plan, please enter your phone number',
+      placeholder: 'Phone Number',
     },
     {
       type: 'checkbox',
       name: 'clientPrivacyStatement',
-      label: 'I agree with the <a href="https://www.youthline.co.nz/client-privacy-statement.html">client privacy statement</a>',
+      label: 'I agree with the <a href="https://www.youthline.co.nz/privacy-statement-for-children-and-young-people.html">client privacy statement</a>',
       required: {
         value: true,
         message: 'You need to agree with our client privacy statement to start a chat ',
@@ -199,12 +398,14 @@ const translations: Translations = {
     MessageInputDisabledReasonHold:
       "Thank you very much for this information. We'll transfer you now. Please hold for a practitioner.",
     AutoFirstMessage: 'Incoming webchat contact from',
-    TypingIndicator: 'Counselor is typing',
+    TypingIndicator: 'Practitioner is typing',
     StartChat: 'Start Chat!',
     MessageCanvasTrayButton: 'Start New Chat',
     Email: 'Email',
     Age: 'What is your age?',
     Gender: 'What is your gender?',
+    Region: 'Select your region',
+    Ethnicity: 'Select your ethnicity',
   },
 };
 
@@ -212,7 +413,7 @@ const memberDisplayOptions = {
   yourDefaultName: 'You',
   yourFriendlyNameOverride: false,
   theirFriendlyNameOverride: false,
-  theirDefaultName: 'Counselor',
+  theirDefaultName: 'Practitioner',
 };
 
 const mapHelplineLanguage: MapHelplineLanguage = (helpline) => {
