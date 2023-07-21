@@ -17,6 +17,7 @@
 const path = require('path');
 
 const webpack = require('webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BomPlugin = require('webpack-utf8-bom');
 
@@ -92,6 +93,9 @@ module.exports = {
     new webpack.DefinePlugin({
       // Here it creates webpack.env.CONFIG from the env var CONFIG
       'webpack.env.CONFIG': JSON.stringify(process.env.CONFIG),
+    }),
+    new CopyWebpackPlugin({
+      patterns: [{ from: 'assets' }],
     }),
   ],
   externals: {

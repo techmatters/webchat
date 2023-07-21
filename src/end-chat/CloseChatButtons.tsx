@@ -24,10 +24,12 @@ import End from './EndChat';
 import { AseloWebchatState } from '../aselo-webchat-state';
 import { ButtonsWrapper, ExitDescText } from './end-chat-styles';
 
-const CloseChatButtons = ({ channelSid, token, language, taskSid }: MapStateToProps) => {
+const CloseChatButtons = ({ channelSid, token, language, tasksSids }: MapStateToProps) => {
   if (!channelSid || !token) {
     return null;
   }
+
+  const finishTask = Boolean(tasksSids?.length);
   return (
     <>
       <ButtonsWrapper>
@@ -35,9 +37,9 @@ const CloseChatButtons = ({ channelSid, token, language, taskSid }: MapStateToPr
           channelSid={channelSid}
           token={token}
           language={language}
-          action={taskSid ? 'finishTask' : 'restartEngagement'}
+          action={finishTask ? 'finishTask' : 'restartEngagement'}
         />
-        <Exit channelSid={channelSid} token={token} language={language} finishTask={Boolean(taskSid)} />
+        <Exit channelSid={channelSid} token={token} language={language} finishTask={finishTask} />
       </ButtonsWrapper>
       <ExitDescText>
         <Template code="QuickExitDescription" />
@@ -50,8 +52,9 @@ type MapStateToProps = ReturnType<typeof mapStateToProps>;
 
 const mapStateToProps = (state: AseloWebchatState) => {
   const { channelSid, tokenPayload } = state?.flex?.session ?? {};
+
   return {
-    taskSid: state?.task?.currentSid,
+    tasksSids: state?.task?.tasksSids,
     channelSid,
     token: tokenPayload?.token,
     language: state?.flex?.config?.language,
