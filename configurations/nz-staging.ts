@@ -374,12 +374,6 @@ const preEngagementConfig: PreEngagementFormDefinition = {
       ],
     },
     {
-      type: 'input-text',
-      name: 'phoneNumber',
-      label: 'If you are on a managed care plan, please enter your phone number',
-      placeholder: 'Phone Number',
-    },
-    {
       type: 'checkbox',
       name: 'clientPrivacyStatement',
       label: 'I agree with the <a href="https://www.youthline.co.nz/privacy-statement-for-children-and-young-people.html">client privacy statement</a>',
