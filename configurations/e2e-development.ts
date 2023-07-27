@@ -22,7 +22,7 @@ const flexFlowSid = 'FOfce25fd1dff726dcdae2899de86de6c5';
 const defaultLanguage = 'en-US';
 const captureIp = true;
 const contactType: ContactType = 'ip';
-const enableRecaptcha = true;
+const enableRecaptcha = false;
 
 const translations: Translations = {
   'en-US': {
