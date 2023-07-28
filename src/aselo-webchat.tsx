@@ -121,8 +121,7 @@ export const initWebchat = async () => {
     preEngagementConfig: PLACEHOLDER_PRE_ENGAGEMENT_CONFIG,
     context: {
       ip,
-      // eslint-disable-next-line camelcase
-      e2e_test_mode: e2eTestMode,
+      e2eTestMode,
     },
     colorTheme: {
       overrides: {
