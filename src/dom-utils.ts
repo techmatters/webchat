@@ -59,5 +59,8 @@ export function getWebChatAttributeValues() {
   const color = document?.currentScript?.getAttribute('data-color');
   const backgroundColor = document?.currentScript?.getAttribute('data-background-color');
 
-  return { externalWebChatLanguage, color, backgroundColor };
+  // used to turn on/off captcha and send messages to correct queue
+  const e2eTestMode = document?.currentScript?.getAttribute('data-e2e-test-mode') === 'true';
+
+  return { externalWebChatLanguage, color, backgroundColor, e2eTestMode };
 }

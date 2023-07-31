@@ -2320,5 +2320,5 @@ export const config: Configuration = {
   captureIp,
   contactType,
   blockedEmojis,
-  enableRecaptcha
+  enableRecaptcha,
 };
