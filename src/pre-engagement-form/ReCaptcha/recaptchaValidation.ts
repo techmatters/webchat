@@ -19,7 +19,7 @@
 export async function validateUser(token: string) {
   try {
     // eslint-disable-next-line global-require
-    const { RECAPTCHA_VERIFY_URL } = require('../../private/secret');
+    const { RECAPTCHA_VERIFY_URL } = require('../../../private/secret');
     const response = await fetch(RECAPTCHA_VERIFY_URL, {
       method: 'POST',
       headers: {

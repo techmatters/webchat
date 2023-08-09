@@ -22,6 +22,7 @@ const flexFlowSid = 'FOfce25fd1dff726dcdae2899de86de6c5';
 const defaultLanguage = 'en-US';
 const captureIp = true;
 const contactType: ContactType = 'ip';
+const enableRecaptcha = false;
 
 const translations: Translations = {
   'en-US': {
@@ -43,7 +44,15 @@ const translations: Translations = {
 const preEngagementConfig: PreEngagementFormDefinition = {
   description: 'PreEngagementDescription',
   submitLabel: 'StartChat',
-  fields: [],
+  fields: [
+    {
+      type: 'input-text',
+      name: 'nickname',
+      label: 'LabelNickname',
+      placeholder: 'Guest',
+      required: true,
+    },
+  ],
 };
 
 const memberDisplayOptions = {
@@ -60,6 +69,7 @@ const mapHelplineLanguage: MapHelplineLanguage = (helpline) => {
   }
 };
 
+// eslint-disable-next-line import/no-unused-modules
 export const config: Configuration = {
   accountSid,
   flexFlowSid,
@@ -70,4 +80,5 @@ export const config: Configuration = {
   memberDisplayOptions,
   captureIp,
   contactType,
+  enableRecaptcha,
 };

@@ -52,7 +52,7 @@ export const getCurrentConfig = (): Configuration => {
 };
 
 const currentConfig = getCurrentConfig();
-const { externalWebChatLanguage, color, backgroundColor } = getWebChatAttributeValues();
+const { externalWebChatLanguage, color, backgroundColor, e2eTestMode } = getWebChatAttributeValues();
 
 const { defaultLanguage, translations } = currentConfig;
 const initialLanguage = defaultLanguage;
@@ -121,6 +121,7 @@ export const initWebchat = async () => {
     preEngagementConfig: PLACEHOLDER_PRE_ENGAGEMENT_CONFIG,
     context: {
       ip,
+      e2eTestMode,
     },
     colorTheme: {
       overrides: {
@@ -213,7 +214,12 @@ export const initWebchat = async () => {
 
   // Replace pre engagement form
   FlexWebChat.PreEngagementCanvas.Content.replace(
-    <PreEngagementForm key="pre-engagement" manager={manager} enableRecaptcha={currentConfig.enableRecaptcha} />,
+    <PreEngagementForm
+      key="pre-engagement"
+      manager={manager}
+      enableRecaptcha={currentConfig.enableRecaptcha}
+      bypassCaptcha={e2eTestMode}
+    />,
   );
 
   // Render WebChat
