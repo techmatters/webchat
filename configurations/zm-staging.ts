@@ -148,7 +148,7 @@ const preEngagementConfig: PreEngagementFormDefinition = {
       defaultValue: 'English',
       required: true,
       options: [
-        { value: 'English', label: '1. English' },
+        { value: 'en-US', label: '1. English' },
         { value: 'Bemba', label: '2. Bemba' },
         { value: 'Tonga', label: '3. Tonga' },
         { value: 'Lunda', label: '4. Lunda' },
