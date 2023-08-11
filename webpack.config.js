@@ -37,7 +37,7 @@ const webpackConfig = {
   devtool,
   devServer: {
     contentBase: path.join(__dirname, './'),
-    compress: true, s
+    compress: true,
     port: 9000,
     open: true,
     inline: true,
