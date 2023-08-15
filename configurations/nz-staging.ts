@@ -70,7 +70,7 @@ const preEngagementConfig: PreEngagementFormDefinition = {
         },
         {
           value: "Unknown",
-          label: "Unknown"
+          label: "Prefer not to say"
         }
       ],
     },
@@ -407,7 +407,7 @@ const memberDisplayOptions = {
   yourDefaultName: 'You',
   yourFriendlyNameOverride: false,
   theirFriendlyNameOverride: false,
-  theirDefaultName: 'Practitioner',
+  theirDefaultName: 'Helpline Counsellor',
 };
 
 const mapHelplineLanguage: MapHelplineLanguage = (helpline) => {
