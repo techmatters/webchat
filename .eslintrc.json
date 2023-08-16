@@ -1,14 +1,12 @@
 {
-  "extends": [
-    "twilio-react"
-  ],
+  "extends": ["twilio-react", "prettier/prettier"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 2019,
-    "sourceType": "module", 
-    "ecmaFeatures": { 
-    "jsx": true
-   }
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
   },
   "rules": {
     "no-console": "off",

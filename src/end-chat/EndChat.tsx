@@ -47,7 +47,9 @@ export default function EndChat({ channelSid, token, language, action }: Props) 
         return;
       case 'restartEngagement':
       default:
-        await FlexWebChat.Actions.invokeAction('RestartEngagement', { exit: false });
+        await FlexWebChat.Actions.invokeAction('RestartEngagement', {
+          exit: false,
+        });
     }
   };
   return (
