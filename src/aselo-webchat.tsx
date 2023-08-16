@@ -42,17 +42,29 @@ import { applyWidgetBranding } from './branding-overrides';
 
 updateZIndex();
 
+const e2eTestModeConfigOverride = {
+  enableRecaptcha: false,
+  checkOpenHours: false,
+};
+
+const { externalWebChatLanguage, color, backgroundColor, e2eTestMode } = getWebChatAttributeValues();
 // eslint-disable-next-line import/no-unused-modules
 export const getCurrentConfig = (): Configuration => {
   if (!config) {
     throw new Error(`Failed trying to load config file ${webpack.env.CONFIG}`);
   }
 
+  if (e2eTestMode) {
+    return {
+      ...config,
+      ...e2eTestModeConfigOverride,
+    };
+  }
+
   return config;
 };
 
 const currentConfig = getCurrentConfig();
-const { externalWebChatLanguage, color, backgroundColor, e2eTestMode } = getWebChatAttributeValues();
 
 const { defaultLanguage, translations } = currentConfig;
 const initialLanguage = defaultLanguage;
@@ -214,12 +226,7 @@ export const initWebchat = async () => {
 
   // Replace pre engagement form
   FlexWebChat.PreEngagementCanvas.Content.replace(
-    <PreEngagementForm
-      key="pre-engagement"
-      manager={manager}
-      enableRecaptcha={currentConfig.enableRecaptcha}
-      bypassCaptcha={e2eTestMode}
-    />,
+    <PreEngagementForm key="pre-engagement" manager={manager} enableRecaptcha={currentConfig.enableRecaptcha} />,
   );
 
   // Render WebChat
