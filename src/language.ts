@@ -38,12 +38,18 @@ const standardTranslationsForLanguage = (language: string): Record<string, strin
 
 export const overrideLanguageOnContext = (manager: FlexWebChat.Manager, language: string) => {
   const appConfig = manager.configuration;
+  const [languageOnlyCode] = language.split('-');
 
   const updateConfig = {
     ...appConfig,
     context: {
       ...appConfig.context,
       language,
+    },
+    componentProps: {
+      MainHeader: {
+        titleText: standardTranslations[languageOnlyCode].ChatWithUs,
+      },
     },
   };
 

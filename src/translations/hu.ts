@@ -19,4 +19,5 @@ export default {
   EndChatButtonLabel: 'Csevegés befejezése',
   QuickExitButtonLabel: 'Gyors kilépés',
   QuickExitDescription: 'Gyorsan el kell menni?',
+  ChatWithUs: 'Csevegés velünk',
 } as Record<string, string>;
