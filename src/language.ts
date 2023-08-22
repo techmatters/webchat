@@ -38,7 +38,6 @@ const standardTranslationsForLanguage = (language: string): Record<string, strin
 
 export const overrideLanguageOnContext = (manager: FlexWebChat.Manager, language: string) => {
   const appConfig = manager.configuration;
-  const [languageOnlyCode] = language.split('-');
 
   const updateConfig = {
     ...appConfig,
@@ -46,13 +45,24 @@ export const overrideLanguageOnContext = (manager: FlexWebChat.Manager, language
       ...appConfig.context,
       language,
     },
+  };
+
+  manager.updateConfig(updateConfig);
+};
+
+const setMainHeaderTitle = (manager: FlexWebChat.Manager, language: string) => {
+  const [languageOnlyCode] = language.split('-');
+
+  const appConfig = manager.configuration;
+
+  const updateConfig = {
+    ...appConfig,
     componentProps: {
       MainHeader: {
         titleText: standardTranslations[languageOnlyCode].ChatWithUs,
       },
     },
   };
-
   manager.updateConfig(updateConfig);
 };
 
@@ -76,9 +86,11 @@ export const getChangeLanguageWebChat = (manager: FlexWebChat.Manager, config: C
         ...languageTranslations,
         ...configTranslations[language],
       });
+      setMainHeaderTitle(manager, language);
     } else {
       setConfigLanguage(defaultLanguage);
       setNewStrings({ ...twilioStrings, ...defaultLanguageTranslations, ...configTranslations[defaultLanguage] });
+      setMainHeaderTitle(manager, language);
     }
   };
 
