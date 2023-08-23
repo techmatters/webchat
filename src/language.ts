@@ -86,7 +86,7 @@ export const getChangeLanguageWebChat = (manager: FlexWebChat.Manager, config: C
         ...languageTranslations,
         ...configTranslations[language],
       });
-      setMainHeaderTitle(manager, defaultLanguage);
+      setMainHeaderTitle(manager, language);
     } else {
       setConfigLanguage(defaultLanguage);
       setNewStrings({ ...twilioStrings, ...defaultLanguageTranslations, ...configTranslations[defaultLanguage] });
