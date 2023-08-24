@@ -20,7 +20,11 @@ import { Configuration, OperatingHoursResponse } from '../types';
 import { setFormDefinition } from './pre-engagement-form/state';
 
 const getOperatingHours = async (language: string): Promise<OperatingHoursResponse> => {
-  const body = { channel: 'webchat', includeMessageTextInResponse: 'true', language };
+  const body = {
+    channel: 'webchat',
+    includeMessageTextInResponse: 'true',
+    language,
+  };
 
   const options = {
     method: 'POST',

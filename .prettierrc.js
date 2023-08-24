@@ -14,10 +14,8 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-// eslint-disable-next-line global-require
-export default {
-  EndChatButtonLabel: 'End Chat',
-  QuickExitButtonLabel: 'Quick Exit',
-  QuickExitDescription: 'Need to leave immediately?',
-  ChatWithUs: 'Chat with Us',
-} as Record<string, string>;
+const baseConfig = require('./node_modules/eslint-config-twilio/rules/prettier');
+
+module.exports = {
+  ...baseConfig,
+};
