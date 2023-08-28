@@ -20,6 +20,7 @@ const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BomPlugin = require('webpack-utf8-bom');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 const { checkMODE, setConfigFile } = require('./utils');
 
@@ -28,15 +29,19 @@ const config = process.env.CONFIG;
 checkMODE(mode);
 setConfigFile(config);
 
-const devtool = mode === 'development' ? 'eval-source-map' : undefined;
+const isDevMode = mode === 'development';
+const devtool = isDevMode ? 'eval-source-map' : undefined;
 
-module.exports = {
+const webpackConfig = {
   mode,
   devtool,
   devServer: {
-    contentBase: './build',
+    contentBase: path.join(__dirname, './'),
     compress: true,
     port: 9000,
+    open: true,
+    inline: true,
+    hot: true,
   },
   entry: './src/index.ts',
   module: {
@@ -75,18 +80,19 @@ module.exports = {
     extensions: ['.ts', '.js', '.tsx'],
     fallback: {
       buffer: require.resolve('buffer'),
+      fs: false,
     },
   },
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'build'),
+    publicPath: '/',
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: 'src/index.html',
-      inject: false, // This prevents webpack from injecting <script defer src="./bundle.js"></script> in the header
+      inject: false, // This prevents webpack from injecting <script defer src='./bundle.js'></script> in the header
     }),
-    new BomPlugin(true),
     new webpack.ProvidePlugin({
       process: 'process/browser',
     }),
@@ -97,9 +103,20 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [{ from: 'assets' }],
     }),
+    new webpack.HotModuleReplacementPlugin(),
+    new ReactRefreshWebpackPlugin({
+      overlay: false,
+    }),
   ],
   externals: {
     // eslint-disable-next-line global-require
     fs: require('fs'),
   },
 };
+
+if (!isDevMode) {
+  // The bom plugin breaks the dev server and hot
+  webpackConfig.plugins.push(new BomPlugin(true));
+}
+
+module.exports = webpackConfig;

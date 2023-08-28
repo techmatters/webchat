@@ -15,7 +15,7 @@
  */
 
 /* eslint-disable react/require-default-props */
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { useForm, FormProvider } from 'react-hook-form';
 import * as FlexWebChat from '@twilio/flex-webchat-ui';
@@ -38,7 +38,6 @@ export const EMAIL_PATTERN = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 type Props = {
   manager: FlexWebChat.Manager;
   enableRecaptcha?: boolean;
-  bypassCaptcha?: boolean;
 } & ReturnType<typeof mapStateToProps> &
   typeof mapDispatchToProps;
 
@@ -49,7 +48,6 @@ const PreEngagementForm: React.FC<Props> = ({
   resetFormAction,
   enableRecaptcha,
   friendlyName,
-  bypassCaptcha,
 }) => {
   const methods = useForm({ defaultValues, mode: 'onChange' });
   const { handleSubmit, formState } = methods;
@@ -106,12 +104,11 @@ const PreEngagementForm: React.FC<Props> = ({
         <form className="Twilio-DynamicForm" onSubmit={onSubmit}>
           <Title title={formDefinition.description} />
           {generateForm(formDefinition.fields)}
-          {enableRecaptcha && <ReCaptcha bypassCaptcha={bypassCaptcha} onRecaptchaChange={setIsRecaptchaVerified} />}
+          {enableRecaptcha && <ReCaptcha onRecaptchaChange={setIsRecaptchaVerified} />}
           {formDefinition.submitLabel && (
             <SubmitButton
               label={formDefinition.submitLabel}
-              // disabled prop set to true if the form is invalid or the Recaptcha is not verified or bypassCaptcha
-              disabled={!isValid || ((enableRecaptcha ?? false) && !isRecaptchaVerified && !bypassCaptcha)}
+              disabled={!isValid || ((enableRecaptcha ?? false) && !isRecaptchaVerified)}
             />
           )}
         </form>
